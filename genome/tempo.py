@@ -12,7 +12,8 @@ def estimate(features, duration):
     onset = features["onset_strength"]
     if len(peaks) < 4 or duration < 2:
         return Tempo()
-    ac = correlate(onset, onset, mode="full", method="fft")[len(onset)-1:]
+    centered = onset - onset.mean()
+    ac = correlate(centered, centered, mode="full", method="fft")[len(onset)-1:]
     # Integrate neighboring lags so frame quantization cannot favor a third-period alias.
     ac = gaussian_filter1d(ac, 1)
     ac /= max(float(ac[0]), 1e-12)

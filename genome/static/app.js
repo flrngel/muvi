@@ -10,7 +10,7 @@ const state = {g: null, visuals: null, tracks: [], view: 'spectrum', start: 0, e
   section: null, loop: false, auditionStart: 0, auditionEnd: null, busy: false, loadTicket: 0, inspectorTicket: 0, connection: null};
 const audio = $('audio');
 audio.volume = 0.8;
-let toastTimer, dragDepth = 0;
+let toastTimer, playbackFrame, dragDepth = 0;
 
 async function request(url, options = {}) {
   const response = await fetch(url, options);
@@ -260,6 +260,10 @@ async function togglePlay() {
   if (!audio.paused) audio.pause();
   else { if (audio.currentTime >= state.g.duration_s - .02 || (state.loop && audio.currentTime >= state.end - .02)) seek(state.start); await audio.play(); }
 }
+function animatePlayback() {
+  updatePlayback();
+  if (!audio.paused) playbackFrame = requestAnimationFrame(animatePlayback);
+}
 async function connect() {
   state.connection ||= await request('/api/tools');
   $('mcp-config').textContent = JSON.stringify(state.connection.mcp_config, null, 2); $('connect-dialog').showModal();
@@ -292,8 +296,8 @@ $('loop').addEventListener('click', () => { state.loop = !state.loop; $('loop').
 $('mute').addEventListener('click', () => { audio.muted = !audio.muted; $('mute').setAttribute('aria-pressed', audio.muted); $('mute').setAttribute('aria-label', audio.muted ? 'Unmute audio' : 'Mute audio'); });
 $('volume').addEventListener('input', e => { audio.volume = Number(e.target.value); });
 audio.addEventListener('timeupdate', updatePlayback);
-audio.addEventListener('play', () => { $('play').textContent = 'Ⅱ'; $('play').setAttribute('aria-label', 'Pause'); });
-audio.addEventListener('pause', () => { $('play').textContent = '▶'; $('play').setAttribute('aria-label', 'Play'); });
+audio.addEventListener('play', () => { $('play').textContent = 'Ⅱ'; $('play').setAttribute('aria-label', 'Pause'); cancelAnimationFrame(playbackFrame); playbackFrame = requestAnimationFrame(animatePlayback); });
+audio.addEventListener('pause', () => { $('play').textContent = '▶'; $('play').setAttribute('aria-label', 'Play'); cancelAnimationFrame(playbackFrame); });
 audio.addEventListener('error', () => { if (audio.getAttribute('src')) toast('Audio preview could not load. Reopen the track to try again.', true); });
 audio.addEventListener('ended', run(async () => { if (state.loop) { seek(state.start); await audio.play(); } }));
 $('copy-config').addEventListener('click', run(() => copy(JSON.stringify(state.connection.mcp_config, null, 2), 'MCP configuration copied.')));

@@ -11,7 +11,7 @@ def render(engine, g, start, end):
     """A synchronized human/VLM audit image with companion numeric coordinates."""
     key = hashlib.sha256(f"{g.analysis_id}:{start:.9f}:{end:.9f}:tile-v1".encode()).hexdigest()[:20]
     relative = f"images/tile-{key}.png"
-    path = engine.directory(g.track_id)/relative
+    path = engine.directory(g.track_id, g.analysis_id)/relative
     legend_path = path.with_suffix(".json")
     with _RENDER_LOCK:
         if not path.exists() or not legend_path.exists():
@@ -19,7 +19,7 @@ def render(engine, g, start, end):
             matplotlib.use("Agg")
             from matplotlib import pyplot as plt
             from matplotlib.colors import LinearSegmentedColormap
-            a = engine.arrays(g.track_id)
+            a = engine.arrays(g.track_id, g.analysis_id)
             mask = (a["times_s"] >= start)&(a["times_s"] <= end)
             if not mask.any():
                 raise ValueError("Interval is too short for a visual tile; use at least 0.05 seconds")
@@ -45,7 +45,7 @@ def render(engine, g, start, end):
                         axes[1].plot(t, 10*np.log10(a["band_power"][i, mask]+1e-12), color=colors[i],
                                      label=label, linewidth=1, linestyle=["-", "--", ":"][i])
                     axes[1].set_ylabel("Band power (dB)")
-                    axes[1].legend(loc="upper right", ncol=3, frameon=False, labelcolor="#d5dfd4", fontsize=9)
+                    axes[1].legend(loc="upper right", ncol=3, frameon=True, facecolor="#101418", edgecolor="none", framealpha=0.9, labelcolor="#d5dfd4", fontsize=9)
                     axes[2].plot(t, a["onset_strength"][mask], color="#dfe9d4", linewidth=0.8)
                     for beat in g.tempo.beat_times_s:
                         if start <= beat <= end:
@@ -76,5 +76,5 @@ def render(engine, g, start, end):
                       "evidence_ids": [e.id for e in g.evidence if e.start_s < end and e.end_s > start],
                       "measurement_status": "observed_with_inferred_overlays"}
             legend_path.write_text(json.dumps(legend, indent=2), encoding="utf-8")
-    return relative, str(legend_path.relative_to(engine.directory(g.track_id))).replace("\\", "/")
+    return relative, str(legend_path.relative_to(engine.directory(g.track_id, g.analysis_id))).replace("\\", "/")
 

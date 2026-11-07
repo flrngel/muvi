@@ -102,14 +102,14 @@ class Claim(Span):
 
 
 class Genome(Model):
-    schema_version: str = "0.1.0"
-    track_id: str
+    schema_version: Literal["0.1.0"] = "0.1.0"
+    track_id: str = Field(pattern=r"^sha256:[a-f0-9]{64}$")
     analysis_id: str
     title: str
     duration_s: float = Field(gt=0)
     sample_rate: int
     channels: int
-    source_sha256: str
+    source_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     source_format: str
     analysis_sample_rate: int
     mono_policy: str
@@ -129,6 +129,8 @@ class Genome(Model):
 
     @model_validator(mode="after")
     def integrity(self):
+        if self.track_id != f"sha256:{self.source_sha256}":
+            raise ValueError("Track ID must match the immutable source checksum")
         evidence_ids = {e.id for e in self.evidence}
         sound_ids = {s.id for s in self.sound_objects}
         pattern_ids = {p.id for p in self.patterns}

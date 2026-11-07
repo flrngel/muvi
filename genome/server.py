@@ -18,6 +18,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, ValidationError
 from starlette.middleware.trustedhost import TrustedHostMiddleware
+from starlette.formparsers import MultiPartException
 
 from genome import __version__
 from genome.audio import MAX_UPLOAD_BYTES
@@ -29,6 +30,33 @@ from genome.tools import MusicTools, SYSTEM_PROMPT
 class ToolCall(BaseModel):
     model_config = ConfigDict(extra="forbid")
     arguments: dict
+
+
+class UploadLimitMiddleware:
+    """Enforce the cap before the multipart parser can spool an unbounded body."""
+    def __init__(self, app, limit):
+        self.app, self.limit = app, limit
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http" or scope.get("path") != "/api/upload":
+            return await self.app(scope, receive, send)
+        headers = dict(scope.get("headers", []))
+        try:
+            length = int(headers.get(b"content-length", b"0"))
+        except ValueError:
+            length = self.limit+1
+        if length > self.limit:
+            return await JSONResponse({"detail": "Audio exceeds the 200 MiB upload limit"}, status_code=413)(scope, receive, send)
+        received = 0
+        async def limited_receive():
+            nonlocal received
+            message = await receive()
+            received += len(message.get("body", b""))
+            if received > self.limit:
+                # Starlette closes multipart temporary files when this exception is raised.
+                raise MultiPartException("Audio exceeds the upload limit")
+            return message
+        await self.app(scope, limited_receive, send)
 
 
 def create_app(root=None):
@@ -46,6 +74,7 @@ def create_app(root=None):
     app = FastAPI(title="Muvi · Music Genome", version=__version__, lifespan=lifespan)
     app.state.engine, app.state.music = engine, music
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1", "[::1]", "testserver"])
+    app.add_middleware(UploadLimitMiddleware, limit=MAX_UPLOAD_BYTES + 1024*1024)
 
     @app.middleware("http")
     async def local_origin(request: Request, call_next):
@@ -167,7 +196,7 @@ def create_app(root=None):
     @app.get("/api/tracks/{track_id}/visuals")
     def visuals(track_id: str):
         g = engine.load(track_id)
-        a = engine.arrays(track_id)
+        a = engine.arrays(track_id, g.analysis_id)
         # These arrays are for display. Full-resolution evidence stays in the NPZ artifact.
         step = max(1, int(np.ceil(len(a["times_s"])/900)))
         columns = range(0, len(a["times_s"]), step)
@@ -184,13 +213,13 @@ def create_app(root=None):
 
     @app.get("/api/tracks/{track_id}/export")
     def export(track_id: str):
-        engine.load(track_id)
-        return FileResponse(engine.directory(track_id)/"genome.json", media_type="application/json", filename="music-genome.json")
+        g = engine.load(track_id)
+        return FileResponse(engine.directory(track_id, g.analysis_id)/"genome.json", media_type="application/json", filename="music-genome.json")
 
     @app.get("/api/tracks/{track_id}/artifacts/{artifact:path}")
-    def artifact(track_id: str, artifact: str):
-        engine.load(track_id)
-        directory = engine.directory(track_id).resolve()
+    def artifact(track_id: str, artifact: str, analysis_id: str | None = None):
+        g = engine.load(track_id, analysis_id)
+        directory = engine.directory(track_id, g.analysis_id).resolve()
         path = (directory/artifact).resolve()
         if not path.is_relative_to(directory) or path.suffix not in (".wav", ".png", ".json", ".npz"):
             raise KeyError("Unknown artifact")

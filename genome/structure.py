@@ -13,7 +13,7 @@ def segment(features, duration, evidence):
     width = max(1, round(0.8*ANALYSIS_SR/HOP))
     smooth = uniform_filter1d(power, width, axis=1)
     total = smooth.sum(axis=0)
-    descriptor = np.vstack([smooth/(total+1e-12), np.log10(total+1e-8)[None, :]*0.18])
+    descriptor = np.vstack([smooth/(total+1e-12), np.log10(smooth+1e-8)*0.18])
     novelty = np.zeros(len(times))
     if len(times) > 2*width:
         novelty[width:-width] = np.linalg.norm(descriptor[:, 2*width:]-descriptor[:, :-2*width], axis=0)
@@ -25,6 +25,7 @@ def segment(features, duration, evidence):
     bounds = [0.0, *cuts[:63], duration]
     sections = []
     prototypes = []
+    signatures = []
     onset_times = times[features["onset_frames"]]
     for index, (start, end) in enumerate(zip(bounds, bounds[1:])):
         mask = (times >= start)&(times < end)
@@ -33,6 +34,7 @@ def segment(features, duration, evidence):
                           features["chroma_power"][:, mask].mean(axis=1)/(power[:, mask].sum(axis=0).mean()+1e-12)]
         norm = np.linalg.norm(signature)
         signature /= max(norm, 1e-12)
+        signatures.append(signature.copy())
         group = next((i for i, p in enumerate(prototypes) if np.dot(p, signature) > 0.985), len(prototypes))
         if group == len(prototypes):
             prototypes.append(signature)
@@ -47,6 +49,7 @@ def segment(features, duration, evidence):
                                 evidence_ids=[ev.id], mean_band_power=bands.tolist(),
                                 onset_count=int(ev.measurements["onset_count"])))
     features["novelty"] = novelty.astype(np.float32)
-    features["section_similarity"] = np.array([[float(np.dot(a, b)) for b in prototypes] for a in prototypes])
+    features["section_similarity"] = np.array([[float(np.dot(a, b)) for b in signatures] for a in signatures])
+    features["section_midpoints_s"] = np.array([(s.start_s+s.end_s)/2 for s in sections])
     return sections
 

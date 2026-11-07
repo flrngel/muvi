@@ -96,3 +96,76 @@ def test_invalid_and_short_audio(engine, tmp_path):
     with pytest.raises(ValueError):
         engine.load("../../secret")
 
+
+@pytest.mark.parametrize("bpm,seed", [(150, 31), (128, 53)])
+def test_quiet_entrance_and_bright_attack_regression(engine, tmp_path, bpm, seed):
+    source = tmp_path/"arrangement.wav"
+    truth = synthesize(source, kind="arrangement", duration=16, bpm=bpm, seed=seed)
+    g = engine.analyze(source)
+    boundaries = np.array([s.start_s for s in g.sections[1:]])
+    assert len(boundaries) == 3
+    assert np.max(np.min(np.abs(np.array(truth["boundaries_s"])[:, None]-boundaries), axis=1)) < 0.5
+    bright_ids = {s.id for s in g.sound_objects if s.name == "Bright pulse"}
+    bright = [o for o in g.occurrences if o.sound_object_id in bright_ids]
+    assert len(bright) >= 15
+    assert sum(o.start_s < 3.8 for o in bright) == 0
+    arrays = engine.arrays(g.track_id)
+    assert arrays["section_similarity"].shape == (len(g.sections), len(g.sections))
+    np.testing.assert_allclose(arrays["section_similarity"], arrays["section_similarity"].T)
+
+
+def test_source_rate_metrics_and_gain_preservation(engine, tmp_path):
+    path = tmp_path/"loud.wav"
+    sr = 48000
+    pcm = np.tile([1.1, -1.1, 0.4, -0.4], sr//2)
+    sf.write(path, pcm, sr, subtype="FLOAT")
+    g = engine.analyze(path)
+    metrics = g.evidence[0].measurements
+    assert g.sample_rate == sr
+    assert metrics["sample_peak_dbfs"] > 0
+    assert metrics["samples_at_or_above_full_scale"] == len(pcm)/2
+    assert metrics["stereo_correlation"] is None
+
+
+def test_nonfinite_and_excess_channels_fail_before_analysis(engine, tmp_path):
+    path = tmp_path/"bad.wav"
+    pcm = np.zeros(22050)
+    pcm[100] = np.nan
+    sf.write(path, pcm, 22050, subtype="FLOAT")
+    with pytest.raises(ValueError, match="non-finite"):
+        engine.analyze(path)
+    sf.write(path, np.zeros((22050, 4)), 22050)
+    with pytest.raises(ValueError, match="mono or stereo"):
+        engine.analyze(path)
+    assert not list(engine.root.glob("*/.analysis-*"))
+
+
+def test_pipeline_upgrade_keeps_old_library_and_versioned_evidence(engine, tmp_path, monkeypatch):
+    source = tmp_path/"a.wav"
+    synthesize(source, kind="pulse", duration=4)
+    old = engine.analyze(source)
+    monkeypatch.setattr("genome.engine.ANALYSIS_ID", "dsp-test-next")
+    assert engine.load(old.track_id) == old
+    assert engine.list_tracks()[0]["new_analysis_available"]
+    new = engine.analyze(source)
+    assert new.analysis_id == "dsp-test-next"
+    assert engine.load(old.track_id, old.analysis_id) == old
+    assert engine.load(new.track_id) == new
+    assert len(engine.list_tracks()) == 1
+
+
+def test_fixture_bytes_are_reproducible(tmp_path):
+    a, b = tmp_path/"first.wav", tmp_path/"second.wav"
+    synthesize(a, duration=2, seed=51)
+    synthesize(b, duration=2, seed=51)
+    assert a.read_bytes() == b.read_bytes()
+    assert b"PEAK" not in a.read_bytes()[:200]
+
+
+@pytest.mark.parametrize("seed", [3, 31, 72])
+def test_stationary_noise_is_not_a_beat_or_recurring_pattern(engine, tmp_path, seed):
+    source = tmp_path/"noise.wav"
+    synthesize(source, duration=8, kind="noise", seed=seed)
+    g = engine.analyze(source)
+    assert g.tempo.preferred_bpm is None
+    assert not g.patterns

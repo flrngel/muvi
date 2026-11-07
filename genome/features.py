@@ -13,6 +13,10 @@ PARAMETERS = {"sample_rate": ANALYSIS_SR, "hop_length": HOP, "fft_sizes": [512, 
               "max_duration_s": 600, "onset_min_gap_s": 0.06,
               "onset_prominence": 0.075, "section_min_s": 3.0,
               "object_cosine_threshold": 0.94, "max_objects": 8,
+              "object_descriptor": "short_window_positive_spectral_flux",
+              "section_descriptor": "band_fractions_and_log_band_power",
+              "tempo_autocorrelation": "mean_centered_gaussian_lag_smoothing",
+              "pattern_min_phase_coherence": 0.65,
               "feature_normalization": "one_sided_window_energy_power"}
 
 
@@ -38,6 +42,8 @@ def extract(y):
     flatness = np.zeros(count, np.float32)
     rms = np.zeros(count, np.float32)
     flux = np.zeros(count, np.float32)
+    attack_bands = np.zeros((3, count), np.float32)
+    attack_centroid = np.zeros(count, np.float32)
     log_edges = np.geomspace(30, ANALYSIS_SR/2, 73)
     for nfft in (512, 2048, 8192):
         frequencies = np.fft.rfftfreq(nfft, 1/ANALYSIS_SR)
@@ -53,6 +59,9 @@ def extract(y):
                 prev = magnitude[:, :1] if previous is None else previous[:, None]
                 delta = np.maximum(0, np.diff(np.concatenate([prev, magnitude], axis=1), axis=1))
                 flux[start:end] = delta.sum(axis=0)
+                for i, (lo, hi) in enumerate(BANDS):
+                    attack_bands[i, start:end] = (delta[(frequencies >= lo)&(frequencies < hi)]**2).sum(axis=0)
+                attack_centroid[start:end] = (delta*frequencies[:, None]).sum(axis=0)/(delta.sum(axis=0)+1e-20)
                 previous = magnitude[:, -1]
             if nfft == 2048:
                 total = power.sum(axis=0) + 1e-20
@@ -62,7 +71,7 @@ def extract(y):
                     if i > 0:
                         band_power[i, start:end] = power[(frequencies >= lo)&(frequencies < hi)].sum(axis=0)
                 for i in range(72):
-                    spectrogram[i, start:end] = power[log_indices == i].sum(axis=0)
+                    spectrogram[i, start:end] = power[(log_indices == i)&(frequencies >= log_edges[0])].sum(axis=0)
             if nfft == 8192:
                 band_power[0, start:end] = power[(frequencies >= 20)&(frequencies < 250)].sum(axis=0)
                 for i in range(12):
@@ -84,6 +93,7 @@ def extract(y):
     return {"times_s": times.astype(np.float32), "band_power": band_power, "rms": rms,
             "onset_strength": onset, "onset_frames": peaks, "centroid_hz": centroid,
             "flatness": flatness, "spectrogram_power": spectrogram,
+            "attack_band_flux": attack_bands, "attack_centroid_hz": attack_centroid,
             "frequency_edges_hz": log_edges, "chroma_power": chroma,
             "harmonic_like_ratio": harmonic_ratio,
             "smoothed_band_power": uniform_filter1d(band_power, size=43, axis=1)}

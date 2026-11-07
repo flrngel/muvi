@@ -22,6 +22,7 @@ def track_digest(g):
     text += ["UNKNOWN independent bass vs pulse tail: indeterminate. Objects may represent mixtures.",
              "NEXT query get_section/get_sound/get_evidence; audition original crops before source claims."]
     return {"title": g.title, "duration_s": g.duration_s,
+            "texture": next((e.model_dump() for e in g.evidence if e.kind == "spectral_texture"), None),
             "tempo": g.tempo.model_dump(exclude={"beat_times_s"}), "sections": sections,
             "section_count": len(g.sections), "sections_truncated": len(g.sections) > 24,
             "prominent_objects": objects, "patterns": patterns,

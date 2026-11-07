@@ -18,7 +18,7 @@ from genome.schema import Claim, Evidence, Genome
 from genome.structure import segment
 from genome.tempo import estimate
 
-PIPELINE_VERSION = "0.2.0"
+PIPELINE_VERSION = "0.3.1"
 PARAMETERS_SHA = hashlib.sha256(json.dumps(PARAMETERS, sort_keys=True).encode()).hexdigest()
 ANALYSIS_ID = f"dsp-{PIPELINE_VERSION}-{PARAMETERS_SHA[:12]}"
 
@@ -28,29 +28,43 @@ class Engine:
         self.root = Path(root or os.environ.get("MUVI_DATA_DIR", Path.home()/".muvi")).resolve()
         self.root.mkdir(parents=True, exist_ok=True)
 
-    def directory(self, track_id):
+    def directory(self, track_id, analysis_id=None):
         digest = track_id.removeprefix("sha256:")
         if not re.fullmatch(r"[a-f0-9]{64}", digest):
             raise ValueError("Invalid track ID")
-        return self.root/digest/ANALYSIS_ID
+        if analysis_id is not None:
+            if not re.fullmatch(r"dsp-[a-zA-Z0-9._-]{1,100}", analysis_id):
+                raise ValueError("Invalid analysis ID")
+            return self.root/digest/analysis_id
+        current = self.root/digest/ANALYSIS_ID
+        if (current/"genome.json").exists():
+            return current
+        previous = sorted((self.root/digest).glob("dsp-*/genome.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+        return previous[0].parent if previous else current
 
-    def load(self, track_id):
-        path = self.directory(track_id)/"genome.json"
+    def load(self, track_id, analysis_id=None):
+        path = self.directory(track_id, analysis_id)/"genome.json"
         if not path.is_file():
             raise KeyError("Track is not in this library; analyze it first")
         return Genome.model_validate_json(path.read_text(encoding="utf-8"))
 
-    def arrays(self, track_id):
-        with np.load(self.directory(track_id)/"arrays/features.npz", allow_pickle=False) as data:
+    def arrays(self, track_id, analysis_id=None):
+        with np.load(self.directory(track_id, analysis_id)/"arrays/features.npz", allow_pickle=False) as data:
             return {k: data[k] for k in data.files}
 
     def list_tracks(self):
         result = []
-        for path in sorted(self.root.glob(f"*/{ANALYSIS_ID}/genome.json"), key=lambda p: p.stat().st_mtime, reverse=True):
+        seen = set()
+        for path in sorted(self.root.glob("*/dsp-*/genome.json"), key=lambda p: p.stat().st_mtime, reverse=True):
             try:
-                g = Genome.model_validate_json(path.read_text(encoding="utf-8"))
+                track_hash = path.parent.parent.name
+                if track_hash in seen:
+                    continue
+                g = self.load(track_hash)
+                seen.add(track_hash)
                 result.append({"track_id": g.track_id, "title": g.title, "duration_s": g.duration_s,
-                               "tempo_bpm": g.tempo.preferred_bpm, "analysis_id": g.analysis_id})
+                               "tempo_bpm": g.tempo.preferred_bpm, "analysis_id": g.analysis_id,
+                               "new_analysis_available": g.analysis_id != ANALYSIS_ID})
             except (ValueError, OSError):
                 continue
         return result
@@ -65,13 +79,13 @@ class Engine:
             raise ValueError("Audio exceeds the 200 MiB file limit")
         digest = checksum(path)
         track_id = f"sha256:{digest}"
-        destination = self.directory(track_id)
+        destination = self.directory(track_id, ANALYSIS_ID)
         destination.parent.mkdir(parents=True, exist_ok=True)
         report = progress or (lambda stage, fraction: None)
         with FileLock(str(destination.parent/"analysis.lock"), timeout=300):
             if (destination/"genome.json").exists():
                 report("Loaded cached analysis", 1)
-                return self.load(track_id)
+                return self.load(track_id, ANALYSIS_ID)
             started = time.perf_counter()
             staging = Path(tempfile.mkdtemp(prefix=".analysis-", dir=destination.parent))
             try:
@@ -113,6 +127,17 @@ class Engine:
                     "Transient onsets and provisional periodicity, with octave alternatives.",
                     {"onset_count": float(len(features["onset_frames"])), "tempo_candidates_bpm": tempo.candidates_bpm},
                     {"onset_count": "events", "tempo_candidates_bpm": "beats/min, inferred"})
+                chroma = features["chroma_power"].mean(axis=1)
+                chroma /= max(float(chroma.sum()), 1e-12)
+                add("spectral_texture", 0, duration, "stft_chroma_and_median_texture_masks",
+                    "Pitch-class energy and harmonic-like texture describe the mixture; no key or instrument is asserted.",
+                    {"mean_chroma_fraction": chroma.tolist(),
+                     "mean_harmonic_like_ratio": float(features["harmonic_like_ratio"].mean()),
+                     "mean_centroid_hz": float(features["centroid_hz"].mean()),
+                     "mean_spectral_flatness": float(features["flatness"].mean())},
+                    {"mean_chroma_fraction": "relative energy ordered C,C#,D,D#,E,F,F#,G,G#,A,A#,B",
+                     "mean_harmonic_like_ratio": "median-mask energy ratio, not probability",
+                     "mean_centroid_hz": "Hz", "mean_spectral_flatness": "ratio"})
                 report("Finding recurring sounds and changes", 0.65)
                 sections = segment(features, duration, add)
                 objects, occurrences, patterns = index_objects(features, duration, add)

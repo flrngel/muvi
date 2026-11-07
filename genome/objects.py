@@ -9,10 +9,11 @@ def index_objects(features, duration, evidence):
     clusters = []
     occurrences = []
     for frame in peaks:
-        end_frame = min(frame+9, len(times))
-        bands = power[:, frame:end_frame].mean(axis=1)
+        end_frame = min(frame+3, len(times))
+        # Incremental short-window energy distinguishes an entering bright attack from a sustained bass.
+        bands = features["attack_band_flux"][:, max(0, frame-1):end_frame].sum(axis=1)
         ratios = bands/(bands.sum()+1e-15)
-        centroid = float(features["centroid_hz"][frame:end_frame].mean())
+        centroid = float(features["attack_centroid_hz"][frame:end_frame].mean())
         flatness = float(features["flatness"][frame:end_frame].mean())
         descriptor = np.r_[ratios, np.log1p(centroid)/10*0.3, flatness*0.4]
         descriptor /= max(np.linalg.norm(descriptor), 1e-12)
@@ -41,7 +42,7 @@ def index_objects(features, duration, evidence):
         name = ["Low pulse", "Midrange attack", "Bright pulse"][band]
         role = ["low-pulse", "midrange-transient", "subdivision"][band]
         ev = evidence("acoustic_object", float(ts[0]), min(duration, float(ts[-1])+0.16),
-                      "onset_descriptor_cosine_clustering", "Recurring mixture descriptors; not an isolated instrument.",
+                      "short_flux_descriptor_cosine_clustering", "Recurring spectral-change descriptors; not an isolated instrument.",
                       {"mean_band_fraction": c["ratios"].tolist(), "centroid_hz": c["centroid"],
                        "spectral_flatness": c["flatness"], "occurrence_count": float(len(ts))},
                       {"mean_band_fraction": "fraction within analysis bands", "centroid_hz": "Hz",
@@ -55,14 +56,21 @@ def index_objects(features, duration, evidence):
         if len(ts) >= 4:
             gaps = np.diff(ts)
             interval = float(np.median(gaps))
+            cycles = np.r_[0, np.cumsum(np.maximum(1, np.round(gaps/max(interval, 1e-6))))]
+            interval = float(np.polyfit(cycles, ts, 1)[0])
+            phase_coherence = float(np.abs(np.exp(2j*np.pi*ts/max(interval, 1e-6)).mean()))
             matches = np.abs(gaps-interval) < max(0.04, interval*0.08)
-            if interval > 0.05 and matches.mean() >= 0.65:
+            if interval > 0.05 and matches.mean() >= 0.65 and phase_coherence >= 0.65:
                 exceptions = [float(t+interval*j) for t, gap in zip(ts[:-1], gaps)
                               if gap > interval*1.5 for j in range(1, min(128, round(gap/interval)))]
+                exceptions += [float(ts[i+1]) for i, match in enumerate(matches) if not match]
+                exceptions = sorted(set(exceptions))
                 pev = evidence("recurrence", float(ts[0]), min(duration, float(ts[-1])+0.16),
-                               "inter_onset_interval_consistency", "Acoustic-object events recur at a provisional interval.",
+                               "inter_onset_interval_consistency", "Acoustic-object events recur at a provisional interval; exceptions include missing expected times and observed irregular-gap endpoints.",
                                {"interval_s": interval, "matching_gap_fraction": float(matches.mean()),
+                                "phase_coherence": phase_coherence,
                                 "exceptions_s": exceptions}, {"interval_s": "s", "matching_gap_fraction": "fraction, not probability",
+                                                           "phase_coherence": "circular concentration, not probability",
                                                            "exceptions_s": "original-track seconds"})
                 pattern = Pattern(id=f"P{len(patterns)+1:02}", sound_object_id=sid, interval_s=interval,
                                   repeat_intervals=[Span(start_s=float(ts[0]), end_s=min(duration, float(ts[-1])+0.16))],
@@ -93,5 +101,14 @@ def index_objects(features, duration, evidence):
             occurrences.append(Occurrence(id=f"O{len(occurrences)+1:05}", sound_object_id=sid,
                                           start_s=start, end_s=end, similarity=1,
                                           similarity_type="band_threshold_membership_not_probability"))
+        onset = features["onset_strength"]
+        coupling = float(np.corrcoef(onset, low)[0, 1]) if np.std(onset) > 1e-10 and np.std(low) > 1e-10 else None
+        relation = evidence("envelope_relationship", 0, duration, "low_band_onset_envelope_pearson",
+                            "Envelope correlation measures temporal co-activity; neither correlation nor persistence identifies an independent source.",
+                            {"onset_low_envelope_correlation": coupling,
+                             "low_active_fraction": float(active.mean())},
+                            {"onset_low_envelope_correlation": "Pearson r, not probability",
+                             "low_active_fraction": "fraction of analysis frames"})
+        objects[-1].evidence_ids.append(relation.id)
     return objects, occurrences, patterns
 

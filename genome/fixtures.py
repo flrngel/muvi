@@ -67,6 +67,7 @@ def synthesize(path: Path, bpm=150.0, duration=25.6, seed=7, kind="arrangement",
                 add(start, pad*np.minimum(t/0.1, 1)*np.minimum((length-t)/0.1, 1)*0.19)
     if kind == "antiphase":
         audio[:, 1] = -audio[:, 0]
-    sf.write(path, audio, sr, subtype="FLOAT")
+    # PCM has no timestamped PEAK chunk: seeded fixtures are byte-identical across runs.
+    sf.write(path, audio, sr, subtype="PCM_24")
     return truth
 

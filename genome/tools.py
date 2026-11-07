@@ -45,8 +45,13 @@ class MusicTools:
         return float(start), float(end)
 
     def _artifact(self, g, relative):
-        return {"uri": (self.engine.directory(g.track_id)/relative).as_uri(),
-                "url": f"/api/tracks/{g.source_sha256}/artifacts/{relative}"}
+        result = {"uri": (self.engine.directory(g.track_id, g.analysis_id)/relative).as_uri(),
+                  "url": f"/api/tracks/{g.source_sha256}/artifacts/{relative}?analysis_id={g.analysis_id}"}
+        if relative.startswith("images/") and relative.endswith(".png"):
+            result["resource_uri"] = f"muvi://tracks/{g.source_sha256}/{g.analysis_id}/images/{Path(relative).stem.removeprefix('tile-')}"
+        elif relative.startswith("clips/"):
+            result["resource_uri"] = f"muvi://tracks/{g.source_sha256}/{g.analysis_id}/clips/{Path(relative).stem}"
+        return result
 
     def analyze_track(self, path: str, profile: Literal["fast"] = "fast") -> dict[str, Any]:
         """Analyze a local audio file. MCP/CLI only; HTTP uploads use their own bounded endpoint."""
@@ -148,9 +153,9 @@ class MusicTools:
             raise ValueError("Audio crop must contain at least one source sample")
         key = hashlib.sha256(f"{first}:{last}".encode()).hexdigest()[:20]
         relative = f"clips/{key}.wav"
-        path = self.engine.directory(track_id)/relative
+        path = self.engine.directory(track_id, g.analysis_id)/relative
         if not path.exists():
-            with sf.SoundFile(self.engine.directory(track_id)/"audio/source.wav") as source:
+            with sf.SoundFile(self.engine.directory(track_id, g.analysis_id)/"audio/source.wav") as source:
                 source.seek(first)
                 pcm = source.read(last-first, dtype="float64", always_2d=True)
             fd, temp = tempfile.mkstemp(suffix=".wav", dir=path.parent)
@@ -211,7 +216,7 @@ class MusicTools:
         if start == 0 and end == g.duration_s:
             measurements = g.evidence[0].measurements
         else:
-            with sf.SoundFile(self.engine.directory(track_id)/"audio/source.wav") as f:
+            with sf.SoundFile(self.engine.directory(track_id, g.analysis_id)/"audio/source.wav") as f:
                 f.seek(round(start*g.sample_rate))
                 pcm = f.read(round(end*g.sample_rate)-round(start*g.sample_rate), always_2d=True)
             if not len(pcm):
