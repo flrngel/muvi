@@ -3,6 +3,11 @@
 The controlled benchmark is a DSP regression suite. It does not establish that an LLM
 using Muvi outperforms raw audio, spectrogram images, or another product.
 
+A narrower [Terra/Luna tool-mediated evaluation](BEAT_EVALUATION.md) has now run on
+generated development and held-out signals. It compares frozen Muvi versions, with
+one trajectory per model/condition. It does not complete the multi-arm experiment
+below or establish performance on listener-annotated real music.
+
 Run `uv run muvi benchmark --output artifacts/benchmark.json` to regenerate 16 seeded
 fixtures. The report includes exact synthesis truth, one-to-one onset metrics,
 octave-aware tempo error, section boundary F1 at 0.5/3 seconds, source abstention,

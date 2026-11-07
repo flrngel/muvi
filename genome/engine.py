@@ -11,9 +11,9 @@ from filelock import FileLock
 
 from genome.config import ANALYSIS_SR, PARAMETERS
 from genome.schema import Claim, Evidence, Genome
-from genome.storage import checksum
+from genome.storage import checksum, publish_directory
 
-PIPELINE_VERSION = "0.5.0"
+PIPELINE_VERSION = "0.5.1"
 PARAMETERS_SHA = hashlib.sha256(json.dumps(PARAMETERS, sort_keys=True).encode()).hexdigest()
 ANALYSIS_ID = f"dsp-{PIPELINE_VERSION}-{PARAMETERS_SHA[:12]}"
 
@@ -174,7 +174,7 @@ class Engine:
                     "source_sha256": digest, "parameters_sha256": PARAMETERS_SHA,
                     "files": {str(p.relative_to(staging)).replace("\\", "/"): checksum(p)
                               for p in staging.rglob("*") if p.is_file()}}, indent=2), encoding="utf-8")
-                os.replace(staging, destination)
+                publish_directory(staging, destination)
                 report("Ready to explore", 1)
                 return result
             finally:

@@ -1,61 +1,76 @@
-# Muvi 0.4.0 CLI verification
+# Muvi 0.5.1 verification
 
-Windows, CPython 3.12, November 6, 2026 (America/Los_Angeles). The
-[verification contract](CLI_PLAN.md) was written before the CLI conversion.
-This release replaces the browser application and HTTP service entirely.
+Windows, CPython 3.12, November 6, 2026 (America/Los_Angeles). Verification was
+planned before implementation in [CLI_PLAN.md](CLI_PLAN.md) and
+[BEAT_EVAL_PLAN.md](BEAT_EVAL_PLAN.md). Muvi remains a CLI package with optional
+MCP stdio integration; there is no browser application or HTTP service.
 
 ## Product and regression checks
 
-`.venv/Scripts/python.exe -m pytest -q`: **56 passed in 163.37 seconds** with the
-MCP extra installed. The suite exercises the public CLI through real subprocesses,
-plus the existing engine and tool tests.
+`uv run --group dev --extra mcp pytest -q`: **73 passed in 148.80 seconds**.
+The full suite exercises public commands through real subprocesses, the analysis
+engine and actual MCP SDK; no tests were skipped.
 
-- Analyze and cached reanalysis; human and JSON digests; full IDs, short prefixes,
-  local paths and `latest`; empty libraries; global/subcommand flags; environment defaults.
-- Unicode/spaced filenames; clean UTF-8 stdout; progress on stderr; quiet mode;
-  JSON object/file/stdin arguments and typed-schema discovery.
-- All direct evidence workflows: sections, sounds, paged occurrences, measurements,
-  comparisons, hypothesis abstention, original crops, PNG/legend pairs, canonical export.
-- Invalid files, malformed JSON, invalid tool arguments, nonexistent IDs, invalid
-  timestamps and spans, ambiguous prefixes, exit status 2 and machine-readable errors.
-- Existing exports require explicit replacement. Original audio and managed cache
-  files cannot be overwritten, including with `--force`. Crop samples match the source.
-- Help/version/MCP configuration work with Python site-packages disabled. Cached
-  metadata commands do not import NumPy, SciPy, SoundFile or Matplotlib.
-- Source bytes, source-rate gain/stereo metrics, anti-phase audio, timestamp shifts,
-  quiet entrances, stationary noise, silence, reference integrity, atomic concurrent
-  extraction, deterministic fixtures and preservation of old analysis versions.
-- Actual MCP SDK client: initialize, discover 13 tools, analyze a local file, retrieve
-  its digest, reject fabricated evidence, and read version-pinned WAV and PNG resources.
-  Requests have a timeout so regressions cannot leave a test waiting indefinitely.
+- Analysis and cached reads; human/JSON output; Unicode filenames; full IDs, CLI
+  prefixes/paths/`latest`; clean stdout, stderr progress and machine-readable errors.
+- Sections, acoustic objects, paged occurrences, evidence, comparisons, hypothesis
+  abstention, original audio crops, PNG/legend pairs and canonical export.
+- Band attack timing, exact-window pulse estimates, missing events, quantization,
+  timing changes, long gaps, pagination and explicit old-schema unavailability.
+- Invalid files, arguments, spans and IDs; protected source/cache paths and explicit
+  replacement of existing exports. Crop samples match the original source.
+- Source identity, source-rate metrics, anti-phase audio, silence/noise, timestamp
+  preservation, deterministic fixtures and atomic concurrent extraction.
+- Help/version/configuration work without site-packages. Cached metadata and rhythm
+  reads do not import numerical or plotting libraries.
+- Real MCP initialization, discovery of 14 tools, analysis, rhythm and evidence
+  retrieval, rejection of fabricated evidence, version-pinned WAV/PNG resources and
+  normal client/server shutdown. Tests have bounded subprocess/request timeouts.
+- A real Windows directory handle without delete sharing reproduced publication
+  contention and verified recovery. Retries are limited to native errors 5/32/33,
+  five attempts and 0.75 seconds total backoff. Permanent and unrelated failures
+  propagate; publication remains atomic.
+- The evaluation scorer gives no credit to missing answer fields, including empty
+  expected event/gap lists.
 
-A Windows native-library loading hang was reproduced during the first analysis inside
-an active MCP stdio session. A faulthandler trace located it in NumPy extension loading.
-MCP now loads the native DSP modules before starting its reader threads. The real
-client test then passed, including binary resources and normal process shutdown.
-Ordinary cached CLI reads retain their lazy import path.
+Earlier native-module loading hangs in MCP were traced to importing NumPy after
+reader threads started. MCP preloads DSP modules; ordinary cached CLI reads remain
+lazy. Existing analyses remain readable and are not rewritten by retrieval.
 
-The original local `dsp-0.3.1-9ac2e98f5cb4` demo was also read successfully through the
-new CLI. Its stored analysis was not rewritten. New analyses omit browser playback
-copies and browser waveform arrays.
+## Independent agent evaluation
+
+Terra used actual MCP; Luna used CLI and the new Muvi skill. Eight development and
+eight held-out generated recordings had known attack timing. The tuned source and
+skill were frozen before held-out evaluation. See [BEAT_EVALUATION.md](BEAT_EVALUATION.md)
+for the protocol, per-component results, increased call counts, uncertainty and
+preserved raw traces. This is not a real-music or raw-audio-model comparison.
+
+The evaluated 0.5.0 implementation is commit `239ab99`. The 0.5.1 follow-up changes
+Windows publication reliability and version labels. All eight held-out recordings
+were reanalyzed with 0.5.1: rhythm, tempo, sound objects and evidence measurements
+match the frozen evaluated output exactly. Perception module and skill hashes also
+match. [Machine-readable equivalence](verification/beat-eval/final-equivalence.json)
+records these checks. No perception tuning used held-out truth.
 
 ## Distribution and installation
 
-- `uv build` produces the 0.4.0 wheel and source archive.
-- Both archives were inspected: no HTTP server, static app assets or browser launcher.
-- Core wheel requirements are NumPy, SciPy, SoundFile, Pydantic, Matplotlib and FileLock.
-  The MCP SDK is an optional extra; no direct web dependencies remain.
-- The wheel was installed with `uv tool install` into its own environment outside the
-  repository. `scripts/smoke_install.py` runs outside the checkout and verifies the
-  installed package path, Unicode audio analysis, digest, schema discovery, original
-  WAV crop, PNG/legend export, canonical JSON and generated MCP configuration.
-- The same smoke test asserts FastAPI, Uvicorn, Starlette and MCP are absent in the
-  core environment and that requesting MCP gives a useful optional-install error.
-- `muvi` and `music-genome` are installed as standalone commands. No daemon is started.
+- `uv build` produces the 0.5.1 wheel and source archive. Archive inspection found no
+  HTTP service, static app assets or browser launcher; the source archive includes
+  `skills/muvi/SKILL.md`. Wheel module bytes match the source checkout.
+- `uv tool install` installed the wheel into an independent core-only environment.
+  Both `muvi` and `music-genome` are standalone commands; `muvi --version` is 0.5.1.
+- `scripts/smoke_install.py` passed outside the checkout. It verifies the installed
+  package path, Unicode audio analysis, digest, schema discovery, paged rhythm,
+  original WAV crop, PNG/legend export, canonical JSON and MCP configuration.
+- The same smoke test confirms FastAPI, Uvicorn, Starlette and MCP are absent from
+  the core environment and that requesting MCP gives a useful optional-install error.
+- The Muvi skill passed the skill-creator validator and was used by Luna. It ships
+  in the repository/source distribution; it is not automatically installed into a
+  user's personal agent configuration.
 
 `ruff check genome tests scripts`, `git diff --check` and `uv lock --check` passed.
-All spawned analysis, test and MCP processes terminated; no Python background
-process remained after the final suite.
+Muvi starts no daemon. All spawned analysis, test and MCP processes terminated;
+the final process inventory contained no remaining Python processes.
 
 ## Controlled benchmark
 
@@ -64,28 +79,26 @@ Full report: [verification/benchmark.json](verification/benchmark.json).
 | Measurement | Observed result |
 | --- | --- |
 | Seeded controlled fixtures | 16 |
-| Predeclared gates | All passed |
+| Predeclared gates | All 5 passed |
 | Clean pulse onset F1, 50 ms tolerance | 1.00 in all 8 cases |
 | Largest clean-case median onset error | 2.97 ms |
 | Largest clean-case octave-aware tempo error | 0.19% |
-| Extraction + cache-write latency, 16-second fixtures | P50 1.177 s / P95 1.744 s |
-| Sampled process peak RSS | 145 MiB |
+| Extraction + cache-write latency, 16-second fixtures | P50 1.100 s / P95 1.437 s |
+| Sampled process peak RSS | 144 MiB |
 
 The benchmark ran during concurrent verification on this machine. These are
-warm-process observations, not a latency or memory guarantee for long recordings.
-Three fresh-process measurements gave median CLI help startup of 0.417 s and cached
-digest startup of 1.974 s. Import-time inspection before the lazy-loading change
-showed 6.237 s spent importing the engine alone. These figures are local observations;
-the regression assertion is that cached reads load no numerical libraries.
+warm-process observations, not a speed comparison or a latency/memory guarantee
+for long recordings. The original benchmark's octave-aware global tempo metric
+differs from the stricter local pulse-rate questions in the agent evaluation.
 
-## Deliberate scientific limits
+## Scientific limits
 
 Synthetic truth applies only to generated signals. Real-track listener annotations,
 raw-audio/image LLM comparisons, semantic model hints, calibration and targeted
-separation were not performed. No general-music QA accuracy claim follows from
-these tests. See [the ablation protocol](ABLATIONS.md).
+separation were not performed. See [the ablation protocol](ABLATIONS.md).
 
-Roles, acoustic families, beat grids and candidate sections remain heuristic.
-Instrument identity and independent bass can legitimately be indeterminate. Sample
-peak/RMS are not LUFS/true peak; structural bands stop at 11,025 Hz. No isolated stems,
-MIDI transcription, automatic mastering, third-party recordings or weights are shipped.
+Band changes are acoustic events, not automatically beats. Qualified periodicity is
+not proof of perceived musical tempo, meter, downbeat or an independent bass source.
+The global tempo/grid algorithm remains heuristic. Sample peak/RMS are not LUFS or
+true peak; structural bands stop at 11,025 Hz. No isolated stems, MIDI transcription,
+automatic mastering, third-party recordings or weights are shipped.

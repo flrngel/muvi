@@ -10,6 +10,7 @@ import pytest
 import soundfile as sf
 
 from genome.cli import UsageError, resolve_track
+from genome import __version__
 from genome.engine import Engine
 from genome.fixtures import synthesize
 from genome.schema import Genome
@@ -171,7 +172,7 @@ def test_help_version_and_config_do_not_import_optional_or_dsp_packages(tmp_path
         result = subprocess.run([sys.executable, '-S', '-m', 'genome.cli', *arguments],
                                 capture_output=True, text=True, encoding='utf-8', timeout=10)
         assert result.returncode == 0, result.stderr
-    assert '0.5.0' in invoke(tmp_path/'store', '--version').stdout
+    assert __version__ in invoke(tmp_path/'store', '--version').stdout
 
 
 def test_empty_library_environment_and_global_flags(tmp_path, monkeypatch):

@@ -86,10 +86,20 @@ or validated as a general musical beat tracker.
   scoring regression. All 16 original controlled benchmark fixtures passed.
 - The actual SDK exercised the new rhythm tool and retrieved its evidence; CLI tests
   cover paging, invalid spans, old-schema abstention and lazy cached reads.
+- Final 0.5.1: all 73 regression tests passed, including actual Windows contention,
+  and all 16 controlled benchmark fixtures passed. The independently installed
+  core-only wheel passed the public-command smoke test outside the checkout.
 - The skill passed `quick_validate.py` and was behaviorally exercised by Luna.
 - Both MCP conditions encountered one transient Windows directory-publication error;
   each succeeded on the next attempt. These errors and retries remain in the logs.
-  Publication reliability is a separate follow-up, without changing rhythm math.
+  Publication reliability was fixed separately in 0.5.1 with at most five attempts
+  and 0.75 seconds of total backoff. A real Windows directory-sharing handle reproduced
+  contention and verified recovery; permanent/other failures still propagate.
+
+The rhythm implementation was committed as `239ab99`. The final 0.5.1 package changes
+publication behavior and version labels, not perception math. All eight held-out
+recordings were reanalyzed: rhythm, tempo, sound objects and evidence measurements
+match the evaluated snapshot exactly. See [equivalence results](verification/beat-eval/final-equivalence.json).
 
 Machine-readable [summary](verification/beat-eval/summary.json), individual answers and
 scores, generated truth, frozen source hashes, retrieval audits and pipeline metrics

@@ -1,6 +1,6 @@
 {
-  "package_version": "0.4.0",
-  "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+  "package_version": "0.5.1",
+  "analysis_id": "dsp-0.5.1-4df44b78929a",
   "fixture_count": 16,
   "scope": "Generated mathematical signals only. Not evidence of general music QA accuracy.",
   "gates": {
@@ -11,9 +11,9 @@
     "silence_abstention": true
   },
   "passed": true,
-  "elapsed_p50_s": 1.17708270001458,
-  "elapsed_p95_s": 1.7435564249899471,
-  "sampled_process_peak_rss_bytes": 151605248,
+  "elapsed_p50_s": 1.0996873000112828,
+  "elapsed_p95_s": 1.4365363749820972,
+  "sampled_process_peak_rss_bytes": 150609920,
   "external_model_ablations": {
     "A": "not_run: requires model outputs and permissioned annotated tracks",
     "B": "not_run: requires model outputs and permissioned annotated tracks",
@@ -68,7 +68,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:1ec2e0a62cc3d259a3780df171d7d3837f112bb8148cbb0d62ac10a309a32a8c",
-      "elapsed_s": 0.794029499986209,
+      "elapsed_s": 1.1481396000017412,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -76,7 +76,7 @@
         45.03,
         180.11
       ],
-      "digest_characters": 752,
+      "digest_characters": 1029,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -129,7 +129,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:f34b9c6512a4298ab43fc4c2644e00e9c16b887c82e1c12c2c885481da4f9ba3",
-      "elapsed_s": 1.1725165999960154,
+      "elapsed_s": 1.258842499984894,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -137,7 +137,7 @@
         45.03,
         180.14
       ],
-      "digest_characters": 752,
+      "digest_characters": 1029,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -199,7 +199,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:6c2f6451c7fac6e1082222efab249a44bb31d469f52f8c5112d618f6224dfe0b",
-      "elapsed_s": 1.7060654999804683,
+      "elapsed_s": 1.5264813999528997,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -207,7 +207,7 @@
         60.02,
         240.1
       ],
-      "digest_characters": 752,
+      "digest_characters": 1032,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -267,7 +267,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:930086790d4d95cdb59daea50f4c603d2f19496aaad28a433b48cc28e912bc06",
-      "elapsed_s": 1.8560292000183836,
+      "elapsed_s": 1.4065546999918297,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -275,7 +275,7 @@
         60.03,
         240.1
       ],
-      "digest_characters": 752,
+      "digest_characters": 1033,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -345,7 +345,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:d3c36c591fee719c404824fcfca2bec2874c58605daa6f6fae53a6b866ed9ee9",
-      "elapsed_s": 1.4596858999575488,
+      "elapsed_s": 1.400474700029008,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -353,7 +353,7 @@
         37.49,
         149.95
       ],
-      "digest_characters": 751,
+      "digest_characters": 1030,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -420,7 +420,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:8f161c598d0bdbd5f01b53cf14c2ecac01e94b2859422f208fcbda7ff3fff040",
-      "elapsed_s": 0.9912487999536097,
+      "elapsed_s": 1.0494882000493817,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -428,7 +428,7 @@
         37.49,
         149.95
       ],
-      "digest_characters": 751,
+      "digest_characters": 1032,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -505,7 +505,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:8e62b7968384a549a81a909de8f0e6c3ba28388269d73bde3bb63e7dc47e6f65",
-      "elapsed_s": 1.1511878999881446,
+      "elapsed_s": 1.1219495999976061,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -513,7 +513,7 @@
         89.83,
         359.32
       ],
-      "digest_characters": 753,
+      "digest_characters": 1034,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -588,7 +588,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:7c65ffe38fa1a0e13d167d8de0bb21723a328da3f742408934d2a3d6749f1708",
-      "elapsed_s": 1.6235383999883197,
+      "elapsed_s": 0.9199841999798082,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -596,7 +596,7 @@
         89.84,
         359.38
       ],
-      "digest_characters": 753,
+      "digest_characters": 1034,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -625,11 +625,11 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:0f8200c5a7d7bb4bdc2d79b665da68e1f72fadaf82dd5f5ffb99e6bd82bcb1e0",
-      "elapsed_s": 1.5066653999965638,
+      "elapsed_s": 0.8844877999508753,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [],
-      "digest_characters": 460,
+      "digest_characters": 801,
       "silence_has_no_events_or_tempo": true
     },
     {
@@ -651,11 +651,11 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:cbf01762242c4352990e2a059ee7bb80eb6de71b1de0fc71122692ebd36f5b4b",
-      "elapsed_s": 1.1816488000331447,
+      "elapsed_s": 1.0248191999853589,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [],
-      "digest_characters": 672
+      "digest_characters": 1021
     },
     {
       "case_id": "controlled-10",
@@ -676,11 +676,11 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:99fe8bf4d8deb2cb0ce73724338420cda5e9b526023b66b9372ba0d6afde117c",
-      "elapsed_s": 1.3079796000383794,
+      "elapsed_s": 1.0774250000249594,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [],
-      "digest_characters": 665
+      "digest_characters": 1006
     },
     {
       "case_id": "controlled-11",
@@ -742,7 +742,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:818792444ba9340f1bc5261557d8c4f55872b3fb41691d3146de14e09a44f08c",
-      "elapsed_s": 1.1693434999906458,
+      "elapsed_s": 1.250769099977333,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -750,7 +750,7 @@
         37.49,
         149.95
       ],
-      "digest_characters": 751,
+      "digest_characters": 1030,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -815,7 +815,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:dbab9ea6203f3beb45e26941f595d4c26bc4a64078d578bfa5b4e8277bb64c89",
-      "elapsed_s": 1.194703999964986,
+      "elapsed_s": 1.1544440999859944,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -823,7 +823,7 @@
         37.48,
         149.94
       ],
-      "digest_characters": 752,
+      "digest_characters": 1033,
       "onsets": {
         "precision": 1.0,
         "recall": 1.0,
@@ -914,7 +914,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:4c2b2eab1933333dfc3554c118df6aa48560efbcc9b9730b4c5cfd6dedc8e010",
-      "elapsed_s": 0.7689271999988705,
+      "elapsed_s": 0.7725387999671511,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [],
       "tempo_candidates_bpm": [
@@ -922,7 +922,7 @@
         37.49,
         149.94
       ],
-      "digest_characters": 843
+      "digest_characters": 1156
     },
     {
       "case_id": "controlled-14",
@@ -1007,7 +1007,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:8472c481d442ea185d46f2d5a02fc0b46ebd7e00bda9628eebd9a62eadf71f9e",
-      "elapsed_s": 1.097118599980604,
+      "elapsed_s": 0.6383068000432104,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [
         4.005442142486572,
@@ -1019,7 +1019,7 @@
         37.48,
         149.94
       ],
-      "digest_characters": 1317,
+      "digest_characters": 1632,
       "boundary_metrics_0_5s": {
         "precision": 1.0,
         "recall": 1.0,
@@ -1109,7 +1109,7 @@
         "license": "original mathematical synthesis"
       },
       "track_id": "sha256:9296a5e81020eb4cf3e13f9ecff17622b6684833e4f9ed18f64d5db87f908bd3",
-      "elapsed_s": 1.0839216000167653,
+      "elapsed_s": 0.6745434000040404,
       "source_identity_verdict": "indeterminate",
       "candidate_boundaries_s": [
         3.6107029914855957,
@@ -1121,7 +1121,7 @@
         64.07,
         256.28
       ],
-      "digest_characters": 1277,
+      "digest_characters": 1591,
       "boundary_metrics_0_5s": {
         "precision": 1.0,
         "recall": 1.0,

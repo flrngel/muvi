@@ -1,0 +1,54 @@
+{
+  "publication_only_followup": "0.5.1",
+  "all_identical": true,
+  "cases": [
+    {
+      "case_id": "r73",
+      "evaluated_analysis": "dsp-0.5.0-4df44b78929a",
+      "release_analysis": "dsp-0.5.1-4df44b78929a",
+      "rhythm_tempo_objects_measurements_identical": true
+    },
+    {
+      "case_id": "r14",
+      "evaluated_analysis": "dsp-0.5.0-4df44b78929a",
+      "release_analysis": "dsp-0.5.1-4df44b78929a",
+      "rhythm_tempo_objects_measurements_identical": true
+    },
+    {
+      "case_id": "r68",
+      "evaluated_analysis": "dsp-0.5.0-4df44b78929a",
+      "release_analysis": "dsp-0.5.1-4df44b78929a",
+      "rhythm_tempo_objects_measurements_identical": true
+    },
+    {
+      "case_id": "r39",
+      "evaluated_analysis": "dsp-0.5.0-4df44b78929a",
+      "release_analysis": "dsp-0.5.1-4df44b78929a",
+      "rhythm_tempo_objects_measurements_identical": true
+    },
+    {
+      "case_id": "r02",
+      "evaluated_analysis": "dsp-0.5.0-4df44b78929a",
+      "release_analysis": "dsp-0.5.1-4df44b78929a",
+      "rhythm_tempo_objects_measurements_identical": true
+    },
+    {
+      "case_id": "r85",
+      "evaluated_analysis": "dsp-0.5.0-4df44b78929a",
+      "release_analysis": "dsp-0.5.1-4df44b78929a",
+      "rhythm_tempo_objects_measurements_identical": true
+    },
+    {
+      "case_id": "r47",
+      "evaluated_analysis": "dsp-0.5.0-4df44b78929a",
+      "release_analysis": "dsp-0.5.1-4df44b78929a",
+      "rhythm_tempo_objects_measurements_identical": true
+    },
+    {
+      "case_id": "r96",
+      "evaluated_analysis": "dsp-0.5.0-4df44b78929a",
+      "release_analysis": "dsp-0.5.1-4df44b78929a",
+      "rhythm_tempo_objects_measurements_identical": true
+    }
+  ]
+}

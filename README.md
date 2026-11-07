@@ -2,7 +2,7 @@
 
 Music, made legible. Analyze a track, find its beat and low-end activity, and trace
 every claim back to timestamped evidence. Runs locally on CPU with no account,
-API key, GPU or model download. **0.5.0 adds band-specific rhythm evidence for agents.**
+API key, GPU or model download. **0.5.1 includes band-specific rhythm evidence and resilient Windows publication.**
 
 ## Start in the terminal
 
@@ -147,7 +147,7 @@ or your connected assistant sends evidence to its model provider.
 
 Extraction publishes an analysis atomically under a process lock. The cache key
 contains the audio hash, pipeline version and parameter hash. Existing 0.3.x
-libraries remain readable. Analyzing the same audio creates a 0.5.0 version while
+libraries remain readable. Analyzing the same audio creates a 0.5.1 version while
 preserving the old analysis. Object and evidence IDs are local to an analysis.
 
 | Exit status | Meaning |
@@ -178,6 +178,10 @@ uv build
 See the [verification contract written before conversion](docs/CLI_PLAN.md),
 [release results](docs/VERIFICATION.md), [original research record](docs/PLAN.md),
 and [external-model ablation protocol](docs/ABLATIONS.md).
+
+The [independent Terra/Luna evaluation](docs/BEAT_EVALUATION.md) records blind MCP and
+CLI/skill trials, raw tool traces, actual improvements, conservative abstentions and
+increased tool-call counts. Its small generated corpus is not real-music validation.
 
 The deterministic CPU pipeline uses multi-resolution FFTs, spectral flux, band
 envelopes, chroma, texture masks, provisional periodicity, feature-change segmentation

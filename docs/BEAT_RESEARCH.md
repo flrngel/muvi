@@ -29,3 +29,12 @@ drive implementation; community discussion identifies pain points, not ground tr
 
 No new pretrained model, music download, external model API or model-weight license
 assumption is needed. Held-out synthesis is kept separate from tuning.
+
+For the subsequent Windows reliability fix,
+[Microsoft's CreateFileW documentation](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew)
+specifies that delete sharing also governs renames, while attribute-only access is
+not constrained by share flags. The regression therefore holds a directory handle
+with GENERIC_READ and no FILE_SHARE_DELETE, observes actual rename failures, releases
+the handle and verifies atomic publication. The production fix retries only native
+access/sharing codes for a bounded interval; it does not assume what held the handle
+during the original external-agent runs.
