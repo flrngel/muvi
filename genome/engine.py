@@ -18,7 +18,7 @@ from genome.schema import Claim, Evidence, Genome
 from genome.structure import segment
 from genome.tempo import estimate
 
-PIPELINE_VERSION = "0.1.0"
+PIPELINE_VERSION = "0.2.0"
 PARAMETERS_SHA = hashlib.sha256(json.dumps(PARAMETERS, sort_keys=True).encode()).hexdigest()
 ANALYSIS_ID = f"dsp-{PIPELINE_VERSION}-{PARAMETERS_SHA[:12]}"
 
@@ -85,6 +85,7 @@ class Engine:
                 pcm, sr, mono, policy, source_format = decode(staging/"audio/original")
                 duration = len(pcm)/sr
                 sf.write(staging/"audio/source.wav", pcm, sr, subtype="DOUBLE")
+                sf.write(staging/"audio/preview.wav", pcm, sr, subtype="PCM_16")
                 metrics = source_metrics(pcm, sr)
                 del pcm
                 report("Measuring rhythm and frequency", 0.25)
@@ -136,6 +137,7 @@ class Engine:
                                 parameters_sha256=PARAMETERS_SHA, tempo=tempo, sections=sections, sound_objects=objects,
                                 occurrences=occurrences, patterns=patterns, claims=claims, evidence=evidence,
                                 warnings=warnings, artifacts={"source_audio": "audio/source.wav", "original": "audio/original",
+                                "browser_audio": "audio/preview.wav",
                                 "arrays": "arrays/features.npz"}, elapsed_s=round(time.perf_counter()-started, 3))
                 report("Saving your musical evidence", 0.92)
                 np.savez_compressed(staging/"arrays/features.npz", **features)
