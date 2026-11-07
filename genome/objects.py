@@ -4,7 +4,7 @@ from genome.schema import Occurrence, Pattern, SoundObject, Span
 
 
 def index_objects(features, duration, evidence):
-    times, power = features["times_s"], features["band_power"]
+    times = features["times_s"]
     peaks = features["onset_frames"]
     clusters = []
     occurrences = []

@@ -1,4 +1,8 @@
-# Implementation and verification contract
+# Original 0.3.1 implementation and verification contract
+
+Historical record of the original implementation. The user's subsequent CLI-only
+direction supersedes the browser and HTTP deliverables below. See
+[the 0.4.0 conversion contract](CLI_PLAN.md) and [current verification](VERIFICATION.md).
 
 ## Product
 

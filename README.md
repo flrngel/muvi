@@ -1,148 +1,177 @@
-# Muvi · Music Genome
+# Muvi · Music Genome CLI
 
-Understand the shape of a track. Follow the evidence all the way back to the sound.
+Music, made legible. Analyze a track, find its beat and low-end activity, and trace
+every claim back to timestamped evidence. Runs locally on CPU with no account,
+API key, GPU or model download. **0.4.0 is a CLI-only release.**
 
-Muvi is a local Python application with a listening workspace and an MCP tool server.
-It extracts measurements, recurring acoustic objects, pattern candidates, and section
-changes from audio. An acoustic object is a recurring sound family in a mixture,
-not a guaranteed isolated instrument.
+## Start in the terminal
 
-## Run
-
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then from this folder:
+Python 3.12 or 3.13. From this checkout, using [uv](https://docs.astral.sh/uv/):
 
 ```powershell
 uv sync --locked
-uv run muvi serve --open
+uv run muvi demo
+uv run muvi analyze "C:\Music\track.wav"
+uv run muvi sounds latest --query bass
+uv run muvi inspect latest --json
 ```
 
-On Windows, you can also double-click `start-muvi.cmd`. Open
-[the listening workspace](http://127.0.0.1:8765) and choose **Try an example** or import
-your own recording. Stop the server with Ctrl+C when you finish.
-
-The server binds only to `127.0.0.1`. No account, model download, GPU, API key or cloud
-service is required. Audio stays in the local library. Import supports formats decoded
-by the bundled libsndfile, including WAV, FLAC, OGG and MP3. Limits are 200 MiB per
-file, 0.1 seconds–10 minutes, mono/stereo, 8–192 kHz, and 384 MiB decoded PCM. Very
-high-rate long recordings may need a shorter excerpt.
-
-## Explore
-
-- Switch between spectrum, waveform and rhythm; click the timeline or use the seek slider.
-- Select a candidate section to zoom. **Full track** restores the overview.
-- Audition a sound family, inspect its original occurrences, or follow an evidence ID.
-- Compare sections on a shared measurement scale. Roles and A/B structure groups are inferred.
-- Export the canonical JSON or a synchronized 1600×900 image with its JSON legend.
-- Use Space/K to play or pause outside form controls. Use the loop control to repeat
-  the selected interval or audition. All essential actions have keyboard controls.
-
-The browser plays a 16-bit, source-rate monitoring copy without gain normalization.
-Floating-point values beyond full scale clip in this monitoring copy. The original
-uploaded file remains byte-identical, decoded source PCM is stored as double-precision
-WAV, and evidence crops retain those samples and source channels without normalization.
-
-## Connect an LLM
-
-Choose **Connect AI** for a ready-to-copy configuration using the running Python
-environment and the same library directory. Any MCP client supporting stdio can use it.
-An independently installed command can instead be configured as:
-
-```json
-{
-  "mcpServers": {
-    "muvi": {
-      "command": "/absolute/path/to/python",
-      "args": ["-m", "genome.cli", "mcp", "--data-dir", "/absolute/path/to/library"]
-    }
-  }
-}
-```
-
-Replace paths with those on your computer. The UI provides the actual paths automatically.
-No external assistant is configured silently. Retrieved evidence may be sent to your
-assistant's model provider according to that client's settings.
-
-Start with `list_tracks` and `get_track_digest`. Drill down with `get_section`,
-`find_sound`, `get_sound`, `compare_sections`, `get_evidence`, `get_audio_crop`,
-`render_tile`, `verify_hypothesis`, and `get_master_metrics`. MCP also exposes local
-`analyze_track`. `run_targeted_separation` explicitly reports that no separator is
-installed. Images and crops include version-pinned MCP resource URIs; capable clients
-can read the binary resources without needing direct filesystem access.
-
-Every evidence packet includes an `analysis_id`, original-coordinate `time_span`,
-`evidence_ids`, and `measurement_status`. The system guidance in **Copy guidance**
-teaches an assistant to distinguish measurements, hypotheses and unresolved sources.
-The guided workspace questions use deterministic tool results, not an undisclosed LLM.
-
-HTTP clients can discover schemas at `/api/tools`, inspect `/openapi.json`, and call
-`POST /api/tools/<name>` with `{"arguments": {...}}`. Uploads use `/api/upload` with a
-multipart `file`, then poll `/api/jobs/<job_id>`. HTTP clients cannot ask the server to
-analyze arbitrary local paths. Cross-origin requests and unknown Host headers are rejected.
-This is a single-user loopback application, not an authenticated shared hosting service.
-
-## CLI
+For a standalone command outside this directory:
 
 ```powershell
-uv run muvi analyze "C:\Music\track.wav"
-uv run muvi list
-uv run muvi overview "sha256:<returned-hash>" --format text
-uv run muvi render "sha256:<returned-hash>" --start 8 --end 16
-uv run muvi tool find_sound --arguments '{"track_id":"sha256:<returned-hash>","query":"bass"}'
-uv run muvi benchmark --output artifacts/benchmark.json
+uv tool install .
+muvi --help
 ```
 
-`music-genome` is an alias for `muvi`. Add `--data-dir <directory>` to any subcommand,
-or set `MUVI_DATA_DIR`. The default library is `~/.muvi`; tests use isolated stores.
+Alternatively, `python -m pip install .` in your chosen Python environment. No
+public package publication is required. `music-genome` is an alias for `muvi`.
+`python -m genome.cli` also works. A bare `muvi` shows help.
 
-## Evidence and storage
+Human-readable output is the default. `--json` returns a single UTF-8 JSON document
+on stdout; progress goes to stderr. `--quiet` suppresses progress. `--format json`
+and `--format text` are explicit alternatives. Help and version always print text;
+`mcp` speaks its stdio protocol.
+
+## Follow the evidence
+
+```powershell
+muvi list
+muvi inspect latest
+muvi sections latest
+muvi sections latest SEC_01 --detail
+muvi sounds latest --query beat --start 00:08 --end 00:16
+muvi sound latest S01 --limit 10
+muvi evidence latest E0001 E0002
+muvi compare latest SEC_01 SEC_02
+muvi verify latest independent-bass
+muvi metrics latest --start 8 --end 16
+muvi crop latest --start 8 --end 16 -o clip.wav
+muvi render latest --start 8 --end 16 -o evidence.png
+muvi export latest -o genome.json
+```
+
+Use IDs returned by your analysis; section and sound IDs vary by recording.
+`inspect` summarizes tempo candidates, sections, acoustic objects and recurrence.
+`overview` remains an alias. The complete genome includes the provisional beat
+timestamps and all events; `export` without `-o` writes that JSON directly to stdout.
+
+Every `TRACK` position accepts an audio path, a full SHA-256 ID, a unique prefix of
+at least eight hex characters, or `latest`. Paths are analyzed or loaded from cache
+automatically. Ambiguous prefixes fail explicitly. `latest` is the track with the
+newest completed analysis in this library; reading a cached track does not reorder it.
+
+Times accept seconds, `MM:SS` or `HH:MM:SS`, including fractional seconds. Coordinates
+always refer to the original recording. Crops are limited to 60 seconds and preserve
+decoded source samples, sample rate and channels without normalization.
+
+`crop` and `render` without `-o` return generated cache-file paths. With `-o`, `render`
+writes both the PNG and a neighboring JSON legend; its raw-array URI points back to
+the local library. Exported genome artifact paths remain relative to the analysis
+directory. Keep the library if you need to retrieve the referenced audio or arrays.
+Existing exports require `--force`; source audio and managed cache files remain protected.
+
+## Let an LLM use it
+
+An agent with shell access can use the CLI directly:
+
+```powershell
+muvi analyze "track.wav" --json
+muvi tools --json
+muvi tools get_audio_crop --json
+muvi tool get_track_digest --arguments-file request.json --json
+muvi schema
+muvi prompt
+```
+
+`request.json` contains `{"track_id":"latest"}`. `--arguments-file -` reads JSON from
+stdin; `--arguments` accepts inline JSON. All tool inputs are validated against their
+typed schema, including rejection of extra fields. Tool calls accept the same track
+references as direct commands. For concurrent agents, keep the returned full track
+ID instead of relying on shared `latest` state.
+
+Twelve typed tools cover analysis, digests, sections, sound search/detail, comparison,
+evidence, crops, charts, hypothesis checks, source metrics and separator availability.
+Evidence responses carry `track_id`, `analysis_id`, original-coordinate `time_span`,
+`evidence_ids` and `measurement_status`. `prompt` supplies grounding instructions:
+retrieve evidence before citing it, distinguish inference from observation, and abstain
+when the measurements cannot distinguish alternatives.
+
+For an MCP client, install the optional adapter and generate configuration:
+
+```powershell
+uv sync --locked --extra mcp
+uv run muvi mcp-config
+```
+
+For standalone installation use `uv tool install ".[mcp]" --force`, then
+`muvi mcp-config`. Paste the emitted `mcpServers` object into your client's configuration.
+It contains the actual Python executable and absolute library path. `muvi mcp` runs
+the stdio server; it exits when the client closes the connection. No client settings
+are changed automatically. MCP includes `list_tracks` and version-pinned WAV/PNG
+resources in addition to the twelve tools. Core installation requires none of the
+MCP SDK, FastAPI, Uvicorn or Starlette; the optional SDK has its own dependencies.
+
+## Library and scripting contract
+
+Choose a library with `--data-dir DIR` before or after the command, or set
+`MUVI_DATA_DIR`. The default is `~/.muvi`. Audio stays there unless you export it
+or your connected assistant sends evidence to its model provider.
 
 ```text
 <library>/<audio-sha256>/<analysis-id>/
-  genome.json            strict canonical schema
-  manifest.json          original hash, parameter hash, initial artifact checksums
-  audio/original         byte-identical uploaded file
-  audio/source.wav       source-rate double-precision decoded PCM
-  audio/preview.wav      16-bit browser monitoring copy
-  arrays/features.npz    full-resolution numeric measurements
-  images/tile-*.png/json on-demand synchronized charts and companion legends
-  clips/*.wav            on-demand original-mixture crops
+  genome.json           strict canonical schema
+  manifest.json         original/parameter hashes and initial artifact checksums
+  audio/original        byte-identical input file
+  audio/source.wav      source-rate double-precision decoded PCM
+  arrays/features.npz   full-resolution numeric measurements
+  images/*.png, *.json  aligned charts and legends, generated on demand
+  clips/*.wav           original-mixture crops, generated on demand
 ```
 
-Extraction writes to a staging directory, then atomically publishes a complete analysis.
-A process lock prevents duplicate extraction of the same content. Cache keys include
-the audio hash, pipeline version and parameter hash. Older analyses remain readable;
-reimporting the same file creates a new version after a pipeline update. Acoustic object
-IDs are track-local and analysis-local. There is no cross-track source identity claim.
+Extraction publishes an analysis atomically under a process lock. The cache key
+contains the audio hash, pipeline version and parameter hash. Existing 0.3.x
+libraries remain readable. Analyzing the same audio creates a 0.4.0 version while
+preserving the old analysis. Object and evidence IDs are local to an analysis.
 
-The CPU pipeline uses bounded SciPy/NumPy FFT blocks at 512/2048/8192 samples, 256-sample
-hops, 22,050 Hz structural audio, spectral flux, band envelopes, log-frequency STFT
-views, STFT chroma, median harmonic/percussive-like texture masks, provisional tempo,
-feature-change segmentation, and incremental-attack descriptor clustering. The
-log-frequency view and STFT chroma are not a CQT or a transcription. Long windows
-never set attack timestamps. Weak unmatched events remain unassigned after the object cap.
+| Exit status | Meaning |
+| --- | --- |
+| 0 | Success |
+| 1 | Controlled benchmark failed its acceptance gates |
+| 2 | Invalid input, unavailable optional command, or file operation failure |
+| 130 | Interrupted with Ctrl+C |
 
-## Verification and limits
+With `--json`, handled errors produce `{"error":{"code":"invalid_request","message":"..."}}`
+on stdout and a diagnostic on stderr. Scripts should check the exit status before using
+the result. A benchmark gate failure returns its report with `passed: false`.
+
+Supported inputs are those decoded by libsndfile, including WAV, FLAC, OGG and MP3.
+Limits: 200 MiB input, 0.1 seconds–10 minutes, mono/stereo, 8–192 kHz, and 384 MiB
+decoded PCM. Some long high-rate recordings require a shorter excerpt.
+
+## Verification and scientific limits
 
 ```powershell
-uv run pytest -q
-uv run muvi benchmark --output artifacts/benchmark.json
+uv sync --locked --extra mcp
+uv run --extra mcp pytest -q
+uv run ruff check genome tests scripts
+uv run muvi benchmark -o artifacts/benchmark.json --force --json
 uv build
 ```
 
-See [the pre-implementation verification contract](docs/PLAN.md),
-[the release verification record](docs/VERIFICATION.md), and
-[the external-model ablation protocol](docs/ABLATIONS.md).
+See the [verification contract written before conversion](docs/CLI_PLAN.md),
+[release results](docs/VERIFICATION.md), [original research record](docs/PLAN.md),
+and [external-model ablation protocol](docs/ABLATIONS.md).
 
-Current accuracy claims are limited to generated fixtures. General-music source
-identity, real-track listener validation, LLM-vs-audio/image comparisons, calibrated
-probabilities, semantic audio models, source separation and BS.1770 LUFS/true-peak
-metering are **not validated or shipped**. Sample peak and RMS are not substitutes for
-LUFS or true peak. Analysis bands stop at 11,025 Hz; they are not full-band mastering
-metrics. This is an evidence explorer, not a guaranteed instrument transcriber.
+The deterministic CPU pipeline uses multi-resolution FFTs, spectral flux, band
+envelopes, chroma, texture masks, provisional periodicity, feature-change segmentation
+and recurring acoustic descriptors. Acoustic objects can contain overlapping sources;
+“bass” searches low-frequency candidates and does not prove a bass instrument exists.
+Sections, roles and beat grids are hypotheses. Instrument identity, downbeats, MIDI,
+separated stems, calibrated probabilities, LUFS and true peak are not established.
+Sample peak and RMS are explicitly labeled, and structural bands stop at 11,025 Hz.
 
-The architecture follows the perception/reasoning distinction investigated by
-[Carone et al.](https://proceedings.mlr.press/v303/carone26a.html), with images kept as
-an audit surface rather than source proof. See the plan for primary and community
-sources, qualifications and implementation tradeoffs. No third-party recordings or
-optional model weights are bundled. Demo audio is original seeded signal synthesis.
-
+Accuracy is verified on controlled generated signals only. General music QA accuracy,
+real-track listener validation and comparisons against audio/image LLM baselines remain
+unvalidated. No third-party recordings or model weights are bundled; demo audio is
+original seeded synthesis. The web app, HTTP API, browser launcher and new browser
+playback artifacts have been removed.

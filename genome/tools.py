@@ -1,18 +1,16 @@
-"""Typed tool surface shared by MCP, CLI, and the local REST service."""
+"""Typed evidence tools shared by the CLI and optional stdio MCP adapter."""
 
 import hashlib
 import inspect
 import json
+import math
 import os
 import tempfile
 from pathlib import Path
 from typing import Any, Literal
 
-import numpy as np
-import soundfile as sf
 from pydantic import ConfigDict, create_model
 
-from genome.audio import source_metrics
 from genome.engine import Engine
 from genome.serializer import track_digest
 
@@ -40,13 +38,13 @@ class MusicTools:
 
     def _span(self, g, start, end):
         end = g.duration_s if end is None else end
-        if not np.isfinite([start, end]).all() or not 0 <= start < end <= g.duration_s:
+        if not all(math.isfinite(x) for x in (start, end)) or not 0 <= start < end <= g.duration_s:
             raise ValueError(f"Use 0 <= start_s < end_s <= {g.duration_s:.6f}")
         return float(start), float(end)
 
     def _artifact(self, g, relative):
-        result = {"uri": (self.engine.directory(g.track_id, g.analysis_id)/relative).as_uri(),
-                  "url": f"/api/tracks/{g.source_sha256}/artifacts/{relative}?analysis_id={g.analysis_id}"}
+        path = self.engine.directory(g.track_id, g.analysis_id)/relative
+        result = {"uri": path.as_uri(), "path": str(path)}
         if relative.startswith("images/") and relative.endswith(".png"):
             result["resource_uri"] = f"muvi://tracks/{g.source_sha256}/{g.analysis_id}/images/{Path(relative).stem.removeprefix('tile-')}"
         elif relative.startswith("clips/"):
@@ -54,7 +52,7 @@ class MusicTools:
         return result
 
     def analyze_track(self, path: str, profile: Literal["fast"] = "fast") -> dict[str, Any]:
-        """Analyze a local audio file. MCP/CLI only; HTTP uploads use their own bounded endpoint."""
+        """Analyze a local audio file and return its versioned evidence identity."""
         g = self.engine.analyze(Path(path))
         return self._packet(g, {"extraction_status": "complete", "pipeline_version": g.pipeline_version,
                                 "profile": profile, "elapsed_s": g.elapsed_s})
@@ -121,7 +119,7 @@ class MusicTools:
             raise KeyError("Unknown section ID")
         a, b = lookup[section_a], lookup[section_b]
         x, y = set(a.sound_object_ids), set(b.sound_object_ids)
-        delta = 10*np.log10((np.array(b.mean_band_power)+1e-12)/(np.array(a.mean_band_power)+1e-12))
+        delta = [10*math.log10((y+1e-12)/(x+1e-12)) for x, y in zip(a.mean_band_power, b.mean_band_power)]
         return self._packet(g, {"section_a": a.model_dump(), "section_b": b.model_dump(), "shared_objects": sorted(x&y),
                                "new_objects": sorted(y-x), "absent_objects": sorted(x-y),
                                "band_energy_delta_db": {k: round(float(v), 3) for k, v in zip(["low", "mid", "high"], delta)},
@@ -144,6 +142,7 @@ class MusicTools:
 
     def get_audio_crop(self, track_id: str, start_s: float, end_s: float) -> dict[str, Any]:
         """Return an original-mixture WAV crop without filtering or gain normalization; max 60 seconds."""
+        import soundfile as sf
         g = self.engine.load(track_id)
         start, end = self._span(g, start_s, end_s)
         if end-start > 60:
@@ -216,6 +215,8 @@ class MusicTools:
         if start == 0 and end == g.duration_s:
             measurements = g.evidence[0].measurements
         else:
+            import soundfile as sf
+            from genome.audio import source_metrics
             with sf.SoundFile(self.engine.directory(track_id, g.analysis_id)/"audio/source.wav") as f:
                 f.seek(round(start*g.sample_rate))
                 pcm = f.read(round(end*g.sample_rate)-round(start*g.sample_rate), always_2d=True)
@@ -237,25 +238,24 @@ class MusicTools:
                                "next_check": "Use get_audio_crop to inspect the original mixture.", "requested_prompt": prompt},
                             start=start, end=end, status="not_available")
 
-    def registry(self, http=False):
+    def registry(self):
         return {name: getattr(self, name) for name in (
             "analyze_track", "get_track_digest", "get_section", "find_sound", "get_sound", "compare_sections",
-            "get_evidence", "get_audio_crop", "render_tile", "verify_hypothesis", "get_master_metrics", "run_targeted_separation")
-                if not (http and name == "analyze_track")}
+            "get_evidence", "get_audio_crop", "render_tile", "verify_hypothesis", "get_master_metrics", "run_targeted_separation")}
 
-    def schemas(self, http=False):
+    def schemas(self):
         schemas = {}
-        for name, fn in self.registry(http).items():
+        for name, fn in self.registry().items():
             fields = {p.name: (p.annotation, ... if p.default is inspect.Parameter.empty else p.default)
                       for p in inspect.signature(fn).parameters.values()}
             schemas[name] = create_model(name+"Input", __config__=ConfigDict(extra="forbid", allow_inf_nan=False), **fields)
         return schemas
 
-    def call(self, name, arguments, http=False):
-        registry = self.registry(http)
+    def call(self, name, arguments):
+        registry = self.registry()
         if name not in registry:
             raise KeyError("Unknown or unavailable tool")
-        validated = self.schemas(http)[name].model_validate(arguments)
+        validated = self.schemas()[name].model_validate(arguments)
         result = registry[name](**validated.model_dump())
         # Hard fail on non-JSON measurements, rather than sending invalid tokens to an LLM.
         json.dumps(result, allow_nan=False)

@@ -1,6 +1,5 @@
 """Lossless original retention and resource-bounded decoding."""
 
-import hashlib
 import math
 from pathlib import Path
 
@@ -8,18 +7,12 @@ import numpy as np
 import soundfile as sf
 from scipy.signal import resample_poly
 
+from genome.config import ANALYSIS_SR
+from genome.storage import checksum as checksum
+
 MAX_DURATION = 600
 MAX_UPLOAD_BYTES = 200 * 1024 * 1024
 MAX_DECODE_BYTES = 384 * 1024 * 1024
-ANALYSIS_SR = 22050
-
-
-def checksum(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024*1024), b""):
-            h.update(block)
-    return h.hexdigest()
 
 
 def decode(path: Path):

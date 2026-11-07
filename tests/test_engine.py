@@ -55,6 +55,9 @@ def test_roundtrip_original_and_cache(engine, tmp_path, monkeypatch):
     assert Genome.model_validate_json(first.model_dump_json()) == first
     assert hashlib.sha256(source.read_bytes()).hexdigest() == first.source_sha256
     assert (engine.directory(first.track_id) / "audio/original").read_bytes() == source.read_bytes()
+    assert "browser_audio" not in first.artifacts
+    assert not (engine.directory(first.track_id) / "audio/preview.wav").exists()
+    assert "waveform" not in engine.arrays(first.track_id)
     pcm, sr = sf.read(source, always_2d=True)
     stored, stored_sr = sf.read(engine.directory(first.track_id) / "audio/source.wav", always_2d=True)
     assert sr == stored_sr == first.sample_rate

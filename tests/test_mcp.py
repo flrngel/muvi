@@ -1,5 +1,10 @@
 import asyncio
 import sys
+from datetime import timedelta
+
+import pytest
+
+pytest.importorskip("mcp", reason="Install the optional MCP extra to test the stdio adapter")
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -14,7 +19,7 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
         params = StdioServerParameters(command=sys.executable,
                                        args=["-m", "genome.cli", "mcp", "--data-dir", str(tmp_path/"store")])
         async with stdio_client(params) as (read, write):
-            async with ClientSession(read, write) as session:
+            async with ClientSession(read, write, read_timeout_seconds=timedelta(seconds=45)) as session:
                 await session.initialize()
                 listed = await session.list_tools()
                 assert {"analyze_track", "get_track_digest", "render_tile", "list_tracks"} <= {t.name for t in listed.tools}

@@ -7,25 +7,25 @@ import tempfile
 import time
 from pathlib import Path
 
-import numpy as np
-import soundfile as sf
 from filelock import FileLock
 
-from genome.audio import ANALYSIS_SR, checksum, decode, source_metrics
-from genome.features import PARAMETERS, extract
-from genome.objects import index_objects
+from genome.config import ANALYSIS_SR, PARAMETERS
 from genome.schema import Claim, Evidence, Genome
-from genome.structure import segment
-from genome.tempo import estimate
+from genome.storage import checksum
 
-PIPELINE_VERSION = "0.3.1"
+PIPELINE_VERSION = "0.4.0"
 PARAMETERS_SHA = hashlib.sha256(json.dumps(PARAMETERS, sort_keys=True).encode()).hexdigest()
 ANALYSIS_ID = f"dsp-{PIPELINE_VERSION}-{PARAMETERS_SHA[:12]}"
 
 
+def extract(audio):
+    from genome.features import extract as compute
+    return compute(audio)
+
+
 class Engine:
     def __init__(self, root=None):
-        self.root = Path(root or os.environ.get("MUVI_DATA_DIR", Path.home()/".muvi")).resolve()
+        self.root = Path(root or os.environ.get("MUVI_DATA_DIR", Path.home()/".muvi")).expanduser().resolve()
         self.root.mkdir(parents=True, exist_ok=True)
 
     def directory(self, track_id, analysis_id=None):
@@ -49,6 +49,7 @@ class Engine:
         return Genome.model_validate_json(path.read_text(encoding="utf-8"))
 
     def arrays(self, track_id, analysis_id=None):
+        import numpy as np
         with np.load(self.directory(track_id, analysis_id)/"arrays/features.npz", allow_pickle=False) as data:
             return {k: data[k] for k in data.files}
 
@@ -74,8 +75,7 @@ class Engine:
         if not path.is_file():
             raise ValueError("Audio file does not exist")
         # Check limits before hashing or copying an unbounded input.
-        from genome.audio import MAX_UPLOAD_BYTES
-        if path.stat().st_size > MAX_UPLOAD_BYTES:
+        if path.stat().st_size > 200 * 1024 * 1024:
             raise ValueError("Audio exceeds the 200 MiB file limit")
         digest = checksum(path)
         track_id = f"sha256:{digest}"
@@ -86,6 +86,13 @@ class Engine:
             if (destination/"genome.json").exists():
                 report("Loaded cached analysis", 1)
                 return self.load(track_id, ANALYSIS_ID)
+            report("Preparing local analysis", 0.01)
+            import numpy as np
+            import soundfile as sf
+            from genome.audio import decode, source_metrics
+            from genome.objects import index_objects
+            from genome.structure import segment
+            from genome.tempo import estimate
             started = time.perf_counter()
             staging = Path(tempfile.mkdtemp(prefix=".analysis-", dir=destination.parent))
             try:
@@ -99,15 +106,10 @@ class Engine:
                 pcm, sr, mono, policy, source_format = decode(staging/"audio/original")
                 duration = len(pcm)/sr
                 sf.write(staging/"audio/source.wav", pcm, sr, subtype="DOUBLE")
-                sf.write(staging/"audio/preview.wav", pcm, sr, subtype="PCM_16")
                 metrics = source_metrics(pcm, sr)
                 del pcm
                 report("Measuring rhythm and frequency", 0.25)
                 features = extract(mono)
-                # Exact waveform peaks are a display artifact, not evidence of individual sources.
-                step = max(1, int(np.ceil(len(mono)/1200)))
-                features["waveform"] = np.array([np.max(np.abs(mono[i:i+step])) for i in range(0, len(mono), step)])
-                features["waveform_times_s"] = np.arange(len(features["waveform"]))*step/ANALYSIS_SR
                 del mono
                 evidence = []
                 def add(kind, start, end, method, observation, measurements, units):
@@ -162,7 +164,6 @@ class Engine:
                                 parameters_sha256=PARAMETERS_SHA, tempo=tempo, sections=sections, sound_objects=objects,
                                 occurrences=occurrences, patterns=patterns, claims=claims, evidence=evidence,
                                 warnings=warnings, artifacts={"source_audio": "audio/source.wav", "original": "audio/original",
-                                "browser_audio": "audio/preview.wav",
                                 "arrays": "arrays/features.npz"}, elapsed_s=round(time.perf_counter()-started, 3))
                 report("Saving your musical evidence", 0.92)
                 np.savez_compressed(staging/"arrays/features.npz", **features)

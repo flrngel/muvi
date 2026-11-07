@@ -1,12 +1,17 @@
 from mcp.server.fastmcp import FastMCP
 from typing import Any
 import re
+import importlib
 
 from genome.engine import Engine
 from genome.tools import MusicTools, SYSTEM_PROMPT
 
 
 def create_mcp(root=None):
+    # Load native DSP libraries before stdio starts reader threads. On Windows,
+    # first-loading NumPy's DLLs during a tool call can hang in the DLL loader.
+    # Ordinary cached CLI reads still avoid these imports completely.
+    importlib.import_module("genome.features")
     server = FastMCP("Muvi Music Genome", instructions=SYSTEM_PROMPT)
     tools = MusicTools(Engine(root))
     for name, fn in tools.registry().items():

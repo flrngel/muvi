@@ -1,17 +1,14 @@
 import json
-import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import numpy as np
 import pytest
 import soundfile as sf
-from fastapi.testclient import TestClient
 from PIL import Image
 
 from genome.engine import Engine
 from genome.fixtures import synthesize
-from genome.server import create_app
 from genome.tools import MusicTools
 
 
@@ -92,48 +89,4 @@ def test_concurrent_cache_is_atomic(tmp_path):
     assert results[0] == results[1]
     assert len(engine.list_tracks()) == 1
     assert not list(engine.root.glob("*/.analysis-*"))
-
-
-def test_http_upload_jobs_security_and_tool_contract(tmp_path):
-    source = tmp_path/"pulse.wav"
-    synthesize(source, duration=4, kind="pulse")
-    with TestClient(create_app(tmp_path/"store")) as client:
-        assert client.get("/api/health").json()["status"] == "ok"
-        schemas = client.get("/api/tools").json()
-        assert len(schemas["tools"]) == 11
-        assert schemas["mcp_config"]["mcpServers"]["muvi"]["args"][:2] == ["-m", "genome.cli"]
-        assert client.post("/api/demo", headers={"Origin": "https://example.com"}).status_code == 403
-        assert client.get("/api/health", headers={"Host": "evil.example"}).status_code == 400
-        assert client.post("/api/tools/analyze_track", json={"arguments": {"path": "secret"}}).status_code == 404
-        result = client.post("/api/upload", files={"file": ("pulse.wav", source.read_bytes(), "audio/wav")})
-        assert result.status_code == 202
-        for _ in range(100):
-            job = client.get(f"/api/jobs/{result.json()['job_id']}").json()
-            if job["status"] in ("complete", "failed"):
-                break
-            time.sleep(0.05)
-        assert job["status"] == "complete", job
-        track_id = job["track_id"]
-        assert len(client.get("/api/tracks").json()["tracks"]) == 1
-        assert client.get(f"/api/tracks/{track_id}/visuals").json()["analysis_id"]
-        packet = client.post("/api/tools/get_track_digest", json={"arguments": {"track_id": track_id}})
-        assert packet.status_code == 200
-        audio = client.get(f"/api/tracks/{track_id}/artifacts/audio/preview.wav", headers={"Range": "bytes=0-99"})
-        assert audio.status_code == 206
-        assert client.get(f"/api/tracks/{track_id}/artifacts/%2E%2E/%2E%2E/secret.json").status_code == 404
-        assert client.post("/api/upload", files={"file": ("empty.wav", b"")}).status_code == 422
-        assert client.get("/").status_code == 200
-        assert client.get("/app.js").status_code == 200
-        assert client.get("/style.css").status_code == 200
-
-
-def test_upload_limit_before_multipart_spooling(tmp_path, monkeypatch):
-    monkeypatch.setattr("genome.server.MAX_UPLOAD_BYTES", 100)
-    with TestClient(create_app(tmp_path/"store")) as client:
-        response = client.post("/api/upload", headers={"Content-Length": str(2*1024*1024)}, content=b"x")
-        assert response.status_code == 413
-        body = b'--test\r\nContent-Disposition: form-data; name="file"; filename="x.wav"\r\n\r\n' + b'x'*(1024*1024+200) + b'\r\n--test--\r\n'
-        response = client.post("/api/upload", headers={"Content-Type": "multipart/form-data; boundary=test"}, content=iter([body]))
-        assert response.status_code == 400
-        assert "limit" in response.json()["detail"]
 
