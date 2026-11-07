@@ -1,4 +1,29 @@
-# Muvi 0.5.1 verification
+# Muvi verification
+
+## 0.5.2 installation documentation follow-up
+
+README installation, CLI/skill/MCP setup and troubleshooting were reorganized, with
+detailed scripting contracts moved to [CLI_REFERENCE.md](CLI_REFERENCE.md). Package
+metadata was bumped to 0.5.2; the analysis pipeline remains 0.5.1. No DSP code changed.
+
+- Binary-only dependency resolution passed for macOS 13, Apple Silicon/Intel,
+  Python 3.12/3.13 and core/MCP: all eight combinations. Commands and outputs are
+  in [macos-install.json](verification/macos-install.json). These checks ran from
+  Windows; they do not establish native loading or runtime behavior on a Mac.
+- The current locked MCP dependency `cryptography==50.0.2` has no usable Intel Mac
+  wheel. Unlocked installation with source builds disabled for that package selects
+  48.0.1. The documented standalone MCP command applies this restriction. The same
+  source-package resolution was checked with the pip interface's equivalent
+  `--only-binary cryptography` flag.
+- Built the 0.5.2 wheel and source archive. Verified local documentation links,
+  package version and wheel README. Installed the core wheel independently and
+  passed `scripts/smoke_install.py` outside the checkout, including analysis,
+  rhythm pagination, crops, charts, export and the missing-MCP error path.
+- The targeted CLI help/version/configuration test passed (1 test); lock and diff
+  checks passed. The unchanged engine's full-suite results are recorded below.
+- No Python processes remained after verification.
+
+## 0.5.1 engine release
 
 Windows, CPython 3.12, November 6, 2026 (America/Los_Angeles). Verification was
 planned before implementation in [CLI_PLAN.md](CLI_PLAN.md) and
