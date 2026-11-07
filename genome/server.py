@@ -3,6 +3,7 @@
 import asyncio
 import json
 import os
+import sys
 import tempfile
 import threading
 import uuid
@@ -201,8 +202,8 @@ def create_app(root=None):
     def tool_list():
         return {"tools": [{"name": name, "description": fn.__doc__, "input_schema": music.schemas(True)[name].model_json_schema()}
                           for name, fn in music.registry(True).items()], "system_prompt": SYSTEM_PROMPT,
-                "mcp_config": {"mcpServers": {"muvi": {"command": "uv", "args": ["run", "--directory",
-                    str(Path(__file__).resolve().parent.parent), "muvi", "mcp", "--data-dir", str(engine.root)]}}}}
+                "mcp_config": {"mcpServers": {"muvi": {"command": sys.executable, "args": ["-m",
+                    "genome.cli", "mcp", "--data-dir", str(engine.root)]}}}}
 
     @app.post("/api/tools/{name}")
     async def call_tool(name: str, body: ToolCall):

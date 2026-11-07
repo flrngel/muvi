@@ -1,4 +1,4 @@
 """Muvi: measured musical evidence for people and language models."""
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
