@@ -1,0 +1,162 @@
+{
+  "model": "gpt-6-luna",
+  "transport": "cli",
+  "condition": "0.4.0-baseline",
+  "summary": {
+    "pulse_presence": {
+      "correct": 8,
+      "total": 8
+    },
+    "first_attack_times": {
+      "correct": 8,
+      "total": 8
+    },
+    "long_gaps": {
+      "correct": 8,
+      "total": 8
+    },
+    "meter_abstention": {
+      "correct": 8,
+      "total": 8
+    },
+    "source_abstention": {
+      "correct": 8,
+      "total": 8
+    },
+    "citation_validity": {
+      "correct": 8,
+      "total": 8
+    },
+    "local_rates": {
+      "correct": 14,
+      "total": 16
+    }
+  },
+  "rows": [
+    {
+      "case_id": "r17",
+      "kind": "steady",
+      "pulse_presence": true,
+      "local_rates": [
+        true,
+        true
+      ],
+      "first_attack_times": true,
+      "first_attack_f1": 1.0,
+      "long_gaps": true,
+      "meter_abstention": true,
+      "source_abstention": true,
+      "citation_validity": true
+    },
+    {
+      "case_id": "r42",
+      "kind": "missing",
+      "pulse_presence": true,
+      "local_rates": [
+        false,
+        false
+      ],
+      "first_attack_times": true,
+      "first_attack_f1": 1.0,
+      "long_gaps": true,
+      "meter_abstention": true,
+      "source_abstention": true,
+      "citation_validity": true
+    },
+    {
+      "case_id": "r08",
+      "kind": "change",
+      "pulse_presence": true,
+      "local_rates": [
+        true,
+        true
+      ],
+      "first_attack_times": true,
+      "first_attack_f1": 1.0,
+      "long_gaps": true,
+      "meter_abstention": true,
+      "source_abstention": true,
+      "citation_validity": true
+    },
+    {
+      "case_id": "r63",
+      "kind": "break",
+      "pulse_presence": true,
+      "local_rates": [
+        true,
+        true
+      ],
+      "first_attack_times": true,
+      "first_attack_f1": 1.0,
+      "long_gaps": true,
+      "meter_abstention": true,
+      "source_abstention": true,
+      "citation_validity": true
+    },
+    {
+      "case_id": "r25",
+      "kind": "noise",
+      "pulse_presence": true,
+      "local_rates": [
+        true,
+        true
+      ],
+      "first_attack_times": true,
+      "first_attack_f1": 1.0,
+      "long_gaps": true,
+      "meter_abstention": true,
+      "source_abstention": true,
+      "citation_validity": true
+    },
+    {
+      "case_id": "r91",
+      "kind": "swing",
+      "pulse_presence": true,
+      "local_rates": [
+        true,
+        true
+      ],
+      "first_attack_times": true,
+      "first_attack_f1": 1.0,
+      "long_gaps": true,
+      "meter_abstention": true,
+      "source_abstention": true,
+      "citation_validity": true
+    },
+    {
+      "case_id": "r36",
+      "kind": "drift",
+      "pulse_presence": true,
+      "local_rates": [
+        true,
+        true
+      ],
+      "first_attack_times": true,
+      "first_attack_f1": 1.0,
+      "long_gaps": true,
+      "meter_abstention": true,
+      "source_abstention": true,
+      "citation_validity": true
+    },
+    {
+      "case_id": "r54",
+      "kind": "subdivisions",
+      "pulse_presence": true,
+      "local_rates": [
+        true,
+        true
+      ],
+      "first_attack_times": true,
+      "first_attack_f1": 1.0,
+      "long_gaps": true,
+      "meter_abstention": true,
+      "source_abstention": true,
+      "citation_validity": true
+    }
+  ],
+  "limitations": [
+    "Small deterministic synthetic corpus, not real-music beat understanding.",
+    "Citation validity checks IDs and spans; actual retrieval must also be audited against logs.",
+    "Model and transport are confounded; agents can learn between conditions."
+  ]
+}

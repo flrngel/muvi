@@ -136,7 +136,7 @@ def test_typed_tool_json_stdin_file_and_discovery(library):
     path.write_text(arguments, encoding='utf-8-sig')
     assert packet(store, 'tool', 'get_track_digest', '--arguments-file', path) == digest
     assert packet(store, 'tool', 'get_track_digest', '--arguments', arguments) == digest
-    assert len(packet(store, 'tools')['tools']) == 12
+    assert len(packet(store, 'tools')['tools']) == 13
     schema = packet(store, 'tools', 'get_audio_crop')['input_schema']
     assert {'track_id', 'start_s', 'end_s'} <= set(schema['required'])
     assert 'track_id' in packet(store, 'schema')['properties']
@@ -171,7 +171,7 @@ def test_help_version_and_config_do_not_import_optional_or_dsp_packages(tmp_path
         result = subprocess.run([sys.executable, '-S', '-m', 'genome.cli', *arguments],
                                 capture_output=True, text=True, encoding='utf-8', timeout=10)
         assert result.returncode == 0, result.stderr
-    assert '0.4.0' in invoke(tmp_path/'store', '--version').stdout
+    assert '0.5.0' in invoke(tmp_path/'store', '--version').stdout
 
 
 def test_empty_library_environment_and_global_flags(tmp_path, monkeypatch):
@@ -218,10 +218,20 @@ import sys
 from genome.cli import main
 for command in (['list'], ['inspect', 'latest'], ['analyze', sys.argv[2]],
                 ['sounds', 'latest'], ['compare', 'latest', 'SEC_01', 'SEC_02'],
-                ['metrics', 'latest'], ['tools']):
+                ['metrics', 'latest'], ['rhythm', 'latest'], ['tools']):
     main(['--data-dir', sys.argv[1], '--json', '--quiet', *command])
     assert not {'numpy', 'scipy', 'soundfile', 'matplotlib'} & set(sys.modules)
 '''
     result = subprocess.run([sys.executable, '-c', script, str(root/'store'), str(source)],
                             capture_output=True, text=True, encoding='utf-8', timeout=30)
     assert result.returncode == 0, result.stderr
+
+
+def test_rhythm_cli_bounded_json_and_human_output(library):
+    root, _, _ = library
+    result = packet(root/'store', 'rhythm', 'latest', '--band', 'low', '--start', '0', '--end', '8', '--limit', '3')
+    assert result['available'] and len(result['onset_times_s']) == 3
+    assert result['next_offset'] == 3
+    assert result['pulse']['pulse_rate_bpm'] is not None
+    assert 'Acoustic pulse' in invoke(root/'store', 'rhythm', 'latest').stdout
+    assert packet(root/'store', 'rhythm', 'latest', '--limit', '0', code=2)['error']

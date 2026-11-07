@@ -13,7 +13,7 @@ from genome.config import ANALYSIS_SR, PARAMETERS
 from genome.schema import Claim, Evidence, Genome
 from genome.storage import checksum
 
-PIPELINE_VERSION = "0.4.0"
+PIPELINE_VERSION = "0.5.0"
 PARAMETERS_SHA = hashlib.sha256(json.dumps(PARAMETERS, sort_keys=True).encode()).hexdigest()
 ANALYSIS_ID = f"dsp-{PIPELINE_VERSION}-{PARAMETERS_SHA[:12]}"
 
@@ -93,6 +93,7 @@ class Engine:
             from genome.objects import index_objects
             from genome.structure import segment
             from genome.tempo import estimate
+            from genome.rhythm import extract_rhythm
             started = time.perf_counter()
             staging = Path(tempfile.mkdtemp(prefix=".analysis-", dir=destination.parent))
             try:
@@ -143,6 +144,7 @@ class Engine:
                 report("Finding recurring sounds and changes", 0.65)
                 sections = segment(features, duration, add)
                 objects, occurrences, patterns = index_objects(features, duration, add)
+                rhythm = extract_rhythm(features, duration, add)
                 for section in sections:
                     section.sound_object_ids = sorted({o.sound_object_id for o in occurrences
                                                        if o.start_s < section.end_s and o.end_s > section.start_s})
@@ -161,7 +163,7 @@ class Engine:
                                 duration_s=duration, sample_rate=sr, channels=sf.info(staging/"audio/source.wav").channels,
                                 source_sha256=digest, source_format=source_format, analysis_sample_rate=ANALYSIS_SR,
                                 mono_policy=policy, pipeline_version=PIPELINE_VERSION, parameters=PARAMETERS,
-                                parameters_sha256=PARAMETERS_SHA, tempo=tempo, sections=sections, sound_objects=objects,
+                                parameters_sha256=PARAMETERS_SHA, tempo=tempo, rhythm=rhythm, sections=sections, sound_objects=objects,
                                 occurrences=occurrences, patterns=patterns, claims=claims, evidence=evidence,
                                 warnings=warnings, artifacts={"source_audio": "audio/source.wav", "original": "audio/original",
                                 "arrays": "arrays/features.npz"}, elapsed_s=round(time.perf_counter()-started, 3))

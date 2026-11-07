@@ -21,6 +21,10 @@ Distinguish measured acoustic properties, inferred roles and unresolved producti
 Use exact original-track timestamps and valid evidence IDs. Retrieve evidence before citing it.
 Acoustic objects may contain overlapping sources. Similarity ranks are not probabilities.
 Use get_section, get_sound, compare_sections, and original audio crops when useful.
+For beat/rhythm questions call get_rhythm for the requested band and exact time window.
+Distinguish detected acoustic attacks, acoustic pulse rate and extrapolated musical beat hypotheses.
+Global preferred BPM can hide tempo changes or subdivisions. Never infer meter/downbeats from it.
+No stable pulse detected is an algorithmic result, not proof that a recording contains no rhythm.
 Images are synchronized audit views, not proof of instrument identity. No separated stems are available.
 If evidence cannot distinguish alternatives, answer indeterminate. Never invent measurements or sources.
 Answer with a conclusion, cited spans and evidence, alternatives, and the next useful check.
@@ -77,6 +81,48 @@ class MusicTools:
             occurrences = [o.model_dump() for o in g.occurrences if o.start_s < section.end_s and o.end_s > section.start_s]
             data.update(occurrences=occurrences[:500], occurrence_count=len(occurrences), truncated=len(occurrences) > 500)
         return self._packet(g, data, section.evidence_ids, section.start_s, section.end_s)
+
+    def get_rhythm(self, track_id: str, start_s: float = 0, end_s: float | None = None,
+                   band: Literal["low", "mid", "high", "all"] = "low", offset: int = 0,
+                   limit: int = 128) -> dict[str, Any]:
+        """Inspect band attacks, local pulse rate and gaps. Observed attacks are not musical beats; meter/source stay unresolved."""
+        from genome.rhythm import long_gaps, pulse_summary
+        if offset < 0 or not 1 <= limit <= 500:
+            raise ValueError("Use offset >= 0 and limit between 1 and 500")
+        g = self.engine.load(track_id)
+        start, end = self._span(g, start_s, end_s)
+        if g.rhythm is None:
+            return self._packet(g, {"available": False, "reason": "This older analysis has no per-band rhythm evidence.",
+                                    "next_check": "Reanalyze the original audio with Muvi 0.5.0 or later."},
+                                start=start, end=end, status="not_available")
+        stream = next((s for s in g.rhythm.streams if s.band == band), None)
+        if stream is None:
+            raise ValueError("Use band low, mid, high or all")
+        times = [t for t in stream.onset_times_s if start <= t < end]
+        local = pulse_summary(times)
+        windows = [w.model_dump() for w in stream.local_windows if w.start_s >= start and w.end_s <= end]
+        # Grid positions are hypotheses. Expose their support instead of passing them
+        # off as observed attacks, particularly across rests and tempo changes.
+        grid = [t for t in g.tempo.beat_times_s if start <= t < end]
+        def support(t):
+            from bisect import bisect_left
+            i = bisect_left(stream.onset_times_s, t)
+            neighbors = stream.onset_times_s[max(0, i-1):i+1]
+            distance = min((abs(x-t) for x in neighbors), default=None)
+            return {"time_s": t, "nearest_band_attack_distance_s": round(distance, 6) if distance is not None else None,
+                    "support": "near_detected_attack" if distance is not None and distance <= .05 else "extrapolated"}
+        return self._packet(g, {"available": True, "band": band, "frequency_range_hz": stream.frequency_range_hz,
+                               "event_kind": g.rhythm.event_kind, "onset_times_s": times[offset:offset+limit],
+                               "event_count": len(times), "next_offset": offset+limit if offset+limit < len(times) else None,
+                               "pulse": local.model_dump(), "track_timing_status": stream.timing_status,
+                               "local_windows": windows, "long_gaps": long_gaps(times),
+                               "gap_definition": "More than 2 seconds between consecutive detected band attacks; not source silence.",
+                               "global_tempo_hypothesis": g.tempo.model_dump(exclude={"beat_times_s"}),
+                               "global_grid_preview": [support(t) for t in grid[:32]],
+                               "global_grid_count": len(grid), "global_grid_preview_truncated": len(grid) > 32,
+                               "grid_warning": "Constant-tempo extrapolation can cross missing attacks, silence and changing tempo. Never report it as observed attack times.",
+                               "meter_status": "not_estimated", "downbeat_status": "not_estimated",
+                               "limitation": g.rhythm.limitation}, stream.evidence_ids, start, end)
 
     def find_sound(self, track_id: str, query: str = "", start_s: float = 0, end_s: float | None = None) -> dict[str, Any]:
         """Search acoustic roles and timbres. Matches are lexical ranks, never instrument probabilities."""
@@ -240,7 +286,7 @@ class MusicTools:
 
     def registry(self):
         return {name: getattr(self, name) for name in (
-            "analyze_track", "get_track_digest", "get_section", "find_sound", "get_sound", "compare_sections",
+            "analyze_track", "get_track_digest", "get_section", "get_rhythm", "find_sound", "get_sound", "compare_sections",
             "get_evidence", "get_audio_crop", "render_tile", "verify_hypothesis", "get_master_metrics", "run_targeted_separation")}
 
     def schemas(self):

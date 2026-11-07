@@ -1,0 +1,380 @@
+{
+  "model": "gpt-6-luna",
+  "transport": "cli",
+  "condition": "0.4.0-baseline",
+  "answers": [
+    {
+      "case_id": "r17",
+      "track_id": "sha256:4a9f49c0c3dd55aff3500f06d0aceecdece0c66c0479bfcea77fcc0f92be5621",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 119.88
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 120.19
+        }
+      ],
+      "first_pulse_times_s": [
+        0.3715192675590515,
+        0.8707482814788818,
+        1.369977355003357,
+        1.8692063093185425,
+        2.3684353828430176
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006",
+        "E0007"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.537052307128906
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.537052307128906
+        },
+        {
+          "start_s": 0.10448979586362839,
+          "end_s": 19.690521240234375
+        }
+      ],
+      "reasoning": "The digest identifies a provisional low-pulse acoustic object; the retrieved sound occurrences are treated as observed attacks. Local rates are calculated from consecutive returned attacks inside each supplied window, not treated as uniquely established musical tempo. Meter/downbeat and separate bass source remain indeterminate because these mixture measurements do not establish them."
+    },
+    {
+      "case_id": "r42",
+      "track_id": "sha256:8344a6fd3e1cef41f9b0b5992f407462f587cc331144716df79bb0e81cc890c8",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 109.67
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 112.08
+        }
+      ],
+      "first_pulse_times_s": [
+        0.3715192675590515,
+        0.8126984238624573,
+        1.2422676086425781,
+        1.6834467649459839,
+        2.1246259212493896
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0007",
+        "E0008",
+        "E0009"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.804081115722656
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.804081115722656
+        },
+        {
+          "start_s": 0.1160997748374939,
+          "end_s": 19.945941925048828
+        }
+      ],
+      "reasoning": "The digest identifies a provisional low-pulse acoustic object; the retrieved sound occurrences are treated as observed attacks. Local rates are calculated from consecutive returned attacks inside each supplied window, not treated as uniquely established musical tempo. Meter/downbeat and separate bass source remain indeterminate because these mixture measurements do not establish them."
+    },
+    {
+      "case_id": "r08",
+      "track_id": "sha256:be317243a33619f82c57c10ed07e765f9fe2ef1c5ef16648a871f632d2b7eb45",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 96.21
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 143.92
+        }
+      ],
+      "first_pulse_times_s": [
+        0.3715192675590515,
+        0.9984580278396606,
+        1.6253968477249146,
+        2.240725517272949,
+        2.867664337158203
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.699592742919922
+        },
+        {
+          "start_s": 0.1277097463607788,
+          "end_s": 19.82984161376953
+        }
+      ],
+      "reasoning": "The digest identifies a provisional low-pulse acoustic object; the retrieved sound occurrences are treated as observed attacks. Local rates are calculated from consecutive returned attacks inside each supplied window, not treated as uniquely established musical tempo. Meter/downbeat and separate bass source remain indeterminate because these mixture measurements do not establish them."
+    },
+    {
+      "case_id": "r63",
+      "track_id": "sha256:282e49e74c23bf4805339df67f10fb15023ccf5a2a2163cb0a907df068589798",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 127.92
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 128.13
+        }
+      ],
+      "first_pulse_times_s": [
+        0.3715192675590515,
+        0.8359183669090271,
+        1.3119274377822876,
+        1.7763265371322632,
+        2.240725517272949
+      ],
+      "long_gaps": [
+        {
+          "start_s": 6.931156635284424,
+          "end_s": 12.085986137390137
+        }
+      ],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0007",
+        "E0008",
+        "E0009"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.746030960083008
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.746030960083008
+        },
+        {
+          "start_s": 0.1160997748374939,
+          "end_s": 19.89950180053711
+        }
+      ],
+      "reasoning": "The digest identifies a provisional low-pulse acoustic object; the retrieved sound occurrences are treated as observed attacks. Local rates are calculated from consecutive returned attacks inside each supplied window, not treated as uniquely established musical tempo. Meter/downbeat and separate bass source remain indeterminate because these mixture measurements do not establish them."
+    },
+    {
+      "case_id": "r25",
+      "track_id": "sha256:e399800632b04338e57af3c224a98435cbfe3fe0b08e9d3dd3ad6dec8f39a67a",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": false,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": null
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": null
+        }
+      ],
+      "first_pulse_times_s": [],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006",
+        "E0007"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.01160997711122036,
+          "end_s": 20.0
+        },
+        {
+          "start_s": 0.0,
+          "end_s": 19.992380142211914
+        },
+        {
+          "start_s": 0.0,
+          "end_s": 20.0
+        }
+      ],
+      "reasoning": "No recurring low-frequency transient series is established. S01 is a recurring Bright pulse, but its retrieved fingerprint has only 0.010 low_fraction and 0.817 high_fraction; S02 is a single sustained low texture event. Thus the repeated attacks are not evidence of a low-frequency pulse. Meter/downbeat and independent bass identity remain indeterminate."
+    },
+    {
+      "case_id": "r91",
+      "track_id": "sha256:d6660536c1df079a4af93fcd9f4ef9730e8c39ab90aab7214f9ef3394f88dc42",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 111.74
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 112.04
+        }
+      ],
+      "first_pulse_times_s": [
+        0.3715192675590515,
+        0.9055782556533813,
+        1.4396371841430664,
+        1.9736961126327515,
+        2.519365072250366
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006",
+        "E0009"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.815691146850586
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.815691146850586
+        },
+        {
+          "start_s": 0.10448979586362839,
+          "end_s": 19.980770111083984
+        }
+      ],
+      "reasoning": "The digest identifies a provisional low-pulse acoustic object; the retrieved sound occurrences are treated as observed attacks. Local rates are calculated from consecutive returned attacks inside each supplied window, not treated as uniquely established musical tempo. Meter/downbeat and separate bass source remain indeterminate because these mixture measurements do not establish them."
+    },
+    {
+      "case_id": "r36",
+      "track_id": "sha256:5ca8ac884841a319afb457e3a1d0547ee6e1b12b1e777c879607512574c246dc",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 98.04
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 125.13
+        }
+      ],
+      "first_pulse_times_s": [
+        0.3715192675590515,
+        1.0332880020141602,
+        1.6834467649459839,
+        2.321995496749878,
+        2.948934316635132
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.827301177978516
+        },
+        {
+          "start_s": 0.1160997748374939,
+          "end_s": 19.980770111083984
+        }
+      ],
+      "reasoning": "The digest identifies a provisional low-pulse acoustic object; the retrieved sound occurrences are treated as observed attacks. Local rates are calculated from consecutive returned attacks inside each supplied window, not treated as uniquely established musical tempo. Meter/downbeat and separate bass source remain indeterminate because these mixture measurements do not establish them."
+    },
+    {
+      "case_id": "r54",
+      "track_id": "sha256:b74520b71ba1ece3f42f0011bebcddc9b428868b1b26d72ebeaefe0444494a36",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 149.8
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 150.16
+        }
+      ],
+      "first_pulse_times_s": [
+        0.3715192675590515,
+        0.7662584781646729,
+        1.172607660293579,
+        1.5673469305038452,
+        1.9736961126327515
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0009",
+        "E0005",
+        "E0006"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.73442092895508
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 19.73442092895508
+        },
+        {
+          "start_s": 0.1277097463607788,
+          "end_s": 19.86467170715332
+        }
+      ],
+      "reasoning": "S01 is returned as a recurring transient (“Bright pulse”, subdivision), with 49 occurrences and 0.400 s provisional recurrence. Its measured fingerprint includes low_fraction 0.444, so I count a recurring low-band transient component; the sound source remains unresolved. Local rates are calculated from retrieved occurrence onsets. Meter/downbeat and separate bass-source identity remain indeterminate."
+    }
+  ]
+}

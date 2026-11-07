@@ -1,0 +1,214 @@
+{
+  "baseline": "0.4.0 @ 301d476",
+  "tuned": "0.5.0 @ frozen source hashes",
+  "development_cases": 8,
+  "heldout_cases": 8,
+  "models": {
+    "terra": {
+      "development-baseline": {
+        "pulse_presence": {
+          "correct": 6,
+          "total": 8
+        },
+        "first_attack_times": {
+          "correct": 7,
+          "total": 8
+        },
+        "long_gaps": {
+          "correct": 8,
+          "total": 8
+        },
+        "meter_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "source_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "citation_validity": {
+          "correct": 8,
+          "total": 8
+        },
+        "local_rates": {
+          "correct": 14,
+          "total": 16
+        }
+      },
+      "heldout-baseline": {
+        "pulse_presence": {
+          "correct": 6,
+          "total": 8
+        },
+        "first_attack_times": {
+          "correct": 7,
+          "total": 8
+        },
+        "long_gaps": {
+          "correct": 8,
+          "total": 8
+        },
+        "meter_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "source_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "citation_validity": {
+          "correct": 8,
+          "total": 8
+        },
+        "local_rates": {
+          "correct": 14,
+          "total": 16
+        }
+      },
+      "heldout-tuned": {
+        "pulse_presence": {
+          "correct": 7,
+          "total": 8
+        },
+        "first_attack_times": {
+          "correct": 8,
+          "total": 8
+        },
+        "long_gaps": {
+          "correct": 8,
+          "total": 8
+        },
+        "meter_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "source_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "citation_validity": {
+          "correct": 8,
+          "total": 8
+        },
+        "local_rates": {
+          "correct": 16,
+          "total": 16
+        }
+      }
+    },
+    "luna": {
+      "development-baseline": {
+        "pulse_presence": {
+          "correct": 8,
+          "total": 8
+        },
+        "first_attack_times": {
+          "correct": 8,
+          "total": 8
+        },
+        "long_gaps": {
+          "correct": 8,
+          "total": 8
+        },
+        "meter_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "source_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "citation_validity": {
+          "correct": 8,
+          "total": 8
+        },
+        "local_rates": {
+          "correct": 14,
+          "total": 16
+        }
+      },
+      "heldout-baseline": {
+        "pulse_presence": {
+          "correct": 8,
+          "total": 8
+        },
+        "first_attack_times": {
+          "correct": 8,
+          "total": 8
+        },
+        "long_gaps": {
+          "correct": 8,
+          "total": 8
+        },
+        "meter_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "source_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "citation_validity": {
+          "correct": 8,
+          "total": 8
+        },
+        "local_rates": {
+          "correct": 14,
+          "total": 16
+        }
+      },
+      "heldout-tuned": {
+        "pulse_presence": {
+          "correct": 7,
+          "total": 8
+        },
+        "first_attack_times": {
+          "correct": 8,
+          "total": 8
+        },
+        "long_gaps": {
+          "correct": 8,
+          "total": 8
+        },
+        "meter_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "source_abstention": {
+          "correct": 8,
+          "total": 8
+        },
+        "citation_validity": {
+          "correct": 8,
+          "total": 8
+        },
+        "local_rates": {
+          "correct": 16,
+          "total": 16
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Synthetic generated signals only, not real music.",
+    "One trajectory per model and condition; no statistical significance estimate.",
+    "Model and transport confounded; baseline-first repeated cases allow within-agent learning.",
+    "No raw-audio or image-only LLM comparison.",
+    "Blindness is procedural, not OS-enforced."
+  ],
+  "calls": {
+    "terra": {
+      "heldout_baseline": 39,
+      "heldout_tuned": 51,
+      "errors_baseline": 1,
+      "errors_tuned": 1
+    },
+    "luna": {
+      "heldout_baseline": 45,
+      "heldout_tuned": 59,
+      "errors_baseline": 0,
+      "errors_tuned": 0
+    }
+  },
+  "trace_archive_sha256": "859e92b5d279c5bd419ed275e2474b6a3a6ef6988a98fa151fac2d23fa035522"
+}

@@ -1,0 +1,365 @@
+{
+  "model": "gpt-6.1-terra",
+  "transport": "mcp",
+  "condition": "0.4.0-baseline",
+  "answers": [
+    {
+      "case_id": "r17",
+      "track_id": "sha256:4a9f49c0c3dd55aff3500f06d0aceecdece0c66c0479bfcea77fcc0f92be5621",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 120.2
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 120.2
+        }
+      ],
+      "first_pulse_times_s": [
+        0.372,
+        0.871,
+        1.37,
+        1.869,
+        2.368
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0,
+          "end_s": 20
+        }
+      ],
+      "reasoning": "Low-pulse transient occurrence starts returned by get_sound; rates are 60 divided by median consecutive occurrence interval wholly inside each probe window; long gaps use returned occurrence starts. These are detected acoustic events, not a musical beat grid or proof of a source; detector omissions remain possible. Meter/downbeat and independent source remain unresolved."
+    },
+    {
+      "case_id": "r42",
+      "track_id": "sha256:8344a6fd3e1cef41f9b0b5992f407462f587cc331144716df79bb0e81cc890c8",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 136.0
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 136.0
+        }
+      ],
+      "first_pulse_times_s": [
+        0.372,
+        0.813,
+        1.242,
+        1.683,
+        2.125
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0009",
+        "E0010"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0,
+          "end_s": 20
+        }
+      ],
+      "reasoning": "Low-pulse transient occurrence starts returned by get_sound; rates are 60 divided by median consecutive occurrence interval wholly inside each probe window; long gaps use returned occurrence starts. These are detected acoustic events, not a musical beat grid or proof of a source; detector omissions remain possible. Meter/downbeat and independent source remain unresolved."
+    },
+    {
+      "case_id": "r08",
+      "track_id": "sha256:be317243a33619f82c57c10ed07e765f9fe2ef1c5ef16648a871f632d2b7eb45",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 95.7
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 143.6
+        }
+      ],
+      "first_pulse_times_s": [
+        0.372,
+        0.998,
+        1.625,
+        2.241,
+        2.868
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0,
+          "end_s": 20
+        }
+      ],
+      "reasoning": "Low-pulse transient occurrence starts returned by get_sound; rates are 60 divided by median consecutive occurrence interval wholly inside each probe window; long gaps use returned occurrence starts. These are detected acoustic events, not a musical beat grid or proof of a source; detector omissions remain possible. Meter/downbeat and independent source remain unresolved."
+    },
+    {
+      "case_id": "r63",
+      "track_id": "sha256:282e49e74c23bf4805339df67f10fb15023ccf5a2a2163cb0a907df068589798",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 129.2
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 129.2
+        }
+      ],
+      "first_pulse_times_s": [
+        0.372,
+        0.836,
+        1.312,
+        1.776,
+        2.241
+      ],
+      "long_gaps": [
+        {
+          "start_s": 6.931,
+          "end_s": 12.086
+        }
+      ],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0009",
+        "E0010"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0,
+          "end_s": 20
+        }
+      ],
+      "reasoning": "Low-pulse transient occurrence starts returned by get_sound; rates are 60 divided by median consecutive occurrence interval wholly inside each probe window; long gaps use returned occurrence starts. These are detected acoustic events, not a musical beat grid or proof of a source; detector omissions remain possible. Meter/downbeat and independent source remain unresolved."
+    },
+    {
+      "case_id": "r25",
+      "track_id": "sha256:e399800632b04338e57af3c224a98435cbfe3fe0b08e9d3dd3ad6dec8f39a67a",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": null,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": null
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": null
+        }
+      ],
+      "first_pulse_times_s": [],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0,
+          "end_s": 20
+        }
+      ],
+      "reasoning": "No low-pulse object returned by find_sound; this does not establish absence of a low pulse. No observed low-pulse attack timing or local rate available. Empty gap and attack lists mean none established, not proven absent. Meter/downbeat and independent source remain unresolved."
+    },
+    {
+      "case_id": "r91",
+      "track_id": "sha256:d6660536c1df079a4af93fcd9f4ef9730e8c39ab90aab7214f9ef3394f88dc42",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 112.3
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 112.3
+        }
+      ],
+      "first_pulse_times_s": [
+        0.372,
+        0.906,
+        1.44,
+        1.974,
+        2.519
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0009",
+        "E0010"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0,
+          "end_s": 20
+        }
+      ],
+      "reasoning": "Low-pulse transient occurrence starts returned by get_sound; rates are 60 divided by median consecutive occurrence interval wholly inside each probe window; long gaps use returned occurrence starts. These are detected acoustic events, not a musical beat grid or proof of a source; detector omissions remain possible. Meter/downbeat and independent source remain unresolved."
+    },
+    {
+      "case_id": "r36",
+      "track_id": "sha256:5ca8ac884841a319afb457e3a1d0547ee6e1b12b1e777c879607512574c246dc",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 99.4
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": 126.0
+        }
+      ],
+      "first_pulse_times_s": [
+        0.372,
+        1.033,
+        1.683,
+        2.322,
+        2.949
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0,
+          "end_s": 20
+        }
+      ],
+      "reasoning": "Low-pulse transient occurrence starts returned by get_sound; rates are 60 divided by median consecutive occurrence interval wholly inside each probe window; long gaps use returned occurrence starts. These are detected acoustic events, not a musical beat grid or proof of a source; detector omissions remain possible. Meter/downbeat and independent source remain unresolved."
+    },
+    {
+      "case_id": "r54",
+      "track_id": "sha256:b74520b71ba1ece3f42f0011bebcddc9b428868b1b26d72ebeaefe0444494a36",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": null,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": null
+        },
+        {
+          "start_s": 13.5,
+          "end_s": 18.5,
+          "bpm": null
+        }
+      ],
+      "first_pulse_times_s": [],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0009",
+        "E0010"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0,
+          "end_s": 20
+        }
+      ],
+      "reasoning": "No low-pulse object returned by find_sound; this does not establish absence of a low pulse. No observed low-pulse attack timing or local rate available. Empty gap and attack lists mean none established, not proven absent. Meter/downbeat and independent source remain unresolved."
+    }
+  ]
+}

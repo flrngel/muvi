@@ -30,6 +30,13 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
                 payload = payload.get("result", payload)
                 digest = await session.call_tool("get_track_digest", {"track_id": payload["track_id"]})
                 assert not digest.isError
+                rhythm = await session.call_tool("get_rhythm", {"track_id": payload["track_id"], "band": "low", "limit": 3})
+                assert not rhythm.isError
+                data = rhythm.structuredContent.get("result", rhythm.structuredContent)
+                assert len(data['onset_times_s']) == 3 and data['next_offset'] == 3
+                assert abs(data['pulse']['pulse_rate_bpm']-150) < 4.5
+                cited = await session.call_tool('get_evidence', {'track_id': payload['track_id'], 'evidence_ids': data['evidence_ids']})
+                assert not cited.isError
                 missing = await session.call_tool("get_evidence", {"track_id": payload["track_id"], "evidence_ids": ["fake"]})
                 assert missing.isError
                 crop = await session.call_tool("get_audio_crop", {"track_id": payload["track_id"], "start_s": 0.2, "end_s": 0.3})

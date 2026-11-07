@@ -1,0 +1,237 @@
+[
+  {
+    "model": "gpt-6.1-terra",
+    "condition": "0.4.0-baseline",
+    "all_citations_retrieved": true,
+    "rows": [
+      {
+        "case_id": "r17",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r42",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r08",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r63",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r25",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r91",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r36",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r54",
+        "all_citations_retrieved": true,
+        "missing": []
+      }
+    ]
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "condition": "0.4.0-baseline",
+    "all_citations_retrieved": true,
+    "rows": [
+      {
+        "case_id": "r73",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r14",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r68",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r39",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r02",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r85",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r47",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r96",
+        "all_citations_retrieved": true,
+        "missing": []
+      }
+    ]
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "condition": "0.5.0-tuned",
+    "all_citations_retrieved": true,
+    "rows": [
+      {
+        "case_id": "r73",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r14",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r68",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r39",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r02",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r85",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r47",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r96",
+        "all_citations_retrieved": true,
+        "missing": []
+      }
+    ]
+  },
+  {
+    "model": "gpt-6-luna",
+    "condition": "0.4.0-baseline",
+    "all_citations_retrieved": true,
+    "rows": [
+      {
+        "case_id": "r17",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r42",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r08",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r63",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r25",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r91",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r36",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r54",
+        "all_citations_retrieved": true,
+        "missing": []
+      }
+    ]
+  },
+  {
+    "model": "gpt-6-luna",
+    "condition": "0.4.0-baseline",
+    "all_citations_retrieved": true,
+    "rows": [
+      {
+        "case_id": "r73",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r14",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r68",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r39",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r02",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r85",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r47",
+        "all_citations_retrieved": true,
+        "missing": []
+      },
+      {
+        "case_id": "r96",
+        "all_citations_retrieved": true,
+        "missing": []
+      }
+    ]
+  }
+]

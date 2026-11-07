@@ -1,0 +1,90 @@
+[
+  {
+    "case_id": "r73",
+    "kind": "steady",
+    "baseline_analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+    "tuned_analysis_id": "dsp-0.5.0-4df44b78929a",
+    "baseline_low_event_f1": 1.0,
+    "tuned_raw_low_attack_f1": 1.0,
+    "tuned_pulse_status": "steady",
+    "tuned_global_pulse_bpm": 103.002,
+    "noise_warning": null
+  },
+  {
+    "case_id": "r14",
+    "kind": "missing",
+    "baseline_analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+    "tuned_analysis_id": "dsp-0.5.0-4df44b78929a",
+    "baseline_low_event_f1": 1.0,
+    "tuned_raw_low_attack_f1": 1.0,
+    "tuned_pulse_status": "steady",
+    "tuned_global_pulse_bpm": 156.987,
+    "noise_warning": null
+  },
+  {
+    "case_id": "r68",
+    "kind": "change",
+    "baseline_analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+    "tuned_analysis_id": "dsp-0.5.0-4df44b78929a",
+    "baseline_low_event_f1": 1.0,
+    "tuned_raw_low_attack_f1": 1.0,
+    "tuned_pulse_status": "varying",
+    "tuned_global_pulse_bpm": null,
+    "noise_warning": null
+  },
+  {
+    "case_id": "r39",
+    "kind": "break",
+    "baseline_analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+    "tuned_analysis_id": "dsp-0.5.0-4df44b78929a",
+    "baseline_low_event_f1": 1.0,
+    "tuned_raw_low_attack_f1": 1.0,
+    "tuned_pulse_status": "steady",
+    "tuned_global_pulse_bpm": 142.991,
+    "noise_warning": null
+  },
+  {
+    "case_id": "r02",
+    "kind": "noise",
+    "baseline_analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+    "tuned_analysis_id": "dsp-0.5.0-4df44b78929a",
+    "baseline_low_event_f1": 1.0,
+    "tuned_raw_low_attack_f1": 0.0,
+    "tuned_pulse_status": "irregular_or_insufficient",
+    "tuned_global_pulse_bpm": null,
+    "noise_warning": "Raw detector changes in noise are not a pulse; qualification must be consulted."
+  },
+  {
+    "case_id": "r85",
+    "kind": "swing",
+    "baseline_analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+    "tuned_analysis_id": "dsp-0.5.0-4df44b78929a",
+    "baseline_low_event_f1": 1.0,
+    "tuned_raw_low_attack_f1": 1.0,
+    "tuned_pulse_status": "steady",
+    "tuned_global_pulse_bpm": 125.95,
+    "noise_warning": null
+  },
+  {
+    "case_id": "r47",
+    "kind": "drift",
+    "baseline_analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+    "tuned_analysis_id": "dsp-0.5.0-4df44b78929a",
+    "baseline_low_event_f1": 1.0,
+    "tuned_raw_low_attack_f1": 1.0,
+    "tuned_pulse_status": "varying",
+    "tuned_global_pulse_bpm": null,
+    "noise_warning": null
+  },
+  {
+    "case_id": "r96",
+    "kind": "subdivisions",
+    "baseline_analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+    "tuned_analysis_id": "dsp-0.5.0-4df44b78929a",
+    "baseline_low_event_f1": 0.0,
+    "tuned_raw_low_attack_f1": 1.0,
+    "tuned_pulse_status": "steady",
+    "tuned_global_pulse_bpm": 133.998,
+    "noise_warning": null
+  }
+]

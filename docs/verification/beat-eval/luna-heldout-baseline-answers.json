@@ -1,0 +1,380 @@
+{
+  "model": "gpt-6-luna",
+  "transport": "cli",
+  "condition": "0.4.0-baseline",
+  "answers": [
+    {
+      "case_id": "r73",
+      "track_id": "sha256:ca50c50072d328e9b0ba552a28164833978a6962ea181f9266f6ba39704accd3",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 102.85
+        },
+        {
+          "start_s": 15.5,
+          "end_s": 20.5,
+          "bpm": 102.85
+        }
+      ],
+      "first_pulse_times_s": [
+        0.6153287887573242,
+        1.1958277225494385,
+        1.7763265371322632,
+        2.356825351715088,
+        2.948934316635132
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006",
+        "E0007"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.742948684692383
+        },
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.742948684692383
+        },
+        {
+          "start_s": 0.3482993245124817,
+          "end_s": 21.89641761779785
+        }
+      ],
+      "reasoning": "The selected object is a recurring transient and is named/role-tagged low pulse or has substantial measured low-band fraction. Onsets come from exact occurrence start_s; local rates use consecutive returned onsets within each probe. Low-band fraction is a relative share, and this does not establish source identity or meter."
+    },
+    {
+      "case_id": "r14",
+      "track_id": "sha256:9c0cf1d1da42673340894502cc732f86c23f8836ea2baa1be4d27ff05f1cefb2",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 130.83
+        },
+        {
+          "start_s": 15.5,
+          "end_s": 20.5,
+          "bpm": 130.83
+        }
+      ],
+      "first_pulse_times_s": [
+        0.6153287887573242,
+        0.9984580278396606,
+        1.381587266921997,
+        1.7647165060043335,
+        2.14784574508667
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0009",
+        "E0010",
+        "E0011"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.78938690185547
+        },
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.78938690185547
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 21.91963768005371
+        }
+      ],
+      "reasoning": "The selected object is a recurring transient and is named/role-tagged low pulse or has substantial measured low-band fraction. Onsets come from exact occurrence start_s; local rates use consecutive returned onsets within each probe. Low-band fraction is a relative share, and this does not establish source identity or meter."
+    },
+    {
+      "case_id": "r68",
+      "track_id": "sha256:83b41b8f00cdb8c749e51a739031b6802ed9d6d689bf98a60d85599e66552f05",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 109.96
+        },
+        {
+          "start_s": 15.5,
+          "end_s": 20.5,
+          "bpm": 165.07
+        }
+      ],
+      "first_pulse_times_s": [
+        0.6153287887573242,
+        1.160997748374939,
+        1.7066667079925537,
+        2.252335548400879,
+        2.798004627227783
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.870657119750977
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 21.98929786682129
+        }
+      ],
+      "reasoning": "The selected object is a recurring transient and is named/role-tagged low pulse or has substantial measured low-band fraction. Onsets come from exact occurrence start_s; local rates use consecutive returned onsets within each probe. Low-band fraction is a relative share, and this does not establish source identity or meter."
+    },
+    {
+      "case_id": "r39",
+      "track_id": "sha256:5e1dfd720ebf41879eab490bf1005783fb380cb72862658162eab14af9882560",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 142.83
+        },
+        {
+          "start_s": 15.5,
+          "end_s": 20.5,
+          "bpm": 143.19
+        }
+      ],
+      "first_pulse_times_s": [
+        0.6153287887573242,
+        1.0332880020141602,
+        1.451247215270996,
+        1.8692063093185425,
+        2.287165641784668
+      ],
+      "long_gaps": [
+        {
+          "start_s": 7.3258957862854,
+          "end_s": 13.200544357299805
+        }
+      ],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0007",
+        "E0008",
+        "E0009"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.754558715820313
+        },
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.754558715820313
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 21.884807586669922
+        }
+      ],
+      "reasoning": "The selected object is a recurring transient and is named/role-tagged low pulse or has substantial measured low-band fraction. Onsets come from exact occurrence start_s; local rates use consecutive returned onsets within each probe. Low-band fraction is a relative share, and this does not establish source identity or meter."
+    },
+    {
+      "case_id": "r02",
+      "track_id": "sha256:e39f6a2d28a1d94d09e6c3b68f9f66fbc5e63720ce64732ced635a2def893a90",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": false,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": null
+        },
+        {
+          "start_s": 15.5,
+          "end_s": 20.5,
+          "bpm": null
+        }
+      ],
+      "first_pulse_times_s": [],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006",
+        "E0007"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.01160997711122036,
+          "end_s": 22.0
+        },
+        {
+          "start_s": 0.0,
+          "end_s": 21.98929786682129
+        },
+        {
+          "start_s": 0.0,
+          "end_s": 22.0
+        }
+      ],
+      "reasoning": "S01 is a recurring Bright pulse (267 events), but its fingerprint has low_fraction 0.019 and high_fraction 0.821, so its attacks do not establish a low-frequency transient pulse. S02 is a single sustained low texture event. Meter/downbeat and independent bass source remain indeterminate."
+    },
+    {
+      "case_id": "r85",
+      "track_id": "sha256:4b0b44d533109c5dfff9cd0dd6bf2dc18a67f9593a6a27910d75fe80cb0267aa",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 126.05
+        },
+        {
+          "start_s": 15.5,
+          "end_s": 20.5,
+          "bpm": 125.71
+        }
+      ],
+      "first_pulse_times_s": [
+        0.6153287887573242,
+        1.0913379192352295,
+        1.5673469305038452,
+        2.043355941772461,
+        2.519365072250366
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006",
+        "E0009"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.731338653564453
+        },
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.731338653564453
+        },
+        {
+          "start_s": 0.3482993245124817,
+          "end_s": 21.873197555541992
+        }
+      ],
+      "reasoning": "The selected object is a recurring transient and is named/role-tagged low pulse or has substantial measured low-band fraction. Onsets come from exact occurrence start_s; local rates use consecutive returned onsets within each probe. Low-band fraction is a relative share, and this does not establish source identity or meter."
+    },
+    {
+      "case_id": "r47",
+      "track_id": "sha256:300f0deb6607953ef14fdc2b298d746bdedfdfb5873a2dbe843a67119fdb999e",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 115.13
+        },
+        {
+          "start_s": 15.5,
+          "end_s": 20.5,
+          "bpm": 148.72
+        }
+      ],
+      "first_pulse_times_s": [
+        0.6153287887573242,
+        1.172607660293579,
+        1.7182766199111938,
+        2.2639455795288086,
+        2.809614419937134
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.673288497924805
+        },
+        {
+          "start_s": 0.3715192675590515,
+          "end_s": 21.803537368774414
+        }
+      ],
+      "reasoning": "The selected object is a recurring transient and is named/role-tagged low pulse or has substantial measured low-band fraction. Onsets come from exact occurrence start_s; local rates use consecutive returned onsets within each probe. Low-band fraction is a relative share, and this does not establish source identity or meter."
+    },
+    {
+      "case_id": "r96",
+      "track_id": "sha256:916d0dcb0925de60509616753dc105990acfaa61c15a3f3da27c5e8cf959ef73",
+      "analysis_id": "dsp-0.4.0-9ac2e98f5cb4",
+      "pulse_present": true,
+      "local_rates": [
+        {
+          "start_s": 1.5,
+          "end_s": 6.5,
+          "bpm": 134.07
+        },
+        {
+          "start_s": 15.5,
+          "end_s": 20.5,
+          "bpm": 133.89
+        }
+      ],
+      "first_pulse_times_s": [
+        0.6153287887573242,
+        1.05650794506073,
+        1.5092970132827759,
+        1.9620862007141113,
+        2.4032652378082275
+      ],
+      "long_gaps": [],
+      "meter_verdict": "indeterminate",
+      "independent_bass_verdict": "indeterminate",
+      "evidence_ids": [
+        "E0005",
+        "E0006",
+        "E0009"
+      ],
+      "time_spans": [
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.824216995239258
+        },
+        {
+          "start_s": 0.6153287887573242,
+          "end_s": 21.824216995239258
+        },
+        {
+          "start_s": 0.3599092960357666,
+          "end_s": 21.96607780456543
+        }
+      ],
+      "reasoning": "The selected object is a recurring transient and is named/role-tagged low pulse or has substantial measured low-band fraction. Onsets come from exact occurrence start_s; local rates use consecutive returned onsets within each probe. Low-band fraction is a relative share, and this does not establish source identity or meter."
+    }
+  ]
+}

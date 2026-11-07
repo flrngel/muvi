@@ -1,0 +1,47 @@
+{
+  "model": "gpt-6-luna",
+  "condition": "0.5.0-tuned-with-skill",
+  "all_citations_retrieved": true,
+  "rows": [
+    {
+      "case_id": "r73",
+      "all_citations_retrieved": true,
+      "missing": []
+    },
+    {
+      "case_id": "r14",
+      "all_citations_retrieved": true,
+      "missing": []
+    },
+    {
+      "case_id": "r68",
+      "all_citations_retrieved": true,
+      "missing": []
+    },
+    {
+      "case_id": "r39",
+      "all_citations_retrieved": true,
+      "missing": []
+    },
+    {
+      "case_id": "r02",
+      "all_citations_retrieved": true,
+      "missing": []
+    },
+    {
+      "case_id": "r85",
+      "all_citations_retrieved": true,
+      "missing": []
+    },
+    {
+      "case_id": "r47",
+      "all_citations_retrieved": true,
+      "missing": []
+    },
+    {
+      "case_id": "r96",
+      "all_citations_retrieved": true,
+      "missing": []
+    }
+  ]
+}

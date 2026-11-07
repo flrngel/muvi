@@ -107,6 +107,22 @@ def format_result(command, result):
         return "\n".join([f"{result['verdict'].upper()}: {result['conclusion']}",
                           f"Evidence: {', '.join(result['evidence_ids']) or 'none'}",
                           f"Next: {result['next_check']}"])
+    if command == "rhythm":
+        if not result['available']:
+            return result['reason'] + "\n" + result['next_check']
+        bpm = result['pulse']['pulse_rate_bpm']
+        events = result['onset_times_s']
+        lines = [f"{result['band'].upper()} band  |  {span(result['time_span'])}",
+                 f"Acoustic pulse  {f'{bpm:g} pulses/min (inferred)' if bpm else 'unresolved'}",
+                 f"Track timing    {result['track_timing_status']}",
+                 f"Detected attacks in interval: {result['event_count']}",
+                 "First returned attacks: " + (", ".join(f"{t:.3f}s" for t in events[:12]) or "none")]
+        if len(events) > 12 or result['next_offset'] is not None:
+            lines.append("Use --json and --offset/--limit to retrieve all detected attacks.")
+        lines.extend(["", "Long gaps between detected attacks", table(["ORIGINAL TIME", "DURATION"],
+                      [[span(g), f"{g['duration_s']:.3f}s"] for g in result['long_gaps']]),
+                      "", result['limitation'], result['grid_warning']])
+        return "\n".join(lines)
     if command in ("crop", "render"):
         lines = [f"Original time  {span(result['time_span'])}", f"Analysis       {result['analysis_id']}"]
         lines.extend(f"{key.capitalize():14} {clean(result[key]['path'])}"

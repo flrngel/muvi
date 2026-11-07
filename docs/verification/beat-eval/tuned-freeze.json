@@ -1,0 +1,28 @@
+{
+  "version": "0.5.0",
+  "files": {
+    "genome/audio.py": "27d8b7f0b60efca30dbb09b136b31aa97a1de796aed1fe26b9cdc61f52820e9b",
+    "genome/charts.py": "b9e98deb18e73bbc0ff97628d0b757151a100dba7e8866bedc00fc357b7dc381",
+    "genome/cli.py": "ef764bf21c78b42037cab6d5ee895fc1c51b97001d46f91e18802ec6eb7a7eed",
+    "genome/config.py": "d8b58f4d9950ae584b53a0ff8db843c44677c8b70aa4dddb1b7af1fdf0cdbb82",
+    "genome/engine.py": "8358f37c32391b05c0601b8b2b7c1a8b7c4060c87063117ea81eb28f639c6017",
+    "genome/evaluate.py": "9524d2ab15bb4df126975342a9c08be0c4dc9c67929e1b9ec7071df2854fbf62",
+    "genome/exports.py": "bd280bb705af3e5aaf3bdbbf774745f744411f8924325b413b4d0acf15dd8ec4",
+    "genome/features.py": "3642de2fe3e0a6b0e7695076561b62aae33f1a3bbdf2a4c83578e0f479ebc637",
+    "genome/fixtures.py": "74a5ab394ffaba19fd7fb27e7c99e83ae9c9feabd471c87e1dff64a9759ec765",
+    "genome/mcp_server.py": "3b79c26015841ecb24d3908be47201c20a223500f0d9ac3fed5f04837a86a488",
+    "genome/objects.py": "59db73f437b7b0d3a34e978c57c4949f601189e95c8891393f95afb72b7c5bea",
+    "genome/rhythm.py": "95ab60156402dfc78dea118bd6f14bd7cd58ba69a39f7020b46763fe4fd27157",
+    "genome/schema.py": "518862d5b03fbb47ba74412e96cfb22cc81430c9feefbf9302ea058ba3cf5f88",
+    "genome/serializer.py": "ad67e7d66309c22e6d0796160be93fa1eb4ca5e1cd0e0a1d9efb97a6efae0a28",
+    "genome/storage.py": "b977b7ae0026e5467440b43180ea09e9e21df10e72c45d85d08de4823277aae3",
+    "genome/structure.py": "10c62ce4a4766a53af4c66a5c3039df295443ab8702218ccb41916b264b78137",
+    "genome/tempo.py": "60584190795ab28cc948e27cd7c2122a3c038d2f499e993e321f2c87b5fe4b8a",
+    "genome/terminal.py": "0e7285fb91fb1b73a71511ed4a004ec1ba5ea0024bda0cf17ce5a7745fef2fe2",
+    "genome/tools.py": "54d7f8b7d3d5c31385e9f7542aa8fe656b95092afb31fa272cd49cb1ecd2583b",
+    "genome/__init__.py": "095550b66f3f6129506f46e2377aab1d40a20111c17b7e2c8d9ade37c8f9007c",
+    "README.md": "b30506353677f2ecdd0527c65c1f21eddfa1d96596a71be809a85b02dcf6f5f6",
+    "pyproject.toml": "931155e01a6af32bba92f1d923847e238960c8968bb7d4739bb76e839320207a",
+    "skills/muvi/SKILL.md": "f48b958bfca8054e532820bfdfe421727b5e9c6487a16ed452e9062251b2b376"
+  }
+}

@@ -2,7 +2,7 @@
 
 Music, made legible. Analyze a track, find its beat and low-end activity, and trace
 every claim back to timestamped evidence. Runs locally on CPU with no account,
-API key, GPU or model download. **0.4.0 is a CLI-only release.**
+API key, GPU or model download. **0.5.0 adds band-specific rhythm evidence for agents.**
 
 ## Start in the terminal
 
@@ -13,6 +13,7 @@ uv sync --locked
 uv run muvi demo
 uv run muvi analyze "C:\Music\track.wav"
 uv run muvi sounds latest --query bass
+uv run muvi rhythm latest --band low --start 8 --end 16 --json
 uv run muvi inspect latest --json
 ```
 
@@ -42,6 +43,7 @@ muvi sections latest SEC_01 --detail
 muvi sounds latest --query beat --start 00:08 --end 00:16
 muvi sound latest S01 --limit 10
 muvi evidence latest E0001 E0002
+muvi rhythm latest --band low --start 00:08 --end 00:16
 muvi compare latest SEC_01 SEC_02
 muvi verify latest independent-bass
 muvi metrics latest --start 8 --end 16
@@ -72,6 +74,19 @@ Existing exports require `--force`; source audio and managed cache files remain 
 
 ## Let an LLM use it
 
+The reusable [Muvi skill](skills/muvi/SKILL.md) describes CLI/MCP routing and evidence
+interpretation. It can be copied into your agent's skill directory; no agent settings
+are changed automatically. For rhythm, use `rhythm` / `get_rhythm` with the requested
+band and exact interval. It returns paged attack timestamps, interval consistency,
+local pulse rates, long gaps and support labels on the global grid preview.
+
+The band channels are low (20–250 Hz), mid (250–2,000 Hz), high (2,000–11,025 Hz)
+and all analysis bands. These are overlapping acoustic measurements, not stems.
+The rate describes detected acoustic repetition and can differ from perceived musical
+tempo. No stable rate does not prove absence of rhythm. A global grid point marked
+`extrapolated` is not an observed attack. Older analyses return `available: false`
+for rhythm until the original audio is reanalyzed.
+
 An agent with shell access can use the CLI directly:
 
 ```powershell
@@ -89,7 +104,7 @@ typed schema, including rejection of extra fields. Tool calls accept the same tr
 references as direct commands. For concurrent agents, keep the returned full track
 ID instead of relying on shared `latest` state.
 
-Twelve typed tools cover analysis, digests, sections, sound search/detail, comparison,
+Thirteen typed tools cover analysis, digests, rhythm, sections, sound search/detail, comparison,
 evidence, crops, charts, hypothesis checks, source metrics and separator availability.
 Evidence responses carry `track_id`, `analysis_id`, original-coordinate `time_span`,
 `evidence_ids` and `measurement_status`. `prompt` supplies grounding instructions:
@@ -108,7 +123,9 @@ For standalone installation use `uv tool install ".[mcp]" --force`, then
 It contains the actual Python executable and absolute library path. `muvi mcp` runs
 the stdio server; it exits when the client closes the connection. No client settings
 are changed automatically. MCP includes `list_tracks` and version-pinned WAV/PNG
-resources in addition to the twelve tools. Core installation requires none of the
+resources in addition to the thirteen tools. MCP retrieval takes the full `track_id`
+returned by `analyze_track` or `list_tracks`; path/prefix/`latest` resolution is a CLI
+convenience. Core installation requires none of the
 MCP SDK, FastAPI, Uvicorn or Starlette; the optional SDK has its own dependencies.
 
 ## Library and scripting contract
@@ -130,7 +147,7 @@ or your connected assistant sends evidence to its model provider.
 
 Extraction publishes an analysis atomically under a process lock. The cache key
 contains the audio hash, pipeline version and parameter hash. Existing 0.3.x
-libraries remain readable. Analyzing the same audio creates a 0.4.0 version while
+libraries remain readable. Analyzing the same audio creates a 0.5.0 version while
 preserving the old analysis. Object and evidence IDs are local to an analysis.
 
 | Exit status | Meaning |

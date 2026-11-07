@@ -101,8 +101,41 @@ class Claim(Span):
     limitation: str
 
 
+class PulseSummary(Model):
+    event_count: int
+    pulse_rate_bpm: float | None = None
+    interval_s: float | None = None
+    interval_match_fraction: float = 0
+    phase_concentration: float = 0
+    status: Literal["inferred", "unresolved"] = "unresolved"
+    score_type: str = "uncalibrated_interval_consistency_not_probability"
+
+
+class PulseWindow(Span):
+    pulse: PulseSummary
+
+
+class RhythmStream(Model):
+    band: Literal["low", "mid", "high", "all"]
+    frequency_range_hz: list[int]
+    onset_times_s: list[float]
+    pulse: PulseSummary
+    local_windows: list[PulseWindow]
+    timing_status: Literal["steady", "varying", "irregular_or_insufficient"]
+    evidence_ids: list[str]
+
+
+class Rhythm(Model):
+    streams: list[RhythmStream]
+    method: str = "band_positive_flux_and_local_interval_consistency"
+    event_kind: str = "detected_acoustic_attack_not_musical_beat"
+    meter_status: str = "not_estimated"
+    downbeat_status: str = "not_estimated"
+    limitation: str = "Band attacks can overlap sources or arise from noise. Pulse rate does not establish musical meter or instrument identity."
+
+
 class Genome(Model):
-    schema_version: Literal["0.1.0"] = "0.1.0"
+    schema_version: Literal["0.1.0", "0.2.0"] = "0.2.0"
     track_id: str = Field(pattern=r"^sha256:[a-f0-9]{64}$")
     analysis_id: str
     title: str
@@ -117,6 +150,7 @@ class Genome(Model):
     parameters: dict[str, int | float | str | list[int]]
     parameters_sha256: str
     tempo: Tempo
+    rhythm: Rhythm | None = None
     sections: list[Section]
     sound_objects: list[SoundObject]
     occurrences: list[Occurrence]
@@ -153,6 +187,15 @@ class Genome(Model):
             raise ValueError("Dangling pattern reference")
         if any(not set(s.sound_object_ids) <= sound_ids for s in self.sections):
             raise ValueError("Dangling section object reference")
+        if self.rhythm:
+            for stream in self.rhythm.streams:
+                if not set(stream.evidence_ids) <= evidence_ids:
+                    raise ValueError("Dangling rhythm evidence reference")
+                if stream.onset_times_s != sorted(set(stream.onset_times_s)) or any(
+                        not 0 <= t < self.duration_s for t in stream.onset_times_s):
+                    raise ValueError("Rhythm events must be ordered, unique and inside the original audio")
+                if any(w.end_s > self.duration_s for w in stream.local_windows):
+                    raise ValueError("Rhythm window exceeds original audio")
         if not self.sections or abs(self.sections[0].start_s) > 1e-6:
             raise ValueError("Sections must cover the track")
         if abs(self.sections[-1].end_s - self.duration_s) > 1e-6:
