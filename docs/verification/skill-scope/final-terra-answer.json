@@ -1,0 +1,380 @@
+{
+  "c58": {
+    "track_id": "sha256:fd7919e88bc593b0091977080dc0619ffbb15d966e407af2d3502b826f4e60e7",
+    "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+    "overall": "35.0 s. Low-heavy, attack-rich opening to ~7.0 s gives way to an extremely sparse low passage through ~13.8 s, then low pulses to ~21.2 s and a mid-dominant, bright-attack passage to ~28.0 s. The opening-like texture returns through 35.0 s. Candidate tempos 107.245 and 214.175 BPM are uncalibrated alternatives; pulse and beat identity, meter and downbeat remain uncertain.",
+    "overall_evidence_ids": [
+      "E0004",
+      "E0005",
+      "E0006",
+      "E0007",
+      "E0008",
+      "E0021"
+    ],
+    "comparisons": [
+      "A\u2192B: low rises 6.5 dB; mid is essentially unchanged; high rises 39.9 dB. Low/mid/high attack counts change 6/6/0 to 8/6/13.",
+      "B\u2192C: low falls 99.5 dB; mid rises 31.8 dB; high is nearly unchanged (-0.2 dB). Attacks change 8/6/13 to 0/33/13. C has signal.",
+      "C\u2192D: D is digital silence, with no source samples nonzero and no detected attacks. Band dB is null, so no numerical dB subtraction is valid; D does not retain activity."
+    ],
+    "repeat_result": "30.25\u201333.75 s closely resembles 2.25\u20135.75 s: matching 8/6/13 attack counts and band powers within 0.1 dB at displayed precision. This is acoustic similarity, not proof of identical phrases.",
+    "windows": {
+      "A": {
+        "bounds_s": {
+          "start_s": 16.25,
+          "end_s": 19.75
+        },
+        "evidence_id": "Wc6f639d458934cd26a78",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -23.127686245841307,
+        "band_power_db": {
+          "low": -23.171477297291638,
+          "mid": -51.58458856706869,
+          "high": -78.94865081293274
+        },
+        "band_attack_counts": {
+          "low": 6,
+          "mid": 6,
+          "high": 0
+        },
+        "centroid_hz": 79.43421253607904,
+        "harmonic_like_ratio": 0.395309575714967,
+        "local_tracked_tempo_bpm": 107.666
+      },
+      "B": {
+        "bounds_s": {
+          "start_s": 2.25,
+          "end_s": 5.75
+        },
+        "evidence_id": "W4e051db49de2b3cbe497",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -16.698807617194646,
+        "band_power_db": {
+          "low": -16.734653755006295,
+          "mid": -51.57804878364831,
+          "high": -39.018296374832026
+        },
+        "band_attack_counts": {
+          "low": 8,
+          "mid": 6,
+          "high": 13
+        },
+        "centroid_hz": 108.77329695082739,
+        "harmonic_like_ratio": 0.8862489475375503,
+        "local_tracked_tempo_bpm": 107.666
+      },
+      "C": {
+        "bounds_s": {
+          "start_s": 23.25,
+          "end_s": 26.75
+        },
+        "evidence_id": "W896e28211973c6bf2f36",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -19.772021926983854,
+        "band_power_db": {
+          "low": -116.18040272024581,
+          "mid": -19.822709452082677,
+          "high": -39.200423703478805
+        },
+        "band_attack_counts": {
+          "low": 0,
+          "mid": 33,
+          "high": 13
+        },
+        "centroid_hz": 526.4299016082791,
+        "harmonic_like_ratio": 0.8932808282923879,
+        "local_tracked_tempo_bpm": 107.666
+      },
+      "D": {
+        "bounds_s": {
+          "start_s": 9.25,
+          "end_s": 12.75
+        },
+        "evidence_id": "W02501ddbf2cb4e39c8d4",
+        "source_activity": "digital_silence",
+        "source_rms_dbfs": null,
+        "band_power_db": {
+          "low": null,
+          "mid": null,
+          "high": null
+        },
+        "band_attack_counts": {
+          "low": 0,
+          "mid": 0,
+          "high": 0
+        },
+        "centroid_hz": null,
+        "harmonic_like_ratio": null,
+        "local_tracked_tempo_bpm": null
+      },
+      "repeat": {
+        "bounds_s": {
+          "start_s": 30.25,
+          "end_s": 33.75
+        },
+        "evidence_id": "W7b00c6ebecdb68458b19",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -16.699235118847856,
+        "band_power_db": {
+          "low": -16.73182438972938,
+          "mid": -51.56530621608893,
+          "high": -39.091833890772584
+        },
+        "band_attack_counts": {
+          "low": 8,
+          "mid": 6,
+          "high": 13
+        },
+        "centroid_hz": 108.66193339493205,
+        "harmonic_like_ratio": 0.8864747871293254,
+        "local_tracked_tempo_bpm": 107.666
+      }
+    },
+    "uncertainty": "Measured spectral and attack summaries do not establish instrument, independent source, meter, key, chord, or perceived loudness. STFT frame context extends outside exact interval; source activity is measured on exact source samples."
+  },
+  "c42": {
+    "track_id": "sha256:ea2fb1d8c13da44aebac8e5bf08c1d4982189b683a4ddd69b6ed9112e96164a4",
+    "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+    "overall": "45.0 s. A mid-dominant, attack-rich opening runs to ~9.1 s, followed by low pulses to ~18.2 s and a sparse low section to ~27.0 s. A fuller low-and-high attack texture follows to ~35.7 s, then a low-pulse texture returns through 45.0 s. Candidate tempos 136.58 and 70.025 BPM are uncalibrated alternatives; local tracked estimates differ, and beat identity, meter and downbeat remain uncertain.",
+    "overall_evidence_ids": [
+      "E0004",
+      "E0005",
+      "E0006",
+      "E0007",
+      "E0008",
+      "E0019"
+    ],
+    "comparisons": [
+      "A\u2192B: low rises 5.6 dB, mid is nearly unchanged, high rises 39.8 dB. Low/mid/high attack counts change 10/10/0 to 13/10/21.",
+      "B\u2192C: low falls 99.9 dB, mid rises 30.6 dB, high is essentially unchanged. Attacks change 13/10/21 to 0/42/21. C has signal.",
+      "C\u2192D: D is digital silence, with no nonzero source samples or detected attacks. Band dB is null, so no numerical dB subtraction is valid; D does not retain activity."
+    ],
+    "repeat_result": "38.25\u201342.75 s closely resembles 11.25\u201315.75 s: band powers and 10/10/0 attack counts match at displayed precision. This indicates acoustic similarity, not identical phrases.",
+    "windows": {
+      "A": {
+        "bounds_s": {
+          "start_s": 11.25,
+          "end_s": 15.75
+        },
+        "evidence_id": "W6ea67907bbd710da3cfa",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -22.0005930803061,
+        "band_power_db": {
+          "low": -22.03219810289887,
+          "mid": -50.454320889650106,
+          "high": -77.81839545552532
+        },
+        "band_attack_counts": {
+          "low": 10,
+          "mid": 10,
+          "high": 0
+        },
+        "centroid_hz": 71.19736465435483,
+        "harmonic_like_ratio": 0.39217100373741093,
+        "local_tracked_tempo_bpm": 139.675
+      },
+      "B": {
+        "bounds_s": {
+          "start_s": 29.25,
+          "end_s": 33.75
+        },
+        "evidence_id": "W3203489ad3636e2bc165",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -16.38265691855828,
+        "band_power_db": {
+          "low": -16.418585674461013,
+          "mid": -50.43820559234935,
+          "high": -38.005024940846106
+        },
+        "band_attack_counts": {
+          "low": 13,
+          "mid": 10,
+          "high": 21
+        },
+        "centroid_hz": 116.30443209903545,
+        "harmonic_like_ratio": 0.8652431656038551,
+        "local_tracked_tempo_bpm": 139.675
+      },
+      "C": {
+        "bounds_s": {
+          "start_s": 2.25,
+          "end_s": 6.75
+        },
+        "evidence_id": "W784bbab46b001464ce4d",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -19.75707880457048,
+        "band_power_db": {
+          "low": -116.27117024596211,
+          "mid": -19.82270707014327,
+          "high": -38.0067374031683
+        },
+        "band_attack_counts": {
+          "low": 0,
+          "mid": 42,
+          "high": 21
+        },
+        "centroid_hz": 551.9090517911617,
+        "harmonic_like_ratio": 0.8907471173475108,
+        "local_tracked_tempo_bpm": 137.813
+      },
+      "D": {
+        "bounds_s": {
+          "start_s": 20.25,
+          "end_s": 24.75
+        },
+        "evidence_id": "We8fcf0f7aef8f66d5e18",
+        "source_activity": "digital_silence",
+        "source_rms_dbfs": null,
+        "band_power_db": {
+          "low": null,
+          "mid": null,
+          "high": null
+        },
+        "band_attack_counts": {
+          "low": 0,
+          "mid": 0,
+          "high": 0
+        },
+        "centroid_hz": null,
+        "harmonic_like_ratio": null,
+        "local_tracked_tempo_bpm": null
+      },
+      "repeat": {
+        "bounds_s": {
+          "start_s": 38.25,
+          "end_s": 42.75
+        },
+        "evidence_id": "Wfb079a59ebb9706d90a1",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -22.0005930803061,
+        "band_power_db": {
+          "low": -22.0293208717576,
+          "mid": -50.4543237591589,
+          "high": -77.8183953288155
+        },
+        "band_attack_counts": {
+          "low": 10,
+          "mid": 10,
+          "high": 0
+        },
+        "centroid_hz": 76.70686357304439,
+        "harmonic_like_ratio": 0.3938035627847255,
+        "local_tracked_tempo_bpm": 139.675
+      }
+    },
+    "uncertainty": "Measured spectral and attack summaries do not establish instrument, independent source, meter, key, chord, or perceived loudness. STFT frame context extends outside exact interval; source activity is measured on exact source samples."
+  },
+  "invincible": {
+    "track_id": "sha256:82e6b93a6aef05e48ed85ea4b88ddf5aa18ec00d6cce88576532296d8d5c6e98",
+    "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+    "overall": "273.072 s. A relatively sparse opening through ~10.6 s leads to an extended low-heavy, attack-rich texture. It briefly thins around 51.5\u201358.5 s before rebuilding by ~68.7 s; that fuller texture dominates to ~128.3 s, followed by a marked sparse passage through ~145.5 s. The full texture returns through ~186.3 s, thins and rebuilds again by ~203.1 s, then continues until ~263.7 s. The final ~9.4 s is much lower energy with no detected section onsets. Groups indicate approximate acoustic similarity. Global tempo candidates 99.991 and 199.981 BPM are uncalibrated alternatives, not constant tempo or meter.",
+    "overall_evidence_ids": [
+      "E0004",
+      "E0005",
+      "E0006",
+      "E0007",
+      "E0008",
+      "E0009",
+      "E0010",
+      "E0011",
+      "E0012",
+      "E0013",
+      "E0014",
+      "E0015",
+      "E0016",
+      "E0017",
+      "E0018",
+      "E0019",
+      "E0020",
+      "E0021",
+      "E0022",
+      "E0023",
+      "E0024",
+      "E0025",
+      "E0026",
+      "E0027",
+      "E0028",
+      "E0029",
+      "E0030",
+      "E0031",
+      "E0032",
+      "E0033",
+      "E0034",
+      "E0049"
+    ],
+    "comparisons": [
+      "32\u201348 vs 64\u201380 s: low/mid/high power is -9.3/-15.0/-18.0 versus -9.7/-15.5/-18.9 dB; source RMS -7.25 versus -7.83 dBFS; centroid 724 versus 745 Hz; attacks 125/140/128 versus 112/143/135. The second span includes a transition and is slightly lower-energy with more mid/high attacks.",
+      "64\u201380 vs 96\u2013112 s: band powers rise to -9.3/-15.2/-18.4 dB; centroid falls to 716 Hz; attacks change to 118/135/130. Both windows have local tracked tempo ~99.385 BPM, as does 32\u201348 (~99.384).",
+      "32\u201348 and 96\u2013112 have similar broad energy balance and tracked tempo; 96\u2013112 has slightly fewer attacks in each band. Beat tracking is a mixture-level hypothesis, not proof of meter or source."
+    ],
+    "repeat_result": "Section similarity suggests recurring fuller texture throughout the later track, without establishing identical phrases.",
+    "windows": {
+      "1": {
+        "bounds_s": {
+          "start_s": 32.0,
+          "end_s": 48.0
+        },
+        "evidence_id": "Wc17dd24fc41da8677eb5",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -7.245252733488755,
+        "band_power_db": {
+          "low": -9.324013913485368,
+          "mid": -15.022904362813943,
+          "high": -18.008470714617694
+        },
+        "band_attack_counts": {
+          "low": 125,
+          "mid": 140,
+          "high": 128
+        },
+        "centroid_hz": 724.4178294294921,
+        "harmonic_like_ratio": 0.7055183405660739,
+        "local_tracked_tempo_bpm": 99.384
+      },
+      "2": {
+        "bounds_s": {
+          "start_s": 64.0,
+          "end_s": 80.0
+        },
+        "evidence_id": "Wff965a7a75367f484a82",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -7.829413243034158,
+        "band_power_db": {
+          "low": -9.745142533728968,
+          "mid": -15.542276321995951,
+          "high": -18.867103718482987
+        },
+        "band_attack_counts": {
+          "low": 112,
+          "mid": 143,
+          "high": 135
+        },
+        "centroid_hz": 745.2449106989933,
+        "harmonic_like_ratio": 0.6594795446560625,
+        "local_tracked_tempo_bpm": 99.385
+      },
+      "3": {
+        "bounds_s": {
+          "start_s": 96.0,
+          "end_s": 112.0
+        },
+        "evidence_id": "W1c8d22327c446c1ae94f",
+        "source_activity": "signal_present",
+        "source_rms_dbfs": -7.349709368307745,
+        "band_power_db": {
+          "low": -9.313513440382266,
+          "mid": -15.17092519628756,
+          "high": -18.369644436303346
+        },
+        "band_attack_counts": {
+          "low": 118,
+          "mid": 135,
+          "high": 130
+        },
+        "centroid_hz": 715.9193631572467,
+        "harmonic_like_ratio": 0.6938444309768725,
+        "local_tracked_tempo_bpm": 99.385
+      }
+    },
+    "uncertainty": "Measured spectral and attack summaries do not establish instrument, independent source, meter, key, chord, or perceived loudness. STFT frame context extends outside exact interval; source activity is measured on exact source samples."
+  }
+}

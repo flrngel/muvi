@@ -1,0 +1,165 @@
+{
+  "scope": "Numerical/provenance audit; semantics assessed separately against construction",
+  "windows": [
+    {
+      "case": "c17",
+      "window": "A",
+      "span": {
+        "start_s": 2.25,
+        "end_s": 6.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c17",
+      "window": "B",
+      "span": {
+        "start_s": 10.25,
+        "end_s": 14.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c17",
+      "window": "C",
+      "span": {
+        "start_s": 18.25,
+        "end_s": 22.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c17",
+      "window": "D",
+      "span": {
+        "start_s": 34.25,
+        "end_s": 38.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c17",
+      "window": "repeat",
+      "span": {
+        "start_s": 24.25,
+        "end_s": 28.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "A",
+      "span": {
+        "start_s": 11.25,
+        "end_s": 15.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "B",
+      "span": {
+        "start_s": 29.25,
+        "end_s": 33.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "C",
+      "span": {
+        "start_s": 2.25,
+        "end_s": 6.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "D",
+      "span": {
+        "start_s": 20.25,
+        "end_s": 24.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "repeat",
+      "span": {
+        "start_s": 38.25,
+        "end_s": 42.75
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "on-and-on",
+      "window": "1",
+      "span": {
+        "start_s": 32.0,
+        "end_s": 48.0
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "on-and-on",
+      "window": "2",
+      "span": {
+        "start_s": 64.0,
+        "end_s": 80.0
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "on-and-on",
+      "window": "3",
+      "span": {
+        "start_s": 96.0,
+        "end_s": 112.0
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "sky-high",
+      "window": "1",
+      "span": {
+        "start_s": 32.0,
+        "end_s": 48.0
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "sky-high",
+      "window": "2",
+      "span": {
+        "start_s": 64.0,
+        "end_s": 80.0
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "sky-high",
+      "window": "3",
+      "span": {
+        "start_s": 96.0,
+        "end_s": 112.0
+      },
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    }
+  ]
+}

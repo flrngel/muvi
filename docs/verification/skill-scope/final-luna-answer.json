@@ -1,0 +1,329 @@
+{
+  "method": "Muvi CLI via documented workflow; all cited W evidence IDs were retrieved with evidence. No listening claims.",
+  "cases": [
+    {
+      "name": "c58",
+      "track_id": "sha256:fd7919e88bc593b0091977080dc0619ffbb15d966e407af2d3502b826f4e60e7",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "overall": "35.000 s. Sections/groups progress A [0,7.024), B [7.024,13.816), C [13.816,21.165), D [21.165,28.050), then A [28.050,35); late texture thus resembles opening at group level. The requested later C span is mid-band dominant; D is an exact digital-silence gap; low-pulse-rich activity returns near the end. Tempo candidates 107.245/214.175 BPM, preferred 107.245 (uncalibrated); high-band pulse ~214 BPM, low/mid irregular or insufficient and all-band varying. Meter/downbeat unknown; independent bass versus pulse tail and sound-source identity unresolved.",
+      "overall_evidence_ids": [
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0015",
+        "E0017",
+        "E0018",
+        "E0019",
+        "E0020",
+        "E0021"
+      ],
+      "comparisons": [
+        {
+          "pair": "A→B",
+          "A": {
+            "bounds_s": [
+              16.25,
+              19.75
+            ],
+            "power_db": {
+              "low": -23.1715,
+              "mid": -51.5846,
+              "high": -78.9487
+            },
+            "attacks": 6,
+            "density_s": 1.7143,
+            "evidence_id": "Wc6f639d458934cd26a78"
+          },
+          "B": {
+            "bounds_s": [
+              2.25,
+              5.75
+            ],
+            "power_db": {
+              "low": -16.7347,
+              "mid": -51.578,
+              "high": -39.0183
+            },
+            "attacks": 13,
+            "density_s": 3.7143,
+            "evidence_id": "W4e051db49de2b3cbe497"
+          },
+          "finding": "B has greater low/high power; mid nearly unchanged. Attacks rise 6→13."
+        },
+        {
+          "pair": "B→C",
+          "B_evidence_id": "W4e051db49de2b3cbe497",
+          "C": {
+            "bounds_s": [
+              23.25,
+              26.75
+            ],
+            "activity": "signal_present",
+            "power_db": {
+              "low": -116.1804,
+              "mid": -19.8227,
+              "high": -39.2004
+            },
+            "attacks": 13,
+            "density_s": 3.7143,
+            "evidence_id": "W896e28211973c6bf2f36"
+          },
+          "finding": "C is active and mid-dominant; near-floor low power and high power similar to B; both have 13 attacks."
+        },
+        {
+          "pair": "C→D",
+          "C_evidence_id": "W896e28211973c6bf2f36",
+          "D": {
+            "bounds_s": [
+              9.25,
+              12.75
+            ],
+            "activity": "digital_silence",
+            "mean_power": {
+              "low": 0,
+              "mid": 0,
+              "high": 0
+            },
+            "power_db": {
+              "low": null,
+              "mid": null,
+              "high": null
+            },
+            "attacks": 0,
+            "density_s": 0,
+            "evidence_id": "W02501ddbf2cb4e39c8d4"
+          },
+          "finding": "C is active; D contains zero source PCM samples. Null dB values represent silence."
+        }
+      ],
+      "repeat": {
+        "bounds_s": [
+          30.25,
+          33.75
+        ],
+        "resembles": "B [2.25,5.75)",
+        "evidence_id": "W7b00c6ebecdb68458b19",
+        "comparison_evidence_id": "W4e051db49de2b3cbe497",
+        "power_db": {
+          "low": -16.7318,
+          "mid": -51.5653,
+          "high": -39.0918
+        },
+        "attacks": 13,
+        "density_s": 3.7143,
+        "finding": "Very close measured acoustic match; not proof of phrase identity."
+      }
+    },
+    {
+      "name": "c42",
+      "track_id": "sha256:ea2fb1d8c13da44aebac8e5bf08c1d4982189b683a4ddd69b6ed9112e96164a4",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "overall": "45.000 s. Groups A [0,9.102), B [9.102,18.158), C [18.158,27.040) and C [27.040,35.654), then B [35.654,45). The later A-like low-dominant texture recurs near the end, with a gap at 20.25–24.75 s. Tempo candidates 136.58/70.025 BPM, preferred 136.58 (uncalibrated); high-band pulse estimate ~273.4 differs, low/mid streams irregular or insufficient. Meter/downbeat unknown; instruments/source unresolved.",
+      "overall_evidence_ids": [
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0013",
+        "E0014",
+        "E0015",
+        "E0016",
+        "E0017",
+        "E0018",
+        "E0019"
+      ],
+      "comparisons": [
+        {
+          "pair": "A→B",
+          "A": {
+            "bounds_s": [
+              11.25,
+              15.75
+            ],
+            "power_db": {
+              "low": -22.0322,
+              "mid": -50.4543,
+              "high": -77.8184
+            },
+            "attacks": 10,
+            "density_s": 2.2222,
+            "evidence_id": "W6ea67907bbd710da3cfa"
+          },
+          "B": {
+            "bounds_s": [
+              29.25,
+              33.75
+            ],
+            "power_db": {
+              "low": -16.4198,
+              "mid": -50.4382,
+              "high": -38.0058
+            },
+            "attacks": 21,
+            "density_s": 4.6667,
+            "evidence_id": "W3203489ad3636e2bc165"
+          },
+          "finding": "B has greater low/high power, mid nearly unchanged; attacks rise 10→21."
+        },
+        {
+          "pair": "B→C",
+          "B_evidence_id": "W3203489ad3636e2bc165",
+          "C": {
+            "bounds_s": [
+              2.25,
+              6.75
+            ],
+            "activity": "signal_present",
+            "power_db": {
+              "low": -116.27,
+              "mid": -19.82,
+              "high": -38.01
+            },
+            "attacks": 21,
+            "density_s": 4.6667,
+            "evidence_id": "W784bbab46b001464ce4d"
+          },
+          "finding": "C is active and mid-dominant with near-floor low power; high power and attacks close to B."
+        },
+        {
+          "pair": "C→D",
+          "C_evidence_id": "W784bbab46b001464ce4d",
+          "D": {
+            "bounds_s": [
+              20.25,
+              24.75
+            ],
+            "activity": "digital_silence",
+            "mean_power": {
+              "low": 0,
+              "mid": 0,
+              "high": 0
+            },
+            "power_db": {
+              "low": null,
+              "mid": null,
+              "high": null
+            },
+            "attacks": 0,
+            "density_s": 0,
+            "evidence_id": "We8fcf0f7aef8f66d5e18"
+          },
+          "finding": "C active; D has zero source PCM samples."
+        }
+      ],
+      "repeat": {
+        "bounds_s": [
+          38.25,
+          42.75
+        ],
+        "resembles": "A [11.25,15.75)",
+        "evidence_id": "Wfb079a59ebb9706d90a1",
+        "comparison_evidence_id": "W6ea67907bbd710da3cfa",
+        "power_db": {
+          "low": -22.0293,
+          "mid": -50.4543,
+          "high": -77.8184
+        },
+        "attacks": 10,
+        "density_s": 2.2222,
+        "finding": "Near-identical activity and band powers; acoustic similarity, not phrase identity."
+      }
+    },
+    {
+      "name": "invincible",
+      "track_id": "sha256:82e6b93a6aef05e48ed85ea4b88ddf5aa18ec00d6cce88576532296d8d5c6e98",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "overall": "273.072 s. Brief opening [0,10.553), dense recurring B texture [10.553,51.490), short changes [51.490,68.661), then B returns [68.661,128.325). Brief acoustic changes occur [128.325,145.473) and [186.270,203.093); B recurs through [263.686), with ending groups I [263.686,267.297) and J [267.297,273.072). Acoustic groups are not formal song labels. Tempo candidates 99.991/199.981 BPM, preferred 99.991 (uncalibrated); all four rhythm streams irregular/insufficient with no pulse estimate, meter/downbeat unknown.",
+      "overall_evidence_ids": [
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0009",
+        "E0010",
+        "E0011",
+        "E0012",
+        "E0013",
+        "E0014",
+        "E0015",
+        "E0016",
+        "E0017",
+        "E0018",
+        "E0019",
+        "E0020",
+        "E0021",
+        "E0022",
+        "E0023",
+        "E0024",
+        "E0025",
+        "E0026",
+        "E0027",
+        "E0028",
+        "E0029",
+        "E0030",
+        "E0045",
+        "E0046",
+        "E0047",
+        "E0048",
+        "E0049"
+      ],
+      "windows": [
+        {
+          "bounds_s": [
+            32,
+            48
+          ],
+          "evidence_id": "Wc17dd24fc41da8677eb5",
+          "rms_dbfs": -7.2453,
+          "power_db": {
+            "low": -9.324,
+            "mid": -15.0229,
+            "high": -18.0085
+          },
+          "attacks": 114,
+          "density_s": 7.125,
+          "centroid_hz": 724.42
+        },
+        {
+          "bounds_s": [
+            64,
+            80
+          ],
+          "evidence_id": "Wff965a7a75367f484a82",
+          "rms_dbfs": -7.8294,
+          "power_db": {
+            "low": -9.7451,
+            "mid": -15.5423,
+            "high": -18.8671
+          },
+          "attacks": 117,
+          "density_s": 7.3125,
+          "centroid_hz": 745.24
+        },
+        {
+          "bounds_s": [
+            96,
+            112
+          ],
+          "evidence_id": "W1c8d22327c446c1ae94f",
+          "rms_dbfs": -7.3497,
+          "power_db": {
+            "low": -9.3135,
+            "mid": -15.1709,
+            "high": -18.3696
+          },
+          "attacks": 114,
+          "density_s": 7.125,
+          "centroid_hz": 715.92
+        }
+      ],
+      "window_comparison": "All have low>mid>high absolute band power, similar balance and centroid, with 114–117 attacks over 16 s. 64–80 s is modestly lower in RMS and all band powers; 96–112 s returns close to the first. Mixture measurements do not identify instruments/source or meter."
+    }
+  ],
+  "interpretation_uncertainty": "Similarity groups/object names are provisional acoustic descriptions. Tempo rankings and pulse hypotheses do not establish beat identity or meter; energy and attack density are distinct, and source identity is unresolved.",
+  "tool_friction": "The first combined analysis loop exceeded the 30-second command limit after c58. Work was split into separate subprocess calls; later CLI retrievals used cached analyses. All actual calls, return codes, stdout and stderr are in calls.jsonl."
+}

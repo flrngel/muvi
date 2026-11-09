@@ -1,0 +1,347 @@
+{
+  "method": "Root manual semantic assessment under the predeclared rubric; numerical/provenance checks are separate machine audits. No listening claims; real-song checks assess grounding, not musical reference accuracy.",
+  "rows": [
+    {
+      "agent": "terra",
+      "case": "c58",
+      "checks": [
+        {
+          "item": 1,
+          "criterion": "Correct duration and chronological account covering beginning, middle and end",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 2,
+          "criterion": "Correct broad ordering of low pulse / enriched low plus high / sustained mid plus high / digital silence (candidate boundaries may be approximate)",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 3,
+          "criterion": "Recognizes the requested returning low texture without claiming waveform or source identity",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 4,
+          "criterion": "A->B: low and high absolute power increase; mid essentially unchanged (<1dB), with attack behavior distinguished",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 5,
+          "criterion": "B->C: low power falls, mid rises, high essentially unchanged (<1dB), with attack behavior distinguished",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 6,
+          "criterion": "C->D: all bands/source activity drop to digital silence rather than unexplained nulls",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 7,
+          "criterion": "C is active despite absent low pulse; sustained energy is not equated to attack count",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 8,
+          "criterion": "Answers use exact requested intervals, never substitute enclosing section statistics",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 9,
+          "criterion": "No unsupported instrument, independent bass, meter, genre, emotion or listening claim",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 10,
+          "criterion": "Numerical observations are traceable to returned packets and cited query/section evidence was actually retrieved",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        }
+      ]
+    },
+    {
+      "agent": "terra",
+      "case": "c42",
+      "checks": [
+        {
+          "item": 1,
+          "criterion": "Correct duration and chronological account covering beginning, middle and end",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 2,
+          "criterion": "Correct broad ordering of low pulse / enriched low plus high / sustained mid plus high / digital silence (candidate boundaries may be approximate)",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 3,
+          "criterion": "Recognizes the requested returning low texture without claiming waveform or source identity",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 4,
+          "criterion": "A->B: low and high absolute power increase; mid essentially unchanged (<1dB), with attack behavior distinguished",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 5,
+          "criterion": "B->C: low power falls, mid rises, high essentially unchanged (<1dB), with attack behavior distinguished",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 6,
+          "criterion": "C->D: all bands/source activity drop to digital silence rather than unexplained nulls",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 7,
+          "criterion": "C is active despite absent low pulse; sustained energy is not equated to attack count",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 8,
+          "criterion": "Answers use exact requested intervals, never substitute enclosing section statistics",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 9,
+          "criterion": "No unsupported instrument, independent bass, meter, genre, emotion or listening claim",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 10,
+          "criterion": "Numerical observations are traceable to returned packets and cited query/section evidence was actually retrieved",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        }
+      ]
+    },
+    {
+      "agent": "terra",
+      "case": "invincible",
+      "checks": [
+        {
+          "item": 1,
+          "criterion": "Covers full duration and final sections; explicit pagination if digest truncated",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 2,
+          "criterion": "All three exact requested windows quantitatively described in comparable energy, texture and rhythm terms",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 3,
+          "criterion": "Conclusions follow absolute power versus relative fraction and local versus global distinctions",
+          "status": "partial",
+          "reason": "Energy/local-global distinctions are grounded, but prose says every band has fewer attacks in the third versus first window; high increases from 128 to 130."
+        },
+        {
+          "item": 4,
+          "criterion": "No unsupported source/meter/musical-function claims; honest detector uncertainty",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 5,
+          "criterion": "Cited exact-window and structural evidence was actually retrieved and numbers agree with packets",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        }
+      ]
+    },
+    {
+      "agent": "luna",
+      "case": "c58",
+      "checks": [
+        {
+          "item": 1,
+          "criterion": "Correct duration and chronological account covering beginning, middle and end",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 2,
+          "criterion": "Correct broad ordering of low pulse / enriched low plus high / sustained mid plus high / digital silence (candidate boundaries may be approximate)",
+          "status": "partial",
+          "reason": "Correct chronological group/range list, but incomplete acoustic progression; c42 A-like wording ambiguously mixes requested-window and group labels."
+        },
+        {
+          "item": 3,
+          "criterion": "Recognizes the requested returning low texture without claiming waveform or source identity",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 4,
+          "criterion": "A->B: low and high absolute power increase; mid essentially unchanged (<1dB), with attack behavior distinguished",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 5,
+          "criterion": "B->C: low power falls, mid rises, high essentially unchanged (<1dB), with attack behavior distinguished",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 6,
+          "criterion": "C->D: all bands/source activity drop to digital silence rather than unexplained nulls",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 7,
+          "criterion": "C is active despite absent low pulse; sustained energy is not equated to attack count",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 8,
+          "criterion": "Answers use exact requested intervals, never substitute enclosing section statistics",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 9,
+          "criterion": "No unsupported instrument, independent bass, meter, genre, emotion or listening claim",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 10,
+          "criterion": "Numerical observations are traceable to returned packets and cited query/section evidence was actually retrieved",
+          "status": "partial",
+          "reason": "All exact W records retrieved, but no cited overall E records fetched. c42 additionally contains two small power transcription errors; see numerical audit."
+        }
+      ]
+    },
+    {
+      "agent": "luna",
+      "case": "c42",
+      "checks": [
+        {
+          "item": 1,
+          "criterion": "Correct duration and chronological account covering beginning, middle and end",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 2,
+          "criterion": "Correct broad ordering of low pulse / enriched low plus high / sustained mid plus high / digital silence (candidate boundaries may be approximate)",
+          "status": "partial",
+          "reason": "Correct chronological group/range list, but incomplete acoustic progression; c42 A-like wording ambiguously mixes requested-window and group labels."
+        },
+        {
+          "item": 3,
+          "criterion": "Recognizes the requested returning low texture without claiming waveform or source identity",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 4,
+          "criterion": "A->B: low and high absolute power increase; mid essentially unchanged (<1dB), with attack behavior distinguished",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 5,
+          "criterion": "B->C: low power falls, mid rises, high essentially unchanged (<1dB), with attack behavior distinguished",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 6,
+          "criterion": "C->D: all bands/source activity drop to digital silence rather than unexplained nulls",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 7,
+          "criterion": "C is active despite absent low pulse; sustained energy is not equated to attack count",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 8,
+          "criterion": "Answers use exact requested intervals, never substitute enclosing section statistics",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 9,
+          "criterion": "No unsupported instrument, independent bass, meter, genre, emotion or listening claim",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 10,
+          "criterion": "Numerical observations are traceable to returned packets and cited query/section evidence was actually retrieved",
+          "status": "partial",
+          "reason": "All exact W records retrieved, but no cited overall E records fetched. c42 additionally contains two small power transcription errors; see numerical audit."
+        }
+      ]
+    },
+    {
+      "agent": "luna",
+      "case": "invincible",
+      "checks": [
+        {
+          "item": 1,
+          "criterion": "Covers full duration and final sections; explicit pagination if digest truncated",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 2,
+          "criterion": "All three exact requested windows quantitatively described in comparable energy, texture and rhythm terms",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 3,
+          "criterion": "Conclusions follow absolute power versus relative fraction and local versus global distinctions",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 4,
+          "criterion": "No unsupported source/meter/musical-function claims; honest detector uncertainty",
+          "status": "pass",
+          "reason": "Supported by the retained answer, retrieved window packet and construction/section summary."
+        },
+        {
+          "item": 5,
+          "criterion": "Cited exact-window and structural evidence was actually retrieved and numbers agree with packets",
+          "status": "partial",
+          "reason": "All three W records retrieved and values match rounding; cited overall E records were not fetched, although the complete section summary was read."
+        }
+      ]
+    }
+  ],
+  "qualifications": [
+    "Terra c58 low-power delta 6.5 dB is approximate arithmetic from rounded inputs; unrounded delta is 6.436823542285343 dB. Direction and qualitative comparison pass.",
+    "Returning-material rubric describes acoustic similarity, not source or phrase identity. In c58 the return is enriched low/high B, not low-pulse-only A.",
+    "Luna source PCM wording is imprecise: samples exist and all values are zero, rather than an empty interval.",
+    "Small tests and partial judgments do not yield a general musical-understanding accuracy percentage."
+  ]
+}

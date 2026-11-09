@@ -1,7 +1,8 @@
 """Deterministic, bounded initial context. JSON remains canonical."""
 
-def track_digest(g):
-    sections = [s.model_dump() for s in g.sections[:24]]
+def track_digest(g, section_offset=0):
+    page = g.sections[section_offset:section_offset+24]
+    sections = [s.model_dump() for s in page]
     objects = [{"id": s.id, "name": s.name, "form": s.form,
                 "function_candidates": s.function_candidates, "source_status": s.source_status,
                 "occurrence_count": s.occurrence_count, "evidence_ids": s.evidence_ids}
@@ -14,7 +15,7 @@ def track_digest(g):
             f"TEMPO candidates={g.tempo.candidates_bpm} BPM; preferred={g.tempo.preferred_bpm}; "
             "uncalibrated ranking; meter/downbeat unknown"]
     text += [f"SECTION {s.id} group={s.structure_group} [{s.start_s:.3f},{s.end_s:.3f})s "
-             f"objects={','.join(s.sound_object_ids)} evidence={','.join(s.evidence_ids)}" for s in g.sections[:24]]
+             f"objects={','.join(s.sound_object_ids)} evidence={','.join(s.evidence_ids)}" for s in page]
     text += [f"SOUND {s.id} {s.name}; roles={','.join(s.function_candidates)}; source=UNRESOLVED; "
              f"events={s.occurrence_count}; evidence={','.join(s.evidence_ids)}" for s in g.sound_objects]
     text += [f"PATTERN {p.id} {p.sound_object_id} every ~{p.interval_s:.3f}s x{p.repeat_count}; "
@@ -45,6 +46,8 @@ def track_digest(g):
             "texture": next((e.model_dump() for e in g.evidence if e.kind == "spectral_texture"), None),
             "tempo": g.tempo.model_dump(exclude={"beat_times_s"}), "rhythm": rhythm, "beat_tracking": tracking, "sections": sections,
             "section_count": len(g.sections), "sections_truncated": len(g.sections) > 24,
+            "section_offset": section_offset,
+            "next_section_offset": section_offset+24 if section_offset+24 < len(g.sections) else None,
             "prominent_objects": objects, "patterns": patterns,
             "open_questions": [c.model_dump() for c in g.claims], "digest_text": "\n".join(text),
             "warnings": g.warnings}

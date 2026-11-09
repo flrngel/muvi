@@ -23,6 +23,7 @@ protocol messages. `inspect` has an `overview` alias; a bare `muvi` prints help.
 | --- | --- |
 | `list` | List tracks, newest first |
 | `inspect TRACK` | Compact tempo, rhythm, section and acoustic-object digest |
+| `window TRACK [--start TIME --end TIME]` | Whole-track or exact-interval energy, activity, texture and compact rhythm |
 | `sections TRACK [SECTION] --detail` | Candidate sections and bounded occurrences |
 | `sounds TRACK --query bass --start 8 --end 16` | Search acoustic objects in an interval |
 | `sound TRACK SOUND --offset 0 --limit 10` | One object's paged occurrences |
@@ -61,10 +62,10 @@ extra fields are rejected. CLI tool calls resolve the same track references as
 direct commands. MCP retrieval requires full IDs returned by `analyze_track` or
 `list_tracks`; `latest`, file paths and prefixes are CLI conveniences.
 
-Fourteen typed tools cover analysis, digests, beats, rhythm, sections, sound search/detail,
+Fifteen typed tools cover analysis, digests, exact windows, beats, rhythm, sections, sound search/detail,
 comparison, evidence, crops, charts, hypothesis checks, source metrics and separator
 availability. MCP additionally exposes `list_tracks` and version-pinned WAV/PNG
-resources, for 15 tools total. Core installation needs none of the MCP SDK,
+resources, for 16 tools total. Core installation needs none of the MCP SDK,
 FastAPI, Uvicorn or Starlette; the optional SDK has its own dependencies.
 
 Evidence carries `track_id`, `analysis_id`, original-coordinate `time_span`,
@@ -72,6 +73,25 @@ Evidence carries `track_id`, `analysis_id`, original-coordinate `time_span`,
 evidence before citing it, distinguish inference from observation, and abstain when
 measurements cannot distinguish alternatives. The [skill](../skills/muvi/SKILL.md)
 adds rhythm-specific usage and interpretation.
+
+`get_track_digest(track_id, section_offset=0)` pages candidate sections in groups of
+24; follow `next_section_offset` until null for complete coverage. CLI `sections`
+already returns every candidate section. A first-page digest is not a complete timeline.
+
+`get_window(track_id, start_s=0, end_s=None)` defaults to the whole track. Exact
+requested intervals need not coincide with sections. Source RMS/activity uses
+rounded source-sample bounds; spectral statistics select cached frame centers in
+the half-open interval, with STFT context reported in `measurement_basis`. A query
+shorter than one frame can have no spectral data while still containing source audio.
+It returns compact beat/attack summaries; request paged `get_beats`/`get_rhythm`
+only for individual events. Compare arbitrary intervals using two window responses;
+`compare_sections` retains its section-boundary contract.
+
+Window summaries have immutable `W…` evidence IDs. `get_evidence` retrieves the exact
+measurement values, times, units and method from a lazily generated query artifact.
+The library must accompany IDs; these query IDs are not embedded into the original
+canonical genome. IDs with no stored query artifact are rejected. Concurrent readers
+publish each summary atomically. Repeated cached queries avoid numerical imports.
 
 ## Library layout and versions
 
@@ -87,10 +107,12 @@ Default: `~/.muvi`.
   arrays/features.npz   full-resolution measurements
   images/*.png, *.json  charts and legends, on demand
   clips/*.wav           original-mixture crops, on demand
+  windows/W*.json        derived exact-interval summary and retrievable evidence
 ```
 
 Analysis publishes atomically under a process lock. Cache identity includes audio
-hash, pipeline version and parameter hash. Package and pipeline 0.6.0 introduce
+hash, pipeline version and parameter hash. Package 0.7.0 reuses pipeline 0.6.0;
+window summaries and digest pagination do not require reanalysis. Pipeline 0.6.0 introduced
 tracked beat hypotheses (schema 0.3.0). Reanalyze original audio to populate these
 fields; older analyses return `available: false` from `beats`. Older 0.3.x libraries remain
 readable; new analysis versions preserve previous ones. Object/evidence IDs are local

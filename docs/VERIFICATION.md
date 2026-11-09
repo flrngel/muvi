@@ -1,5 +1,30 @@
 # Muvi verification
 
+## 0.7.0 overall and interval skill
+
+- **90 tests passed** in 307.56 seconds, including six new window tests, actual
+  MCP window/evidence retrieval, CLI output, concurrency, legacy cache support,
+  section pagination and repeated cached queries without numerical imports.
+- Window tests verify known 80/800 Hz band changes, a 6.02 dB source-level change,
+  original-sample RMS, exact evidence bounds, digital silence, sub-frame behavior
+  and whole-track versus partition aggregation. They test measured behavior rather
+  than merely reproducing output wording.
+- All ten extraction module sources are unchanged from 0.6.0 after normalizing
+  Git archive/Windows line endings. Canonical genomes for two identical development
+  inputs match exactly except elapsed time. No beat benchmark improvement is claimed.
+- The [independent skill evaluation](SKILL_SCOPE_EVALUATION.md) separates correct
+  numerical retrieval from narrative correctness. It retains an actual Luna
+  cross-track overall-summary failure and the subsequent minimal skill correction.
+  In fresh confirmation both models used all 13 exact windows and identified both
+  returning textures. Terra's structured values match 13/13; Luna's match 12/13
+  at displayed precision. Remaining prose and overall-citation misses are recorded,
+  not counted as complete understanding.
+- The installed 0.7.0 core wheel passed the smoke test outside the checkout,
+  including exact window queries and retrieval of their `W…` evidence. Both command
+  names report 0.7.0. No additional production dependencies were added.
+- Binary-only macOS 13 dependency resolution passed all eight architecture/Python/
+  core-or-MCP combinations. Physical Mac execution remains untested.
+
 ## 0.6.0 real-music beat tracking
 
 The [predeclared plan](REAL_BEAT_PLAN.md), [research](REAL_BEAT_RESEARCH.md) and

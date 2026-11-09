@@ -1,0 +1,262 @@
+{
+  "agent": "luna",
+  "scope": "Structured values, scope and evidence only; prose is independently scored in final-semantics.json.",
+  "retained_successful_calls": 35,
+  "discovery_or_outer_timeout_failures_excluded_from_call_count": true,
+  "windows": [
+    {
+      "case": "c58",
+      "window": "A",
+      "bounds_s": {
+        "start_s": 16.25,
+        "end_s": 19.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c58",
+      "window": "B",
+      "bounds_s": {
+        "start_s": 2.25,
+        "end_s": 5.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c58",
+      "window": "C",
+      "bounds_s": {
+        "start_s": 23.25,
+        "end_s": 26.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c58",
+      "window": "D",
+      "bounds_s": {
+        "start_s": 9.25,
+        "end_s": 12.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c58",
+      "window": "repeat",
+      "bounds_s": {
+        "start_s": 30.25,
+        "end_s": 33.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "A",
+      "bounds_s": {
+        "start_s": 11.25,
+        "end_s": 15.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "B",
+      "bounds_s": {
+        "start_s": 29.25,
+        "end_s": 33.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": false
+    },
+    {
+      "case": "c42",
+      "window": "C",
+      "bounds_s": {
+        "start_s": 2.25,
+        "end_s": 6.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "D",
+      "bounds_s": {
+        "start_s": 20.25,
+        "end_s": 24.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "repeat",
+      "bounds_s": {
+        "start_s": 38.25,
+        "end_s": 42.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "invincible",
+      "window": "1",
+      "bounds_s": {
+        "start_s": 32,
+        "end_s": 48
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "invincible",
+      "window": "2",
+      "bounds_s": {
+        "start_s": 64,
+        "end_s": 80
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "invincible",
+      "window": "3",
+      "bounds_s": {
+        "start_s": 96,
+        "end_s": 112
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    }
+  ],
+  "numerical_mismatches": [
+    {
+      "case": "c42",
+      "window": "B",
+      "field": "power_db.low",
+      "reported": -16.4198,
+      "returned": -16.418585674461013,
+      "absolute_error": 0.0012143255389851504,
+      "rounding_tolerance": 5.001e-05
+    },
+    {
+      "case": "c42",
+      "window": "B",
+      "field": "power_db.high",
+      "reported": -38.0058,
+      "returned": -38.005024940846106,
+      "absolute_error": 0.0007750591538950857,
+      "rounding_tolerance": 5.001e-05
+    }
+  ],
+  "overall_citations": [
+    {
+      "case": "c58",
+      "all_cited_ids_retrieved": false,
+      "missing_cited_ids": [
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0015",
+        "E0017",
+        "E0018",
+        "E0019",
+        "E0020",
+        "E0021"
+      ],
+      "cited_evidence_count": 11
+    },
+    {
+      "case": "c42",
+      "all_cited_ids_retrieved": false,
+      "missing_cited_ids": [
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0013",
+        "E0014",
+        "E0015",
+        "E0016",
+        "E0017",
+        "E0018",
+        "E0019"
+      ],
+      "cited_evidence_count": 12
+    },
+    {
+      "case": "invincible",
+      "all_cited_ids_retrieved": false,
+      "missing_cited_ids": [
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008",
+        "E0009",
+        "E0010",
+        "E0011",
+        "E0012",
+        "E0013",
+        "E0014",
+        "E0015",
+        "E0016",
+        "E0017",
+        "E0018",
+        "E0019",
+        "E0020",
+        "E0021",
+        "E0022",
+        "E0023",
+        "E0024",
+        "E0025",
+        "E0026",
+        "E0027",
+        "E0028",
+        "E0029",
+        "E0030",
+        "E0045",
+        "E0046",
+        "E0047",
+        "E0048",
+        "E0049"
+      ],
+      "cited_evidence_count": 32
+    }
+  ]
+}

@@ -34,6 +34,11 @@ with tempfile.TemporaryDirectory(prefix='muvi-wheel-smoke-') as temp:
     digest = cli('analyze', source)
     assert digest['title'] == source.stem
     assert cli('inspect', 'latest') == digest
+    window = cli('window', 'latest', '--start', '0.3', '--end', '2.1')
+    assert window['time_span'] == {'start_s': .3, 'end_s': 2.1}
+    scoped = cli('evidence', 'latest', *window['evidence_ids'])
+    assert any(e['kind'] == 'window_summary' for e in scoped['evidence'])
+    assert cli('tools', 'get_window')['input_schema']
     assert cli('rhythm', 'latest', '--limit', '3')['next_offset'] == 3
     beats = cli('beats', 'latest', '--limit', '3')
     assert beats['available'] and beats['meter_status'] == 'not_estimated'

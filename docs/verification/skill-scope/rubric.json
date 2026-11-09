@@ -1,0 +1,23 @@
+{
+  "scope": "Behavioral understanding, not consciousness/listening; synthetic truth plus independently retrieved measurement provenance. Real-track assessment is grounding only.",
+  "synthetic_checks": [
+    "Correct duration and chronological account covering beginning, middle and end",
+    "Correct broad ordering of low pulse / enriched low plus high / sustained mid plus high / digital silence (candidate boundaries may be approximate)",
+    "Recognizes the requested returning low texture without claiming waveform or source identity",
+    "A->B: low and high absolute power increase; mid essentially unchanged (<1dB), with attack behavior distinguished",
+    "B->C: low power falls, mid rises, high essentially unchanged (<1dB), with attack behavior distinguished",
+    "C->D: all bands/source activity drop to digital silence rather than unexplained nulls",
+    "C is active despite absent low pulse; sustained energy is not equated to attack count",
+    "Answers use exact requested intervals, never substitute enclosing section statistics",
+    "No unsupported instrument, independent bass, meter, genre, emotion or listening claim",
+    "Numerical observations are traceable to returned packets and cited query/section evidence was actually retrieved"
+  ],
+  "real_checks": [
+    "Covers full duration and final sections; explicit pagination if digest truncated",
+    "All three exact requested windows quantitatively described in comparable energy, texture and rhythm terms",
+    "Conclusions follow absolute power versus relative fraction and local versus global distinctions",
+    "No unsupported source/meter/musical-function claims; honest detector uncertainty",
+    "Cited exact-window and structural evidence was actually retrieved and numbers agree with packets"
+  ],
+  "judging": "Root reviews every answer against these fixed checks and retains item-level reasons. Independent consumers see neither rubric nor truth. Report misses and partial answers; do not conflate tool success with reasoning accuracy. Baseline API lacks some exact-span evidence, so incompleteness is recorded separately from fabricated claims. Call counts are descriptive, not a controlled speed experiment."
+}

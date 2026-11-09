@@ -1,0 +1,185 @@
+{
+  "agent": "terra",
+  "scope": "Structured values, scope and evidence only; prose is independently scored in final-semantics.json.",
+  "retained_successful_calls": 28,
+  "discovery_or_outer_timeout_failures_excluded_from_call_count": true,
+  "windows": [
+    {
+      "case": "c58",
+      "window": "A",
+      "bounds_s": {
+        "start_s": 16.25,
+        "end_s": 19.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c58",
+      "window": "B",
+      "bounds_s": {
+        "start_s": 2.25,
+        "end_s": 5.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c58",
+      "window": "C",
+      "bounds_s": {
+        "start_s": 23.25,
+        "end_s": 26.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c58",
+      "window": "D",
+      "bounds_s": {
+        "start_s": 9.25,
+        "end_s": 12.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c58",
+      "window": "repeat",
+      "bounds_s": {
+        "start_s": 30.25,
+        "end_s": 33.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "A",
+      "bounds_s": {
+        "start_s": 11.25,
+        "end_s": 15.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "B",
+      "bounds_s": {
+        "start_s": 29.25,
+        "end_s": 33.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "C",
+      "bounds_s": {
+        "start_s": 2.25,
+        "end_s": 6.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "D",
+      "bounds_s": {
+        "start_s": 20.25,
+        "end_s": 24.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "c42",
+      "window": "repeat",
+      "bounds_s": {
+        "start_s": 38.25,
+        "end_s": 42.75
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "invincible",
+      "window": "1",
+      "bounds_s": {
+        "start_s": 32.0,
+        "end_s": 48.0
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "invincible",
+      "window": "2",
+      "bounds_s": {
+        "start_s": 64.0,
+        "end_s": 80.0
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    },
+    {
+      "case": "invincible",
+      "window": "3",
+      "bounds_s": {
+        "start_s": 96.0,
+        "end_s": 112.0
+      },
+      "cited_window_evidence_retrieved": true,
+      "exact_scope": true,
+      "tool_packet_matches_reference": true,
+      "reported_numbers_match_at_displayed_precision": true
+    }
+  ],
+  "numerical_mismatches": [],
+  "overall_citations": [
+    {
+      "case": "c58",
+      "all_cited_ids_retrieved": true,
+      "missing_cited_ids": [],
+      "cited_evidence_count": 6
+    },
+    {
+      "case": "c42",
+      "all_cited_ids_retrieved": true,
+      "missing_cited_ids": [],
+      "cited_evidence_count": 6
+    },
+    {
+      "case": "invincible",
+      "all_cited_ids_retrieved": true,
+      "missing_cited_ids": [],
+      "cited_evidence_count": 32
+    }
+  ]
+}

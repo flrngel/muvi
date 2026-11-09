@@ -1,0 +1,19 @@
+{
+  "comparison": "Source text normalized for checkout/archive line endings; all extraction modules unchanged",
+  "modules": {
+    "audio": true,
+    "features": true,
+    "tempo": true,
+    "beats": true,
+    "rhythm": true,
+    "structure": true,
+    "objects": true,
+    "schema": true,
+    "engine": true,
+    "config": true
+  },
+  "same_input_canonical_genomes": {
+    "on-and-on": true,
+    "c17": true
+  }
+}

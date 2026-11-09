@@ -1,0 +1,107 @@
+{
+  "note": "Unedited selected fields from the independent answer; prose contradicts correct metadata and actual C A D B A construction.",
+  "answer_excerpt": {
+    "name": "c42",
+    "track_id": "sha256:ea2fb1d8c13da44aebac8e5bf08c1d4982189b683a4ddd69b6ed9112e96164a4",
+    "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+    "duration_s": 45.0,
+    "overall_tempo_candidates_bpm": [
+      136.58,
+      70.025
+    ],
+    "answer": {
+      "overall": "40s track: opening low-heavy pulse/texture (0–8.5s), then a fuller louder low band with mid/high attacks (8.5–16.2s); 16.2–23.9s shifts strongly into mid energy while low nearly vanishes; 23.9–31.9s returns to the opening low-heavy profile; the last 8.1s is digital silence. Section grouping marks first and fourth sections both A, so the return is acoustically supported. Preferred whole-track periodicity is 136.58 BPM with alternatives [136.58, 70.025]; high-band pulse is near 240 BPM and local beats near 120 BPM, so subdivision/half-time ambiguity remains. Meter/downbeat unknown.",
+      "comparisons": [
+        {
+          "from": "A",
+          "to": "B",
+          "from_span_s": [
+            11.25,
+            15.75
+          ],
+          "to_span_s": [
+            29.25,
+            33.75
+          ],
+          "band_power_change_db": {
+            "low_delta_db": 5.614,
+            "mid_delta_db": 0.016,
+            "high_delta_db": 39.813
+          },
+          "attack_count_change": 11,
+          "attack_density_change_per_s": 2.444,
+          "evidence_ids": [
+            "W6ea67907bbd710da3cfa",
+            "W3203489ad3636e2bc165"
+          ]
+        },
+        {
+          "from": "B",
+          "to": "C",
+          "from_span_s": [
+            29.25,
+            33.75
+          ],
+          "to_span_s": [
+            2.25,
+            6.75
+          ],
+          "band_power_change_db": {
+            "low_delta_db": -99.853,
+            "mid_delta_db": 30.615,
+            "high_delta_db": -0.002
+          },
+          "attack_count_change": 0,
+          "attack_density_change_per_s": 0.0,
+          "evidence_ids": [
+            "W3203489ad3636e2bc165",
+            "W784bbab46b001464ce4d"
+          ]
+        },
+        {
+          "from": "C",
+          "to": "D",
+          "from_span_s": [
+            2.25,
+            6.75
+          ],
+          "to_span_s": [
+            20.25,
+            24.75
+          ],
+          "band_power_change_db": {
+            "low_delta_db": null,
+            "mid_delta_db": null,
+            "high_delta_db": null
+          },
+          "attack_count_change": -21,
+          "attack_density_change_per_s": -4.667,
+          "evidence_ids": [
+            "W784bbab46b001464ce4d",
+            "We8fcf0f7aef8f66d5e18"
+          ]
+        }
+      ],
+      "repeat_window_resembles_A": {
+        "answer": true,
+        "numbers": {
+          "rms_dbfs_delta": 0.0,
+          "band_power_db_delta": {
+            "low": 0.0029,
+            "mid": -0.0,
+            "high": 0.0
+          },
+          "attack_count_delta": 0,
+          "attack_density_delta_per_s": 0.0
+        },
+        "evidence_ids": [
+          "W6ea67907bbd710da3cfa",
+          "Wfb079a59ebb9706d90a1"
+        ]
+      },
+      "C_silent": false,
+      "D_retains_activity": false,
+      "instrument_and_meter_limits": "Band balance and attacks support acoustic texture/pulse descriptions only; they do not identify instruments, independent bass, meter or downbeat."
+    }
+  }
+}

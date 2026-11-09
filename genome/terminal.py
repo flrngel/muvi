@@ -97,6 +97,15 @@ def format_result(command, result):
                      [[short(t['track_id']), t['title'], clock(t['duration_s']),
                        f"{t['tempo_bpm']:g}" if t['tempo_bpm'] else "?", t['analysis_id']]
                       for t in result['tracks']])
+    if command == "window":
+        bands = result['bands']
+        return '\n'.join([f"WINDOW  |  {span(result['time_span'])}",
+                          f"Activity  {result['source_activity']}  |  RMS {scalar(result['source_rms_dbfs'])} dBFS",
+                          table(['BAND', 'POWER', 'FRACTION'], [[name, scalar(v['mean_power']), scalar(v['fraction'])] for name,v in bands.items()]),
+                          f"Attacks  {result['attack_count']}  |  {result['attack_density_per_s']:.3f}/s (not beats)",
+                          f"Beat tempo  {scalar(result['beats'].get('local_tempo_bpm'))} BPM (inferred)",
+                          'Evidence  '+', '.join(result['evidence_ids']),
+                          'Band fractions describe balance; source identity and meter remain unresolved.'])
     if command == "sections" and "sections" in result:
         return sections(result['sections'])
     if command == "sounds":

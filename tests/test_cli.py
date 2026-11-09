@@ -137,7 +137,7 @@ def test_typed_tool_json_stdin_file_and_discovery(library):
     path.write_text(arguments, encoding='utf-8-sig')
     assert packet(store, 'tool', 'get_track_digest', '--arguments-file', path) == digest
     assert packet(store, 'tool', 'get_track_digest', '--arguments', arguments) == digest
-    assert len(packet(store, 'tools')['tools']) == 14
+    assert len(packet(store, 'tools')['tools']) == 15
     schema = packet(store, 'tools', 'get_audio_crop')['input_schema']
     assert {'track_id', 'start_s', 'end_s'} <= set(schema['required'])
     assert 'track_id' in packet(store, 'schema')['properties']

@@ -76,6 +76,8 @@ def build_parser():
     p.add_argument("path", type=Path, metavar="AUDIO")
     p.add_argument("--profile", choices=["fast"], default="fast")
     command("inspect", "Read a compact track digest", track=True, aliases=["overview"])
+    p = command("window", "Summarize exact-span energy, texture, activity and rhythm", track=True)
+    interval(p)
     command("list", "List analyzed tracks, newest first")
     command("demo", "Analyze a deterministic generated example; no download needed")
     p = command("rhythm", "Inspect band attacks, local pulse rate and gaps; meter stays unresolved", track=True)
@@ -199,6 +201,8 @@ def run(args):
         return tools.get_track_digest(g.track_id)
     if args.command in ("inspect", "overview"):
         return tools.get_track_digest(track)
+    if args.command == "window":
+        return tools.get_window(track, args.start, args.end)
     if args.command == "list":
         return {"tracks": engine.list_tracks()}
     if args.command == "rhythm":

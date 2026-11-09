@@ -4,7 +4,7 @@ Turn local audio into timestamped evidence that people and language models can i
 Find acoustic attacks, compare sections, examine low-end activity, and check the
 measurements behind an answer. Runs on CPU with no account, API key or model download.
 
-**CLI only · Python 3.12–3.13 · Optional MCP · Version 0.6.0**
+**CLI only · Python 3.12–3.13 · Optional MCP · Version 0.7.0**
 
 [Install](#install) · [First analysis](#first-analysis) · [Use-with-an-LLM](#use-with-an-llm) ·
 [Command reference](docs/CLI_REFERENCE.md) · [Verification](#verification)
@@ -17,7 +17,7 @@ The installation target is **macOS 13 or later**, using native Apple Silicon or 
 Python. Dependency resolution was checked for both architectures with Python 3.12
 and 3.13. **Execution on a physical Mac has not yet been tested.** Windows execution
 and an independently installed wheel have been tested. See the
-[platform check record](docs/verification/macos-install.json).
+[platform check record](docs/verification/skill-scope/release.json).
 
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/).
    If you already use Homebrew:
@@ -53,11 +53,11 @@ and an independently installed wheel have been tested. See the
    muvi rhythm latest --band low --start 0 --end 8
    ```
 
-**Already have the wheel?** Copy `dist/muvi_genome-0.6.0-py3-none-any.whl` to your
+**Already have the wheel?** Copy `dist/muvi_genome-0.7.0-py3-none-any.whl` to your
 Mac's Downloads folder and replace step 2 with:
 
 ```sh
-uv tool install --python 3.12 ~/Downloads/muvi_genome-0.6.0-py3-none-any.whl
+uv tool install --python 3.12 ~/Downloads/muvi_genome-0.7.0-py3-none-any.whl
 uv tool update-shell
 ```
 
@@ -95,6 +95,9 @@ agents, keep the full `track_id` returned by `analyze --json`.
 
 | I want to… | Command |
 | --- | --- |
+| Understand the whole track | `muvi inspect latest --json` |
+| Measure whole-track balance/activity | `muvi window latest --json` |
+| Understand an exact interval | `muvi window latest --start 32 --end 48 --json` |
 | Track musical beat hypotheses | `muvi beats latest --start 8 --end 16 --json` |
 | Inspect local pulse timing | `muvi rhythm latest --band low --start 8 --end 16 --json` |
 | Retrieve supporting measurements | `muvi evidence latest E0001 E0002` |
@@ -115,17 +118,24 @@ track references, timestamps, pagination, output contracts and library layout.
 Give an agent shell access to `muvi` and the [Muvi skill](skills/muvi/SKILL.md).
 Copy that skill folder into the skill directory supported by your agent if needed;
 Muvi does not modify agent settings automatically.
+The standalone `dist/muvi-skill-0.7.0.zip` contains the same `muvi/SKILL.md` for
+copying to another computer. For Codex on macOS, extract the `muvi` folder into
+`~/.codex/skills/`, then start a new session and ask it to use `$muvi`.
 
 ```sh
 muvi analyze track.wav --json
 muvi tools --json
-muvi tools get_beats --json
+muvi window latest --start 32 --end 48 --json
+muvi tools get_window --json
 muvi prompt
 ```
 
 `--json` writes one UTF-8 JSON document to stdout; progress stays on stderr.
-The skill directs the agent to request relevant windows, retrieve evidence before
-citing it, and preserve uncertainty about instruments, meter and downbeats.
+The skill guides **overall → exact interval → comparison**. For arbitrary ranges,
+request each range with `window` and compare the same measurements. `compare` uses
+stored candidate sections, whose boundaries may differ from your requested times.
+The agent retrieves cited evidence and preserves uncertainty about instruments,
+meter and downbeats; it need not fetch every beat timestamp for a summary question.
 
 ### MCP
 
@@ -137,7 +147,7 @@ muvi mcp-config
 ```
 
 For a downloaded wheel, replace `".[mcp]"` with
-`"/path/to/muvi_genome-0.6.0-py3-none-any.whl[mcp]"`.
+`"/path/to/muvi_genome-0.7.0-py3-none-any.whl[mcp]"`.
 The build restriction lets Intel Macs select an available `cryptography` wheel;
 see [the platform check record](docs/verification/macos-install.json).
 
@@ -145,13 +155,19 @@ Paste the emitted `mcpServers` object into your MCP client's configuration. It c
 this machine's Python executable and library path: **generate it again on the Mac**,
 rather than copying Windows paths. Restart/reconnect your client after configuration.
 
-The server exposes 15 tools, including `list_tracks`, plus WAV/PNG resources. It uses
+The server exposes 16 tools, including `list_tracks`, plus WAV/PNG resources. It uses
 stdio and exits when the client disconnects. MCP retrieval takes the **full track ID**
 from `analyze_track` or `list_tracks`; CLI aliases such as `latest` are not MCP IDs.
 [Tool and scripting details →](docs/CLI_REFERENCE.md)
 
 ## What the evidence means
 
+- `window` combines activity, source RMS, band power, texture and compact rhythm for
+  the requested interval. `W…` evidence IDs are retrievable at those exact bounds.
+  Band fractions describe relative balance, not absolute energy. Spectral statistics
+  select cached frame centers; window context can extend up to 0.186 s beyond them.
+- `digital_silence` means all source PCM samples in the interval are zero; null
+  source peak/RMS represents that silence. `signal_present` is not an audibility claim.
 - `beats` follows mixture novelty with local tempo and timing constraints. It returns
   paged beat hypotheses, local tempo, alternatives and unsupported spans. A point
   marked `onset_supported` is near an attack, not a verified correct beat;
@@ -186,6 +202,13 @@ upload audio; a connected assistant may send retrieved evidence to its model pro
   and original source files intact.
 
 ## Verification
+
+Version 0.7.0 passes **90 tests**, including actual MCP window/evidence queries,
+and an independently installed wheel smoke test. It adds one retrieval tool,
+explicit silence semantics and the revised overall/interval skill.
+The extraction pipeline remains 0.6.0; existing libraries
+need no reanalysis. [Independent skill-use results](docs/SKILL_SCOPE_EVALUATION.md)
+separate measured understanding from simple tool execution and from beat accuracy.
 
 Version 0.6.0 passed **84 tests** (83 regression/feature tests plus the strict reference
 scorer test), **16 controlled benchmark cases**, and actual MCP calls on Windows.

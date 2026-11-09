@@ -1,0 +1,125 @@
+{
+  "scope": "Numerical/provenance audit only; overall prose fails on c42 despite correct fields",
+  "windows": [
+    {
+      "case": "c17",
+      "window": "A",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c17",
+      "window": "B",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c17",
+      "window": "C",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c17",
+      "window": "D",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c17",
+      "window": "repeat",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "A",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "B",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "C",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "D",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "c42",
+      "window": "repeat",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "on-and-on",
+      "window": "W1",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "on-and-on",
+      "window": "W2",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "on-and-on",
+      "window": "W3",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "sky-high",
+      "window": "W1",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "sky-high",
+      "window": "W2",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    },
+    {
+      "case": "sky-high",
+      "window": "W3",
+      "numbers_match": true,
+      "cited_evidence_retrieved": true
+    }
+  ],
+  "semantic_failure": {
+    "case": "c42",
+    "actual_duration_s": 45,
+    "prose_duration_s": 40,
+    "actual_order": [
+      "C",
+      "A",
+      "D",
+      "B",
+      "A"
+    ],
+    "prose_copied_order": [
+      "A",
+      "B",
+      "C",
+      "A",
+      "D"
+    ],
+    "wrong_prose_rates_bpm": [
+      120,
+      240
+    ],
+    "correct_reported_local_bpm": 139.675
+  }
+}

@@ -23,7 +23,7 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
                 await session.initialize()
                 listed = await session.list_tools()
                 assert {"analyze_track", "get_track_digest", "get_beats", "render_tile", "list_tracks"} <= {t.name for t in listed.tools}
-                assert len(listed.tools) == 15
+                assert len(listed.tools) == 16
                 result = await session.call_tool("analyze_track", {"path": str(path)})
                 assert not result.isError
                 payload = result.structuredContent
@@ -31,6 +31,13 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
                 payload = payload.get("result", payload)
                 digest = await session.call_tool("get_track_digest", {"track_id": payload["track_id"]})
                 assert not digest.isError
+                window = await session.call_tool('get_window', {'track_id': payload['track_id'], 'start_s': .3, 'end_s': 2.1})
+                assert not window.isError
+                scoped = window.structuredContent.get('result', window.structuredContent)
+                assert scoped['time_span'] == {'start_s': .3, 'end_s': 2.1}
+                refs = await session.call_tool('get_evidence', {'track_id': payload['track_id'], 'evidence_ids': scoped['evidence_ids']})
+                assert not refs.isError
+                assert any(e['kind']=='window_summary' for e in refs.structuredContent.get('result', refs.structuredContent)['evidence'])
                 beats = await session.call_tool('get_beats', {'track_id': payload['track_id'], 'limit': 3})
                 assert not beats.isError
                 beat_data = beats.structuredContent.get('result', beats.structuredContent)
