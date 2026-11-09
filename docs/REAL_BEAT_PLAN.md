@@ -1,7 +1,7 @@
 # Real-music beat tracking: verification before implementation
 
 2026-11-08. Baseline: b1d083e / CLI 0.5.2 / pipeline 0.5.1. Development audio is
-the three official NCS MP3s from td#842: On & On, Invincible and Sky High. Preserve
+the three official NCS MP3s from the initial example set: On & On, Invincible and Sky High. Preserve
 their hashes and all original failures. Root owns implementation and scoring; fresh
 Terra and Luna consumers independently use only public commands/docs, never source,
 reference annotations, external song tempo labels or each other's answers.

@@ -16,7 +16,7 @@
   "tests_note": "The full suite preceded the final legend placement; all affected chart/CLI/MCP tests were rerun afterward.",
   "isolated_core_smoke": {
     "version": "0.8.2",
-    "installed_module": "C:\\Users\\Hwechul Cho\\AppData\\Roaming\\uv\\tools\\muvi-genome\\Lib\\site-packages\\genome\\__init__.py",
+    "installed_module": "C:\\Users\\user\\AppData\\Roaming\\uv\\tools\\muvi-genome\\Lib\\site-packages\\genome\\__init__.py",
     "result": "passed: core-only CLI analysis, evidence, crop, chart, export, MCP configuration and missing-extra error"
   },
   "terminal_max_columns": {

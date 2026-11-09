@@ -1,256 +1,207 @@
-# Muvi · Music Genome CLI
+# Muvi
 
-Turn local audio into timestamped evidence that people and language models can inspect.
-Find acoustic attacks, compare sections, examine low-end activity, and check the
-measurements behind an answer. Runs on CPU with no account, API key or model download.
+**Give language models evidence about music.**
 
-**CLI only · Python 3.12–3.13 · Optional MCP · Version 0.8.2**
+Muvi turns a local audio file into a compact overview, exact time-range measurements,
+tracked beat hypotheses and retrievable evidence. Ask what changes across a song,
+compare the low end in two passages, or inspect the measurements behind an answer.
 
-[Install](#install) · [First analysis](#first-analysis) · [Use-with-an-LLM](#use-with-an-llm) ·
-[Command reference](docs/CLI_REFERENCE.md) · [Verification](#verification)
+Local CPU analysis. No account, API key or model download. CLI first, optional MCP.
+
+[Install](#install) · [Try it](#try-it) · [Use with an agent](#use-with-an-agent) ·
+[CLI reference](docs/CLI_REFERENCE.md) · [Releases](https://github.com/flrngel/muvi/releases)
 
 ## Install
 
-### macOS: Apple Silicon or Intel
+Requires **Python 3.12 or 3.13**. [uv](https://docs.astral.sh/uv/getting-started/installation/)
+can install Python for you and keeps Muvi in its own environment.
 
-The installation target is **macOS 13 or later**, using native Apple Silicon or Intel
-Python. Dependency resolution was checked for both architectures with Python 3.12
-and 3.13. **Execution on a physical Mac has not yet been tested.** Windows execution
-and an independently installed wheel have been tested. See the
-[platform check record](docs/verification/flow-comparison/release.json).
-
-1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/).
-   If you already use Homebrew:
-
-   ```sh
-   brew install uv
-   ```
-
-   Without Homebrew, use uv's official installer:
-
-   ```sh
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
-
-   Open a new terminal after installation.
-
-2. Copy this source folder to your Mac, then run the following from that folder
-   (the one containing `pyproject.toml`). Do not copy a Windows `.venv`.
-
-   ```sh
-   uv tool install --python 3.12 .
-   uv tool update-shell
-   ```
-
-   uv obtains a compatible Python when needed and installs Muvi in an isolated tool
-   environment. Open a new terminal if the shell path was updated.
-
-3. Check the command and try the built-in audio example:
-
-   ```sh
-   muvi --version
-   muvi demo
-   muvi rhythm latest --band low --start 0 --end 8
-   ```
-
-**Already have the wheel?** Copy `dist/muvi_genome-0.8.2-py3-none-any.whl` to your
-Mac's Downloads folder and replace step 2 with:
+On a Mac with Homebrew:
 
 ```sh
-uv tool install --python 3.12 ~/Downloads/muvi_genome-0.8.2-py3-none-any.whl
+brew install uv
+```
+
+Then install the release directly from GitHub — no clone or Git installation needed:
+
+```sh
+uv tool install --python 3.12 "https://github.com/flrngel/muvi/archive/refs/tags/v0.8.3.zip"
 uv tool update-shell
 ```
 
-The same wheel works across operating systems; uv selects the platform's dependencies.
-A source checkout or wheel is required: this project has not been published to PyPI.
-Installation needs internet access for dependencies; ordinary analysis then runs locally.
+Open a new terminal if the shell path changed, then run:
 
-### Windows and existing Python environments
-
-With uv installed, the source-folder install is the same in PowerShell:
-
-```powershell
-uv tool install --python 3.12 .
-uv tool update-shell
+```sh
+muvi --version
 muvi demo
 ```
 
-Alternatively, use `python -m pip install .` inside a Python 3.12/3.13 virtual environment.
-`music-genome` is an alias; `python -m genome.cli` works in an environment containing Muvi.
+Expect `muvi 0.8.3`, followed by an overview of a generated 25.6-second audio example.
+The demo needs no music download. The same install command works in PowerShell or
+Linux with uv installed. [Wheel and source downloads](https://github.com/flrngel/muvi/releases/tag/v0.8.3)
+are also available; this package is **not on PyPI**.
 
-## First analysis
+macOS 13+ on Apple Silicon/Intel is the installation target. See
+[platform verification](docs/PUBLICATION.md) for actual tested systems and limitations.
+Installation needs internet access; ordinary analysis runs locally afterward.
+
+## Try it
+
+These commands work immediately after `muvi demo`:
 
 ```sh
-muvi analyze ~/Music/track.wav
 muvi inspect latest
-muvi rhythm latest --band low --start 8 --end 16
-muvi sounds latest --query bass
-muvi sections latest
-muvi inspect latest --json
+muvi window latest --start 8 --end 16
+muvi compare latest --a 0 8 --b 8 16
+muvi beats latest --start 8 --end 16
+muvi render latest --start 8 --end 16 -o evidence.png
 ```
 
-On Windows, use a path such as `"C:\Music\track.wav"`. Quote paths containing spaces.
-`latest` selects the newest completed analysis in your library. For scripts or multiple
-agents, keep the full `track_id` returned by `analyze --json`.
+`render` writes an aligned chart and neighboring JSON legend. Green beat marks have
+detected-onset support; amber marks are interpolated hypotheses. Neither guarantees
+a correct musical beat. Overview charts disclose omitted markers and retain their
+coordinates in the legend.
 
-| I want to… | Command |
-| --- | --- |
-| Understand the whole track | `muvi inspect latest --json` |
-| Measure whole-track balance/activity | `muvi window latest --json` |
-| Understand an exact interval | `muvi window latest --start 32 --end 48 --json` |
-| Track musical beat hypotheses | `muvi beats latest --start 8 --end 16 --json` |
-| Inspect local pulse timing | `muvi rhythm latest --band low --start 8 --end 16 --json` |
-| Retrieve supporting measurements | `muvi evidence latest E0001 E0002` |
-| Check whether bass is identifiable | `muvi verify latest independent-bass` |
-| Compare exact intervals | `muvi compare latest --a 32 48 --b 64 80 --json` |
-| Compare candidate sections | `muvi compare latest SEC_01 SEC_02` |
-| Export an original-mixture clip | `muvi crop latest --start 8 --end 16 -o clip.wav` |
-| Export a chart and its legend | `muvi render latest --start 8 --end 16 -o evidence.png` |
-| Export the complete analysis | `muvi export latest -o genome.json` |
+<details>
+<summary>See the generated demo chart</summary>
 
-Use the evidence and section IDs returned by your own analysis. `muvi --help` and
-`muvi COMMAND --help` list options; [the reference](docs/CLI_REFERENCE.md) explains
-track references, timestamps, pagination, output contracts and library layout.
+![Muvi demo: spectrum, band power, tracked timing and acoustic occurrences](docs/assets/demo.png)
 
-## Use with an LLM
+</details>
 
-### CLI or skill
-
-Give an agent shell access to `muvi` and the [Muvi skill](skills/muvi/SKILL.md).
-Copy that skill folder into the skill directory supported by your agent if needed;
-Muvi does not modify agent settings automatically.
-The standalone `dist/muvi-skill-0.8.2.zip` contains the same `muvi/SKILL.md` for
-copying to another computer. For Codex on macOS, extract the `muvi` folder into
-`~/.codex/skills/`, then start a new session and ask it to use `$muvi`.
+For your own audio:
 
 ```sh
-muvi analyze track.wav --json
-muvi tools --json
-muvi window latest --start 32 --end 48 --json
-muvi tools get_window --json
-muvi prompt
+muvi analyze "/path/to/song.mp3"
+muvi inspect latest --json
+muvi compare latest --a 32 48 --b 64 80 --json
 ```
 
-`--json` writes one UTF-8 JSON document to stdout; progress stays on stderr.
-The skill guides **overall → exact interval → comparison**. For arbitrary ranges,
-use `compare TRACK --a START END --b START END` for computed energy and attack-rate
-changes with exact evidence inline. Section-ID comparison remains available.
-`inspect` adds measured acoustic progression; follow `flow.next_offset` using
-`--flow-offset` to cover long tracks. The agent uses received evidence and preserves uncertainty about instruments,
-meter and downbeats; it need not fetch every beat timestamp for a summary question.
+Choose ranges within the recording. Quote paths with spaces. `latest` means the
+newest completed analysis in the selected library; scripts and concurrent agents
+should keep the full `track_id` returned by `analyze --json`.
+
+| Question | Command |
+| --- | --- |
+| How does the whole song develop? | `muvi inspect latest --json` |
+| What happens in this exact passage? | `muvi window latest --start 32 --end 48 --json` |
+| Did the low end or attack rate change? | `muvi compare latest --a 32 48 --b 64 80 --json` |
+| Where are the inferred beats? | `muvi beats latest --start 8 --end 16 --json` |
+| What attacks occur in the low band? | `muvi rhythm latest --band low --start 8 --end 16 --json` |
+| Which acoustic objects recur? | `muvi sounds latest --query bass` |
+| What supports this observation? | `muvi evidence latest E0001` |
+| Can I listen to the original passage? | `muvi crop latest --start 8 --end 16 -o clip.wav` |
+| Can I save the complete analysis? | `muvi export latest -o genome.json` |
+
+Use evidence IDs from your own results. Whole-track flow can span several pages:
+follow `flow.next_offset` with `muvi inspect TRACK --flow-offset N`. Time values
+accept seconds or `MM:SS`. Run `muvi COMMAND --help` for options.
+
+## Use with an agent
+
+### CLI and skill
+
+Give your agent shell access to `muvi` and the [Muvi skill](skills/muvi/SKILL.md).
+The [release](https://github.com/flrngel/muvi/releases/tag/v0.8.3) includes a portable
+skill ZIP: put its `muvi` folder in your agent's supported skill directory and
+start a new session. Muvi does not edit agent settings automatically.
+
+Try asking:
+
+> Use Muvi to explain this track from beginning to end. Compare 32–48 seconds
+> with 64–80 seconds in low/mid/high energy and attack behavior. Cite the original
+> time ranges and distinguish measurements from guesses.
+
+The workflow is **overview → exact window → comparison → evidence when needed**.
+`--json` emits one UTF-8 document on stdout; progress goes to stderr. For wrappers,
+decode stdout as UTF-8. Discover typed tools with `muvi tools --json` and read
+the grounding instructions with `muvi prompt`.
 
 ### MCP
 
-From the source folder, install the optional adapter and print client configuration:
+Install the optional adapter and generate configuration on the computer that will
+run the server:
 
 ```sh
-uv tool install --python 3.12 --no-build-package cryptography ".[mcp]" --force
+uv tool install --python 3.12 --force --no-build-package cryptography "muvi-genome[mcp] @ https://github.com/flrngel/muvi/archive/refs/tags/v0.8.3.zip"
 muvi mcp-config
 ```
 
-For a downloaded wheel, replace `".[mcp]"` with
-`"/path/to/muvi_genome-0.8.2-py3-none-any.whl[mcp]"`.
-The build restriction lets Intel Macs select an available `cryptography` wheel;
-see [the platform check record](docs/verification/macos-install.json).
+The build restriction selects a compatible binary `cryptography` package, including
+on Intel Macs. Paste the emitted `mcpServers` object into your MCP client's
+configuration, then reconnect. **Generate it again on each computer**: Python and
+library paths are machine-specific.
 
-Paste the emitted `mcpServers` object into your MCP client's configuration. It contains
-this machine's Python executable and library path: **generate it again on the Mac**,
-rather than copying Windows paths. Restart/reconnect your client after configuration.
+MCP exposes 16 tools plus WAV/PNG resources over stdio. Use full track IDs returned
+by `analyze_track` or `list_tracks`; `latest` is a CLI convenience. The server exits
+when its client disconnects. [Tool contracts and pagination](docs/CLI_REFERENCE.md).
 
-The server exposes 16 tools, including `list_tracks`, plus WAV/PNG resources. It uses
-stdio and exits when the client disconnects. MCP retrieval takes the **full track ID**
-from `analyze_track` or `list_tracks`; CLI aliases such as `latest` are not MCP IDs.
-[Tool and scripting details →](docs/CLI_REFERENCE.md)
+## What Muvi knows
 
-## What the evidence means
+Muvi measures the original mixture. The source audio and versioned observations
+are the reference; the language model interprets them. Comparisons calculate
+changes deterministically and retain the exact original ranges and evidence.
 
-- `window` combines activity, source RMS, band power, texture and compact rhythm for
-  the requested interval. `W…` evidence IDs are retrievable at those exact bounds.
-  Band fractions describe relative balance, not absolute energy. Spectral statistics
-  select cached frame centers; window context can extend up to 0.186 s beyond them.
-- `digital_silence` means all source PCM samples in the interval are zero; null
-  source peak/RMS represents that silence. `signal_present` is not an audibility claim.
-- `beats` follows mixture novelty with local tempo and timing constraints. It returns
-  paged beat hypotheses, local tempo, alternatives and unsupported spans. A point
-  marked `onset_supported` is near an attack, not a verified correct beat;
-  `interpolated` lacks that support. Unsupported windows return unresolved tempo.
-- `rhythm` reports band attacks, local acoustic repetition, timing changes and long
-  gaps. Bands are low (20–250 Hz), mid (250–2,000 Hz), high (2,000–11,025 Hz), or all.
-- An attack is not automatically a musical beat. A pulse rate can differ from the
-  tempo a listener counts; grid points marked `extrapolated` are inferred positions.
-- A low-frequency object does not prove an independent bass instrument. Meter,
-  downbeats, instrument identity and separated stems are not established.
-- Results have original-recording timestamps and retrievable evidence. Analyses before
-  0.6.0 return `available: false` for `beats`; reanalyze the original audio to upgrade.
+- **Measured:** band energy, source RMS/activity, spectral texture and acoustic attacks.
+- **Inferred:** beat timing, local tempo, candidate boundaries and descriptor similarity.
+- **Unresolved:** instrument identity, independent bass/stems, meter and downbeats.
 
-WAV, FLAC, OGG and MP3 are supported when decodable by libsndfile; M4A/AAC is not a
-promised input format. Limits are 200 MiB, 0.1 seconds–10 minutes, mono/stereo,
-8–192 kHz and 384 MiB decoded PCM. Standard macOS SoundFile wheels bundle libsndfile
-([upstream installation notes](https://python-soundfile.readthedocs.io/en/latest/#installation)).
+An attack is not automatically a beat. A larger low-band fraction does not prove
+the bass got louder. Similar descriptors do not prove an identical phrase or chorus.
+Interpolated beats can continue through silence. `digital_silence` means exactly
+zero source samples; `signal_present` is not a claim of audibility.
 
-The default library is `~/.muvi`; change it with `--data-dir DIR` or `MUVI_DATA_DIR`.
-It stores a copy of the original audio and derived evidence. Muvi itself does not
-upload audio; a connected assistant may send retrieved evidence to its model provider.
+Supported inputs: WAV, FLAC, OGG and MP3 when decodable by libsndfile. M4A/AAC is
+not a promised format. Limits: 200 MiB, 0.1 seconds–10 minutes, mono/stereo,
+8–192 kHz and 384 MiB decoded PCM. Structural analysis stops at 11,025 Hz.
+This is not a stem separator, transcription system or mastering meter.
 
-## Update, remove or troubleshoot
+## Storage and privacy
 
-- **Update from source:** obtain the updated folder, then rerun
-  `uv tool install --python 3.12 . --force` there. Keep `".[mcp]"` and
-  `--no-build-package cryptography` if you use MCP. Regenerate `muvi mcp-config`.
+The library defaults to `~/.muvi`. It contains a copy of the original audio,
+measurements and generated crops/charts. Set `MUVI_DATA_DIR` or pass
+`--data-dir DIR` to choose another location. Muvi itself does not upload audio;
+a connected agent may send retrieved evidence to its model provider.
+
+## Update or troubleshoot
+
+- **Update:** install a newer release URL with `--force`. Keep `[mcp]` and
+  `--no-build-package cryptography` if using MCP; regenerate `muvi mcp-config`.
 - **Command not found:** run `uv tool update-shell`, then open a new terminal.
-- **Unsupported Python:** use `--python 3.12`; the system Python need not be changed.
-- **MCP unavailable:** install the optional adapter using the command above.
-- **Remove the command:** `uv tool uninstall muvi-genome`. This leaves `~/.muvi`
-  and original source files intact.
+- **Python error:** keep `--python 3.12`; you do not need to replace system Python.
+- **Range error:** use bounds within the duration shown by `muvi inspect`.
+- **Output already exists:** choose another filename or use `--force` intentionally.
+- **Unsupported audio:** convert it to WAV or FLAC first.
+- **Remove:** `uv tool uninstall muvi-genome`. Your library remains in `~/.muvi`.
 
-## Verification
+For a bug report, include `muvi --version`, OS/CPU architecture, the command and
+error text. Share a small reproducible example when possible; do not post private audio.
 
-Version 0.8.2 corrects optional charts and terminal presentation: charts use stored
-tracked beats with support labels, simplify overview markers, and include power
-and object legends. Terminal tables adapt to width and show flow IDs. Numerical
-analysis and the extraction pipeline are unchanged. See the
-[acceptance plan](docs/VISUAL_OUTPUT_PLAN.md) and
-[results](docs/VISUAL_OUTPUT_EVALUATION.md): **103 tests passed**, plus 10 affected
-checks after final legend placement, installed-wheel smoke, 16 charts and 20
-terminal-width checks.
+## Verification and development
 
-Version 0.8.1 passes **96 tests**, actual MCP calls and an isolated installed-wheel
-smoke test. It extends existing comparison and digest tools with exact-range arithmetic
-and measured acoustic progression. It adds no public tool, dependency or extraction
-model. The pipeline remains 0.6.0; existing libraries need no reanalysis.
-The [fixed evaluation criteria](docs/FLOW_COMPARISON_PLAN.md) separate numerical
-correctness, useful explanations and sufficient received evidence.
-[Independent results](docs/FLOW_COMPARISON_EVALUATION.md) retain mistakes and limitations.
-Version 0.7.0 previously passed 90 tests; [that skill evaluation](docs/SKILL_SCOPE_EVALUATION.md)
-records its consumer errors separately from successful retrieval.
+[CI](https://github.com/flrngel/muvi/actions/workflows/ci.yml) checks the suite,
+actual MCP calls and an isolated core-wheel install across Windows, Linux and both
+Mac architectures. [Publication results](docs/PUBLICATION.md) record completed runs.
 
-Version 0.6.0 passed **84 tests** (83 regression/feature tests plus the strict reference
-scorer test), **16 controlled benchmark cases**, and actual MCP calls on Windows.
-See [verification results](docs/VERIFICATION.md) for packaging and platform checks.
+The 0.8.2 baseline passed **103 tests**, plus final chart checks, 16 real/control
+charts and 20 terminal-width checks. Earlier independent Terra/Luna evaluations
+retain both successful answers and mistakes. These are bounded tests, not a claim
+of universal music understanding or human-level beat accuracy.
 
-The [real-music evaluation](docs/REAL_BEAT_EVALUATION.md) includes independent
-Terra/Luna consumers and six preselected pop/jazz excerpts with reference beats.
-Mean strict beat F1 improved **55.1% → 67.4%**, but two excerpts regressed; half-tempo
-and beat-phase errors remain. High onset support is not an accuracy estimate.
-The earlier [synthetic evaluation](docs/BEAT_EVALUATION.md) covers acoustic pulse
-questions. Broad music accuracy, calibrated confidence, meter/downbeat and comparisons
-with raw-audio models remain unvalidated.
+[Detailed verification](docs/VERIFICATION.md) ·
+[Beat limitations](docs/REAL_BEAT_EVALUATION.md) ·
+[Whole-track and comparison evaluation](docs/FLOW_COMPARISON_EVALUATION.md)
 
-For development from a checkout:
+From a checkout:
 
 ```sh
-uv sync --locked --python 3.12
-uv run muvi demo
-uv run pytest -q
-uv run ruff check genome tests scripts
-uv run muvi benchmark -o artifacts/benchmark.json --force --json
+uv venv --python 3.12
+uv pip install --python .venv --only-binary cryptography --group dev ".[mcp]"
+uv run --no-sync pytest -q
+uv run --no-sync ruff check genome tests scripts
 uv build
 ```
 
-For MCP tests on Windows/Apple Silicon, use `uv sync --locked --extra mcp` and
-`uv run --extra mcp pytest -q`. The current MCP lock contains a `cryptography` version
-without an Intel Mac wheel; Intel users should use the standalone MCP installation
-above unless they intentionally maintain a source-build environment.
-
-[CLI verification plan](docs/CLI_PLAN.md) · [Beat evaluation plan](docs/BEAT_EVAL_PLAN.md) ·
-[Research](docs/BEAT_RESEARCH.md) · [Further evaluation protocol](docs/ABLATIONS.md)
+This installation resolves platform-compatible wheels. `uv sync --locked` is also
+available, but the existing development lock may require a cryptography source
+build on Intel macOS. The package name is `muvi-genome`; `music-genome` is a CLI alias.
