@@ -41,8 +41,9 @@ The demo needs no music download. The same install command works in PowerShell o
 Linux with uv installed. [Wheel and source downloads](https://github.com/flrngel/muvi/releases/tag/v0.8.3)
 are also available; this package is **not on PyPI**.
 
-macOS 13+ on Apple Silicon/Intel is the installation target. See
-[platform verification](docs/PUBLICATION.md) for actual tested systems and limitations.
+macOS 13+ on Apple Silicon/Intel is the installation target. Runtime tests passed
+on macOS 15 for both architectures, plus Windows and Linux. See
+[platform verification](docs/PUBLICATION.md) for the exact matrix and limitations.
 Installation needs internet access; ordinary analysis runs locally afterward.
 
 ## Try it
