@@ -1,0 +1,84 @@
+{
+  "agent": "luna",
+  "transport": "actual MCP stdio",
+  "scope": "Tool response, independent arithmetic, input provenance and full-flow retrieval. Consumer prose is scored separately.",
+  "logged_calls": 30,
+  "logged_tool_failures": [],
+  "comparisons": [
+    {
+      "case": "c91",
+      "pair": "A->B",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c91",
+      "pair": "B->C",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c92",
+      "pair": "A->B",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c92",
+      "pair": "B->C",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c93",
+      "pair": "A->B",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c93",
+      "pair": "C->D",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c93",
+      "pair": "O->R",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    }
+  ],
+  "flow_coverage": [
+    {
+      "case": "c91",
+      "flow_items_received": 18,
+      "flow_items_expected": 18,
+      "whole_timeline_covered": true,
+      "duration_s": 208.07943310657598
+    },
+    {
+      "case": "c92",
+      "flow_items_received": 15,
+      "flow_items_expected": 15,
+      "whole_timeline_covered": true,
+      "duration_s": 213.0426984126984
+    },
+    {
+      "case": "c93",
+      "flow_items_received": 6,
+      "flow_items_expected": 6,
+      "whole_timeline_covered": true,
+      "duration_s": 48.0
+    }
+  ],
+  "trace_gaps": [
+    "Agent reported an initial analyze_track call with audio_path instead of path; its retry overwrote that failed call. Successful final calls are retained; no complete-call-history claim."
+  ]
+}

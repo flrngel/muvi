@@ -1,0 +1,248 @@
+{
+  "version": "0.8.1",
+  "pipeline": "0.6.0",
+  "frozen_files": {
+    "genome/audio.py": true,
+    "genome/beats.py": true,
+    "genome/charts.py": true,
+    "genome/cli.py": true,
+    "genome/comparison.py": true,
+    "genome/config.py": true,
+    "genome/engine.py": true,
+    "genome/evaluate.py": true,
+    "genome/exports.py": true,
+    "genome/features.py": true,
+    "genome/fixtures.py": true,
+    "genome/flow.py": true,
+    "genome/mcp_server.py": true,
+    "genome/objects.py": true,
+    "genome/rhythm.py": true,
+    "genome/schema.py": true,
+    "genome/serializer.py": true,
+    "genome/storage.py": true,
+    "genome/structure.py": true,
+    "genome/tempo.py": true,
+    "genome/terminal.py": true,
+    "genome/tools.py": true,
+    "genome/window.py": true,
+    "genome/__init__.py": true,
+    "skills/muvi/SKILL.md": true,
+    "pyproject.toml": true,
+    "uv.lock": true
+  },
+  "wheel_modules": {
+    "genome/__init__.py": true,
+    "genome/audio.py": true,
+    "genome/beats.py": true,
+    "genome/charts.py": true,
+    "genome/cli.py": true,
+    "genome/comparison.py": true,
+    "genome/config.py": true,
+    "genome/engine.py": true,
+    "genome/evaluate.py": true,
+    "genome/exports.py": true,
+    "genome/features.py": true,
+    "genome/fixtures.py": true,
+    "genome/flow.py": true,
+    "genome/mcp_server.py": true,
+    "genome/objects.py": true,
+    "genome/rhythm.py": true,
+    "genome/schema.py": true,
+    "genome/serializer.py": true,
+    "genome/storage.py": true,
+    "genome/structure.py": true,
+    "genome/tempo.py": true,
+    "genome/terminal.py": true,
+    "genome/tools.py": true,
+    "genome/window.py": true
+  },
+  "macos_13_binary_dependency_checks": [
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--dry-run",
+        "--target",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-confirmation\\mac-preflight\\aarch64-apple-darwin-3.12-core",
+        "--python-platform",
+        "aarch64-apple-darwin",
+        "--python-version",
+        "3.12",
+        "--only-binary",
+        ":all:",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\dist\\muvi_genome-0.8.1-py3-none-any.whl"
+      ],
+      "exit_code": 0,
+      "output": "Using CPython 3.12.14 interpreter at: .venv\\Scripts\\python.exe\nResolved 22 packages in 428ms\nWould download 10 packages\nWould install 22 packages\n + annotated-types==0.8.0\n + cffi==2.1.1\n + contourpy==1.4.0\n + cycler==0.12.1\n + filelock==3.32.7\n + fonttools==4.68.0\n + kiwisolver==1.5.1\n + matplotlib==3.11.2\n + muvi-genome==0.8.1 (from file:///C:/Users/Hwechul%20Cho/Documents/ChatGPT/muvi/dist/muvi_genome-0.8.1-py3-none-any.whl)\n + numpy==2.5.4\n + packaging==26.3\n + pillow==13.0.0\n + pycparser==3.12\n + pydantic==2.14.3\n + pydantic-core==2.50.4\n + pyparsing==3.3.3\n + python-dateutil==4.0.0\n + scipy==1.18.1\n + soundfile==0.14.0\n + typing-extensions==4.16.0\n + typing-inspection==0.4.5\n + tzdata==2026.6\n"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--dry-run",
+        "--target",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-confirmation\\mac-preflight\\aarch64-apple-darwin-3.12-mcp",
+        "--python-platform",
+        "aarch64-apple-darwin",
+        "--python-version",
+        "3.12",
+        "--only-binary",
+        ":all:",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\dist\\muvi_genome-0.8.1-py3-none-any.whl[mcp]"
+      ],
+      "exit_code": 0,
+      "output": "Using CPython 3.12.14 interpreter at: .venv\\Scripts\\python.exe\nResolved 44 packages in 634ms\nWould download 13 packages\nWould install 44 packages\n + annotated-types==0.8.0\n + anyio==4.16.0\n + attrs==26.1.0\n + certifi==2026.10.23\n + cffi==2.1.1\n + click==8.5.1\n + contourpy==1.4.0\n + cryptography==50.0.2\n + cycler==0.12.1\n + filelock==3.32.7\n + fonttools==4.68.0\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + httpx-sse==0.4.3\n + idna==3.20\n + jsonschema==4.26.0\n + jsonschema-specifications==2025.9.1\n + kiwisolver==1.5.1\n + matplotlib==3.11.2\n + mcp==1.30.0\n + muvi-genome==0.8.1 (from file:///C:/Users/Hwechul%20Cho/Documents/ChatGPT/muvi/dist/muvi_genome-0.8.1-py3-none-any.whl)\n + numpy==2.5.4\n + packaging==26.3\n + pillow==13.0.0\n + pycparser==3.12\n + pydantic==2.14.3\n + pydantic-core==2.50.4\n + pydantic-settings==2.16.2\n + pyjwt==2.15.1\n + pyparsing==3.3.3\n + python-dateutil==4.0.0\n + python-dotenv==1.2.4\n + python-multipart==0.0.33\n + referencing==0.37.0\n + rpds-py==2026.9.1\n + scipy==1.18.1\n + soundfile==0.14.0\n + sse-starlette==3.7.0\n + starlette==1.10.0\n + typing-extensions==4.16.0\n + typing-inspection==0.4.5\n + tzdata==2026.6\n + uvicorn==0.54.0\n"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--dry-run",
+        "--target",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-confirmation\\mac-preflight\\aarch64-apple-darwin-3.13-core",
+        "--python-platform",
+        "aarch64-apple-darwin",
+        "--python-version",
+        "3.13",
+        "--only-binary",
+        ":all:",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\dist\\muvi_genome-0.8.1-py3-none-any.whl"
+      ],
+      "exit_code": 0,
+      "output": "Using CPython 3.12.14 interpreter at: .venv\\Scripts\\python.exe\nResolved 22 packages in 269ms\nWould download 10 packages\nWould install 22 packages\n + annotated-types==0.8.0\n + cffi==2.1.1\n + contourpy==1.4.0\n + cycler==0.12.1\n + filelock==3.32.7\n + fonttools==4.68.0\n + kiwisolver==1.5.1\n + matplotlib==3.11.2\n + muvi-genome==0.8.1 (from file:///C:/Users/Hwechul%20Cho/Documents/ChatGPT/muvi/dist/muvi_genome-0.8.1-py3-none-any.whl)\n + numpy==2.5.4\n + packaging==26.3\n + pillow==13.0.0\n + pycparser==3.12\n + pydantic==2.14.3\n + pydantic-core==2.50.4\n + pyparsing==3.3.3\n + python-dateutil==4.0.0\n + scipy==1.18.1\n + soundfile==0.14.0\n + typing-extensions==4.16.0\n + typing-inspection==0.4.5\n + tzdata==2026.6\n"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--dry-run",
+        "--target",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-confirmation\\mac-preflight\\aarch64-apple-darwin-3.13-mcp",
+        "--python-platform",
+        "aarch64-apple-darwin",
+        "--python-version",
+        "3.13",
+        "--only-binary",
+        ":all:",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\dist\\muvi_genome-0.8.1-py3-none-any.whl[mcp]"
+      ],
+      "exit_code": 0,
+      "output": "Using CPython 3.12.14 interpreter at: .venv\\Scripts\\python.exe\nResolved 44 packages in 293ms\nWould download 13 packages\nWould install 44 packages\n + annotated-types==0.8.0\n + anyio==4.16.0\n + attrs==26.1.0\n + certifi==2026.10.23\n + cffi==2.1.1\n + click==8.5.1\n + contourpy==1.4.0\n + cryptography==50.0.2\n + cycler==0.12.1\n + filelock==3.32.7\n + fonttools==4.68.0\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + httpx-sse==0.4.3\n + idna==3.20\n + jsonschema==4.26.0\n + jsonschema-specifications==2025.9.1\n + kiwisolver==1.5.1\n + matplotlib==3.11.2\n + mcp==1.30.0\n + muvi-genome==0.8.1 (from file:///C:/Users/Hwechul%20Cho/Documents/ChatGPT/muvi/dist/muvi_genome-0.8.1-py3-none-any.whl)\n + numpy==2.5.4\n + packaging==26.3\n + pillow==13.0.0\n + pycparser==3.12\n + pydantic==2.14.3\n + pydantic-core==2.50.4\n + pydantic-settings==2.16.2\n + pyjwt==2.15.1\n + pyparsing==3.3.3\n + python-dateutil==4.0.0\n + python-dotenv==1.2.4\n + python-multipart==0.0.33\n + referencing==0.37.0\n + rpds-py==2026.9.1\n + scipy==1.18.1\n + soundfile==0.14.0\n + sse-starlette==3.7.0\n + starlette==1.10.0\n + typing-extensions==4.16.0\n + typing-inspection==0.4.5\n + tzdata==2026.6\n + uvicorn==0.54.0\n"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--dry-run",
+        "--target",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-confirmation\\mac-preflight\\x86_64-apple-darwin-3.12-core",
+        "--python-platform",
+        "x86_64-apple-darwin",
+        "--python-version",
+        "3.12",
+        "--only-binary",
+        ":all:",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\dist\\muvi_genome-0.8.1-py3-none-any.whl"
+      ],
+      "exit_code": 0,
+      "output": "Using CPython 3.12.14 interpreter at: .venv\\Scripts\\python.exe\nResolved 22 packages in 186ms\nWould download 10 packages\nWould install 22 packages\n + annotated-types==0.8.0\n + cffi==2.1.1\n + contourpy==1.4.0\n + cycler==0.12.1\n + filelock==3.32.7\n + fonttools==4.68.0\n + kiwisolver==1.5.1\n + matplotlib==3.11.2\n + muvi-genome==0.8.1 (from file:///C:/Users/Hwechul%20Cho/Documents/ChatGPT/muvi/dist/muvi_genome-0.8.1-py3-none-any.whl)\n + numpy==2.5.4\n + packaging==26.3\n + pillow==13.0.0\n + pycparser==3.12\n + pydantic==2.14.3\n + pydantic-core==2.50.4\n + pyparsing==3.3.3\n + python-dateutil==4.0.0\n + scipy==1.18.1\n + soundfile==0.14.0\n + typing-extensions==4.16.0\n + typing-inspection==0.4.5\n + tzdata==2026.6\n"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--dry-run",
+        "--target",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-confirmation\\mac-preflight\\x86_64-apple-darwin-3.12-mcp",
+        "--python-platform",
+        "x86_64-apple-darwin",
+        "--python-version",
+        "3.12",
+        "--only-binary",
+        ":all:",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\dist\\muvi_genome-0.8.1-py3-none-any.whl[mcp]"
+      ],
+      "exit_code": 0,
+      "output": "Using CPython 3.12.14 interpreter at: .venv\\Scripts\\python.exe\nResolved 44 packages in 423ms\nWould download 13 packages\nWould install 44 packages\n + annotated-types==0.8.0\n + anyio==4.16.0\n + attrs==26.1.0\n + certifi==2026.10.23\n + cffi==2.1.1\n + click==8.5.1\n + contourpy==1.4.0\n + cryptography==48.0.1\n + cycler==0.12.1\n + filelock==3.32.7\n + fonttools==4.68.0\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + httpx-sse==0.4.3\n + idna==3.20\n + jsonschema==4.26.0\n + jsonschema-specifications==2025.9.1\n + kiwisolver==1.5.1\n + matplotlib==3.11.2\n + mcp==1.30.0\n + muvi-genome==0.8.1 (from file:///C:/Users/Hwechul%20Cho/Documents/ChatGPT/muvi/dist/muvi_genome-0.8.1-py3-none-any.whl)\n + numpy==2.5.4\n + packaging==26.3\n + pillow==13.0.0\n + pycparser==3.12\n + pydantic==2.14.3\n + pydantic-core==2.50.4\n + pydantic-settings==2.16.2\n + pyjwt==2.15.1\n + pyparsing==3.3.3\n + python-dateutil==4.0.0\n + python-dotenv==1.2.4\n + python-multipart==0.0.33\n + referencing==0.37.0\n + rpds-py==2026.9.1\n + scipy==1.18.1\n + soundfile==0.14.0\n + sse-starlette==3.7.0\n + starlette==1.10.0\n + typing-extensions==4.16.0\n + typing-inspection==0.4.5\n + tzdata==2026.6\n + uvicorn==0.54.0\n"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--dry-run",
+        "--target",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-confirmation\\mac-preflight\\x86_64-apple-darwin-3.13-core",
+        "--python-platform",
+        "x86_64-apple-darwin",
+        "--python-version",
+        "3.13",
+        "--only-binary",
+        ":all:",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\dist\\muvi_genome-0.8.1-py3-none-any.whl"
+      ],
+      "exit_code": 0,
+      "output": "Using CPython 3.12.14 interpreter at: .venv\\Scripts\\python.exe\nResolved 22 packages in 344ms\nWould download 10 packages\nWould install 22 packages\n + annotated-types==0.8.0\n + cffi==2.1.1\n + contourpy==1.4.0\n + cycler==0.12.1\n + filelock==3.32.7\n + fonttools==4.68.0\n + kiwisolver==1.5.1\n + matplotlib==3.11.2\n + muvi-genome==0.8.1 (from file:///C:/Users/Hwechul%20Cho/Documents/ChatGPT/muvi/dist/muvi_genome-0.8.1-py3-none-any.whl)\n + numpy==2.5.4\n + packaging==26.3\n + pillow==13.0.0\n + pycparser==3.12\n + pydantic==2.14.3\n + pydantic-core==2.50.4\n + pyparsing==3.3.3\n + python-dateutil==4.0.0\n + scipy==1.18.1\n + soundfile==0.14.0\n + typing-extensions==4.16.0\n + typing-inspection==0.4.5\n + tzdata==2026.6\n"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--dry-run",
+        "--target",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-confirmation\\mac-preflight\\x86_64-apple-darwin-3.13-mcp",
+        "--python-platform",
+        "x86_64-apple-darwin",
+        "--python-version",
+        "3.13",
+        "--only-binary",
+        ":all:",
+        "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\dist\\muvi_genome-0.8.1-py3-none-any.whl[mcp]"
+      ],
+      "exit_code": 0,
+      "output": "Using CPython 3.12.14 interpreter at: .venv\\Scripts\\python.exe\nResolved 44 packages in 244ms\nWould download 13 packages\nWould install 44 packages\n + annotated-types==0.8.0\n + anyio==4.16.0\n + attrs==26.1.0\n + certifi==2026.10.23\n + cffi==2.1.1\n + click==8.5.1\n + contourpy==1.4.0\n + cryptography==48.0.1\n + cycler==0.12.1\n + filelock==3.32.7\n + fonttools==4.68.0\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + httpx-sse==0.4.3\n + idna==3.20\n + jsonschema==4.26.0\n + jsonschema-specifications==2025.9.1\n + kiwisolver==1.5.1\n + matplotlib==3.11.2\n + mcp==1.30.0\n + muvi-genome==0.8.1 (from file:///C:/Users/Hwechul%20Cho/Documents/ChatGPT/muvi/dist/muvi_genome-0.8.1-py3-none-any.whl)\n + numpy==2.5.4\n + packaging==26.3\n + pillow==13.0.0\n + pycparser==3.12\n + pydantic==2.14.3\n + pydantic-core==2.50.4\n + pydantic-settings==2.16.2\n + pyjwt==2.15.1\n + pyparsing==3.3.3\n + python-dateutil==4.0.0\n + python-dotenv==1.2.4\n + python-multipart==0.0.33\n + referencing==0.37.0\n + rpds-py==2026.9.1\n + scipy==1.18.1\n + soundfile==0.14.0\n + sse-starlette==3.7.0\n + starlette==1.10.0\n + typing-extensions==4.16.0\n + typing-inspection==0.4.5\n + tzdata==2026.6\n + uvicorn==0.54.0\n"
+    }
+  ],
+  "macos_runtime_tested": false,
+  "wheel_sha256": "642dbb571ef1bd2ad7f41b26b953ac879eff24383fdc180c752af05ed1dfb08c",
+  "runtime_tested_wheel_sha256": "8e419fbc705682b004dbc7204be14132776fbd9e626dd7d514516cd22762fedf",
+  "metadata_only_rebuild": "Final README updated; all runtime modules exactly match the frozen tested wheel/source.",
+  "skill_zip_sha256": "d6e1609f745b999228c2a0f66039e01d085a7c085cf6ca8756cddefc700baa2b",
+  "test_suite": {
+    "passed": 96,
+    "elapsed_s": 363.83,
+    "mcp_executed": true
+  },
+  "targeted_after_correction": {
+    "passed": 7,
+    "elapsed_s": 29.79
+  },
+  "isolated_core_smoke": {
+    "version": "0.8.1",
+    "installed_module": "C:\\Users\\Hwechul Cho\\AppData\\Roaming\\uv\\tools\\muvi-genome\\Lib\\site-packages\\genome\\__init__.py",
+    "result": "passed: core-only CLI analysis, evidence, crop, chart, export, MCP configuration and missing-extra error"
+  },
+  "independent_required_comparisons": {
+    "round1": 14,
+    "final": 14,
+    "all_packets_and_arithmetic_verified": true,
+    "semantic_limits": "semantics.json"
+  },
+  "checks": {
+    "ruff": true,
+    "lock": true,
+    "skill_validator_utf8": true,
+    "whitespace": true,
+    "wheel_readme_current": true,
+    "portable_skill_matches": true,
+    "extraction_modules_unchanged": 10
+  },
+  "relative_document_links_checked": 39
+}

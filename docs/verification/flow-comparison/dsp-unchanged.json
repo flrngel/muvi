@@ -1,0 +1,16 @@
+{
+  "baseline": "ebe5371",
+  "comparison": "UTF-8 source text with normalized line endings",
+  "modules": {
+    "genome/audio.py": true,
+    "genome/features.py": true,
+    "genome/tempo.py": true,
+    "genome/beats.py": true,
+    "genome/rhythm.py": true,
+    "genome/structure.py": true,
+    "genome/objects.py": true,
+    "genome/schema.py": true,
+    "genome/engine.py": true,
+    "genome/config.py": true
+  }
+}

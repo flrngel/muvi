@@ -1,0 +1,30 @@
+[
+  {
+    "case": "c81",
+    "title": "My Heart",
+    "artist": "Different Heaven & EH!DE",
+    "page": "https://ncs.io/myheart",
+    "youtube": "https://www.youtube.com/watch?v=jK2aIUmmdP4",
+    "download_url": "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/007/my-heart-1586945702-4NfTD6qN1D.mp3",
+    "sha256": "68858c8475f74997af20e49c7ba4f3031dd101abfc31f180755e2c3fc2dc2e60",
+    "duration_s": 267.0900453514739,
+    "bytes": 4275415,
+    "path": "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-comparison\\audio\\c81.mp3",
+    "attribution": "Music provided by NoCopyrightSounds",
+    "coordinate_basis": "Original official MP3, not YouTube playback coordinates."
+  },
+  {
+    "case": "c82",
+    "title": "Blank",
+    "artist": "Disfigure",
+    "page": "https://ncs.io/blank",
+    "youtube": "https://www.youtube.com/watch?v=p7ZsBPK656s",
+    "download_url": "https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/003/blank-1586945660-LPD2Fw7OZ0.mp3",
+    "sha256": "8a1ad3023aaf9329a18e09927c3822d31f5436035002a28fb9fc338107aef676",
+    "duration_s": 209.04596371882087,
+    "bytes": 3346692,
+    "path": "C:\\Users\\Hwechul Cho\\Documents\\ChatGPT\\muvi\\artifacts\\flow-comparison\\audio\\c82.mp3",
+    "attribution": "Music provided by NoCopyrightSounds",
+    "coordinate_basis": "Original official MP3, not YouTube playback coordinates."
+  }
+]

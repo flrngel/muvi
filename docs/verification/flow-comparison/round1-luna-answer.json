@@ -1,0 +1,154 @@
+{
+  "answers": {
+    "c81": {
+      "track_id": "sha256:68858c8475f74997af20e49c7ba4f3031dd101abfc31f180755e2c3fc2dc2e60",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "overall": "267.09 s. The opening 0–9 s is relatively subdued mixed-band material (−13.3 dB relative to strongest section; 1.67 detected attacks/s). At 9–22.4 s, mid/high power and attack density rise; 27.5–120.0 s becomes a long low-dominant, higher-energy passage (about −0.3 dB from strongest; 4.91 attacks/s). A transition around 120 s leads into a quieter mid-focused 124–143.8 s passage. The mid-dominant 130.3–143.8 s flow item has a qualified descriptor match to 9.0–22.4 s, and 143.8–241.6 s recapitulates the earlier mixed/low-dominant-to-strong-low sequence, again with qualified flow matches; these are section-statistic similarities, not proof of a repeated phrase. From 241.6 s energy falls, then the final 246.3–267.09 s stays mixed-band and lower than the earlier sustained section, ending without evidence that the recording is source-silent. Flow aggregates are section-derived, not exact source-sample silence checks.",
+      "comparisons": [
+        {
+          "pair": "A→B",
+          "ranges_s": {
+            "A": [
+              13.25,
+              29.75
+            ],
+            "B": [
+              61.125,
+              84.375
+            ]
+          },
+          "prose": "B shifts strongly toward low-band energy. Low mean power rises 0.005756→0.105980 (+12.65 dB), mid is essentially unchanged 0.019666→0.019451 (−0.05 dB), and high rises 0.004027→0.009679 (+3.81 dB). Overall attack density increases 3.33→4.65/s (+1.31/s); centroid falls 1173→568 Hz, while harmonic-like ratio changes only 0.763→0.774. Source RMS is −13.85→−8.24 dBFS. The lower centroid and low-heavy balance describe a darker/weightier mix, not an identified source.",
+          "evidence_ids": [
+            "W936eb925b11a3be68023",
+            "We1fa4a8233a9ffca684f"
+          ]
+        },
+        {
+          "pair": "B→C",
+          "ranges_s": {
+            "B": [
+              61.125,
+              84.375
+            ],
+            "C": [
+              121.75,
+              138.25
+            ]
+          },
+          "prose": "C is markedly reduced in absolute band power versus B: low −15.77 dB, mid −1.33 dB, high −7.39 dB; RMS −8.24→−16.49 dBFS and attack density 4.65→2.79/s (−1.86/s). C is mid-dominant by fraction (75.8%) while B is low-dominant (78.4%). C is therefore not broadly similar across the requested exact window to B. Later within C, 130.3–138.25 s has mid-dominant flow statistics and a qualified descriptor match to the earlier 9.0–22.4 s mid-dominant span; it suggests a returning broad texture, not phrase identity.",
+          "evidence_ids": [
+            "We1fa4a8233a9ffca684f",
+            "Wd661219812856ec9c3cb"
+          ]
+        }
+      ],
+      "uncertainty": "Track/source identity and meter are unresolved. Tempo output is a mixture-level beat hypothesis (about 172.27 BPM in the sampled windows), not meter or confirmed listener-counted tempo. Centroid and harmonic-like ratio are texture measures, not instrument/vocal identification."
+    },
+    "c82": {
+      "track_id": "sha256:8a1ad3023aaf9329a18e09927c3822d31f5436035002a28fb9fc338107aef676",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "overall": "209.0 s. The opening 0–16.1 s is mid-dominant; 16.1–30.7 s grows mixed-band, then 30.7–56.7 s is a sustained low-dominant, strongest/near-strongest passage (−0.4 dB from strongest; 6.30 attacks/s). At 56.7 s it shifts to a quieter mid-led interval, briefly returns to low-dominant material at 71.6–75.4 s, then mixed transition; 81.1–152.7 s sustains a low-dominant texture. 152.7–167.7 s moves mid-dominant and quieter before low-dominant texture returns from 167.7–209 s through the ending. Flow marks multiple spans as qualified descriptor matches to 30.7–56.7 s (including the 61–84 s comparison area): the broad low-dominant energy/attack profile recurs, though no phrase identity is established. No source silence is implied by these section aggregates.",
+      "comparisons": [
+        {
+          "pair": "A→B",
+          "ranges_s": {
+            "A": [
+              13.25,
+              29.75
+            ],
+            "B": [
+              61.125,
+              84.375
+            ]
+          },
+          "prose": "A is mid-heavy (fractions low/mid/high 0.299/0.618/0.083); B is more evenly split between low and mid (0.436/0.498/0.067). Absolute mean power rises in every band: low 0.011838→0.033237 (+4.48 dB), mid 0.024523→0.037938 (+1.90 dB), high 0.003296→0.005074 (+1.87 dB). Attack density rises 4.73→5.25/s (+0.52/s), RMS −11.68→−9.84 dBFS. Harmonic-like ratio 0.578→0.760 and centroid 898→687 Hz suggest a denser, lower-centered texture; these do not identify sound sources.",
+          "evidence_ids": [
+            "W936eb925b11a3be68023",
+            "We1fa4a8233a9ffca684f"
+          ]
+        },
+        {
+          "pair": "B→C",
+          "ranges_s": {
+            "B": [
+              61.125,
+              84.375
+            ],
+            "C": [
+              121.75,
+              138.25
+            ]
+          },
+          "prose": "C gains low-band share (43.6%→71.5%) and loses mid share (49.8%→20.8%), but this is not the whole energy story: low power rises 0.033237→0.081093 (+3.87 dB), mid falls 0.037938→0.023543 (−2.07 dB), high rises 0.005074→0.008739 (+2.36 dB). RMS rises −9.84→−8.61 dBFS; attack density changes modestly 5.25→5.45/s (+0.21/s). C is more low-weighted in absolute as well as relative terms; centroid 687→640 Hz, harmonic-like ratio 0.760→0.830.",
+          "evidence_ids": [
+            "We1fa4a8233a9ffca684f",
+            "Wd661219812856ec9c3cb"
+          ]
+        }
+      ],
+      "uncertainty": "Source identity and meter are unresolved; BPM/beat tracking is an inference and cannot establish a meter or musical beat identity. Flow’s “similar” relation is a heuristic descriptor match, not evidence of phrase repetition."
+    },
+    "c83": {
+      "track_id": "sha256:6b872de0ebd850c8f29761fd6fcca9926ce37f035c3fc09be4e8f269571476f4",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "overall": "39.0 s. 0–6.6 s is low-dominant and strongest; 6.6–12.8 s changes to a mid-dominant sustained texture with no detected attacks in the 7.3–11.8 s window. 12.8–19.7 s is very low-energy mixed material with sparse attacks; 19.7–26.2 s becomes high-dominant and more active; 26.2–32.5 s remains high-dominant but about 5.8 dB below the preceding flow span; 32.5–39.0 s returns to a strong low-dominant texture. Exact-window comparison O→R is nearly identical in all measured statistics, supporting a returning acoustic texture at those bounds. The two central requested comparison windows A and B preserve band balance and attack rate but B is uniformly quieter. D is genuinely digital silence in the exact PCM sample span; C is signal-present, with mid-band energy and zero detected attacks, not silence.",
+      "comparisons": [
+        {
+          "pair": "A→B",
+          "ranges_s": {
+            "A": [
+              20.1,
+              24.9
+            ],
+            "B": [
+              26.6,
+              31.4
+            ]
+          },
+          "prose": "All three bands fall by about 6.02 dB in B (mean powers low 0.001436→0.000359; mid 1.81e−6→4.53e−7; high 0.002981→0.000746). Band fractions are effectively unchanged (low 0.325, mid 0.0004, high 0.675); attack density is 4.17/s in both windows. RMS falls −23.46→−29.48 dBFS. So a relative band balance change would not itself prove an absolute level change; here it does not change, while absolute power clearly drops across all bands. Centroid and harmonic-like ratio also remain essentially stable (2919.6→2920.0 Hz; 0.663→0.662).",
+          "evidence_ids": [
+            "W6e07076161aae6806f72",
+            "Wc4b20b6ea7604a9c62a7"
+          ]
+        },
+        {
+          "pair": "C→D",
+          "ranges_s": {
+            "C": [
+              7.3,
+              11.8
+            ],
+            "D": [
+              14.1,
+              18.1
+            ]
+          },
+          "prose": "C is active: signal_present, RMS −20.99 dBFS, mid mean power 0.007968 (99.9999% of band power), 0 detected attacks/s. D is digital_silence: every source PCM sample in the range is zero; RMS/peak, spectral band fractions and centroid are null, with 0 attacks/s. dB deltas are null because D has zero band power; do not interpret them as unavailable frames or subtract null values.",
+          "evidence_ids": [
+            "W7f99ccd1e55153fa55ce",
+            "W5b43ac2dfa98cd75dee2"
+          ]
+        },
+        {
+          "pair": "O→R",
+          "ranges_s": {
+            "O": [
+              0.8,
+              5.3
+            ],
+            "R": [
+              33.3,
+              37.8
+            ]
+          },
+          "prose": "The windows are essentially the same measured texture: mean powers O→R low 0.01241875→0.01241871, mid 0.000003042→0.000003050, high 0.00227223→0.00227269; B-minus-A dB deltas are approximately 0.000, +0.011, +0.001 dB. RMS is −18.329 dBFS in both, and attack density 3.11/s in both. Fractions are low/mid/high 0.845/0.0002/0.155 in both, centroid about 575.6 Hz and harmonic-like ratio about 0.992. This strongly supports broad measured resemblance, not source identity or phrase equivalence.",
+          "evidence_ids": [
+            "W3a35729ebf2df53ca172",
+            "W32ce2c05aea8581a877c"
+          ]
+        }
+      ],
+      "uncertainty": "No instrument, voice, key, chord, genre or meter is established. C’s mid-band sustained energy is a measured texture; 0 attack detections do not mean inaudible or silent. D’s digital-silence status is sample-exact evidence."
+    }
+  }
+}

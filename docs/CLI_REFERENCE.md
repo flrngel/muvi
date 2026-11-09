@@ -22,7 +22,7 @@ protocol messages. `inspect` has an `overview` alias; a bare `muvi` prints help.
 | Command | Purpose |
 | --- | --- |
 | `list` | List tracks, newest first |
-| `inspect TRACK` | Compact tempo, rhythm, section and acoustic-object digest |
+| `inspect TRACK [--flow-offset N]` | Compact digest with measured acoustic progression and qualified returns |
 | `window TRACK [--start TIME --end TIME]` | Whole-track or exact-interval energy, activity, texture and compact rhythm |
 | `sections TRACK [SECTION] --detail` | Candidate sections and bounded occurrences |
 | `sounds TRACK --query bass --start 8 --end 16` | Search acoustic objects in an interval |
@@ -31,6 +31,7 @@ protocol messages. `inspect` has an `overview` alias; a bare `muvi` prints help.
 | `beats TRACK --start 8 --end 16 --limit 128` | Tracked beat hypotheses, local tempo and support |
 | `evidence TRACK EVIDENCE [EVIDENCE ...]` | Measurements, units and provenance |
 | `compare TRACK SECTION_A SECTION_B` | Compare candidate sections |
+| `compare TRACK --a 13.25 29.75 --b 61.125 84.375` | Compare exact ranges, with computed energy and attack-rate changes |
 | `verify TRACK independent-bass` | Bounded hypothesis check, including indeterminate results |
 | `metrics TRACK --start 8 --end 16` | Source-rate sample peak, RMS and stereo metrics |
 | `crop TRACK --start 8 --end 16 -o clip.wav` | Original-mixture audio crop |
@@ -69,14 +70,29 @@ resources, for 16 tools total. Core installation needs none of the MCP SDK,
 FastAPI, Uvicorn or Starlette; the optional SDK has its own dependencies.
 
 Evidence carries `track_id`, `analysis_id`, original-coordinate `time_span`,
-`evidence_ids` and `measurement_status`. `prompt` instructs consumers to retrieve
-evidence before citing it, distinguish inference from observation, and abstain when
+`evidence_ids` and `measurement_status`. `prompt` instructs consumers to use actually
+received measurements/provenance, retrieve missing details, distinguish inference from observation, and abstain when
 measurements cannot distinguish alternatives. The [skill](../skills/muvi/SKILL.md)
 adds rhythm-specific usage and interpretation.
 
-`get_track_digest(track_id, section_offset=0)` pages candidate sections in groups of
+`get_track_digest(track_id, section_offset=0, flow_offset=0)` pages candidate sections in groups of
 24; follow `next_section_offset` until null for complete coverage. CLI `sections`
 already returns every candidate section. A first-page digest is not a complete timeline.
+
+The `flow` view describes acoustic progression with band powers, relative energy,
+detected-attack rates, computed changes and qualified `similar_to` relationships.
+It aggregates neighboring candidate sections if all bands stay within 3 dB and
+attack rates within max(0.5/s, 25%); comparison against the first member prevents
+gradual drift from collapsing the whole track. These are disclosed heuristic
+tolerances, not probabilities or perceptual-equivalence thresholds. Group letters
+are not used to infer a return. Means are duration-weighted section means, not new
+exact-window measurements; source silence and song-function labels are not inferred.
+
+Flow pages contain at most 12 items. Follow `flow.next_offset` with `flow_offset`
+(CLI `--flow-offset`) until null. `ending` exposes the final item even on a truncated
+page; it does not replace omitted middle pages. `FLOW_…` is a view/navigation ID;
+underlying `evidence_ids` resolve to section measurements. The method, parameters,
+units and aggregates are provided inline. Raw sections remain independently pageable.
 
 `get_window(track_id, start_s=0, end_s=None)` defaults to the whole track. Exact
 requested intervals need not coincide with sections. Source RMS/activity uses
@@ -84,8 +100,19 @@ rounded source-sample bounds; spectral statistics select cached frame centers in
 the half-open interval, with STFT context reported in `measurement_basis`. A query
 shorter than one frame can have no spectral data while still containing source audio.
 It returns compact beat/attack summaries; request paged `get_beats`/`get_rhythm`
-only for individual events. Compare arbitrary intervals using two window responses;
-`compare_sections` retains its section-boundary contract.
+only for individual events.
+
+`compare_sections(track_id, range_a=[start,end], range_b=[start,end])` computes
+exact-span changes using the same windows. Supply both ranges or both `section_a`
+and `section_b`; incomplete or mixed inputs are rejected. Existing section-ID calls
+retain their response contract. Range mode returns `window_a`, `window_b`, `changes`
+and exact `W…` evidence inline. A deterministic `summary` exposes scoped band-power
+and every band-attack-rate change without another query. All deltas are B minus A. Per-band attack densities
+normalize unequal durations; detected attacks are not beat counts. Power fractions
+are not used to infer absolute changes. `within_1_db` describes a numerical range,
+not perceptual sameness. Zero-power dB differences are null with explicit `to_zero`,
+`from_zero` or `both_zero` status; missing spectral data uses `unavailable`.
+Source RMS null deltas remain unavailable; inspect source activity in each input.
 
 Window summaries have immutable `W…` evidence IDs. `get_evidence` retrieves the exact
 measurement values, times, units and method from a lazily generated query artifact.
@@ -111,8 +138,8 @@ Default: `~/.muvi`.
 ```
 
 Analysis publishes atomically under a process lock. Cache identity includes audio
-hash, pipeline version and parameter hash. Package 0.7.0 reuses pipeline 0.6.0;
-window summaries and digest pagination do not require reanalysis. Pipeline 0.6.0 introduced
+hash, pipeline version and parameter hash. Package 0.8.1 reuses pipeline 0.6.0;
+window comparisons and derived flow do not require reanalysis. Pipeline 0.6.0 introduced
 tracked beat hypotheses (schema 0.3.0). Reanalyze original audio to populate these
 fields; older analyses return `available: false` from `beats`. Older 0.3.x libraries remain
 readable; new analysis versions preserve previous ones. Object/evidence IDs are local

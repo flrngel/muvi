@@ -1,0 +1,205 @@
+{
+  "protocol": "docs/FLOW_COMPARISON_PLAN.md (preimplementation commit14e048a); criteria unchanged after answers",
+  "scope": "Item-level qualitative judgments; no aggregate musical-understanding accuracy claim. Material prose misses are distinct from exact tool packet checks.",
+  "rows": [
+    {
+      "round": "round1",
+      "agent": "terra",
+      "case": "c81",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "pass",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "round1",
+      "agent": "terra",
+      "case": "c82",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "pass",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "round1",
+      "agent": "terra",
+      "case": "c83",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "partial",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "pass",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [
+        "Prose says null spectral power in D, while linear powers are zero and dB values null. Structured observations and activity distinction are correct."
+      ],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "round1",
+      "agent": "luna",
+      "case": "c81",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "partial",
+        "activity": "pass",
+        "grounding": "partial",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [
+        "Applies -0.3 dB and 4.91 attacks/s of 33.37-120.05s flow item to expanded 27.5-120s passage, including a weaker transition."
+      ],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "round1",
+      "agent": "luna",
+      "case": "c82",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "pass",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "round1",
+      "agent": "luna",
+      "case": "c83",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "partial",
+        "activity": "pass",
+        "grounding": "partial",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [
+        "Calls O/R nearly identical in all measured statistics, but mid detected attack rate increases 1.778->2.444/s. Similar power/aggregate rate does not support this universal claim."
+      ],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "final",
+      "agent": "terra",
+      "case": "c91",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "pass",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "final",
+      "agent": "terra",
+      "case": "c92",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "pass",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "final",
+      "agent": "terra",
+      "case": "c93",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "pass",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "final",
+      "agent": "luna",
+      "case": "c91",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "partial",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [
+        "Calls FLOW_012 the ending; actual final item is FLOW_018. Duration and ending statistics were read correctly; navigation reference is wrong."
+      ],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "final",
+      "agent": "luna",
+      "case": "c92",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "partial",
+        "activity": "pass",
+        "grounding": "partial",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [
+        "Calls FLOW_012 the ending; actual final item is FLOW_015. Duration and ending statistics were read correctly; navigation reference is wrong.",
+        "Overall sentence says all bands increase at87.946-130.670s; mid power falls from0.03411 to0.02564 relative to preceding item. Requested exact comparisons remain correct."
+      ],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    },
+    {
+      "round": "final",
+      "agent": "luna",
+      "case": "c93",
+      "criteria": {
+        "exact_scope": "pass",
+        "arithmetic_and_directions": "pass",
+        "overall_acoustic_progression": "pass",
+        "activity": "pass",
+        "grounding": "pass",
+        "usefulness_and_restraint": "pass"
+      },
+      "issues": [],
+      "basis": "Root manual review of unedited prose, actual received measurements and original construction; real recordings assess grounding, not annotated musical truth."
+    }
+  ],
+  "trace_limits": [
+    "Initial Terra round1 Python-launcher failure and Luna round1 MCP harness failures are agent-reported, outside successful call logs.",
+    "Final Luna overwrote its initial wrong-argument error on retry; no complete-call-history claim."
+  ],
+  "detector_limits": [
+    "Repeated/level-scaled original construction can produce different band-attack detections.",
+    "Broad section recurrence can miss similar exact spans due to context and very low-energy bands."
+  ]
+}

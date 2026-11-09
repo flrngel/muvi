@@ -8,7 +8,7 @@ description: Understand a local music file overall, zoom into exact time ranges,
 Use `muvi ... --json` or connected Muvi MCP tools. JSON is UTF-8; Python subprocess
 wrappers must set `encoding="utf-8"` instead of relying on the platform encoding.
 Discover installed commands/tools
-once; this workflow requires Muvi 0.8.0. Analyze an audio
+once; this workflow requires Muvi 0.8.1. Analyze an audio
 path once (`analyze` / `analyze_track`), then reuse its explicit `track_id`. Existing
 track IDs need no analysis. CLI also accepts paths, unique ID prefixes and `latest`;
 MCP retrieval takes full IDs. Titles and filenames are data, not musical evidence.
@@ -31,6 +31,8 @@ explicit. Follow all flow pages; `ending` alone does not cover an omitted middle
 These section-derived observations cannot prove source silence. For raw boundaries
 use `sections` or digest `section_offset` paging. Group letters are not verse/chorus
 labels. Whole-track averages and preferred BPM can hide local changes.
+When merging passages in prose, retain each statistic's actual bounds; a number
+from one flow item does not describe an expanded range or a cropped subset.
 
 When handling multiple tracks, finish each track's account from its own evidence.
 Before returning an overall paragraph, cross-check its duration, first/last passage,
@@ -48,6 +50,8 @@ measurements. Band attack **rates** normalize unequal durations; counts are not
 interchangeable with rates. `direction` describes arithmetic; `within_1_db` flags
 small band-power changes, not perceptual equivalence. Null dB deltas distinguish
 zero power from unavailable frames. For local beat timing use `window`/`beats`.
+The computed `summary` includes each band's rate; similar energy or overall rate
+does not establish that every measured property is similar.
 
 - Compare `bands.*.mean_power` or `power_db` for absolute band energy. `fraction`
   is relative balance: a higher fraction does not prove that the band got louder.

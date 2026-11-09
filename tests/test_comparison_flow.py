@@ -43,6 +43,8 @@ def test_exact_comparison_gain_reverse_identity_and_inline_evidence(measured):
     assert same['changes']['band_power']['low']['direction'] == 'unchanged'
     assert abs(forward['window_a']['bands']['low']['fraction']-forward['window_b']['bands']['low']['fraction']) < .001
     assert forward['changes']['source_rms_dbfs']['delta'] == pytest.approx(-6.0206, abs=.02)
+    assert 'A [0.371,3.713)s; B [4.371,7.713)s' in forward['summary']
+    assert all(band+' ' in forward['summary'] for band in ('low','mid','high'))
     assert len(forward['evidence']) == 2
     for ev, span in zip(forward['evidence'], (a,b)):
         assert (ev['start_s'],ev['end_s']) == tuple(span)
@@ -57,6 +59,7 @@ def test_zero_and_missing_spectral_frames_are_distinct(measured):
     assert silence['changes']['band_power']['low']['status']=='to_zero'
     assert silence['changes']['band_power']['low']['delta_db'] is None
     assert silence['changes']['source_rms_dbfs']['delta'] is None
+    assert 'signal_present->digital_silence' in silence['summary']
     tiny=tools.compare_sections(g.track_id,range_a=[.001,.002],range_b=[8.001,8.002])
     assert tiny['window_a']['source_activity']=='signal_present'
     assert tiny['changes']['band_power']['low']['status']=='unavailable'

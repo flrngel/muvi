@@ -4,7 +4,7 @@ Turn local audio into timestamped evidence that people and language models can i
 Find acoustic attacks, compare sections, examine low-end activity, and check the
 measurements behind an answer. Runs on CPU with no account, API key or model download.
 
-**CLI only · Python 3.12–3.13 · Optional MCP · Version 0.7.0**
+**CLI only · Python 3.12–3.13 · Optional MCP · Version 0.8.1**
 
 [Install](#install) · [First analysis](#first-analysis) · [Use-with-an-LLM](#use-with-an-llm) ·
 [Command reference](docs/CLI_REFERENCE.md) · [Verification](#verification)
@@ -17,7 +17,7 @@ The installation target is **macOS 13 or later**, using native Apple Silicon or 
 Python. Dependency resolution was checked for both architectures with Python 3.12
 and 3.13. **Execution on a physical Mac has not yet been tested.** Windows execution
 and an independently installed wheel have been tested. See the
-[platform check record](docs/verification/skill-scope/release.json).
+[platform check record](docs/verification/flow-comparison/release.json).
 
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/).
    If you already use Homebrew:
@@ -53,11 +53,11 @@ and an independently installed wheel have been tested. See the
    muvi rhythm latest --band low --start 0 --end 8
    ```
 
-**Already have the wheel?** Copy `dist/muvi_genome-0.7.0-py3-none-any.whl` to your
+**Already have the wheel?** Copy `dist/muvi_genome-0.8.1-py3-none-any.whl` to your
 Mac's Downloads folder and replace step 2 with:
 
 ```sh
-uv tool install --python 3.12 ~/Downloads/muvi_genome-0.7.0-py3-none-any.whl
+uv tool install --python 3.12 ~/Downloads/muvi_genome-0.8.1-py3-none-any.whl
 uv tool update-shell
 ```
 
@@ -102,6 +102,7 @@ agents, keep the full `track_id` returned by `analyze --json`.
 | Inspect local pulse timing | `muvi rhythm latest --band low --start 8 --end 16 --json` |
 | Retrieve supporting measurements | `muvi evidence latest E0001 E0002` |
 | Check whether bass is identifiable | `muvi verify latest independent-bass` |
+| Compare exact intervals | `muvi compare latest --a 32 48 --b 64 80 --json` |
 | Compare candidate sections | `muvi compare latest SEC_01 SEC_02` |
 | Export an original-mixture clip | `muvi crop latest --start 8 --end 16 -o clip.wav` |
 | Export a chart and its legend | `muvi render latest --start 8 --end 16 -o evidence.png` |
@@ -118,7 +119,7 @@ track references, timestamps, pagination, output contracts and library layout.
 Give an agent shell access to `muvi` and the [Muvi skill](skills/muvi/SKILL.md).
 Copy that skill folder into the skill directory supported by your agent if needed;
 Muvi does not modify agent settings automatically.
-The standalone `dist/muvi-skill-0.7.0.zip` contains the same `muvi/SKILL.md` for
+The standalone `dist/muvi-skill-0.8.1.zip` contains the same `muvi/SKILL.md` for
 copying to another computer. For Codex on macOS, extract the `muvi` folder into
 `~/.codex/skills/`, then start a new session and ask it to use `$muvi`.
 
@@ -132,9 +133,10 @@ muvi prompt
 
 `--json` writes one UTF-8 JSON document to stdout; progress stays on stderr.
 The skill guides **overall → exact interval → comparison**. For arbitrary ranges,
-request each range with `window` and compare the same measurements. `compare` uses
-stored candidate sections, whose boundaries may differ from your requested times.
-The agent retrieves cited evidence and preserves uncertainty about instruments,
+use `compare TRACK --a START END --b START END` for computed energy and attack-rate
+changes with exact evidence inline. Section-ID comparison remains available.
+`inspect` adds measured acoustic progression; follow `flow.next_offset` using
+`--flow-offset` to cover long tracks. The agent uses received evidence and preserves uncertainty about instruments,
 meter and downbeats; it need not fetch every beat timestamp for a summary question.
 
 ### MCP
@@ -147,7 +149,7 @@ muvi mcp-config
 ```
 
 For a downloaded wheel, replace `".[mcp]"` with
-`"/path/to/muvi_genome-0.7.0-py3-none-any.whl[mcp]"`.
+`"/path/to/muvi_genome-0.8.1-py3-none-any.whl[mcp]"`.
 The build restriction lets Intel Macs select an available `cryptography` wheel;
 see [the platform check record](docs/verification/macos-install.json).
 
@@ -203,12 +205,15 @@ upload audio; a connected assistant may send retrieved evidence to its model pro
 
 ## Verification
 
-Version 0.7.0 passes **90 tests**, including actual MCP window/evidence queries,
-and an independently installed wheel smoke test. It adds one retrieval tool,
-explicit silence semantics and the revised overall/interval skill.
-The extraction pipeline remains 0.6.0; existing libraries
-need no reanalysis. [Independent skill-use results](docs/SKILL_SCOPE_EVALUATION.md)
-separate measured understanding from simple tool execution and from beat accuracy.
+Version 0.8.1 passes **96 tests**, actual MCP calls and an isolated installed-wheel
+smoke test. It extends existing comparison and digest tools with exact-range arithmetic
+and measured acoustic progression. It adds no public tool, dependency or extraction
+model. The pipeline remains 0.6.0; existing libraries need no reanalysis.
+The [fixed evaluation criteria](docs/FLOW_COMPARISON_PLAN.md) separate numerical
+correctness, useful explanations and sufficient received evidence.
+[Independent results](docs/FLOW_COMPARISON_EVALUATION.md) retain mistakes and limitations.
+Version 0.7.0 previously passed 90 tests; [that skill evaluation](docs/SKILL_SCOPE_EVALUATION.md)
+records its consumer errors separately from successful retrieval.
 
 Version 0.6.0 passed **84 tests** (83 regression/feature tests plus the strict reference
 scorer test), **16 controlled benchmark cases**, and actual MCP calls on Windows.

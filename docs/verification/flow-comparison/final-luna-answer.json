@@ -1,0 +1,1973 @@
+{
+  "cases": [
+    {
+      "case": "c91",
+      "track_id": "sha256:548525cf75f01ce62e6f2436fc7cf88df37a0e78bf62d2382e6c0b8a7510fa0e",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "duration_s": 208.07943310657598,
+      "overall": "Duration 208.079 s; analysis dsp-0.6.0-6f2fa4bfb7ea, track sha256:548525cf75f01ce62e6f2436fc7cf88df37a0e78bf62d2382e6c0b8a7510fa0e. Section-flow evidence covers 0–208.079 s (26 candidate sections; E0004 onward). The opening 0–7.59 s is mixed low/mid; from 7.59–22.15 s low power falls sharply while mid leads, with attacks ~3.85–5.04/s (FLOW_001–003). At 22.15–35.96 s both low and mid rise (0.0459/0.0322 power; 4.49 attacks/s). Mid leads again 35.96–52.07 s and peaks at 0.0714 by 46.36–52.07. Low returns strongly across 52.07–113.13, with broad similar-to descriptors linking 67.09–89.71, 89.71–97.08 and 97.08–113.13 to 22.15–35.96; this is a band/attack descriptor match, not phrase identity. At 113.13–142.04 the balance shifts back to mid (mid 0.0560 then 0.0737; attacks ~4.6–4.8/s), then activity/attack density rises at 142.04–157.11 (8.29/s) and low strengthens at 157.11–187.80 (low 0.0636; 6.65/s), descriptor-similar to 67.09–89.71. A late mid-led reduced-low passage 187.80–202.92 (~3.11–4.21 attacks/s) is descriptor-similar to 7.59–17.19. Last 202.92–208.079 s is near-silent in section-derived power and has 0 detected attacks; this flow aggregation alone cannot prove source PCM silence. FLOW IDs and their E references in digest are navigation/aggregate evidence. Exact windows are independently measured below; flow ending is supported by FLOW_012 and its E references.",
+      "comparisons": {
+        "A_to_B": {
+          "prose": "Exact A [13.25,29.75) → B [61.125,84.375), W936eb925b11a3be68023 → We1fa4a8233a9ffca684f. Band mean power (low/mid/high) changes +3.74/+0.477/+1.212 dB B−A. A fractions 0.390/0.495/0.115; B 0.567/0.340/0.093, so the measured balance shifts lowward. Texture centroid 1012.5→751.2 Hz; harmonic-like ratio .695→.732 (descriptors, no source identification). Total detected attacks 4.485→5.849/s; low/mid/high rates 1.818/7.333/6.667→6.624/9.032/7.957/s. Both signal present; B has higher source RMS (−9.59 vs −11.41 dBFS).",
+          "evidence": {
+            "track_id": "sha256:548525cf75f01ce62e6f2436fc7cf88df37a0e78bf62d2382e6c0b8a7510fa0e",
+            "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+            "time_span": {
+              "start_s": 13.25,
+              "end_s": 84.375
+            },
+            "evidence_ids": [
+              "W936eb925b11a3be68023",
+              "We1fa4a8233a9ffca684f"
+            ],
+            "measurement_status": "observed_with_inferences",
+            "comparison_basis": "exact_requested_windows",
+            "summary": "A [13.25,29.75)s; B [61.125,84.375)s. Band-power changes B minus A: low 3.74 dB (finite); mid 0.4774 dB (finite); high 1.212 dB (finite). Detected band-attack rates A->B: low 1.818->6.624/s (increased); mid 7.333->9.032/s (increased); high 6.667->7.957/s (increased). Overall detected attack rate 4.485->5.849/s. Source activity signal_present->signal_present. Zero band power is 0; its dB level is null. Similar energy does not establish similar rates in every band.",
+            "window_a": {
+              "time_span": {
+                "start_s": 13.25,
+                "end_s": 29.75
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -11.411614182319425,
+              "bands": {
+                "low": {
+                  "mean_power": 0.02204972564047471,
+                  "fraction": 0.39002096595465413,
+                  "power_db": -16.565968099861283
+                },
+                "mid": {
+                  "mean_power": 0.028008133224601595,
+                  "fraction": 0.49541474360996074,
+                  "power_db": -15.527158364556872
+                },
+                "high": {
+                  "mean_power": 0.0064768599454974,
+                  "fraction": 0.11456429043538519,
+                  "power_db": -21.8863549395356
+                }
+              },
+              "attack_count": 74,
+              "attack_density_per_s": 4.484848484848484,
+              "energy_weighted_centroid_hz": 1012.5047820671521,
+              "harmonic_like_ratio": 0.6950825297390657,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 1421,
+                "first_frame_s": 13.258594512939453,
+                "last_frame_s": 29.744762420654297,
+                "source_first_sample": 584325,
+                "source_end_sample_exclusive": 1311975,
+                "source_sample_rate": 44100,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 1.8181818181818181,
+                "mid": 7.333333333333333,
+                "high": 6.666666666666667
+              },
+              "evidence_ids": [
+                "W936eb925b11a3be68023"
+              ]
+            },
+            "window_b": {
+              "time_span": {
+                "start_s": 61.125,
+                "end_s": 84.375
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -9.58909028402403,
+              "bands": {
+                "low": {
+                  "mean_power": 0.05216395151851609,
+                  "fraction": 0.5670758082904062,
+                  "power_db": -12.82629517397201
+                },
+                "mid": {
+                  "mean_power": 0.03126276356795909,
+                  "fraction": 0.3398583965288636,
+                  "power_db": -15.049726338259282
+                },
+                "high": {
+                  "mean_power": 0.008560900600707038,
+                  "fraction": 0.09306579518073035,
+                  "power_db": -20.67480545446251
+                }
+              },
+              "attack_count": 136,
+              "attack_density_per_s": 5.849462365591398,
+              "energy_weighted_centroid_hz": 751.2390736184237,
+              "harmonic_like_ratio": 0.7315019856401496,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 2003,
+                "first_frame_s": 61.126529693603516,
+                "last_frame_s": 84.36970520019531,
+                "source_first_sample": 2695612,
+                "source_end_sample_exclusive": 3720938,
+                "source_sample_rate": 44100,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 6.623655913978495,
+                "mid": 9.03225806451613,
+                "high": 7.956989247311828
+              },
+              "evidence_ids": [
+                "We1fa4a8233a9ffca684f"
+              ]
+            },
+            "changes": {
+              "band_power": {
+                "low": {
+                  "a": 0.02204972564047471,
+                  "b": 0.05216395151851609,
+                  "delta": 0.03011422587804138,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 3.7396729258892725,
+                  "within_1_db": false
+                },
+                "mid": {
+                  "a": 0.028008133224601595,
+                  "b": 0.03126276356795909,
+                  "delta": 0.003254630343357493,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 0.47743202629759063,
+                  "within_1_db": true
+                },
+                "high": {
+                  "a": 0.0064768599454974,
+                  "b": 0.008560900600707038,
+                  "delta": 0.002084040655209638,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 1.211549485073089,
+                  "within_1_db": false
+                }
+              },
+              "band_attack_density_per_s": {
+                "low": {
+                  "a": 1.8181818181818181,
+                  "b": 6.623655913978495,
+                  "delta": 4.805474095796677,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                },
+                "mid": {
+                  "a": 7.333333333333333,
+                  "b": 9.03225806451613,
+                  "delta": 1.6989247311827969,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                },
+                "high": {
+                  "a": 6.666666666666667,
+                  "b": 7.956989247311828,
+                  "delta": 1.290322580645161,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                }
+              },
+              "source_rms_dbfs": {
+                "a": -11.411614182319425,
+                "b": -9.58909028402403,
+                "delta": 1.8225238982953957,
+                "unit": "dBFS; delta in dB",
+                "direction": "increased"
+              },
+              "attack_density_per_s": {
+                "a": 4.484848484848484,
+                "b": 5.849462365591398,
+                "delta": 1.3646138807429136,
+                "unit": "detected attacks/s",
+                "direction": "increased"
+              },
+              "energy_weighted_centroid_hz": {
+                "a": 1012.5047820671521,
+                "b": 751.2390736184237,
+                "delta": -261.26570844872833,
+                "unit": "Hz",
+                "direction": "decreased"
+              },
+              "harmonic_like_ratio": {
+                "a": 0.6950825297390657,
+                "b": 0.7315019856401496,
+                "delta": 0.036419455901083864,
+                "unit": "texture ratio",
+                "direction": "increased"
+              }
+            },
+            "evidence": [
+              {
+                "start_s": 13.25,
+                "end_s": 29.75,
+                "id": "W936eb925b11a3be68023",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.02204972564047471,
+                    0.028008133224601595,
+                    0.0064768599454974
+                  ],
+                  "source_rms_dbfs": -11.411614182319425,
+                  "source_sample_peak_dbfs": 0.32464221883868416,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 1012.5047820671521,
+                  "energy_weighted_harmonic_like_ratio": 0.6950825297390657,
+                  "detected_attack_count": 74.0,
+                  "attack_density_per_s": 4.484848484848484,
+                  "analysis_frame_count": 1421.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              },
+              {
+                "start_s": 61.125,
+                "end_s": 84.375,
+                "id": "We1fa4a8233a9ffca684f",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.05216395151851609,
+                    0.03126276356795909,
+                    0.008560900600707038
+                  ],
+                  "source_rms_dbfs": -9.58909028402403,
+                  "source_sample_peak_dbfs": 0.9410870979379203,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 751.2390736184237,
+                  "energy_weighted_harmonic_like_ratio": 0.7315019856401496,
+                  "detected_attack_count": 136.0,
+                  "attack_density_per_s": 5.849462365591398,
+                  "analysis_frame_count": 2003.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              }
+            ],
+            "interpretation": "All deltas are B minus A. Compare attack rates for unequal durations; counts are not beats. Null dB deltas distinguish zero from unavailable power. Inline measurements and evidence suffice for these comparisons; no duplicate evidence fetch required.",
+            "limitation": "Energy is not perceived loudness; descriptors do not identify instruments, meter or repeated phrases."
+          }
+        },
+        "B_to_C": {
+          "prose": "Exact B [61.125,84.375) → C [121.75,138.25), We1fa4a8233a9ffca684f → Wd661219812856ec9c3cb. Low/mid/high mean-power changes −12.01/+2.769/+1.056 dB. Fractions move from .567/.340/.093 to .045/.806/.149: much less low, strongly mid-led. Centroid 751.2→1185.6 Hz; harmonic-like ratio .732→.745. Total attacks 5.849→4.667/s; band attack rates 6.624/9.032/7.957→1.455/9.212/7.394/s. C is reasonably similar in broad texture to 35.96–46.36 s (FLOW_005): mid-led and low-reduced, but the descriptor match is qualified and not phrase identity; exact C window is the cited measure.",
+          "evidence": {
+            "track_id": "sha256:548525cf75f01ce62e6f2436fc7cf88df37a0e78bf62d2382e6c0b8a7510fa0e",
+            "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+            "time_span": {
+              "start_s": 61.125,
+              "end_s": 138.25
+            },
+            "evidence_ids": [
+              "We1fa4a8233a9ffca684f",
+              "Wd661219812856ec9c3cb"
+            ],
+            "measurement_status": "observed_with_inferences",
+            "comparison_basis": "exact_requested_windows",
+            "summary": "A [61.125,84.375)s; B [121.75,138.25)s. Band-power changes B minus A: low -12.01 dB (finite); mid 2.769 dB (finite); high 1.056 dB (finite). Detected band-attack rates A->B: low 6.624->1.455/s (decreased); mid 9.032->9.212/s (increased); high 7.957->7.394/s (decreased). Overall detected attack rate 5.849->4.667/s. Source activity signal_present->signal_present. Zero band power is 0; its dB level is null. Similar energy does not establish similar rates in every band.",
+            "window_a": {
+              "time_span": {
+                "start_s": 61.125,
+                "end_s": 84.375
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -9.58909028402403,
+              "bands": {
+                "low": {
+                  "mean_power": 0.05216395151851609,
+                  "fraction": 0.5670758082904062,
+                  "power_db": -12.82629517397201
+                },
+                "mid": {
+                  "mean_power": 0.03126276356795909,
+                  "fraction": 0.3398583965288636,
+                  "power_db": -15.049726338259282
+                },
+                "high": {
+                  "mean_power": 0.008560900600707038,
+                  "fraction": 0.09306579518073035,
+                  "power_db": -20.67480545446251
+                }
+              },
+              "attack_count": 136,
+              "attack_density_per_s": 5.849462365591398,
+              "energy_weighted_centroid_hz": 751.2390736184237,
+              "harmonic_like_ratio": 0.7315019856401496,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 2003,
+                "first_frame_s": 61.126529693603516,
+                "last_frame_s": 84.36970520019531,
+                "source_first_sample": 2695612,
+                "source_end_sample_exclusive": 3720938,
+                "source_sample_rate": 44100,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 6.623655913978495,
+                "mid": 9.03225806451613,
+                "high": 7.956989247311828
+              },
+              "evidence_ids": [
+                "We1fa4a8233a9ffca684f"
+              ]
+            },
+            "window_b": {
+              "time_span": {
+                "start_s": 121.75,
+                "end_s": 138.25
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -10.416562951255589,
+              "bands": {
+                "low": {
+                  "mean_power": 0.0032873310981974407,
+                  "fraction": 0.044817030801032665,
+                  "power_db": -24.831565518117614
+                },
+                "mid": {
+                  "mean_power": 0.059144220689808416,
+                  "fraction": 0.8063283804334986,
+                  "power_db": -12.280876862879637
+                },
+                "high": {
+                  "mean_power": 0.010918490359848687,
+                  "fraction": 0.14885458876546875,
+                  "power_db": -19.61837405011352
+                }
+              },
+              "attack_count": 77,
+              "attack_density_per_s": 4.666666666666667,
+              "energy_weighted_centroid_hz": 1185.5867993770191,
+              "harmonic_like_ratio": 0.7452431383711471,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 1421,
+                "first_frame_s": 121.75382995605469,
+                "last_frame_s": 138.24000549316406,
+                "source_first_sample": 5369175,
+                "source_end_sample_exclusive": 6096825,
+                "source_sample_rate": 44100,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 1.4545454545454546,
+                "mid": 9.212121212121213,
+                "high": 7.393939393939394
+              },
+              "evidence_ids": [
+                "Wd661219812856ec9c3cb"
+              ]
+            },
+            "changes": {
+              "band_power": {
+                "low": {
+                  "a": 0.05216395151851609,
+                  "b": 0.0032873310981974407,
+                  "delta": -0.04887662042031865,
+                  "unit": "window-normalized digital power",
+                  "direction": "decreased",
+                  "status": "finite",
+                  "delta_db": -12.005270344145602,
+                  "within_1_db": false
+                },
+                "mid": {
+                  "a": 0.03126276356795909,
+                  "b": 0.059144220689808416,
+                  "delta": 0.027881457121849328,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 2.7688494753796444,
+                  "within_1_db": false
+                },
+                "high": {
+                  "a": 0.008560900600707038,
+                  "b": 0.010918490359848687,
+                  "delta": 0.002357589759141649,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 1.056431404348992,
+                  "within_1_db": false
+                }
+              },
+              "band_attack_density_per_s": {
+                "low": {
+                  "a": 6.623655913978495,
+                  "b": 1.4545454545454546,
+                  "delta": -5.169110459433041,
+                  "unit": "detected attacks/s",
+                  "direction": "decreased"
+                },
+                "mid": {
+                  "a": 9.03225806451613,
+                  "b": 9.212121212121213,
+                  "delta": 0.17986314760508293,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                },
+                "high": {
+                  "a": 7.956989247311828,
+                  "b": 7.393939393939394,
+                  "delta": -0.5630498533724344,
+                  "unit": "detected attacks/s",
+                  "direction": "decreased"
+                }
+              },
+              "source_rms_dbfs": {
+                "a": -9.58909028402403,
+                "b": -10.416562951255589,
+                "delta": -0.8274726672315591,
+                "unit": "dBFS; delta in dB",
+                "direction": "decreased"
+              },
+              "attack_density_per_s": {
+                "a": 5.849462365591398,
+                "b": 4.666666666666667,
+                "delta": -1.182795698924731,
+                "unit": "detected attacks/s",
+                "direction": "decreased"
+              },
+              "energy_weighted_centroid_hz": {
+                "a": 751.2390736184237,
+                "b": 1185.5867993770191,
+                "delta": 434.3477257585954,
+                "unit": "Hz",
+                "direction": "increased"
+              },
+              "harmonic_like_ratio": {
+                "a": 0.7315019856401496,
+                "b": 0.7452431383711471,
+                "delta": 0.013741152730997519,
+                "unit": "texture ratio",
+                "direction": "increased"
+              }
+            },
+            "evidence": [
+              {
+                "start_s": 61.125,
+                "end_s": 84.375,
+                "id": "We1fa4a8233a9ffca684f",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.05216395151851609,
+                    0.03126276356795909,
+                    0.008560900600707038
+                  ],
+                  "source_rms_dbfs": -9.58909028402403,
+                  "source_sample_peak_dbfs": 0.9410870979379203,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 751.2390736184237,
+                  "energy_weighted_harmonic_like_ratio": 0.7315019856401496,
+                  "detected_attack_count": 136.0,
+                  "attack_density_per_s": 5.849462365591398,
+                  "analysis_frame_count": 2003.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              },
+              {
+                "start_s": 121.75,
+                "end_s": 138.25,
+                "id": "Wd661219812856ec9c3cb",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.0032873310981974407,
+                    0.059144220689808416,
+                    0.010918490359848687
+                  ],
+                  "source_rms_dbfs": -10.416562951255589,
+                  "source_sample_peak_dbfs": 0.5711193187024379,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 1185.5867993770191,
+                  "energy_weighted_harmonic_like_ratio": 0.7452431383711471,
+                  "detected_attack_count": 77.0,
+                  "attack_density_per_s": 4.666666666666667,
+                  "analysis_frame_count": 1421.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              }
+            ],
+            "interpretation": "All deltas are B minus A. Compare attack rates for unequal durations; counts are not beats. Null dB deltas distinguish zero from unavailable power. Inline measurements and evidence suffice for these comparisons; no duplicate evidence fetch required.",
+            "limitation": "Energy is not perceived loudness; descriptors do not identify instruments, meter or repeated phrases."
+          }
+        }
+      },
+      "limitations": "Bands are broad spectral measurements; source RMS is not perceived loudness/LUFS. Attack detections are not listener beats. Centroid and harmonic-like ratio are texture descriptors only; they do not establish instrument, vocal, meter, genre, key, chord, mood or phrase identity. Flow similarity is heuristic (3 dB band and attack-rate tolerance), not a probability. Exact interval comparisons use requested original bounds and W evidence."
+    },
+    {
+      "case": "c92",
+      "track_id": "sha256:39ce59c42c1fcae4132f6b8f3026b27085353a37fafcce1228d808395d1de3f2",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "duration_s": 213.0426984126984,
+      "overall": "Duration 213.043 s; analysis dsp-0.6.0-6f2fa4bfb7ea, track sha256:39ce59c42c1fcae4132f6b8f3026b27085353a37fafcce1228d808395d1de3f2. Flow covers 0–213.043 s (20 sections). Opening 0–32.43 s builds low-dominant, low mean power from 0.0147 to 0.0641; detected attacks remain sparse at ~1.6–2.0/s. Low remains substantial through 66.34 s. At 66.34–87.95 s mid/high rise and attacks vary (1.09 then 3.40/s); at 87.95–130.67 all bands increase, especially low (0.1379) and attack density reaches 6.25/s. 130.67–157.62 backs off to mid-led sections with much lower attack density (1.12–2.35/s; a brief 0.30/s at 150.04–153.36). Activity thickens again 157.62–201.44, low 0.053–0.143 and 4.23–6.32 attacks/s; this later span is descriptor-similar to earlier 76.47–87.95 and 87.95–130.67 respectively, not evidence of repeated phrases. Closing 201.44–213.043 remains low-led with 3.36 attacks/s and is descriptor-similar to 76.47–87.95. All flow figures are candidate-section aggregates, not exact sample-level silence or formal song labels. Exact windows are independently measured below; flow ending is supported by FLOW_012 and its E references.",
+      "comparisons": {
+        "A_to_B": {
+          "prose": "Exact A [13.25,29.75) → B [61.125,84.375), W936eb925b11a3be68023 → We1fa4a8233a9ffca684f. Low/mid/high mean-power changes −0.546/+4.146/+7.626 dB. Fractions shift from .775/.201/.024 to .508/.387/.105, so mid/high contribution grows; low absolute power is only modestly down. Centroid 398.8→866.6 Hz; harmonic-like ratio .773→.712. Overall attacks 1.758→1.935/s; low/mid/high rates 4.667/3.212/.606→7.871/7.398/2.968/s. Source RMS −12.88→−10.50 dBFS; both signal present.",
+          "evidence": {
+            "track_id": "sha256:39ce59c42c1fcae4132f6b8f3026b27085353a37fafcce1228d808395d1de3f2",
+            "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+            "time_span": {
+              "start_s": 13.25,
+              "end_s": 84.375
+            },
+            "evidence_ids": [
+              "W936eb925b11a3be68023",
+              "We1fa4a8233a9ffca684f"
+            ],
+            "measurement_status": "observed_with_inferences",
+            "comparison_basis": "exact_requested_windows",
+            "summary": "A [13.25,29.75)s; B [61.125,84.375)s. Band-power changes B minus A: low -0.5458 dB (finite); mid 4.146 dB (finite); high 7.626 dB (finite). Detected band-attack rates A->B: low 4.667->7.871/s (increased); mid 3.212->7.398/s (increased); high 0.6061->2.968/s (increased). Overall detected attack rate 1.758->1.935/s. Source activity signal_present->signal_present. Zero band power is 0; its dB level is null. Similar energy does not establish similar rates in every band.",
+            "window_a": {
+              "time_span": {
+                "start_s": 13.25,
+                "end_s": 29.75
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -12.877859046942152,
+              "bands": {
+                "low": {
+                  "mean_power": 0.03759296400374022,
+                  "fraction": 0.774826171007745,
+                  "power_db": -14.248934311438362
+                },
+                "mid": {
+                  "mean_power": 0.009740721739770912,
+                  "fraction": 0.20076539130374738,
+                  "power_db": -20.11408862835232
+                },
+                "high": {
+                  "mean_power": 0.001184246936597647,
+                  "fraction": 0.024408437688507707,
+                  "power_db": -29.26557730028723
+                }
+              },
+              "attack_count": 29,
+              "attack_density_per_s": 1.7575757575757576,
+              "energy_weighted_centroid_hz": 398.82895559286777,
+              "harmonic_like_ratio": 0.7726265650594172,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 1421,
+                "first_frame_s": 13.258594512939453,
+                "last_frame_s": 29.744762420654297,
+                "source_first_sample": 584325,
+                "source_end_sample_exclusive": 1311975,
+                "source_sample_rate": 44100,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 4.666666666666667,
+                "mid": 3.212121212121212,
+                "high": 0.6060606060606061
+              },
+              "evidence_ids": [
+                "W936eb925b11a3be68023"
+              ]
+            },
+            "window_b": {
+              "time_span": {
+                "start_s": 61.125,
+                "end_s": 84.375
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -10.497185179060658,
+              "bands": {
+                "low": {
+                  "mean_power": 0.03315308837499516,
+                  "fraction": 0.5076242849721978,
+                  "power_db": -14.794760086847347
+                },
+                "mid": {
+                  "mean_power": 0.02530168449641933,
+                  "fraction": 0.38740733158284174,
+                  "power_db": -15.968505640753055
+                },
+                "high": {
+                  "mean_power": 0.006855515380084216,
+                  "fraction": 0.10496838344496053,
+                  "power_db": -21.63959890500568
+                }
+              },
+              "attack_count": 45,
+              "attack_density_per_s": 1.935483870967742,
+              "energy_weighted_centroid_hz": 866.6300962710496,
+              "harmonic_like_ratio": 0.711624323136892,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 2003,
+                "first_frame_s": 61.126529693603516,
+                "last_frame_s": 84.36970520019531,
+                "source_first_sample": 2695612,
+                "source_end_sample_exclusive": 3720938,
+                "source_sample_rate": 44100,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 7.870967741935484,
+                "mid": 7.397849462365591,
+                "high": 2.967741935483871
+              },
+              "evidence_ids": [
+                "We1fa4a8233a9ffca684f"
+              ]
+            },
+            "changes": {
+              "band_power": {
+                "low": {
+                  "a": 0.03759296400374022,
+                  "b": 0.03315308837499516,
+                  "delta": -0.004439875628745066,
+                  "unit": "window-normalized digital power",
+                  "direction": "decreased",
+                  "status": "finite",
+                  "delta_db": -0.5458257754089857,
+                  "within_1_db": true
+                },
+                "mid": {
+                  "a": 0.009740721739770912,
+                  "b": 0.02530168449641933,
+                  "delta": 0.015560962756648419,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 4.145582987599266,
+                  "within_1_db": false
+                },
+                "high": {
+                  "a": 0.001184246936597647,
+                  "b": 0.006855515380084216,
+                  "delta": 0.005671268443486569,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 7.62597839528155,
+                  "within_1_db": false
+                }
+              },
+              "band_attack_density_per_s": {
+                "low": {
+                  "a": 4.666666666666667,
+                  "b": 7.870967741935484,
+                  "delta": 3.204301075268817,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                },
+                "mid": {
+                  "a": 3.212121212121212,
+                  "b": 7.397849462365591,
+                  "delta": 4.185728250244379,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                },
+                "high": {
+                  "a": 0.6060606060606061,
+                  "b": 2.967741935483871,
+                  "delta": 2.361681329423265,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                }
+              },
+              "source_rms_dbfs": {
+                "a": -12.877859046942152,
+                "b": -10.497185179060658,
+                "delta": 2.3806738678814945,
+                "unit": "dBFS; delta in dB",
+                "direction": "increased"
+              },
+              "attack_density_per_s": {
+                "a": 1.7575757575757576,
+                "b": 1.935483870967742,
+                "delta": 0.17790811339198442,
+                "unit": "detected attacks/s",
+                "direction": "increased"
+              },
+              "energy_weighted_centroid_hz": {
+                "a": 398.82895559286777,
+                "b": 866.6300962710496,
+                "delta": 467.80114067818187,
+                "unit": "Hz",
+                "direction": "increased"
+              },
+              "harmonic_like_ratio": {
+                "a": 0.7726265650594172,
+                "b": 0.711624323136892,
+                "delta": -0.061002241922525235,
+                "unit": "texture ratio",
+                "direction": "decreased"
+              }
+            },
+            "evidence": [
+              {
+                "start_s": 13.25,
+                "end_s": 29.75,
+                "id": "W936eb925b11a3be68023",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.03759296400374022,
+                    0.009740721739770912,
+                    0.001184246936597647
+                  ],
+                  "source_rms_dbfs": -12.877859046942152,
+                  "source_sample_peak_dbfs": 0.3827188109777089,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 398.82895559286777,
+                  "energy_weighted_harmonic_like_ratio": 0.7726265650594172,
+                  "detected_attack_count": 29.0,
+                  "attack_density_per_s": 1.7575757575757576,
+                  "analysis_frame_count": 1421.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              },
+              {
+                "start_s": 61.125,
+                "end_s": 84.375,
+                "id": "We1fa4a8233a9ffca684f",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.03315308837499516,
+                    0.02530168449641933,
+                    0.006855515380084216
+                  ],
+                  "source_rms_dbfs": -10.497185179060658,
+                  "source_sample_peak_dbfs": 1.2785692902967194,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 866.6300962710496,
+                  "energy_weighted_harmonic_like_ratio": 0.711624323136892,
+                  "detected_attack_count": 45.0,
+                  "attack_density_per_s": 1.935483870967742,
+                  "analysis_frame_count": 2003.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              }
+            ],
+            "interpretation": "All deltas are B minus A. Compare attack rates for unequal durations; counts are not beats. Null dB deltas distinguish zero from unavailable power. Inline measurements and evidence suffice for these comparisons; no duplicate evidence fetch required.",
+            "limitation": "Energy is not perceived loudness; descriptors do not identify instruments, meter or repeated phrases."
+          }
+        },
+        "B_to_C": {
+          "prose": "Exact B [61.125,84.375) → C [121.75,138.25), We1fa4a8233a9ffca684f → Wd661219812856ec9c3cb. Mean-power changes +3.986/+0.972/+0.568 dB; fractions .508/.387/.105→.678/.258/.064, so low remains proportionally dominant and rises most in absolute terms. Centroid 866.6→663.3 Hz; harmonic-like ratio .712→.709. Overall attacks 1.935→4.364/s; band rates 7.871/7.398/2.968→7.030/9.030/5.333/s. Both signal present; C is not attack-similar in aggregate, though its low-led energy resembles the broadly low-heavy 87.95–130.67 flow region only loosely. No flow similarity claim links this exact C window.",
+          "evidence": {
+            "track_id": "sha256:39ce59c42c1fcae4132f6b8f3026b27085353a37fafcce1228d808395d1de3f2",
+            "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+            "time_span": {
+              "start_s": 61.125,
+              "end_s": 138.25
+            },
+            "evidence_ids": [
+              "We1fa4a8233a9ffca684f",
+              "Wd661219812856ec9c3cb"
+            ],
+            "measurement_status": "observed_with_inferences",
+            "comparison_basis": "exact_requested_windows",
+            "summary": "A [61.125,84.375)s; B [121.75,138.25)s. Band-power changes B minus A: low 3.986 dB (finite); mid 0.972 dB (finite); high 0.5683 dB (finite). Detected band-attack rates A->B: low 7.871->7.03/s (decreased); mid 7.398->9.03/s (increased); high 2.968->5.333/s (increased). Overall detected attack rate 1.935->4.364/s. Source activity signal_present->signal_present. Zero band power is 0; its dB level is null. Similar energy does not establish similar rates in every band.",
+            "window_a": {
+              "time_span": {
+                "start_s": 61.125,
+                "end_s": 84.375
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -10.497185179060658,
+              "bands": {
+                "low": {
+                  "mean_power": 0.03315308837499516,
+                  "fraction": 0.5076242849721978,
+                  "power_db": -14.794760086847347
+                },
+                "mid": {
+                  "mean_power": 0.02530168449641933,
+                  "fraction": 0.38740733158284174,
+                  "power_db": -15.968505640753055
+                },
+                "high": {
+                  "mean_power": 0.006855515380084216,
+                  "fraction": 0.10496838344496053,
+                  "power_db": -21.63959890500568
+                }
+              },
+              "attack_count": 45,
+              "attack_density_per_s": 1.935483870967742,
+              "energy_weighted_centroid_hz": 866.6300962710496,
+              "harmonic_like_ratio": 0.711624323136892,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 2003,
+                "first_frame_s": 61.126529693603516,
+                "last_frame_s": 84.36970520019531,
+                "source_first_sample": 2695612,
+                "source_end_sample_exclusive": 3720938,
+                "source_sample_rate": 44100,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 7.870967741935484,
+                "mid": 7.397849462365591,
+                "high": 2.967741935483871
+              },
+              "evidence_ids": [
+                "We1fa4a8233a9ffca684f"
+              ]
+            },
+            "window_b": {
+              "time_span": {
+                "start_s": 121.75,
+                "end_s": 138.25
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -8.591706320350344,
+              "bands": {
+                "low": {
+                  "mean_power": 0.08301070437665516,
+                  "fraction": 0.6777897224794335,
+                  "power_db": -10.808659009737834
+                },
+                "mid": {
+                  "mean_power": 0.03164803977717529,
+                  "fraction": 0.25840903602333765,
+                  "power_db": -14.996531842349343
+                },
+                "high": {
+                  "mean_power": 0.00781390720622907,
+                  "fraction": 0.06380124149722885,
+                  "power_db": -21.071317505289407
+                }
+              },
+              "attack_count": 72,
+              "attack_density_per_s": 4.363636363636363,
+              "energy_weighted_centroid_hz": 663.2767885510848,
+              "harmonic_like_ratio": 0.7092613675079784,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 1421,
+                "first_frame_s": 121.75382995605469,
+                "last_frame_s": 138.24000549316406,
+                "source_first_sample": 5369175,
+                "source_end_sample_exclusive": 6096825,
+                "source_sample_rate": 44100,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 7.03030303030303,
+                "mid": 9.030303030303031,
+                "high": 5.333333333333333
+              },
+              "evidence_ids": [
+                "Wd661219812856ec9c3cb"
+              ]
+            },
+            "changes": {
+              "band_power": {
+                "low": {
+                  "a": 0.03315308837499516,
+                  "b": 0.08301070437665516,
+                  "delta": 0.04985761600166,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 3.986101077109514,
+                  "within_1_db": false
+                },
+                "mid": {
+                  "a": 0.02530168449641933,
+                  "b": 0.03164803977717529,
+                  "delta": 0.006346355280755962,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 0.9719737984037113,
+                  "within_1_db": true
+                },
+                "high": {
+                  "a": 0.006855515380084216,
+                  "b": 0.00781390720622907,
+                  "delta": 0.0009583918261448542,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 0.568281399716275,
+                  "within_1_db": true
+                }
+              },
+              "band_attack_density_per_s": {
+                "low": {
+                  "a": 7.870967741935484,
+                  "b": 7.03030303030303,
+                  "delta": -0.8406647116324537,
+                  "unit": "detected attacks/s",
+                  "direction": "decreased"
+                },
+                "mid": {
+                  "a": 7.397849462365591,
+                  "b": 9.030303030303031,
+                  "delta": 1.6324535679374401,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                },
+                "high": {
+                  "a": 2.967741935483871,
+                  "b": 5.333333333333333,
+                  "delta": 2.365591397849462,
+                  "unit": "detected attacks/s",
+                  "direction": "increased"
+                }
+              },
+              "source_rms_dbfs": {
+                "a": -10.497185179060658,
+                "b": -8.591706320350344,
+                "delta": 1.905478858710314,
+                "unit": "dBFS; delta in dB",
+                "direction": "increased"
+              },
+              "attack_density_per_s": {
+                "a": 1.935483870967742,
+                "b": 4.363636363636363,
+                "delta": 2.4281524926686213,
+                "unit": "detected attacks/s",
+                "direction": "increased"
+              },
+              "energy_weighted_centroid_hz": {
+                "a": 866.6300962710496,
+                "b": 663.2767885510848,
+                "delta": -203.35330771996485,
+                "unit": "Hz",
+                "direction": "decreased"
+              },
+              "harmonic_like_ratio": {
+                "a": 0.711624323136892,
+                "b": 0.7092613675079784,
+                "delta": -0.0023629556289135323,
+                "unit": "texture ratio",
+                "direction": "decreased"
+              }
+            },
+            "evidence": [
+              {
+                "start_s": 61.125,
+                "end_s": 84.375,
+                "id": "We1fa4a8233a9ffca684f",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.03315308837499516,
+                    0.02530168449641933,
+                    0.006855515380084216
+                  ],
+                  "source_rms_dbfs": -10.497185179060658,
+                  "source_sample_peak_dbfs": 1.2785692902967194,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 866.6300962710496,
+                  "energy_weighted_harmonic_like_ratio": 0.711624323136892,
+                  "detected_attack_count": 45.0,
+                  "attack_density_per_s": 1.935483870967742,
+                  "analysis_frame_count": 2003.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              },
+              {
+                "start_s": 121.75,
+                "end_s": 138.25,
+                "id": "Wd661219812856ec9c3cb",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.08301070437665516,
+                    0.03164803977717529,
+                    0.00781390720622907
+                  ],
+                  "source_rms_dbfs": -8.591706320350344,
+                  "source_sample_peak_dbfs": 2.054910901057816,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 663.2767885510848,
+                  "energy_weighted_harmonic_like_ratio": 0.7092613675079784,
+                  "detected_attack_count": 72.0,
+                  "attack_density_per_s": 4.363636363636363,
+                  "analysis_frame_count": 1421.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              }
+            ],
+            "interpretation": "All deltas are B minus A. Compare attack rates for unequal durations; counts are not beats. Null dB deltas distinguish zero from unavailable power. Inline measurements and evidence suffice for these comparisons; no duplicate evidence fetch required.",
+            "limitation": "Energy is not perceived loudness; descriptors do not identify instruments, meter or repeated phrases."
+          }
+        }
+      },
+      "limitations": "Bands are broad spectral measurements; source RMS is not perceived loudness/LUFS. Attack detections are not listener beats. Centroid and harmonic-like ratio are texture descriptors only; they do not establish instrument, vocal, meter, genre, key, chord, mood or phrase identity. Flow similarity is heuristic (3 dB band and attack-rate tolerance), not a probability. Exact interval comparisons use requested original bounds and W evidence."
+    },
+    {
+      "case": "c93",
+      "track_id": "sha256:a14881a7f3344366dbd4ed0f25179dcad7fa698870d6ef6538b5c8dc857e9e03",
+      "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+      "duration_s": 48.0,
+      "overall": "Duration 48 s; analysis dsp-0.6.0-6f2fa4bfb7ea, track sha256:a14881a7f3344366dbd4ed0f25179dcad7fa698870d6ef6538b5c8dc857e9e03. Six candidate sections span the whole recording. 0–7.91 s is mid-dominant (mid power 0.00796) with no detected attacks. At 7.91–15.91, low becomes dominant (0.01226) and attacks 3.63/s. 15.91–23.84 is much lower in power, high is the largest band (0.000971) and attacks increase to 5.17/s. 23.84–32.18 stays low-level with only 0.24 attacks/s. 32.18–39.92 grows into a high-dominant passage (high 0.00358; 4.91 attacks/s); 39.92–48.0 retains low/high character (low 0.0122, high 0.00269; 3.83 attacks/s). No qualified FLOW similar_to links are returned; O/R exact windows strongly recur acoustically, however.  The exact O→R windows (9.1–13.6 and 41.1–45.6) have near-identical band levels, centroid and attack rates, a qualified acoustic recurrence without implying phrase/source identity.",
+      "comparisons": {
+        "A_to_B": {
+          "prose": "Exact A [33.1,37.9) → B [17.1,21.9), Wbf8052051a1d1405f4ab → W48a22b84151c0bcc5fdd. Low/mid/high power each falls ~6.02 dB (B−A); RMS falls −22.63→−28.65 dBFS. Fractions essentially identical (.328/.000624/.671), centroid 2527.69→2527.65 Hz and harmonic-like ratio .645→.645, so texture/balance is almost unchanged but quieter. Overall attacks exactly 5.00/s both; low/mid/high 2.50/4.792/5.00→2.50/3.125/5.00. Both signal present.",
+          "evidence": {
+            "track_id": "sha256:a14881a7f3344366dbd4ed0f25179dcad7fa698870d6ef6538b5c8dc857e9e03",
+            "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+            "time_span": {
+              "start_s": 17.1,
+              "end_s": 37.9
+            },
+            "evidence_ids": [
+              "Wbf8052051a1d1405f4ab",
+              "W48a22b84151c0bcc5fdd"
+            ],
+            "measurement_status": "observed_with_inferences",
+            "comparison_basis": "exact_requested_windows",
+            "summary": "A [33.1,37.9)s; B [17.1,21.9)s. Band-power changes B minus A: low -6.021 dB (finite); mid -6.019 dB (finite); high -6.02 dB (finite). Detected band-attack rates A->B: low 2.5->2.5/s (unchanged); mid 4.792->3.125/s (decreased); high 5->5/s (unchanged). Overall detected attack rate 5->5/s. Source activity signal_present->signal_present. Zero band power is 0; its dB level is null. Similar energy does not establish similar rates in every band.",
+            "window_a": {
+              "time_span": {
+                "start_s": 33.1,
+                "end_s": 37.9
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -22.634242156203857,
+              "bands": {
+                "low": {
+                  "mean_power": 0.00177517219971881,
+                  "fraction": 0.32822059420284927,
+                  "power_db": -27.507595120397113
+                },
+                "mid": {
+                  "mean_power": 3.3773014009245037e-06,
+                  "fraction": 0.000624446390490536,
+                  "power_db": -54.71430179839163
+                },
+                "high": {
+                  "mean_power": 0.0036299234316350738,
+                  "fraction": 0.6711549594066601,
+                  "power_db": -24.401025357267223
+                }
+              },
+              "attack_count": 24,
+              "attack_density_per_s": 5.000000000000003,
+              "energy_weighted_centroid_hz": 2527.6895192349416,
+              "harmonic_like_ratio": 0.6448405126760439,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 414,
+                "first_frame_s": 33.10004425048828,
+                "last_frame_s": 37.89496612548828,
+                "source_first_sample": 729855,
+                "source_end_sample_exclusive": 835695,
+                "source_sample_rate": 22050,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 2.5000000000000013,
+                "mid": 4.79166666666667,
+                "high": 5.000000000000003
+              },
+              "evidence_ids": [
+                "Wbf8052051a1d1405f4ab"
+              ]
+            },
+            "window_b": {
+              "time_span": {
+                "start_s": 17.1,
+                "end_s": 21.9
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -28.65484231855727,
+              "bands": {
+                "low": {
+                  "mean_power": 0.0004437908784688127,
+                  "fraction": 0.3282033111255751,
+                  "power_db": -33.528216283576654
+                },
+                "mid": {
+                  "mean_power": 8.44566639079644e-07,
+                  "fraction": 0.0006245950082807237,
+                  "power_db": -60.73366077481049
+                },
+                "high": {
+                  "mean_power": 0.0009075473739710175,
+                  "fraction": 0.6711720938661442,
+                  "power_db": -30.421306955290937
+                }
+              },
+              "attack_count": 24,
+              "attack_density_per_s": 5.000000000000003,
+              "energy_weighted_centroid_hz": 2527.6468284896723,
+              "harmonic_like_ratio": 0.645426354666921,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 414,
+                "first_frame_s": 17.10149574279785,
+                "last_frame_s": 21.89641761779785,
+                "source_first_sample": 377055,
+                "source_end_sample_exclusive": 482895,
+                "source_sample_rate": 22050,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 2.5000000000000013,
+                "mid": 3.1250000000000018,
+                "high": 5.000000000000003
+              },
+              "evidence_ids": [
+                "W48a22b84151c0bcc5fdd"
+              ]
+            },
+            "changes": {
+              "band_power": {
+                "low": {
+                  "a": 0.00177517219971881,
+                  "b": 0.0004437908784688127,
+                  "delta": -0.0013313813212499973,
+                  "unit": "window-normalized digital power",
+                  "direction": "decreased",
+                  "status": "finite",
+                  "delta_db": -6.020621163179536,
+                  "within_1_db": false
+                },
+                "mid": {
+                  "a": 3.3773014009245037e-06,
+                  "b": 8.44566639079644e-07,
+                  "delta": -2.5327347618448596e-06,
+                  "unit": "window-normalized digital power",
+                  "direction": "decreased",
+                  "status": "finite",
+                  "delta_db": -6.019358976418863,
+                  "within_1_db": false
+                },
+                "high": {
+                  "a": 0.0036299234316350738,
+                  "b": 0.0009075473739710175,
+                  "delta": -0.002722376057664056,
+                  "unit": "window-normalized digital power",
+                  "direction": "decreased",
+                  "status": "finite",
+                  "delta_db": -6.020281598023716,
+                  "within_1_db": false
+                }
+              },
+              "band_attack_density_per_s": {
+                "low": {
+                  "a": 2.5000000000000013,
+                  "b": 2.5000000000000013,
+                  "delta": 0.0,
+                  "unit": "detected attacks/s",
+                  "direction": "unchanged"
+                },
+                "mid": {
+                  "a": 4.79166666666667,
+                  "b": 3.1250000000000018,
+                  "delta": -1.6666666666666679,
+                  "unit": "detected attacks/s",
+                  "direction": "decreased"
+                },
+                "high": {
+                  "a": 5.000000000000003,
+                  "b": 5.000000000000003,
+                  "delta": 0.0,
+                  "unit": "detected attacks/s",
+                  "direction": "unchanged"
+                }
+              },
+              "source_rms_dbfs": {
+                "a": -22.634242156203857,
+                "b": -28.65484231855727,
+                "delta": -6.020600162353414,
+                "unit": "dBFS; delta in dB",
+                "direction": "decreased"
+              },
+              "attack_density_per_s": {
+                "a": 5.000000000000003,
+                "b": 5.000000000000003,
+                "delta": 0.0,
+                "unit": "detected attacks/s",
+                "direction": "unchanged"
+              },
+              "energy_weighted_centroid_hz": {
+                "a": 2527.6895192349416,
+                "b": 2527.6468284896723,
+                "delta": -0.04269074526928307,
+                "unit": "Hz",
+                "direction": "decreased"
+              },
+              "harmonic_like_ratio": {
+                "a": 0.6448405126760439,
+                "b": 0.645426354666921,
+                "delta": 0.0005858419908770784,
+                "unit": "texture ratio",
+                "direction": "increased"
+              }
+            },
+            "evidence": [
+              {
+                "start_s": 33.1,
+                "end_s": 37.9,
+                "id": "Wbf8052051a1d1405f4ab",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.00177517219971881,
+                    3.3773014009245037e-06,
+                    0.0036299234316350738
+                  ],
+                  "source_rms_dbfs": -22.634242156203857,
+                  "source_sample_peak_dbfs": -5.276219083854007,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 2527.6895192349416,
+                  "energy_weighted_harmonic_like_ratio": 0.6448405126760439,
+                  "detected_attack_count": 24.0,
+                  "attack_density_per_s": 5.000000000000003,
+                  "analysis_frame_count": 414.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              },
+              {
+                "start_s": 17.1,
+                "end_s": 21.9,
+                "id": "W48a22b84151c0bcc5fdd",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.0004437908784688127,
+                    8.44566639079644e-07,
+                    0.0009075473739710175
+                  ],
+                  "source_rms_dbfs": -28.65484231855727,
+                  "source_sample_peak_dbfs": -11.29681899713363,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 2527.6468284896723,
+                  "energy_weighted_harmonic_like_ratio": 0.645426354666921,
+                  "detected_attack_count": 24.0,
+                  "attack_density_per_s": 5.000000000000003,
+                  "analysis_frame_count": 414.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              }
+            ],
+            "interpretation": "All deltas are B minus A. Compare attack rates for unequal durations; counts are not beats. Null dB deltas distinguish zero from unavailable power. Inline measurements and evidence suffice for these comparisons; no duplicate evidence fetch required.",
+            "limitation": "Energy is not perceived loudness; descriptors do not identify instruments, meter or repeated phrases."
+          }
+        },
+        "C_to_D": {
+          "prose": "Exact C [1.1,5.6) → D [25.1,29.1), W68c74d25b26ece5d42c3 → W6a872f00310e6de8e770. C is active: source signal_present, RMS −20.99 dBFS, nearly all band power mid (0.007968), but 0 detected attacks/s. D is confirmed digital_silence: every source PCM sample zero; band powers all 0, RMS/peak and dB band values null, 0 attacks/s. Thus D is silence, whereas C is a sustained mid-frequency signal with no detected attacks. Relative band balance alone does not show absolute loudness: fractions can rise when other bands fall. Here A→B c93 relative fractions are almost unchanged despite all bands dropping ~6.02 dB, illustrating the distinction. For zero power, dB delta is unavailable, not a numeric subtraction.",
+          "evidence": {
+            "track_id": "sha256:a14881a7f3344366dbd4ed0f25179dcad7fa698870d6ef6538b5c8dc857e9e03",
+            "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+            "time_span": {
+              "start_s": 1.1,
+              "end_s": 29.1
+            },
+            "evidence_ids": [
+              "W68c74d25b26ece5d42c3",
+              "W6a872f00310e6de8e770"
+            ],
+            "measurement_status": "observed_with_inferences",
+            "comparison_basis": "exact_requested_windows",
+            "summary": "A [1.1,5.6)s; B [25.1,29.1)s. Band-power changes B minus A: low unavailable dB (to_zero); mid unavailable dB (to_zero); high unavailable dB (to_zero). Detected band-attack rates A->B: low 0->0/s (unchanged); mid 0->0/s (unchanged); high 0->0/s (unchanged). Overall detected attack rate 0->0/s. Source activity signal_present->digital_silence. Zero band power is 0; its dB level is null. Similar energy does not establish similar rates in every band.",
+            "window_a": {
+              "time_span": {
+                "start_s": 1.1,
+                "end_s": 5.6
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -20.985514694703816,
+              "bands": {
+                "low": {
+                  "mean_power": 9.168249428382919e-17,
+                  "fraction": 1.1506377689645068e-14,
+                  "power_db": -160.37713579942917
+                },
+                "mid": {
+                  "mean_power": 0.007967971915801623,
+                  "fraction": 0.999999999998572,
+                  "power_db": -20.98652205311501
+                },
+                "high": {
+                  "mean_power": 1.1286861266316042e-14,
+                  "fraction": 1.416528746030903e-12,
+                  "power_db": -139.47426813100438
+                }
+              },
+              "attack_count": 0,
+              "attack_density_per_s": 0.0,
+              "energy_weighted_centroid_hz": 849.315115545214,
+              "harmonic_like_ratio": 0.9456126522465228,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 388,
+                "first_frame_s": 1.1029478311538696,
+                "last_frame_s": 5.596009254455566,
+                "source_first_sample": 24255,
+                "source_end_sample_exclusive": 123480,
+                "source_sample_rate": 22050,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 0.0,
+                "mid": 0.0,
+                "high": 0.0
+              },
+              "evidence_ids": [
+                "W68c74d25b26ece5d42c3"
+              ]
+            },
+            "window_b": {
+              "time_span": {
+                "start_s": 25.1,
+                "end_s": 29.1
+              },
+              "source_activity": "digital_silence",
+              "source_rms_dbfs": null,
+              "bands": {
+                "low": {
+                  "mean_power": 0.0,
+                  "fraction": null,
+                  "power_db": null
+                },
+                "mid": {
+                  "mean_power": 0.0,
+                  "fraction": null,
+                  "power_db": null
+                },
+                "high": {
+                  "mean_power": 0.0,
+                  "fraction": null,
+                  "power_db": null
+                }
+              },
+              "attack_count": 0,
+              "attack_density_per_s": 0.0,
+              "energy_weighted_centroid_hz": null,
+              "harmonic_like_ratio": null,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 345,
+                "first_frame_s": 25.100770950317383,
+                "last_frame_s": 29.094602584838867,
+                "source_first_sample": 553455,
+                "source_end_sample_exclusive": 641655,
+                "source_sample_rate": 22050,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 0.0,
+                "mid": 0.0,
+                "high": 0.0
+              },
+              "evidence_ids": [
+                "W6a872f00310e6de8e770"
+              ]
+            },
+            "changes": {
+              "band_power": {
+                "low": {
+                  "a": 9.168249428382919e-17,
+                  "b": 0.0,
+                  "delta": -9.168249428382919e-17,
+                  "unit": "window-normalized digital power",
+                  "direction": "decreased",
+                  "status": "to_zero",
+                  "delta_db": null,
+                  "within_1_db": null
+                },
+                "mid": {
+                  "a": 0.007967971915801623,
+                  "b": 0.0,
+                  "delta": -0.007967971915801623,
+                  "unit": "window-normalized digital power",
+                  "direction": "decreased",
+                  "status": "to_zero",
+                  "delta_db": null,
+                  "within_1_db": null
+                },
+                "high": {
+                  "a": 1.1286861266316042e-14,
+                  "b": 0.0,
+                  "delta": -1.1286861266316042e-14,
+                  "unit": "window-normalized digital power",
+                  "direction": "decreased",
+                  "status": "to_zero",
+                  "delta_db": null,
+                  "within_1_db": null
+                }
+              },
+              "band_attack_density_per_s": {
+                "low": {
+                  "a": 0.0,
+                  "b": 0.0,
+                  "delta": 0.0,
+                  "unit": "detected attacks/s",
+                  "direction": "unchanged"
+                },
+                "mid": {
+                  "a": 0.0,
+                  "b": 0.0,
+                  "delta": 0.0,
+                  "unit": "detected attacks/s",
+                  "direction": "unchanged"
+                },
+                "high": {
+                  "a": 0.0,
+                  "b": 0.0,
+                  "delta": 0.0,
+                  "unit": "detected attacks/s",
+                  "direction": "unchanged"
+                }
+              },
+              "source_rms_dbfs": {
+                "a": -20.985514694703816,
+                "b": null,
+                "delta": null,
+                "unit": "dBFS; delta in dB",
+                "direction": "unavailable"
+              },
+              "attack_density_per_s": {
+                "a": 0.0,
+                "b": 0.0,
+                "delta": 0.0,
+                "unit": "detected attacks/s",
+                "direction": "unchanged"
+              },
+              "energy_weighted_centroid_hz": {
+                "a": 849.315115545214,
+                "b": null,
+                "delta": null,
+                "unit": "Hz",
+                "direction": "unavailable"
+              },
+              "harmonic_like_ratio": {
+                "a": 0.9456126522465228,
+                "b": null,
+                "delta": null,
+                "unit": "texture ratio",
+                "direction": "unavailable"
+              }
+            },
+            "evidence": [
+              {
+                "start_s": 1.1,
+                "end_s": 5.6,
+                "id": "W68c74d25b26ece5d42c3",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    9.168249428382919e-17,
+                    0.007967971915801623,
+                    1.1286861266316042e-14
+                  ],
+                  "source_rms_dbfs": -20.985514694703816,
+                  "source_sample_peak_dbfs": -16.051731683623302,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 849.315115545214,
+                  "energy_weighted_harmonic_like_ratio": 0.9456126522465228,
+                  "detected_attack_count": 0.0,
+                  "attack_density_per_s": 0.0,
+                  "analysis_frame_count": 388.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              },
+              {
+                "start_s": 25.1,
+                "end_s": 29.1,
+                "id": "W6a872f00310e6de8e770",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "source_rms_dbfs": null,
+                  "source_sample_peak_dbfs": null,
+                  "source_activity": "digital_silence",
+                  "energy_weighted_centroid_hz": null,
+                  "energy_weighted_harmonic_like_ratio": null,
+                  "detected_attack_count": 0.0,
+                  "attack_density_per_s": 0.0,
+                  "analysis_frame_count": 345.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              }
+            ],
+            "interpretation": "All deltas are B minus A. Compare attack rates for unequal durations; counts are not beats. Null dB deltas distinguish zero from unavailable power. Inline measurements and evidence suffice for these comparisons; no duplicate evidence fetch required.",
+            "limitation": "Energy is not perceived loudness; descriptors do not identify instruments, meter or repeated phrases."
+          }
+        },
+        "O_to_R": {
+          "prose": "Exact O [9.1,13.6) → R [41.1,45.6), W09aaf13b8b6b829bc4c4 → W148dd1e29d350987c0ca. Extremely close repeat: low/mid/high power-dB changes +0.000003/+0.0112/+0.0112 dB; fractions .8278/.000373/.1718→.8274/.000374/.1722. Centroid 570.46→571.45 Hz; harmonic-like ratio .99483→.99482; total attacks and each band rate are 3.556/s overall, low 0, mid/high 3.556 each. Both signal present; this strongly supports recurring acoustic texture, not identity of source or proof of repeated musical phrase.",
+          "evidence": {
+            "track_id": "sha256:a14881a7f3344366dbd4ed0f25179dcad7fa698870d6ef6538b5c8dc857e9e03",
+            "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+            "time_span": {
+              "start_s": 9.1,
+              "end_s": 45.6
+            },
+            "evidence_ids": [
+              "W09aaf13b8b6b829bc4c4",
+              "W148dd1e29d350987c0ca"
+            ],
+            "measurement_status": "observed_with_inferences",
+            "comparison_basis": "exact_requested_windows",
+            "summary": "A [9.1,13.6)s; B [41.1,45.6)s. Band-power changes B minus A: low 3.443e-06 dB (finite); mid 0.0112 dB (finite); high 0.01117 dB (finite). Detected band-attack rates A->B: low 0->0/s (unchanged); mid 3.556->3.556/s (unchanged); high 3.556->3.556/s (unchanged). Overall detected attack rate 3.556->3.556/s. Source activity signal_present->signal_present. Zero band power is 0; its dB level is null. Similar energy does not establish similar rates in every band.",
+            "window_a": {
+              "time_span": {
+                "start_s": 9.1,
+                "end_s": 13.6
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -18.235970921858325,
+              "bands": {
+                "low": {
+                  "mean_power": 0.012420513448737486,
+                  "fraction": 0.8277859276417259,
+                  "power_db": -19.058604505890408
+                },
+                "mid": {
+                  "mean_power": 5.596004657027099e-06,
+                  "fraction": 0.00037295510569858574,
+                  "power_db": -52.521219327577064
+                },
+                "high": {
+                  "mean_power": 0.0025783899394886305,
+                  "fraction": 0.17184111725257553,
+                  "power_db": -25.88651402047807
+                }
+              },
+              "attack_count": 16,
+              "attack_density_per_s": 3.5555555555555554,
+              "energy_weighted_centroid_hz": 570.4637395927863,
+              "harmonic_like_ratio": 0.9948259875389588,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 388,
+                "first_frame_s": 9.102222442626953,
+                "last_frame_s": 13.595283508300781,
+                "source_first_sample": 200655,
+                "source_end_sample_exclusive": 299880,
+                "source_sample_rate": 22050,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 0.0,
+                "mid": 3.5555555555555554,
+                "high": 3.5555555555555554
+              },
+              "evidence_ids": [
+                "W09aaf13b8b6b829bc4c4"
+              ]
+            },
+            "window_b": {
+              "time_span": {
+                "start_s": 41.1,
+                "end_s": 45.6
+              },
+              "source_activity": "signal_present",
+              "source_rms_dbfs": -18.235970921858325,
+              "bands": {
+                "low": {
+                  "mean_power": 0.012420523295645873,
+                  "fraction": 0.8274190656847272,
+                  "power_db": -19.05860106283123
+                },
+                "mid": {
+                  "mean_power": 5.6104606605906055e-06,
+                  "fraction": 0.0003737525390314402,
+                  "power_db": -52.51001478469507
+                },
+                "high": {
+                  "mean_power": 0.002585030248438,
+                  "fraction": 0.17220718177624128,
+                  "power_db": -25.875343706927268
+                }
+              },
+              "attack_count": 16,
+              "attack_density_per_s": 3.5555555555555554,
+              "energy_weighted_centroid_hz": 571.4510908479151,
+              "harmonic_like_ratio": 0.9948227723843722,
+              "measurement_basis": {
+                "method": "cached_window_summary_v1",
+                "spectral_frame_count": 387,
+                "first_frame_s": 41.110931396484375,
+                "last_frame_s": 45.59238052368164,
+                "source_first_sample": 906255,
+                "source_end_sample_exclusive": 1005480,
+                "source_sample_rate": 22050,
+                "spectral_scope": "Cached frame centers in [start,end); STFT context extends up to 0.186s beyond a center. Bands cover 20–11025 Hz."
+              },
+              "band_attack_density_per_s": {
+                "low": 0.0,
+                "mid": 3.5555555555555554,
+                "high": 3.5555555555555554
+              },
+              "evidence_ids": [
+                "W148dd1e29d350987c0ca"
+              ]
+            },
+            "changes": {
+              "band_power": {
+                "low": {
+                  "a": 0.012420513448737486,
+                  "b": 0.012420523295645873,
+                  "delta": 9.846908387636799e-09,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 3.4430591777656616e-06,
+                  "within_1_db": true
+                },
+                "mid": {
+                  "a": 5.596004657027099e-06,
+                  "b": 5.6104606605906055e-06,
+                  "delta": 1.445600356350666e-08,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 0.011204542881992907,
+                  "within_1_db": true
+                },
+                "high": {
+                  "a": 0.0025783899394886305,
+                  "b": 0.002585030248438,
+                  "delta": 6.640308949369591e-06,
+                  "unit": "window-normalized digital power",
+                  "direction": "increased",
+                  "status": "finite",
+                  "delta_db": 0.011170313550801225,
+                  "within_1_db": true
+                }
+              },
+              "band_attack_density_per_s": {
+                "low": {
+                  "a": 0.0,
+                  "b": 0.0,
+                  "delta": 0.0,
+                  "unit": "detected attacks/s",
+                  "direction": "unchanged"
+                },
+                "mid": {
+                  "a": 3.5555555555555554,
+                  "b": 3.5555555555555554,
+                  "delta": 0.0,
+                  "unit": "detected attacks/s",
+                  "direction": "unchanged"
+                },
+                "high": {
+                  "a": 3.5555555555555554,
+                  "b": 3.5555555555555554,
+                  "delta": 0.0,
+                  "unit": "detected attacks/s",
+                  "direction": "unchanged"
+                }
+              },
+              "source_rms_dbfs": {
+                "a": -18.235970921858325,
+                "b": -18.235970921858325,
+                "delta": 0.0,
+                "unit": "dBFS; delta in dB",
+                "direction": "unchanged"
+              },
+              "attack_density_per_s": {
+                "a": 3.5555555555555554,
+                "b": 3.5555555555555554,
+                "delta": 0.0,
+                "unit": "detected attacks/s",
+                "direction": "unchanged"
+              },
+              "energy_weighted_centroid_hz": {
+                "a": 570.4637395927863,
+                "b": 571.4510908479151,
+                "delta": 0.9873512551288286,
+                "unit": "Hz",
+                "direction": "increased"
+              },
+              "harmonic_like_ratio": {
+                "a": 0.9948259875389588,
+                "b": 0.9948227723843722,
+                "delta": -3.2151545865666264e-06,
+                "unit": "texture ratio",
+                "direction": "decreased"
+              }
+            },
+            "evidence": [
+              {
+                "start_s": 9.1,
+                "end_s": 13.6,
+                "id": "W09aaf13b8b6b829bc4c4",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.012420513448737486,
+                    5.596004657027099e-06,
+                    0.0025783899394886305
+                  ],
+                  "source_rms_dbfs": -18.235970921858325,
+                  "source_sample_peak_dbfs": -6.791943018828363,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 570.4637395927863,
+                  "energy_weighted_harmonic_like_ratio": 0.9948259875389588,
+                  "detected_attack_count": 16.0,
+                  "attack_density_per_s": 3.5555555555555554,
+                  "analysis_frame_count": 388.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              },
+              {
+                "start_s": 41.1,
+                "end_s": 45.6,
+                "id": "W148dd1e29d350987c0ca",
+                "kind": "window_summary",
+                "method": "cached_window_summary_v1",
+                "method_version": "1",
+                "parameters_ref": "6f2fa4bfb7ea791137921011ca209c701d7385bf346b409608ccc86bca8891b5",
+                "observation": "Exact requested interval; spectral statistics select cached frame centers in [start,end). Source levels use original PCM sample bounds.",
+                "measurements": {
+                  "mean_band_power": [
+                    0.012420523295645873,
+                    5.6104606605906055e-06,
+                    0.002585030248438
+                  ],
+                  "source_rms_dbfs": -18.235970921858325,
+                  "source_sample_peak_dbfs": -6.791943018828363,
+                  "source_activity": "signal_present",
+                  "energy_weighted_centroid_hz": 571.4510908479151,
+                  "energy_weighted_harmonic_like_ratio": 0.9948227723843722,
+                  "detected_attack_count": 16.0,
+                  "attack_density_per_s": 3.5555555555555554,
+                  "analysis_frame_count": 387.0
+                },
+                "units": {
+                  "mean_band_power": "window-normalized digital power, low/mid/high; [] means no frame",
+                  "source_rms_dbfs": "dBFS; null means all source samples zero",
+                  "source_sample_peak_dbfs": "dBFS; null means all source samples zero",
+                  "source_activity": "digital_silence or signal_present; not perceptual audibility",
+                  "energy_weighted_centroid_hz": "Hz; mixture brightness, not instrument identity",
+                  "energy_weighted_harmonic_like_ratio": "texture ratio, not probability or isolated source",
+                  "detected_attack_count": "events, not musical beats",
+                  "attack_density_per_s": "events/s",
+                  "analysis_frame_count": "frame centers"
+                },
+                "measurement_status": "observed",
+                "raw_ref": "arrays/features.npz"
+              }
+            ],
+            "interpretation": "All deltas are B minus A. Compare attack rates for unequal durations; counts are not beats. Null dB deltas distinguish zero from unavailable power. Inline measurements and evidence suffice for these comparisons; no duplicate evidence fetch required.",
+            "limitation": "Energy is not perceived loudness; descriptors do not identify instruments, meter or repeated phrases."
+          }
+        }
+      },
+      "limitations": "Bands are broad spectral measurements; source RMS is not perceived loudness/LUFS. Attack detections are not listener beats. Centroid and harmonic-like ratio are texture descriptors only; they do not establish instrument, vocal, meter, genre, key, chord, mood or phrase identity. Flow similarity is heuristic (3 dB band and attack-rate tolerance), not a probability. Exact interval comparisons use requested original bounds and W evidence."
+    }
+  ]
+}

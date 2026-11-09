@@ -48,3 +48,22 @@ def snapshot(window):
             'attack_density_per_s', 'energy_weighted_centroid_hz', 'harmonic_like_ratio', 'measurement_basis')
     return {**{key: window[key] for key in keys}, 'band_attack_density_per_s': band_rates(window),
             'evidence_ids': [i for i in window['evidence_ids'] if i.startswith('W')]}
+
+
+def synopsis(a, b, changes):
+    def span(w):
+        return f"[{w['time_span']['start_s']:g},{w['time_span']['end_s']:g})s"
+    def number(value):
+        return f'{value:.4g}' if value is not None else 'unavailable'
+    power = []
+    rates = []
+    for band in BANDS:
+        p = changes['band_power'][band]
+        power.append(f"{band} {number(p['delta_db'])} dB ({p['status']})")
+        r = changes['band_attack_density_per_s'][band]
+        rates.append(f"{band} {number(r['a'])}->{number(r['b'])}/s ({r['direction']})")
+    return (f"A {span(a)}; B {span(b)}. Band-power changes B minus A: {'; '.join(power)}. "
+            f"Detected band-attack rates A->B: {'; '.join(rates)}. "
+            f"Overall detected attack rate {number(a['attack_density_per_s'])}->{number(b['attack_density_per_s'])}/s. "
+            f"Source activity {a['source_activity']}->{b['source_activity']}. "
+            "Zero band power is 0; its dB level is null. Similar energy does not establish similar rates in every band.")

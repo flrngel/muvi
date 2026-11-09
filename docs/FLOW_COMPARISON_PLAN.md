@@ -84,3 +84,23 @@ and qualified similarity, not equate one segmentation/grouping with musical form
 [A community audio-analysis account](https://www.reddit.com/r/udiomusic/comments/1hsaiq8/interesting_use_case_with_gemini_experimental/)
 motivates testing invented properties and temporal spillover; it is anecdotal and
 supplies no algorithm guarantee/reference truth. No third-party algorithm copied.
+
+## Declared bounded confirmation after round one
+
+Round one used the frozen 0.8.0 candidate and all originally named inputs. Tool
+arithmetic and complete retrieval passed for both agents, but Luna broadened a
+flow statistic's time span and generalized similar energy/overall attack rate to
+all measured statistics despite a different mid-band rate. Terra's silence wording
+also blurred zero power versus null dB. Preserve these answers and the criteria above.
+
+Use the single allowed correction: expose a deterministic, scoped comparison
+synopsis (including every band rate) in the existing response, plus a short skill
+instruction to preserve statistical bounds when compressing prose. No new API or
+DSP. Package 0.8.1 records this completed fix separately from feature commit 0c61096.
+Freeze again before analyzing two new official recordings: Janji/Johnning **Heroes
+Tonight** (`https://ncs.io/ht`) and Cartoon/Jéja/Coleman Trapp **Why We Lose**
+(`https://ncs.io/whywelose`). Use the same predeclared real-song intervals. A new
+48-second arrangement reorders sustained mid, opening low/high, quiet pulses,
+silence, stronger pulses and opening return. Fresh Terra CLI/Luna MCP consumers get
+only public questions and the final skill; no first-round answers or feedback.
+Report residual misses without further tuning on this confirmation set.

@@ -1,0 +1,159 @@
+{
+  "scope": "Literal band-power deltas, per-band rates, bounds mechanically checked; structured observations also match. Overall narrative scored separately. Not every prose reference/number is asserted correct.",
+  "comparisons": [
+    {
+      "case": "c91",
+      "pair": "A->B",
+      "prose_bounds_exact": true,
+      "structured_evidence_matches": true,
+      "band_power_delta_db_quoted": [
+        3.74,
+        0.477,
+        1.212
+      ],
+      "quoted_rate_a": [
+        1.818,
+        7.333,
+        6.667
+      ],
+      "quoted_rate_b": [
+        6.624,
+        9.032,
+        7.957
+      ],
+      "rounding_check": "within half displayed unit for checked values"
+    },
+    {
+      "case": "c91",
+      "pair": "B->C",
+      "prose_bounds_exact": true,
+      "structured_evidence_matches": true,
+      "band_power_delta_db_quoted": [
+        -12.01,
+        2.769,
+        1.056
+      ],
+      "quoted_rate_a": [
+        6.624,
+        9.032,
+        7.957
+      ],
+      "quoted_rate_b": [
+        1.455,
+        9.212,
+        7.394
+      ],
+      "rounding_check": "within half displayed unit for checked values"
+    },
+    {
+      "case": "c92",
+      "pair": "A->B",
+      "prose_bounds_exact": true,
+      "structured_evidence_matches": true,
+      "band_power_delta_db_quoted": [
+        -0.546,
+        4.146,
+        7.626
+      ],
+      "quoted_rate_a": [
+        4.667,
+        3.212,
+        0.606
+      ],
+      "quoted_rate_b": [
+        7.871,
+        7.398,
+        2.968
+      ],
+      "rounding_check": "within half displayed unit for checked values"
+    },
+    {
+      "case": "c92",
+      "pair": "B->C",
+      "prose_bounds_exact": true,
+      "structured_evidence_matches": true,
+      "band_power_delta_db_quoted": [
+        3.986,
+        0.972,
+        0.568
+      ],
+      "quoted_rate_a": [
+        7.871,
+        7.398,
+        2.968
+      ],
+      "quoted_rate_b": [
+        7.03,
+        9.03,
+        5.333
+      ],
+      "rounding_check": "within half displayed unit for checked values"
+    },
+    {
+      "case": "c93",
+      "pair": "A->B",
+      "prose_bounds_exact": true,
+      "structured_evidence_matches": true,
+      "band_power_delta_db_quoted": [
+        -6.02,
+        -6.02,
+        -6.02
+      ],
+      "quoted_rate_a": [
+        2.5,
+        4.792,
+        5
+      ],
+      "quoted_rate_b": [
+        2.5,
+        3.125,
+        5
+      ],
+      "rounding_check": "within half displayed unit for checked values"
+    },
+    {
+      "case": "c93",
+      "pair": "C->D",
+      "prose_bounds_exact": true,
+      "structured_evidence_matches": true,
+      "band_power_delta_db_quoted": [
+        null,
+        null,
+        null
+      ],
+      "quoted_rate_a": [
+        0,
+        0,
+        0
+      ],
+      "quoted_rate_b": [
+        0,
+        0,
+        0
+      ],
+      "rounding_check": "within half displayed unit for checked values"
+    },
+    {
+      "case": "c93",
+      "pair": "O->R",
+      "prose_bounds_exact": true,
+      "structured_evidence_matches": true,
+      "band_power_delta_db_quoted": [
+        3e-06,
+        0.0112,
+        0.0112
+      ],
+      "quoted_rate_a": [
+        0,
+        3.556,
+        3.556
+      ],
+      "quoted_rate_b": [
+        0,
+        3.556,
+        3.556
+      ],
+      "rounding_check": "within half displayed unit for checked values"
+    }
+  ]
+}

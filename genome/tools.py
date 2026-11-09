@@ -239,14 +239,16 @@ class MusicTools:
                 raise ValueError('Use either two section IDs or both range_a and range_b, never mixed')
             if len(range_a) != 2 or len(range_b) != 2:
                 raise ValueError('Each range must contain exactly [start_s, end_s]')
-            from genome.comparison import compare_windows, snapshot
+            from genome.comparison import compare_windows, snapshot, synopsis
             a = self.get_window(track_id, *range_a)
             b = self.get_window(track_id, *range_b)
             refs = [next(i for i in w['evidence_ids'] if i.startswith('W')) for w in (a,b)]
             evidence = self.get_evidence(track_id, list(dict.fromkeys(refs)))['evidence']
+            changes = compare_windows(a,b)
             return self._packet(g, {'comparison_basis':'exact_requested_windows',
+                                    'summary':synopsis(a,b,changes),
                                     'window_a':snapshot(a), 'window_b':snapshot(b),
-                                    'changes':compare_windows(a,b), 'evidence':evidence,
+                                    'changes':changes, 'evidence':evidence,
                                     'interpretation':'All deltas are B minus A. Compare attack rates for unequal durations; counts are not beats. Null dB deltas distinguish zero from unavailable power. Inline measurements and evidence suffice for these comparisons; no duplicate evidence fetch required.',
                                     'limitation':'Energy is not perceived loudness; descriptors do not identify instruments, meter or repeated phrases.'},
                                 refs, min(a['time_span']['start_s'],b['time_span']['start_s']),

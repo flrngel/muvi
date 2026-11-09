@@ -1,0 +1,81 @@
+{
+  "agent": "luna",
+  "transport": "actual MCP stdio",
+  "scope": "Tool response, independent arithmetic, input provenance and full-flow retrieval. Consumer prose is scored separately.",
+  "logged_calls": 26,
+  "logged_tool_failures": [],
+  "comparisons": [
+    {
+      "case": "c81",
+      "pair": "A->B",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c81",
+      "pair": "B->C",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c82",
+      "pair": "A->B",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c82",
+      "pair": "B->C",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c83",
+      "pair": "A->B",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c83",
+      "pair": "C->D",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    },
+    {
+      "case": "c83",
+      "pair": "O->R",
+      "packet_matches_reference": true,
+      "independent_arithmetic": true,
+      "exact_input_evidence_received_inline": true
+    }
+  ],
+  "flow_coverage": [
+    {
+      "case": "c81",
+      "flow_items_received": 15,
+      "flow_items_expected": 15,
+      "whole_timeline_covered": true,
+      "duration_s": 267.0900453514739
+    },
+    {
+      "case": "c82",
+      "flow_items_received": 9,
+      "flow_items_expected": 9,
+      "whole_timeline_covered": true,
+      "duration_s": 209.04596371882087
+    },
+    {
+      "case": "c83",
+      "flow_items_received": 6,
+      "flow_items_expected": 6,
+      "whole_timeline_covered": true,
+      "duration_s": 39.0
+    }
+  ]
+}

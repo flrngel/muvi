@@ -1,5 +1,34 @@
 # Muvi verification
 
+## 0.8.1 exact comparisons and acoustic progression
+
+- Evaluation criteria were committed before implementation in
+  [FLOW_COMPARISON_PLAN.md](FLOW_COMPARISON_PLAN.md). The fixed criteria separate
+  tool arithmetic, meaningful overall explanation, exact scope, activity and
+  sufficient received provenance; inline evidence avoids redundant fetches.
+- Final **96 tests passed in 363.83 seconds**, including six new behavior tests
+  and actual MCP range comparison/flow queries. Seven targeted tests also passed
+  after the bounded synopsis/skill correction. The initial 0.8.0 suite passed
+  96 tests in 391.11 seconds; timings are not a controlled performance comparison.
+- New tests cover gain, reversal, identity, unequal-duration rate normalization,
+  opposing band-rate directions, zero vs unavailable frames, inline evidence,
+  section-ID compatibility, sustained energy, group collisions, drift, full ending
+  coverage/pagination, public CLI validation and cached reads without DSP imports.
+- Fresh Terra CLI and Luna MCP consumers independently used four new complete
+  recordings plus two new controlled arrangements across two frozen rounds.
+  All 28 required comparison packets match reference retrieval/independent arithmetic.
+  Final explanations distinguish power/fractions and aggregate/per-band rates.
+  Remaining Luna overall direction/reference errors are preserved in the
+  [evaluation report](FLOW_COMPARISON_EVALUATION.md), not counted as understanding passes.
+- Ten extraction module sources are unchanged from 0.7.0 after line-ending
+  normalization. Pipeline remains 0.6.0, schema 0.3.0; tool count remains 15 typed /
+  16 MCP. No new dependency, audio model or extraction computation was added.
+- Final core wheel passed smoke outside the checkout, including exact comparisons,
+  flow, original evidence and expected missing-MCP-extra behavior. Eight macOS 13
+  Apple Silicon/Intel × Python 3.12/3.13 × core/MCP binary dependency checks passed.
+  **Physical Mac execution remains untested.** Frozen code/skill, wheel/archive and
+  final release checks are in [the record](verification/flow-comparison/release.json).
+
 ## 0.7.0 overall and interval skill
 
 - **90 tests passed** in 307.56 seconds, including six new window tests, actual
