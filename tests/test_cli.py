@@ -39,7 +39,7 @@ def library(tmp_path_factory):
     return root, source, digest
 
 
-def test_analysis_cache_human_and_machine_output(library):
+def test_analysis_cache_human_and_machine_output(library, monkeypatch):
     root, source, digest = library
     cached = invoke(root/"store", "analyze", source, "--json")
     assert json.loads(cached.stdout) == digest
@@ -53,6 +53,9 @@ def test_analysis_cache_human_and_machine_output(library):
     quiet = invoke(root/"store", "--json", "--quiet", "inspect", source)
     assert not quiet.stderr and json.loads(quiet.stdout) == digest
     assert packet(root/"store", "list")['tracks'][0]['track_id'] == digest['track_id']
+    for columns in (80, 120):
+        monkeypatch.setenv('COLUMNS', str(columns))
+        assert packet(root/'store', 'inspect', 'latest') == digest
 
 
 def test_evidence_workflow(library):

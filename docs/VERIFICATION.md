@@ -1,5 +1,18 @@
 # Muvi verification
 
+## 0.8.2 visual and terminal presentation
+
+- Fixed the four findings in the visual audit under a
+  [precommitted acceptance plan](VISUAL_OUTPUT_PLAN.md).
+- **103 tests passed**, then **10 affected chart/CLI/MCP checks passed** after
+  the final legend placement. Installed core-only wheel smoke also passed.
+- Sixteen actual charts match stored beat/support coordinates, boundaries,
+  object labels and provenance. Twenty CLI runs fit 80/120-column limits.
+- Chart cache `tile-v2` preserves old images and needs no audio reanalysis.
+  Twenty-one other Python modules are unchanged; this is not a beat accuracy gain.
+- [Details and remaining limits](VISUAL_OUTPUT_EVALUATION.md),
+  [machine-readable verification](verification/visual-output.json).
+
 ## 0.8.1 exact comparisons and acoustic progression
 
 - Evaluation criteria were committed before implementation in

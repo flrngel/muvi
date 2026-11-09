@@ -1,6 +1,7 @@
 """Dependency-free terminal presentation. JSON output never passes through here."""
 
 import json
+import shutil
 import unicodedata
 
 
@@ -22,13 +23,54 @@ def short(track):
     return track.removeprefix("sha256:")[:12]
 
 
+def cell_width(value):
+    return sum(0 if unicodedata.combining(c) else 2 if unicodedata.east_asian_width(c) in 'WF' else 1 for c in value)
+
+
+def columns():
+    return max(20, shutil.get_terminal_size(fallback=(100, 24)).columns)
+
+
+def fold(value, width):
+    """Wrap by terminal cells, retaining long identifiers and combining marks."""
+    lines = []
+    while cell_width(value) > width:
+        used = 0
+        cut = 0
+        for char in value:
+            used += cell_width(char)
+            if used > width:
+                break
+            cut += 1
+        space = value.rfind(' ', 0, cut+1)
+        if space > 0:
+            cut = space
+        cut = max(1, cut)
+        lines.append(value[:cut].rstrip())
+        value = value[cut:].lstrip()
+    return [*lines, value]
+
+
 def table(headers, rows):
     rows = [[clean(value) for value in row] for row in rows]
     if not rows:
         return "  No matches."
-    widths = [max(len(h), *(len(row[i]) for row in rows)) for i, h in enumerate(headers)]
-    return "\n".join("  " + "  ".join(cell.ljust(width) for cell, width in zip(row, widths)).rstrip()
-                     for row in [headers, *rows])
+    widths = [max(cell_width(h), *(cell_width(row[i]) for row in rows)) for i, h in enumerate(headers)]
+    available = columns()-2-2*(len(headers)-1)
+    minimum = [min(w, max(cell_width(h), 23 if h in ('TIME', 'ORIGINAL TIME') and w > 20 else 12))
+               for h, w in zip(headers, widths)]
+    if sum(minimum) > available:
+        return '\n\n'.join('\n'.join(f'  {h}: {v}' for h, v in zip(headers, row)) for row in rows)
+    while sum(widths) > available:
+        i = max((i for i in range(len(widths)) if widths[i] > minimum[i]), key=lambda i: widths[i])
+        widths[i] -= 1
+    lines = []
+    for row in [headers, *rows]:
+        cells = [fold(value, width) for value, width in zip(row, widths)]
+        for line in range(max(map(len, cells))):
+            parts = [cell[line] if line < len(cell) else '' for cell in cells]
+            lines.append('  '+'  '.join(value+' '*(width-cell_width(value)) for value, width in zip(parts, widths)).rstrip())
+    return '\n'.join(lines)
 
 
 def sections(items):
@@ -67,6 +109,15 @@ def scalar(value):
 
 
 def format_result(command, result):
+    lines = []
+    for line in _format_result(command, result).split('\n'):
+        line = clean(line)
+        indent = min(len(line)-len(line.lstrip()), columns()//2)
+        lines.extend(' '*indent + part for part in fold(line[indent:], columns()-indent))
+    return '\n'.join(lines)
+
+
+def _format_result(command, result):
     if command in ("analyze", "inspect", "overview", "demo"):
         tempo = result['tempo']
         bpm = tempo['preferred_bpm']
@@ -82,12 +133,12 @@ def format_result(command, result):
         if result['sections_truncated']:
             lines.append(f"  Showing 24 of {result['section_count']}; use muvi sections for all sections.")
         flow = result['flow']
-        progression = ['', 'Acoustic progression', table(['TIME','OBSERVATIONS','RESEMBLES'],
-                       [[span(row),row['description'],row['similar_to']['flow_id'] if row['similar_to'] else '']
+        progression = ['', 'Acoustic progression', table(['FLOW','TIME','OBSERVATIONS','RESEMBLES'],
+                       [[row['id'],span(row),row['description'],row['similar_to']['flow_id'] if row['similar_to'] else '']
                         for row in flow['items']])]
         if flow['next_offset'] is not None:
             progression.extend([f"Continue: muvi inspect {short(result['track_id'])} --flow-offset {flow['next_offset']}",
-                                f"Ending {span(flow['ending'])}: {flow['ending']['description']}"])
+                                f"Ending {flow['ending']['id']} {span(flow['ending'])}: {flow['ending']['description']}"])
         progression.append('Candidate boundaries and descriptor similarity; use exact windows for source silence.')
         lines[6:6] = progression
         if result['patterns']:

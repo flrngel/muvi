@@ -42,10 +42,35 @@ Use IDs returned by your analysis. Follow `next_offset` until null when you need
 paged events. `crop`/`render` without `-o` return generated cache paths; `export`
 without `-o` writes the full JSON to stdout.
 
+Text output adapts to terminal width (`COLUMNS` when set; 100-column fallback).
+Tables wrap cells, prose wraps, and Unicode wide/combining characters are accounted
+for. Flow rows and the explicit ending carry their `FLOW_…` navigation IDs. Use
+JSON for exact machine-readable strings; terminal width never changes JSON.
+
 `render` writes a neighboring JSON legend. Its raw-array URI points to the library;
 genome artifact paths remain relative to the analysis directory. Keep the library
 for later retrieval. Existing exports require `--force`; original audio and managed
 cache paths cannot be overwritten, including with that flag.
+
+### Chart interpretation
+
+The four aligned panels show spectral power, low/mid/high power, onset strength
+and acoustic-object occurrences. The visible color scale uses window-normalized
+digital power; the displayed power floor is −120 dB. Object labels name acoustic
+descriptors, not separated instruments. All panels use original-track seconds.
+
+Beat marks use the stored tracked sequence, never the legacy constant-tempo grid.
+Solid green marks have detected-onset support; dashed amber marks are interpolated
+and unsupported. Both are inferred timing hypotheses. Interpolation can continue
+through silence; it is not evidence that a sound occurred. Missing/empty tracking
+is labeled explicitly. For spans over 30 seconds or more than 64 beats, individual
+marks are omitted with a count. Zoom to inspect them. Candidate boundaries appear
+only in the object panel and are omitted when more than 24 would be drawn.
+
+The JSON legend retains every in-range beat coordinate/support and candidate
+boundary, display counts/limits, object names and provenance, even when marks are
+omitted. The `tile-v2` cache identity preserves older images while generating the
+corrected view from existing analyses; audio reanalysis is unnecessary.
 
 ## Typed tools and MCP
 
@@ -138,7 +163,7 @@ Default: `~/.muvi`.
 ```
 
 Analysis publishes atomically under a process lock. Cache identity includes audio
-hash, pipeline version and parameter hash. Package 0.8.1 reuses pipeline 0.6.0;
+hash, pipeline version and parameter hash. Package 0.8.2 reuses pipeline 0.6.0;
 window comparisons and derived flow do not require reanalysis. Pipeline 0.6.0 introduced
 tracked beat hypotheses (schema 0.3.0). Reanalyze original audio to populate these
 fields; older analyses return `available: false` from `beats`. Older 0.3.x libraries remain

@@ -51,6 +51,11 @@ with tempfile.TemporaryDirectory(prefix='muvi-wheel-smoke-') as temp:
     assert cli('tools', 'get_audio_crop')['input_schema']
     assert cli('crop', 'latest', '--start', '0.2', '--end', '0.3', '-o', root/'crop.wav')['audio']['path']
     assert cli('render', 'latest', '--end', '2', '-o', root/'tile.png')['image']['path']
+    legend = json.loads((root/'tile.json').read_text(encoding='utf-8'))
+    actual = cli('beats', 'latest', '--end', '2')['beats']
+    assert legend['render_version'] == 'tile-v2'
+    assert legend['beat_overlay']['beats'] == [{k:b[k] for k in ('time_s','support')} for b in actual]
+    assert legend['object_labels']
     assert cli('export', 'latest')['track_id'] == digest['track_id']
     assert cli('mcp-config')['mcpServers']['muvi']['command'] == sys.executable
     assert 'optional' in cli('mcp', code=2)['error']['message']
