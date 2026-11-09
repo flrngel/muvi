@@ -35,6 +35,10 @@ with tempfile.TemporaryDirectory(prefix='muvi-wheel-smoke-') as temp:
     assert digest['title'] == source.stem
     assert cli('inspect', 'latest') == digest
     assert cli('rhythm', 'latest', '--limit', '3')['next_offset'] == 3
+    beats = cli('beats', 'latest', '--limit', '3')
+    assert beats['available'] and beats['meter_status'] == 'not_estimated'
+    assert cli('evidence', 'latest', *beats['evidence_ids'])['evidence']
+    assert cli('tools', 'get_beats')['input_schema']
     assert cli('tools', 'get_audio_crop')['input_schema']
     assert cli('crop', 'latest', '--start', '0.2', '--end', '0.3', '-o', root/'crop.wav')['audio']['path']
     assert cli('render', 'latest', '--end', '2', '-o', root/'tile.png')['image']['path']

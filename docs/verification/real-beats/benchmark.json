@@ -1,0 +1,1127 @@
+{
+  "package_version": "0.6.0",
+  "analysis_id": "dsp-0.6.0-6f2fa4bfb7ea",
+  "fixture_count": 16,
+  "scope": "Generated mathematical signals only. Not evidence of general music QA accuracy.",
+  "gates": {
+    "clean_pulse_f1_at_least_0_90": true,
+    "clean_pulse_median_error_at_most_25ms": true,
+    "clean_pulse_tempo_error_at_most_3pct": true,
+    "source_identity_abstention": true,
+    "silence_abstention": true
+  },
+  "passed": true,
+  "elapsed_p50_s": 0.8489621499320492,
+  "elapsed_p95_s": 1.666479800012894,
+  "sampled_process_peak_rss_bytes": 150208512,
+  "external_model_ablations": {
+    "A": "not_run: requires model outputs and permissioned annotated tracks",
+    "B": "not_run: requires model outputs and permissioned annotated tracks",
+    "C": "not_run: requires model outputs and permissioned annotated tracks",
+    "D": "not_run: requires model outputs and permissioned annotated tracks",
+    "E": "not_run: requires model outputs and permissioned annotated tracks",
+    "F": "not_run: requires model outputs and permissioned annotated tracks",
+    "G": "not_run: requires model outputs and permissioned annotated tracks"
+  },
+  "cases": [
+    {
+      "case_id": "controlled-00",
+      "generation": {
+        "kind": "pulse",
+        "bpm": 90,
+        "seed": 7,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "pulse",
+        "bpm": 90,
+        "seed": 7,
+        "onsets_s": [
+          0.2,
+          0.8666666666666667,
+          1.5333333333333334,
+          2.2,
+          2.866666666666667,
+          3.533333333333334,
+          4.2,
+          4.866666666666667,
+          5.533333333333334,
+          6.200000000000001,
+          6.866666666666668,
+          7.533333333333334,
+          8.2,
+          8.866666666666667,
+          9.533333333333333,
+          10.200000000000001,
+          10.866666666666667,
+          11.533333333333333,
+          12.200000000000001,
+          12.866666666666667,
+          13.533333333333335,
+          14.200000000000001,
+          14.866666666666667,
+          15.533333333333335
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:1ec2e0a62cc3d259a3780df171d7d3837f112bb8148cbb0d62ac10a309a32a8c",
+      "elapsed_s": 0.7649154999526218,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        90.212
+      ],
+      "digest_characters": 1087,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.0028121471405029297,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.002355555555555592
+    },
+    {
+      "case_id": "controlled-01",
+      "generation": {
+        "kind": "pulse",
+        "bpm": 90,
+        "seed": 29,
+        "offset": 1.1
+      },
+      "ground_truth": {
+        "kind": "pulse",
+        "bpm": 90,
+        "seed": 29,
+        "onsets_s": [
+          1.1,
+          1.7666666666666666,
+          2.433333333333333,
+          3.0999999999999996,
+          3.766666666666666,
+          4.433333333333333,
+          5.1,
+          5.766666666666666,
+          6.433333333333332,
+          7.099999999999998,
+          7.766666666666666,
+          8.433333333333332,
+          9.099999999999998,
+          9.766666666666664,
+          10.433333333333332,
+          11.099999999999998,
+          11.766666666666664,
+          12.43333333333333,
+          13.099999999999996,
+          13.766666666666664,
+          14.43333333333333,
+          15.099999999999996,
+          15.766666666666664
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:f34b9c6512a4298ab43fc4c2644e00e9c16b887c82e1c12c2c885481da4f9ba3",
+      "elapsed_s": 0.7516173999756575,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        90.212
+      ],
+      "digest_characters": 1087,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.0027666091918945312,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.002355555555555592
+    },
+    {
+      "case_id": "controlled-02",
+      "generation": {
+        "kind": "pulse",
+        "bpm": 120,
+        "seed": 7,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "pulse",
+        "bpm": 120,
+        "seed": 7,
+        "onsets_s": [
+          0.2,
+          0.7,
+          1.2,
+          1.6999999999999997,
+          2.1999999999999997,
+          2.6999999999999997,
+          3.1999999999999997,
+          3.6999999999999997,
+          4.199999999999999,
+          4.699999999999999,
+          5.199999999999999,
+          5.699999999999999,
+          6.199999999999999,
+          6.699999999999999,
+          7.199999999999999,
+          7.699999999999999,
+          8.2,
+          8.699999999999998,
+          9.199999999999998,
+          9.699999999999998,
+          10.199999999999998,
+          10.699999999999998,
+          11.199999999999998,
+          11.699999999999998,
+          12.199999999999998,
+          12.699999999999998,
+          13.199999999999998,
+          13.699999999999998,
+          14.199999999999998,
+          14.699999999999998,
+          15.199999999999998,
+          15.699999999999998
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:6c2f6451c7fac6e1082222efab249a44bb31d469f52f8c5112d618f6224dfe0b",
+      "elapsed_s": 2.6144480000948533,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        119.863,
+        59.931
+      ],
+      "digest_characters": 1099,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.0028345584869384766,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.0011416666666666704
+    },
+    {
+      "case_id": "controlled-03",
+      "generation": {
+        "kind": "pulse",
+        "bpm": 120,
+        "seed": 29,
+        "offset": 1.1
+      },
+      "ground_truth": {
+        "kind": "pulse",
+        "bpm": 120,
+        "seed": 29,
+        "onsets_s": [
+          1.1,
+          1.6,
+          2.1,
+          2.6,
+          3.1,
+          3.6,
+          4.1,
+          4.6,
+          5.1,
+          5.6,
+          6.1,
+          6.6,
+          7.1,
+          7.6,
+          8.1,
+          8.6,
+          9.1,
+          9.6,
+          10.1,
+          10.6,
+          11.1,
+          11.6,
+          12.1,
+          12.6,
+          13.1,
+          13.6,
+          14.1,
+          14.6,
+          15.1,
+          15.6
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:930086790d4d95cdb59daea50f4c603d2f19496aaad28a433b48cc28e912bc06",
+      "elapsed_s": 1.3504903999855742,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        119.863,
+        59.931
+      ],
+      "digest_characters": 1100,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.0029702186584472656,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.0011416666666666704
+    },
+    {
+      "case_id": "controlled-04",
+      "generation": {
+        "kind": "pulse",
+        "bpm": 150,
+        "seed": 7,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "pulse",
+        "bpm": 150,
+        "seed": 7,
+        "onsets_s": [
+          0.2,
+          0.6000000000000001,
+          1.0000000000000002,
+          1.4000000000000001,
+          1.8000000000000003,
+          2.2000000000000006,
+          2.6000000000000005,
+          3.000000000000001,
+          3.400000000000001,
+          3.8000000000000007,
+          4.200000000000001,
+          4.600000000000001,
+          5.000000000000001,
+          5.400000000000001,
+          5.800000000000002,
+          6.200000000000001,
+          6.600000000000001,
+          7.000000000000002,
+          7.400000000000001,
+          7.800000000000002,
+          8.200000000000001,
+          8.600000000000001,
+          9.000000000000002,
+          9.4,
+          9.8,
+          10.200000000000001,
+          10.600000000000001,
+          11.000000000000002,
+          11.400000000000002,
+          11.8,
+          12.200000000000001,
+          12.600000000000001,
+          13.000000000000002,
+          13.400000000000002,
+          13.800000000000002,
+          14.200000000000003,
+          14.600000000000001,
+          15.000000000000002,
+          15.400000000000002,
+          15.800000000000002
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:d3c36c591fee719c404824fcfca2bec2874c58605daa6f6fae53a6b866ed9ee9",
+      "elapsed_s": 0.9269042999949306,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        150.144,
+        75.072
+      ],
+      "digest_characters": 1098,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.0029022693634033203,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.0009600000000000363
+    },
+    {
+      "case_id": "controlled-05",
+      "generation": {
+        "kind": "pulse",
+        "bpm": 150,
+        "seed": 29,
+        "offset": 1.1
+      },
+      "ground_truth": {
+        "kind": "pulse",
+        "bpm": 150,
+        "seed": 29,
+        "onsets_s": [
+          1.1,
+          1.5,
+          1.9,
+          2.3,
+          2.6999999999999997,
+          3.0999999999999996,
+          3.4999999999999996,
+          3.8999999999999995,
+          4.299999999999999,
+          4.699999999999999,
+          5.1,
+          5.499999999999998,
+          5.899999999999999,
+          6.299999999999999,
+          6.699999999999999,
+          7.099999999999998,
+          7.499999999999998,
+          7.899999999999999,
+          8.299999999999999,
+          8.699999999999998,
+          9.099999999999998,
+          9.499999999999998,
+          9.899999999999997,
+          10.299999999999997,
+          10.699999999999998,
+          11.099999999999998,
+          11.499999999999998,
+          11.899999999999997,
+          12.299999999999997,
+          12.699999999999998,
+          13.099999999999996,
+          13.499999999999996,
+          13.899999999999997,
+          14.299999999999997,
+          14.699999999999998,
+          15.099999999999996,
+          15.499999999999996
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:8f161c598d0bdbd5f01b53cf14c2ecac01e94b2859422f208fcbda7ff3fff040",
+      "elapsed_s": 1.0432672000024468,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        150.144,
+        75.072
+      ],
+      "digest_characters": 1100,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.0029478073120117188,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.0009600000000000363
+    },
+    {
+      "case_id": "controlled-06",
+      "generation": {
+        "kind": "pulse",
+        "bpm": 180,
+        "seed": 7,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "pulse",
+        "bpm": 180,
+        "seed": 7,
+        "onsets_s": [
+          0.2,
+          0.5333333333333333,
+          0.8666666666666667,
+          1.2,
+          1.5333333333333332,
+          1.8666666666666665,
+          2.2,
+          2.533333333333333,
+          2.8666666666666667,
+          3.2,
+          3.533333333333333,
+          3.8666666666666667,
+          4.2,
+          4.533333333333333,
+          4.866666666666666,
+          5.2,
+          5.533333333333333,
+          5.866666666666666,
+          6.2,
+          6.533333333333333,
+          6.866666666666666,
+          7.2,
+          7.533333333333333,
+          7.866666666666666,
+          8.2,
+          8.533333333333331,
+          8.866666666666665,
+          9.2,
+          9.533333333333331,
+          9.866666666666665,
+          10.2,
+          10.533333333333331,
+          10.866666666666665,
+          11.2,
+          11.533333333333331,
+          11.866666666666665,
+          12.2,
+          12.533333333333331,
+          12.866666666666665,
+          13.2,
+          13.533333333333331,
+          13.866666666666665,
+          14.2,
+          14.533333333333331,
+          14.866666666666665,
+          15.2,
+          15.533333333333331
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:8e62b7968384a549a81a909de8f0e6c3ba28388269d73bde3bb63e7dc47e6f65",
+      "elapsed_s": 0.9859957000007853,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        179.794,
+        90.212
+      ],
+      "digest_characters": 1100,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.002811908721923828,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.0011444444444443824
+    },
+    {
+      "case_id": "controlled-07",
+      "generation": {
+        "kind": "pulse",
+        "bpm": 180,
+        "seed": 29,
+        "offset": 1.1
+      },
+      "ground_truth": {
+        "kind": "pulse",
+        "bpm": 180,
+        "seed": 29,
+        "onsets_s": [
+          1.1,
+          1.4333333333333333,
+          1.7666666666666666,
+          2.0999999999999996,
+          2.433333333333333,
+          2.7666666666666666,
+          3.0999999999999996,
+          3.433333333333333,
+          3.766666666666666,
+          4.1,
+          4.433333333333333,
+          4.766666666666666,
+          5.1,
+          5.433333333333332,
+          5.766666666666666,
+          6.1,
+          6.433333333333332,
+          6.766666666666666,
+          7.099999999999998,
+          7.433333333333332,
+          7.766666666666666,
+          8.099999999999998,
+          8.433333333333332,
+          8.766666666666666,
+          9.099999999999998,
+          9.433333333333332,
+          9.766666666666664,
+          10.099999999999998,
+          10.433333333333332,
+          10.766666666666664,
+          11.099999999999998,
+          11.43333333333333,
+          11.766666666666664,
+          12.099999999999998,
+          12.43333333333333,
+          12.766666666666664,
+          13.099999999999996,
+          13.43333333333333,
+          13.766666666666664,
+          14.099999999999996,
+          14.43333333333333,
+          14.766666666666664,
+          15.099999999999996,
+          15.43333333333333,
+          15.766666666666664
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:7c65ffe38fa1a0e13d167d8de0bb21723a328da3f742408934d2a3d6749f1708",
+      "elapsed_s": 0.7537525000516325,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        179.794,
+        90.212
+      ],
+      "digest_characters": 1100,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.0029478073120117188,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.0011444444444443824
+    },
+    {
+      "case_id": "controlled-08",
+      "generation": {
+        "kind": "silence",
+        "bpm": 150,
+        "seed": 31,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "silence",
+        "bpm": 150,
+        "seed": 31,
+        "onsets_s": [],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:0f8200c5a7d7bb4bdc2d79b665da68e1f72fadaf82dd5f5ffb99e6bd82bcb1e0",
+      "elapsed_s": 0.715637500048615,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [],
+      "digest_characters": 873,
+      "silence_has_no_events_or_tempo": true
+    },
+    {
+      "case_id": "controlled-09",
+      "generation": {
+        "kind": "noise",
+        "bpm": 150,
+        "seed": 31,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "noise",
+        "bpm": null,
+        "seed": 31,
+        "onsets_s": [],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:cbf01762242c4352990e2a059ee7bb80eb6de71b1de0fc71122692ebd36f5b4b",
+      "elapsed_s": 0.8282086999388412,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [],
+      "digest_characters": 1093
+    },
+    {
+      "case_id": "controlled-10",
+      "generation": {
+        "kind": "tone",
+        "bpm": 150,
+        "seed": 31,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "tone",
+        "bpm": null,
+        "seed": 31,
+        "onsets_s": [],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:99fe8bf4d8deb2cb0ce73724338420cda5e9b526023b66b9372ba0d6afde117c",
+      "elapsed_s": 0.7033123000292107,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [],
+      "digest_characters": 1078
+    },
+    {
+      "case_id": "controlled-11",
+      "generation": {
+        "kind": "antiphase",
+        "bpm": 150,
+        "seed": 31,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "antiphase",
+        "bpm": 150,
+        "seed": 31,
+        "onsets_s": [
+          0.2,
+          0.6000000000000001,
+          1.0000000000000002,
+          1.4000000000000001,
+          1.8000000000000003,
+          2.2000000000000006,
+          2.6000000000000005,
+          3.000000000000001,
+          3.400000000000001,
+          3.8000000000000007,
+          4.200000000000001,
+          4.600000000000001,
+          5.000000000000001,
+          5.400000000000001,
+          5.800000000000002,
+          6.200000000000001,
+          6.600000000000001,
+          7.000000000000002,
+          7.400000000000001,
+          7.800000000000002,
+          8.200000000000001,
+          8.600000000000001,
+          9.000000000000002,
+          9.4,
+          9.8,
+          10.200000000000001,
+          10.600000000000001,
+          11.000000000000002,
+          11.400000000000002,
+          11.8,
+          12.200000000000001,
+          12.600000000000001,
+          13.000000000000002,
+          13.400000000000002,
+          13.800000000000002,
+          14.200000000000003,
+          14.600000000000001,
+          15.000000000000002,
+          15.400000000000002,
+          15.800000000000002
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:818792444ba9340f1bc5261557d8c4f55872b3fb41691d3146de14e09a44f08c",
+      "elapsed_s": 0.9118739000987262,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        150.144,
+        75.072
+      ],
+      "digest_characters": 1098,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.0029022693634033203,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.0009600000000000363
+    },
+    {
+      "case_id": "controlled-12",
+      "generation": {
+        "kind": "missing",
+        "bpm": 150,
+        "seed": 31,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "missing",
+        "bpm": 150,
+        "seed": 31,
+        "onsets_s": [
+          0.2,
+          0.6000000000000001,
+          1.0000000000000002,
+          1.4000000000000001,
+          1.8000000000000003,
+          2.6000000000000005,
+          3.000000000000001,
+          3.400000000000001,
+          3.8000000000000007,
+          4.200000000000001,
+          4.600000000000001,
+          5.000000000000001,
+          5.800000000000002,
+          6.200000000000001,
+          6.600000000000001,
+          7.000000000000002,
+          7.400000000000001,
+          7.800000000000002,
+          8.200000000000001,
+          9.000000000000002,
+          9.4,
+          9.8,
+          10.200000000000001,
+          10.600000000000001,
+          11.000000000000002,
+          11.400000000000002,
+          12.200000000000001,
+          12.600000000000001,
+          13.000000000000002,
+          13.400000000000002,
+          13.800000000000002,
+          14.200000000000003,
+          14.600000000000001,
+          15.400000000000002,
+          15.800000000000002
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:dbab9ea6203f3beb45e26941f595d4c26bc4a64078d578bfa5b4e8277bb64c89",
+      "elapsed_s": 0.765850100084208,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        150.144,
+        75.072
+      ],
+      "digest_characters": 1101,
+      "onsets": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.002811908721923828,
+        "tolerance_s": 0.05
+      },
+      "tempo_relative_error": 0.0009600000000000363
+    },
+    {
+      "case_id": "controlled-13",
+      "generation": {
+        "kind": "alternate_bass",
+        "bpm": 150,
+        "seed": 31,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "alternate_bass",
+        "bpm": 150,
+        "seed": 31,
+        "onsets_s": [
+          0.2,
+          0.6000000000000001,
+          1.0000000000000002,
+          1.4000000000000001,
+          1.8000000000000003,
+          2.2000000000000006,
+          2.6000000000000005,
+          3.000000000000001,
+          3.400000000000001,
+          3.8000000000000007,
+          4.200000000000001,
+          4.600000000000001,
+          5.000000000000001,
+          5.400000000000001,
+          5.800000000000002,
+          6.200000000000001,
+          6.600000000000001,
+          7.000000000000002,
+          7.400000000000001,
+          7.800000000000002,
+          8.200000000000001,
+          8.600000000000001,
+          9.000000000000002,
+          9.4,
+          9.8,
+          10.200000000000001,
+          10.600000000000001,
+          11.000000000000002,
+          11.400000000000002,
+          11.8,
+          12.200000000000001,
+          12.600000000000001,
+          13.000000000000002,
+          13.400000000000002,
+          13.800000000000002,
+          14.200000000000003,
+          14.600000000000001,
+          15.000000000000002,
+          15.400000000000002,
+          15.800000000000002
+        ],
+        "boundaries_s": [],
+        "bass_intervals": [
+          [
+            0.2,
+            1.6
+          ],
+          [
+            3.4000000000000004,
+            4.800000000000001
+          ],
+          [
+            6.6000000000000005,
+            8.0
+          ],
+          [
+            9.8,
+            11.200000000000001
+          ],
+          [
+            13.0,
+            14.4
+          ]
+        ],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:4c2b2eab1933333dfc3554c118df6aa48560efbcc9b9730b4c5cfd6dedc8e010",
+      "elapsed_s": 0.9497332000173628,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [],
+      "tempo_candidates_bpm": [
+        150.144,
+        75.072
+      ],
+      "digest_characters": 1224
+    },
+    {
+      "case_id": "controlled-14",
+      "generation": {
+        "kind": "arrangement",
+        "bpm": 150,
+        "seed": 31,
+        "offset": 0.2
+      },
+      "ground_truth": {
+        "kind": "arrangement",
+        "bpm": 150,
+        "seed": 31,
+        "onsets_s": [
+          0.2,
+          0.6000000000000001,
+          1.0000000000000002,
+          1.4000000000000001,
+          1.8000000000000003,
+          2.2000000000000006,
+          2.6000000000000005,
+          3.000000000000001,
+          3.400000000000001,
+          3.8000000000000007,
+          4.200000000000001,
+          4.600000000000001,
+          5.000000000000001,
+          5.400000000000001,
+          5.800000000000002,
+          6.200000000000001,
+          6.600000000000001,
+          7.000000000000002,
+          7.400000000000001,
+          7.800000000000002,
+          12.200000000000001,
+          12.600000000000001,
+          13.000000000000002,
+          13.400000000000002,
+          13.800000000000002,
+          14.200000000000003,
+          14.600000000000001,
+          15.000000000000002,
+          15.400000000000002,
+          15.800000000000002
+        ],
+        "boundaries_s": [
+          4.0,
+          8.0,
+          12.0
+        ],
+        "bass_intervals": [
+          [
+            5.000000000000001,
+            6.400000000000001
+          ],
+          [
+            6.6000000000000005,
+            8.0
+          ],
+          [
+            8.2,
+            9.6
+          ],
+          [
+            9.8,
+            11.200000000000001
+          ],
+          [
+            11.4,
+            12.8
+          ],
+          [
+            13.0,
+            14.4
+          ],
+          [
+            14.6,
+            16.0
+          ]
+        ],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:8472c481d442ea185d46f2d5a02fc0b46ebd7e00bda9628eebd9a62eadf71f9e",
+      "elapsed_s": 0.8160299001028761,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [
+        4.005442142486572,
+        7.720634937286377,
+        12.074376106262207
+      ],
+      "tempo_candidates_bpm": [
+        149.513,
+        73.179
+      ],
+      "digest_characters": 1700,
+      "boundary_metrics_0_5s": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.07437610626220703,
+        "tolerance_s": 0.5
+      },
+      "boundary_metrics_3s": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.07437610626220703,
+        "tolerance_s": 3
+      }
+    },
+    {
+      "case_id": "controlled-15",
+      "generation": {
+        "kind": "arrangement",
+        "bpm": 128,
+        "seed": 53,
+        "offset": 0.13
+      },
+      "ground_truth": {
+        "kind": "arrangement",
+        "bpm": 128,
+        "seed": 53,
+        "onsets_s": [
+          0.13,
+          0.59875,
+          1.0675,
+          1.53625,
+          2.005,
+          2.47375,
+          2.9425,
+          3.41125,
+          3.88,
+          4.34875,
+          4.8175,
+          5.28625,
+          5.755,
+          6.22375,
+          6.6925,
+          7.16125,
+          7.63,
+          12.3175,
+          12.78625,
+          13.255,
+          13.72375,
+          14.1925,
+          14.66125,
+          15.13,
+          15.59875
+        ],
+        "boundaries_s": [
+          4.0,
+          8.0,
+          12.0
+        ],
+        "bass_intervals": [
+          [
+            5.755,
+            7.395625
+          ],
+          [
+            7.63,
+            9.270624999999999
+          ],
+          [
+            9.505,
+            11.145625
+          ],
+          [
+            11.38,
+            13.020625
+          ],
+          [
+            13.255,
+            14.895625
+          ],
+          [
+            15.13,
+            16.0
+          ]
+        ],
+        "sample_rate": 22050,
+        "license": "original mathematical synthesis"
+      },
+      "track_id": "sha256:9296a5e81020eb4cf3e13f9ecff17622b6684833e4f9ed18f64d5db87f908bd3",
+      "elapsed_s": 0.8697155999252573,
+      "source_identity_verdict": "indeterminate",
+      "candidate_boundaries_s": [
+        3.6107029914855957,
+        8.32435417175293,
+        11.969886779785156
+      ],
+      "tempo_candidates_bpm": [
+        127.433,
+        86.427,
+        62.455
+      ],
+      "digest_characters": 1665,
+      "boundary_metrics_0_5s": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.3243541717529297,
+        "tolerance_s": 0.5
+      },
+      "boundary_metrics_3s": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "median_error_s": 0.3243541717529297,
+        "tolerance_s": 3
+      }
+    }
+  ]
+}

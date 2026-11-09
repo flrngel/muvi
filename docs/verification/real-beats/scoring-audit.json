@@ -1,0 +1,208 @@
+{
+  "method": "Reference CSV original timestamps minus 30 seconds; filter excerpt [5,45) = source [35,75). Dynamic-programming maximum one-to-one matching at <=70 ms; strict level, no shifts/rescaling.",
+  "cases": [
+    {
+      "case_id": "q31",
+      "reference_sha256_matches": true,
+      "reference_source_interval": "[35,75)",
+      "results": {
+        "baseline": {
+          "matches": 134,
+          "reference_count": 138,
+          "predicted_count": 138,
+          "f1": 0.9710144927536232,
+          "claimed_f1": 0.9710144927536232,
+          "matches_claimed": true
+        },
+        "tuned": {
+          "matches": 55,
+          "reference_count": 138,
+          "predicted_count": 71,
+          "f1": 0.5263157894736842,
+          "claimed_f1": 0.5263157894736842,
+          "matches_claimed": true,
+          "support_fraction": 1.0,
+          "supported_only": {
+            "matches": 55,
+            "reference_count": 138,
+            "predicted_count": 71,
+            "f1": 0.5263157894736842
+          },
+          "mcp_beats_exact_match": true,
+          "mcp_timestamps_match": true,
+          "mcp_analysis_id_match": true
+        }
+      }
+    },
+    {
+      "case_id": "q93",
+      "reference_sha256_matches": true,
+      "reference_source_interval": "[35,75)",
+      "results": {
+        "baseline": {
+          "matches": 0,
+          "reference_count": 104,
+          "predicted_count": 0,
+          "f1": 0.0,
+          "claimed_f1": 0,
+          "matches_claimed": true
+        },
+        "tuned": {
+          "matches": 20,
+          "reference_count": 104,
+          "predicted_count": 56,
+          "f1": 0.25,
+          "claimed_f1": 0.25,
+          "matches_claimed": true,
+          "support_fraction": 0.9642857142857143,
+          "supported_only": {
+            "matches": 20,
+            "reference_count": 104,
+            "predicted_count": 54,
+            "f1": 0.25316455696202533
+          },
+          "mcp_beats_exact_match": true,
+          "mcp_timestamps_match": true,
+          "mcp_analysis_id_match": true
+        }
+      }
+    },
+    {
+      "case_id": "q08",
+      "reference_sha256_matches": true,
+      "reference_source_interval": "[35,75)",
+      "results": {
+        "baseline": {
+          "matches": 0,
+          "reference_count": 129,
+          "predicted_count": 0,
+          "f1": 0.0,
+          "claimed_f1": 0,
+          "matches_claimed": true
+        },
+        "tuned": {
+          "matches": 85,
+          "reference_count": 129,
+          "predicted_count": 114,
+          "f1": 0.6995884773662552,
+          "claimed_f1": 0.6995884773662551,
+          "matches_claimed": true,
+          "support_fraction": 0.956140350877193,
+          "supported_only": {
+            "matches": 81,
+            "reference_count": 129,
+            "predicted_count": 109,
+            "f1": 0.680672268907563
+          },
+          "mcp_beats_exact_match": true,
+          "mcp_timestamps_match": true,
+          "mcp_analysis_id_match": true
+        }
+      }
+    },
+    {
+      "case_id": "q68",
+      "reference_sha256_matches": true,
+      "reference_source_interval": "[35,75)",
+      "results": {
+        "baseline": {
+          "matches": 65,
+          "reference_count": 65,
+          "predicted_count": 65,
+          "f1": 1.0,
+          "claimed_f1": 1.0,
+          "matches_claimed": true
+        },
+        "tuned": {
+          "matches": 65,
+          "reference_count": 65,
+          "predicted_count": 65,
+          "f1": 1.0,
+          "claimed_f1": 1.0,
+          "matches_claimed": true,
+          "support_fraction": 1.0,
+          "supported_only": {
+            "matches": 65,
+            "reference_count": 65,
+            "predicted_count": 65,
+            "f1": 1.0
+          },
+          "mcp_beats_exact_match": true,
+          "mcp_timestamps_match": true,
+          "mcp_analysis_id_match": true
+        }
+      }
+    },
+    {
+      "case_id": "q17",
+      "reference_sha256_matches": true,
+      "reference_source_interval": "[35,75)",
+      "results": {
+        "baseline": {
+          "matches": 45,
+          "reference_count": 90,
+          "predicted_count": 45,
+          "f1": 0.6666666666666666,
+          "claimed_f1": 0.6666666666666666,
+          "matches_claimed": true
+        },
+        "tuned": {
+          "matches": 51,
+          "reference_count": 90,
+          "predicted_count": 89,
+          "f1": 0.5698324022346368,
+          "claimed_f1": 0.5698324022346368,
+          "matches_claimed": true,
+          "support_fraction": 1.0,
+          "supported_only": {
+            "matches": 51,
+            "reference_count": 90,
+            "predicted_count": 89,
+            "f1": 0.5698324022346368
+          },
+          "mcp_beats_exact_match": true,
+          "mcp_timestamps_match": true,
+          "mcp_analysis_id_match": true
+        }
+      }
+    },
+    {
+      "case_id": "q42",
+      "reference_sha256_matches": true,
+      "reference_source_interval": "[35,75)",
+      "results": {
+        "baseline": {
+          "matches": 60,
+          "reference_count": 60,
+          "predicted_count": 120,
+          "f1": 0.6666666666666666,
+          "claimed_f1": 0.6666666666666666,
+          "matches_claimed": true
+        },
+        "tuned": {
+          "matches": 60,
+          "reference_count": 60,
+          "predicted_count": 60,
+          "f1": 1.0,
+          "claimed_f1": 1.0,
+          "matches_claimed": true,
+          "support_fraction": 1.0,
+          "supported_only": {
+            "matches": 60,
+            "reference_count": 60,
+            "predicted_count": 60,
+            "f1": 1.0
+          },
+          "mcp_beats_exact_match": true,
+          "mcp_timestamps_match": true,
+          "mcp_analysis_id_match": true
+        }
+      }
+    }
+  ],
+  "macro_f1": {
+    "baseline": 0.5507246376811594,
+    "tuned": 0.6742894448457627
+  },
+  "case_set_exact": true
+}

@@ -27,6 +27,7 @@ protocol messages. `inspect` has an `overview` alias; a bare `muvi` prints help.
 | `sounds TRACK --query bass --start 8 --end 16` | Search acoustic objects in an interval |
 | `sound TRACK SOUND --offset 0 --limit 10` | One object's paged occurrences |
 | `rhythm TRACK --band low --start 8 --end 16 --limit 128` | Paged attacks and local pulse evidence |
+| `beats TRACK --start 8 --end 16 --limit 128` | Tracked beat hypotheses, local tempo and support |
 | `evidence TRACK EVIDENCE [EVIDENCE ...]` | Measurements, units and provenance |
 | `compare TRACK SECTION_A SECTION_B` | Compare candidate sections |
 | `verify TRACK independent-bass` | Bounded hypothesis check, including indeterminate results |
@@ -60,10 +61,10 @@ extra fields are rejected. CLI tool calls resolve the same track references as
 direct commands. MCP retrieval requires full IDs returned by `analyze_track` or
 `list_tracks`; `latest`, file paths and prefixes are CLI conveniences.
 
-Thirteen typed tools cover analysis, digests, rhythm, sections, sound search/detail,
+Fourteen typed tools cover analysis, digests, beats, rhythm, sections, sound search/detail,
 comparison, evidence, crops, charts, hypothesis checks, source metrics and separator
 availability. MCP additionally exposes `list_tracks` and version-pinned WAV/PNG
-resources, for 14 tools total. Core installation needs none of the MCP SDK,
+resources, for 15 tools total. Core installation needs none of the MCP SDK,
 FastAPI, Uvicorn or Starlette; the optional SDK has its own dependencies.
 
 Evidence carries `track_id`, `analysis_id`, original-coordinate `time_span`,
@@ -89,8 +90,9 @@ Default: `~/.muvi`.
 ```
 
 Analysis publishes atomically under a process lock. Cache identity includes audio
-hash, pipeline version and parameter hash. Package 0.5.2 retains pipeline 0.5.1:
-documentation changes do not require audio reanalysis. Older 0.3.x libraries remain
+hash, pipeline version and parameter hash. Package and pipeline 0.6.0 introduce
+tracked beat hypotheses (schema 0.3.0). Reanalyze original audio to populate these
+fields; older analyses return `available: false` from `beats`. Older 0.3.x libraries remain
 readable; new analysis versions preserve previous ones. Object/evidence IDs are local
 to an analysis, so retain `analysis_id` alongside citations.
 

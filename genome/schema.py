@@ -134,8 +134,41 @@ class Rhythm(Model):
     limitation: str = "Band attacks can overlap sources or arise from noise. Pulse rate does not establish musical meter or instrument identity."
 
 
+class BeatCandidate(Model):
+    bpm: float = Field(gt=0)
+    score: float = Field(ge=0)
+    autocorrelation: float = Field(ge=0)
+    spectral_support: float = Field(ge=0)
+
+
+class TrackedBeat(Model):
+    time_s: float = Field(ge=0)
+    onset_strength: float = Field(ge=0)
+    support: Literal["onset_supported", "interpolated"]
+
+
+class BeatTempoWindow(Span):
+    bpm: float = Field(gt=0)
+    basis: Literal["local_evidence", "track_context"]
+
+
+class BeatTracking(Model):
+    status: Literal["inferred", "unresolved"] = "unresolved"
+    candidates: list[BeatCandidate] = []
+    beats: list[TrackedBeat] = []
+    tempo_windows: list[BeatTempoWindow] = []
+    evidence_ids: list[str] = []
+    method: str = "weighted_spectral_periodicity_dynamic_programming_v1"
+    score_type: str = "uncalibrated_evidence_rank_not_probability"
+    meter_status: str = "not_estimated"
+    downbeat_status: str = "not_estimated"
+    limitation: str = ("Tracked beats are mixture-level hypotheses. Onset support is not correctness; "
+                       "interpolated beats are unsupported timing hypotheses. Half/double tempo, "
+                       "syncopation and expressive timing can remain ambiguous; no source or meter is established.")
+
+
 class Genome(Model):
-    schema_version: Literal["0.1.0", "0.2.0"] = "0.2.0"
+    schema_version: Literal["0.1.0", "0.2.0", "0.3.0"] = "0.3.0"
     track_id: str = Field(pattern=r"^sha256:[a-f0-9]{64}$")
     analysis_id: str
     title: str
@@ -151,6 +184,7 @@ class Genome(Model):
     parameters_sha256: str
     tempo: Tempo
     rhythm: Rhythm | None = None
+    beat_tracking: BeatTracking | None = None
     sections: list[Section]
     sound_objects: list[SoundObject]
     occurrences: list[Occurrence]
@@ -196,6 +230,15 @@ class Genome(Model):
                     raise ValueError("Rhythm events must be ordered, unique and inside the original audio")
                 if any(w.end_s > self.duration_s for w in stream.local_windows):
                     raise ValueError("Rhythm window exceeds original audio")
+        if self.beat_tracking:
+            tracking = self.beat_tracking
+            if not set(tracking.evidence_ids) <= evidence_ids:
+                raise ValueError("Dangling beat-tracking evidence reference")
+            times = [beat.time_s for beat in tracking.beats]
+            if times != sorted(set(times)) or any(t >= self.duration_s for t in times):
+                raise ValueError("Tracked beats must be ordered, unique and inside the original audio")
+            if any(w.end_s > self.duration_s for w in tracking.tempo_windows):
+                raise ValueError("Beat tempo window exceeds original audio")
         if not self.sections or abs(self.sections[0].start_s) > 1e-6:
             raise ValueError("Sections must cover the track")
         if abs(self.sections[-1].end_s - self.duration_s) > 1e-6:

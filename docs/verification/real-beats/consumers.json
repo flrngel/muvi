@@ -1,0 +1,692 @@
+{
+  "scope": "Consumer grounding/interpretation audit, not reference accuracy or listening; procedural blinding",
+  "raw_artifact_sha256": {
+    "terra/tuned-answers.json": "0068ed0c036a4aeb61e323b1cb651faf7e5ebe85fd88e92ed834bd1eb15212d2",
+    "terra/tuned-mcp-calls.jsonl": "b1e1d10a6894fcb98770eeb5d43594f8a7b9fecfdd9770e4b0975aae099a451b",
+    "luna/tuned-forward-test-raw-structured.json": "798a60b2d7e14c73d7077d012b7050d495db36ed7c3df3b8158d0a060630ca4e",
+    "luna/tuned-raw-call-manifest.json": "1fefe07cd30629591a0f3f15721a1ef09255da8c589200eef8ab92ec941f3b33"
+  },
+  "agents": {
+    "terra": {
+      "model": "gpt-6.1-terra",
+      "transport": "MCP stdio",
+      "tracks": 9,
+      "windows": [
+        {
+          "slug": "on-and-on",
+          "start_s": 32.0,
+          "end_s": 48.0,
+          "beats": 44,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 172.267
+        },
+        {
+          "slug": "on-and-on",
+          "start_s": 64.0,
+          "end_s": 80.0,
+          "beats": 47,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 172.267
+        },
+        {
+          "slug": "on-and-on",
+          "start_s": 96.0,
+          "end_s": 112.0,
+          "beats": 46,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 172.267
+        },
+        {
+          "slug": "invincible",
+          "start_s": 32.0,
+          "end_s": 48.0,
+          "beats": 26,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 99.384
+        },
+        {
+          "slug": "invincible",
+          "start_s": 64.0,
+          "end_s": 80.0,
+          "beats": 27,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 99.385
+        },
+        {
+          "slug": "invincible",
+          "start_s": 96.0,
+          "end_s": 112.0,
+          "beats": 27,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 99.385
+        },
+        {
+          "slug": "sky-high",
+          "start_s": 32.0,
+          "end_s": 48.0,
+          "beats": 34,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 129.199
+        },
+        {
+          "slug": "sky-high",
+          "start_s": 64.0,
+          "end_s": 80.0,
+          "beats": 35,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 129.201
+        },
+        {
+          "slug": "sky-high",
+          "start_s": 96.0,
+          "end_s": 112.0,
+          "beats": 34,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 129.199
+        },
+        {
+          "slug": "q17",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 20,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 132.512
+        },
+        {
+          "slug": "q17",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 23,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 135.999
+        },
+        {
+          "slug": "q17",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 24,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 135.999
+        },
+        {
+          "slug": "q17",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 22,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 135.999
+        },
+        {
+          "slug": "q42",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 15,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 90.666
+        },
+        {
+          "slug": "q42",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 15,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 90.666
+        },
+        {
+          "slug": "q42",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 15,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 90.666
+        },
+        {
+          "slug": "q42",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 15,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 89.103
+        },
+        {
+          "slug": "q68",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 16,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 97.509
+        },
+        {
+          "slug": "q68",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 16,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 97.509
+        },
+        {
+          "slug": "q68",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 17,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 97.509
+        },
+        {
+          "slug": "q68",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 16,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 97.509
+        },
+        {
+          "slug": "q93",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 13,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 81.385
+        },
+        {
+          "slug": "q93",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 13,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 77.714
+        },
+        {
+          "slug": "q93",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 13,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 79.507
+        },
+        {
+          "slug": "q93",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 17,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 96.598
+        },
+        {
+          "slug": "q08",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 24,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 143.555
+        },
+        {
+          "slug": "q08",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 30,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 191.406
+        },
+        {
+          "slug": "q08",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 30,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 191.406
+        },
+        {
+          "slug": "q08",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 30,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 191.406
+        },
+        {
+          "slug": "q31",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 18,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 105.469
+        },
+        {
+          "slug": "q31",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 18,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 103.359
+        },
+        {
+          "slug": "q31",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 17,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 104.403
+        },
+        {
+          "slug": "q31",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 18,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 107.666
+        }
+      ],
+      "meter_downbeat_abstentions": 33,
+      "independent_bass_abstentions": 9,
+      "raw_protocol_records": 109
+    },
+    "luna": {
+      "model": "gpt-6-luna",
+      "transport": "CLI + skill",
+      "tracks": 9,
+      "windows": [
+        {
+          "slug": "on-and-on",
+          "start_s": 32.0,
+          "end_s": 48.0,
+          "beats": 44,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 172.267
+        },
+        {
+          "slug": "on-and-on",
+          "start_s": 64.0,
+          "end_s": 80.0,
+          "beats": 47,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 172.267
+        },
+        {
+          "slug": "on-and-on",
+          "start_s": 96.0,
+          "end_s": 112.0,
+          "beats": 46,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 172.267
+        },
+        {
+          "slug": "invincible",
+          "start_s": 32.0,
+          "end_s": 48.0,
+          "beats": 26,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 99.384
+        },
+        {
+          "slug": "invincible",
+          "start_s": 64.0,
+          "end_s": 80.0,
+          "beats": 27,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 99.385
+        },
+        {
+          "slug": "invincible",
+          "start_s": 96.0,
+          "end_s": 112.0,
+          "beats": 27,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 99.385
+        },
+        {
+          "slug": "sky-high",
+          "start_s": 32.0,
+          "end_s": 48.0,
+          "beats": 34,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 129.199
+        },
+        {
+          "slug": "sky-high",
+          "start_s": 64.0,
+          "end_s": 80.0,
+          "beats": 35,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 129.201
+        },
+        {
+          "slug": "sky-high",
+          "start_s": 96.0,
+          "end_s": 112.0,
+          "beats": 34,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 129.199
+        },
+        {
+          "slug": "q17",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 20,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 132.512
+        },
+        {
+          "slug": "q17",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 23,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 135.999
+        },
+        {
+          "slug": "q17",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 24,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 135.999
+        },
+        {
+          "slug": "q17",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 22,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 135.999
+        },
+        {
+          "slug": "q42",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 15,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 90.666
+        },
+        {
+          "slug": "q42",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 15,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 90.666
+        },
+        {
+          "slug": "q42",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 15,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 90.666
+        },
+        {
+          "slug": "q42",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 15,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 89.103
+        },
+        {
+          "slug": "q68",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 16,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 97.509
+        },
+        {
+          "slug": "q68",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 16,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 97.509
+        },
+        {
+          "slug": "q68",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 17,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 97.509
+        },
+        {
+          "slug": "q68",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 16,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 97.509
+        },
+        {
+          "slug": "q93",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 13,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 81.385
+        },
+        {
+          "slug": "q93",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 13,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 77.714
+        },
+        {
+          "slug": "q93",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 13,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 79.507
+        },
+        {
+          "slug": "q93",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 17,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 96.598
+        },
+        {
+          "slug": "q08",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 24,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 143.555
+        },
+        {
+          "slug": "q08",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 30,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 191.406
+        },
+        {
+          "slug": "q08",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 30,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 191.406
+        },
+        {
+          "slug": "q08",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 30,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 191.406
+        },
+        {
+          "slug": "q31",
+          "start_s": 5.0,
+          "end_s": 15.0,
+          "beats": 18,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 105.469
+        },
+        {
+          "slug": "q31",
+          "start_s": 15.0,
+          "end_s": 25.0,
+          "beats": 18,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 103.359
+        },
+        {
+          "slug": "q31",
+          "start_s": 25.0,
+          "end_s": 35.0,
+          "beats": 17,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 104.403
+        },
+        {
+          "slug": "q31",
+          "start_s": 35.0,
+          "end_s": 45.0,
+          "beats": 18,
+          "exact_match": true,
+          "cited_evidence_retrieved": true,
+          "status": "inferred",
+          "local_tempo_bpm": 107.666
+        }
+      ],
+      "meter_downbeat_abstentions": 33,
+      "independent_bass_abstentions": 9,
+      "raw_cli_calls": 176,
+      "recorded_nonzero_calls": 0
+    }
+  }
+}

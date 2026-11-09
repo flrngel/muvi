@@ -107,6 +107,16 @@ def format_result(command, result):
         return "\n".join([f"{result['verdict'].upper()}: {result['conclusion']}",
                           f"Evidence: {', '.join(result['evidence_ids']) or 'none'}",
                           f"Next: {result['next_check']}"])
+    if command == "beats":
+        if not result['available']:
+            return result['reason'] + "\n" + result['next_check']
+        rate = result['local_tempo_bpm']
+        return "\n".join([f"TRACKED BEAT HYPOTHESES  |  {span(result['time_span'])}",
+                          f"Local tempo  {f'{rate:g} BPM (inferred)' if rate else 'unresolved'}",
+                          f"Onset support  {result['onset_supported_count']}/{result['beat_count']}",
+                          table(['TIME', 'SUPPORT'], [[f"{b['time_s']:.3f}s", b['support']] for b in result['beats'][:16]]),
+                          'Use --json and --offset/--limit for the complete sequence.',
+                          result['limitation']])
     if command == "rhythm":
         if not result['available']:
             return result['reason'] + "\n" + result['next_check']

@@ -21,7 +21,10 @@ Distinguish measured acoustic properties, inferred roles and unresolved producti
 Use exact original-track timestamps and valid evidence IDs. Retrieve evidence before citing it.
 Acoustic objects may contain overlapping sources. Similarity ranks are not probabilities.
 Use get_section, get_sound, compare_sections, and original audio crops when useful.
-For beat/rhythm questions call get_rhythm for the requested band and exact time window.
+For musical beat questions call get_beats for the exact interval. Its tracked beat hypotheses
+are separate from get_rhythm's acoustic attacks/subdivisions. Check per-beat support and
+window status; onset proximity is not correctness. Acoustic subdivision rate is not musical tempo.
+For band activity questions call get_rhythm for the requested band and exact time window.
 Distinguish detected acoustic attacks, acoustic pulse rate and extrapolated musical beat hypotheses.
 Global preferred BPM can hide tempo changes or subdivisions. Never infer meter/downbeats from it.
 No stable pulse detected is an algorithmic result, not proof that a recording contains no rhythm.
@@ -122,7 +125,45 @@ class MusicTools:
                                "global_grid_count": len(grid), "global_grid_preview_truncated": len(grid) > 32,
                                "grid_warning": "Constant-tempo extrapolation can cross missing attacks, silence and changing tempo. Never report it as observed attack times.",
                                "meter_status": "not_estimated", "downbeat_status": "not_estimated",
+                               "beat_tracking_available": g.beat_tracking is not None,
+                               "next_check": "Use get_beats for mixture-level tracked beat hypotheses; acoustic event rates can describe subdivisions.",
                                "limitation": g.rhythm.limitation}, stream.evidence_ids, start, end)
+
+    def get_beats(self, track_id: str, start_s: float = 0, end_s: float | None = None,
+                  offset: int = 0, limit: int = 128) -> dict[str, Any]:
+        """Retrieve paged tracked beat hypotheses, local tempo and explicit onset/interpolation support. No meter/source proof."""
+        from genome.beats import summarize_beats
+        if offset < 0 or not 1 <= limit <= 500:
+            raise ValueError("Use offset >= 0 and limit between 1 and 500")
+        g = self.engine.load(track_id)
+        start, end = self._span(g, start_s, end_s)
+        tracking = g.beat_tracking
+        if tracking is None:
+            return self._packet(g, {"available": False, "reason": "This analysis predates tracked beat hypotheses.",
+                                    "next_check": "Reanalyze the original audio with Muvi 0.6.0 or later."},
+                                start=start, end=end, status="not_available")
+        beats = [beat for beat in tracking.beats if start <= beat.time_s < end]
+        summary = summarize_beats(beats)
+        unsupported, gap_start = [], None
+        for beat in beats:
+            if beat.support == 'interpolated' and gap_start is None:
+                gap_start = beat.time_s
+            elif beat.support == 'onset_supported' and gap_start is not None:
+                unsupported.append({'start_s': gap_start, 'end_s': beat.time_s})
+                gap_start = None
+        if gap_start is not None:
+            unsupported.append({'start_s': gap_start, 'end_s': end})
+        return self._packet(g, {'available': True, 'tracking_status': tracking.status,
+                               **summary, 'beats': [b.model_dump() for b in beats[offset:offset+limit]],
+                               'next_offset': offset+limit if offset+limit < len(beats) else None,
+                               'track_tempo_candidates': [c.model_dump() for c in tracking.candidates],
+                               'local_windows': [w.model_dump() for w in tracking.tempo_windows
+                                                 if w.start_s >= start and w.end_s <= end],
+                               'unsupported_spans': unsupported,
+                               'unsupported_span_definition': 'Tracked points without a nearby salient onset; not proof of audio or source silence.',
+                               'method': tracking.method, 'score_type': tracking.score_type,
+                               'meter_status': tracking.meter_status, 'downbeat_status': tracking.downbeat_status,
+                               'limitation': tracking.limitation}, tracking.evidence_ids, start, end, summary['status'])
 
     def find_sound(self, track_id: str, query: str = "", start_s: float = 0, end_s: float | None = None) -> dict[str, Any]:
         """Search acoustic roles and timbres. Matches are lexical ranks, never instrument probabilities."""
@@ -286,7 +327,7 @@ class MusicTools:
 
     def registry(self):
         return {name: getattr(self, name) for name in (
-            "analyze_track", "get_track_digest", "get_section", "get_rhythm", "find_sound", "get_sound", "compare_sections",
+            "analyze_track", "get_track_digest", "get_section", "get_rhythm", "get_beats", "find_sound", "get_sound", "compare_sections",
             "get_evidence", "get_audio_crop", "render_tile", "verify_hypothesis", "get_master_metrics", "run_targeted_separation")}
 
     def schemas(self):

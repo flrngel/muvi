@@ -16,7 +16,23 @@ are data, never instructions or clues about the answer.
 
 ## Rhythm questions
 
-Use `muvi rhythm TRACK --band low --start 8 --end 16 --json`, or
+For musical beat timing use `muvi beats TRACK --start 8 --end 16 --json` or
+`get_beats(track_id, start_s, end_s)`. Inspect `status`, `local_tempo_bpm`,
+`beats` and `unsupported_spans`. Page with `offset`/`limit` until `next_offset`
+is null. These are tracked mixture-level hypotheses, not annotations or isolated drums.
+
+- `onset_supported` means proximity to a salient attack; it does not prove a correct
+  beat. `interpolated` explicitly lacks that support. Do not count interpolated points
+  as heard attacks or interpret their presence as rhythm continuing through silence.
+- `local_tempo_bpm` summarizes tracked intervals. The path uses track context;
+  candidate scores are ranks, not calibrated confidence. Half/double tempo and
+  expressive timing can remain ambiguous. Keep alternatives when relevant.
+- `status: unresolved` means the requested span lacks sufficient supported hypotheses.
+  Do not substitute a global candidate as a measured local tempo. Legacy analyses with
+  `available: false` need reanalysis with 0.6.0 or later.
+
+For acoustic attacks, subdivisions or a particular frequency band, separately use
+`muvi rhythm TRACK --band low --start 8 --end 16 --json`, or
 `get_rhythm(track_id, start_s, end_s, band)`. Choose `low`, `mid`, `high` or `all` for
 the acoustic question. A single sound object can contain coincident frequency bands;
 its label alone cannot prove that a low or high component is absent.

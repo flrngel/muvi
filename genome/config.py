@@ -15,4 +15,12 @@ PARAMETERS = {"sample_rate": ANALYSIS_SR, "hop_length": HOP, "fft_sizes": [512, 
               "rhythm_event_channels": "independent_low_mid_high_positive_flux",
               "rhythm_window_s": 4, "rhythm_hop_s": 2,
               "pulse_interval_estimator": "least_squares_integer_cycles_v1",
-              "pulse_interval_match_min": 0.7, "pulse_phase_concentration_min": 0.65}
+              "pulse_interval_match_min": 0.7, "pulse_phase_concentration_min": 0.65,
+              "beat_tracker": "weighted_spectral_periodicity_dynamic_programming_v1",
+              "beat_tempo_range_bpm": [40, 240], "beat_prior_bpm": 120,
+              "beat_prior_octave_sd": 0.6, "beat_ac_min": 0.12,
+              "beat_score_min": 0.05, "beat_spectral_support_min": 0.1,
+              "beat_novelty": "half_mixture_half_normalized_band_mean",
+              "beat_local_fallback": "three_coherent_windows_min_60_percent",
+              "beat_window_s": 8, "beat_hop_s": 2, "beat_transition_tightness": 30,
+              "beat_support_tolerance_s": 0.05}

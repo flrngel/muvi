@@ -33,9 +33,17 @@ def track_digest(g):
                                       'evidence_ids': stream.evidence_ids})
             text.append(f"RHYTHM {stream.band}: {stream.timing_status}; acoustic pulse={stream.pulse.pulse_rate_bpm}; "
                         f"events={len(stream.onset_times_s)}; evidence={','.join(stream.evidence_ids)}")
+    tracking = {'available': g.beat_tracking is not None,
+                'next_check': 'Use get_beats / muvi beats for paged beat hypotheses and support in an exact window.'}
+    if g.beat_tracking:
+        bt = g.beat_tracking
+        tracking.update(status=bt.status, candidates=[c.model_dump() for c in bt.candidates],
+                        beat_count=len(bt.beats), onset_supported_count=sum(b.support == 'onset_supported' for b in bt.beats),
+                        evidence_ids=bt.evidence_ids, limitation=bt.limitation)
+        text.append(f"BEAT TRACKING {bt.status}; {len(bt.beats)} hypotheses; evidence={','.join(bt.evidence_ids)}; query get_beats")
     return {"title": g.title, "duration_s": g.duration_s,
             "texture": next((e.model_dump() for e in g.evidence if e.kind == "spectral_texture"), None),
-            "tempo": g.tempo.model_dump(exclude={"beat_times_s"}), "rhythm": rhythm, "sections": sections,
+            "tempo": g.tempo.model_dump(exclude={"beat_times_s"}), "rhythm": rhythm, "beat_tracking": tracking, "sections": sections,
             "section_count": len(g.sections), "sections_truncated": len(g.sections) > 24,
             "prominent_objects": objects, "patterns": patterns,
             "open_questions": [c.model_dump() for c in g.claims], "digest_text": "\n".join(text),

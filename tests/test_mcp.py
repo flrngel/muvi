@@ -22,7 +22,8 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
             async with ClientSession(read, write, read_timeout_seconds=timedelta(seconds=45)) as session:
                 await session.initialize()
                 listed = await session.list_tools()
-                assert {"analyze_track", "get_track_digest", "render_tile", "list_tracks"} <= {t.name for t in listed.tools}
+                assert {"analyze_track", "get_track_digest", "get_beats", "render_tile", "list_tracks"} <= {t.name for t in listed.tools}
+                assert len(listed.tools) == 15
                 result = await session.call_tool("analyze_track", {"path": str(path)})
                 assert not result.isError
                 payload = result.structuredContent
@@ -30,6 +31,12 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
                 payload = payload.get("result", payload)
                 digest = await session.call_tool("get_track_digest", {"track_id": payload["track_id"]})
                 assert not digest.isError
+                beats = await session.call_tool('get_beats', {'track_id': payload['track_id'], 'limit': 3})
+                assert not beats.isError
+                beat_data = beats.structuredContent.get('result', beats.structuredContent)
+                assert beat_data['available'] and beat_data['meter_status'] == 'not_estimated'
+                beat_evidence = await session.call_tool('get_evidence', {'track_id': payload['track_id'], 'evidence_ids': beat_data['evidence_ids']})
+                assert not beat_evidence.isError
                 rhythm = await session.call_tool("get_rhythm", {"track_id": payload["track_id"], "band": "low", "limit": 3})
                 assert not rhythm.isError
                 data = rhythm.structuredContent.get("result", rhythm.structuredContent)

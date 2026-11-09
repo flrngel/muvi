@@ -83,6 +83,10 @@ def build_parser():
     p.add_argument("--band", choices=["low", "mid", "high", "all"], default="low")
     p.add_argument("--offset", type=int, default=0)
     p.add_argument("--limit", type=int, default=128)
+    p = command("beats", "Inspect tracked beat hypotheses, local tempo and onset support", track=True)
+    interval(p)
+    p.add_argument("--offset", type=int, default=0)
+    p.add_argument("--limit", type=int, default=128)
     p = command("sections", "List all candidate sections or inspect one", track=True)
     p.add_argument("section", nargs="?", metavar="SECTION")
     p.add_argument("--detail", action="store_true", help="Include bounded event occurrences for a section")
@@ -199,6 +203,8 @@ def run(args):
         return {"tracks": engine.list_tracks()}
     if args.command == "rhythm":
         return tools.get_rhythm(track, args.start, args.end, args.band, args.offset, args.limit)
+    if args.command == "beats":
+        return tools.get_beats(track, args.start, args.end, args.offset, args.limit)
     if args.command == "sections":
         if args.detail and not args.section:
             raise UsageError("Use --detail with a SECTION ID from muvi sections TRACK.")

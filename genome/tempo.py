@@ -7,6 +7,18 @@ from genome.features import HOP
 from genome.schema import Tempo
 
 
+def from_tracking(tracking, duration):
+    """Keep the legacy constant grid explicitly separate from the tracked sequence."""
+    preferred = tracking.candidates[0].bpm
+    period = 60/preferred
+    phase = tracking.beats[0].time_s % period
+    return Tempo(candidates_bpm=[c.bpm for c in tracking.candidates], preferred_bpm=preferred,
+                 candidate_scores=[c.score for c in tracking.candidates],
+                 confidence_type='uncalibrated_weighted_periodicity_rank', status='inferred',
+                 beat_times_s=[round(float(t), 6) for t in np.arange(phase, duration, period)],
+                 limitation='Tempo has a 120 BPM prior and metrical alternatives. This legacy grid is extrapolated; use get_beats for tracked hypotheses.')
+
+
 def estimate(features, duration):
     peaks = features["onset_frames"]
     onset = features["onset_strength"]

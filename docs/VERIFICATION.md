@@ -1,5 +1,46 @@
 # Muvi verification
 
+## 0.6.0 real-music beat tracking
+
+The [predeclared plan](REAL_BEAT_PLAN.md), [research](REAL_BEAT_RESEARCH.md) and
+[full real-music results](REAL_BEAT_EVALUATION.md) distinguish inferred beat timing
+from the unchanged acoustic attack/pulse contract.
+
+- 83 regression/feature tests passed in 305.12 seconds, including actual MCP,
+  cached reads without numerical imports, CLI paging/errors, legacy schemas,
+  evidence references and source-time invariants. A separately added reference
+  scorer test also passed: **84 tests total**.
+- Ten beat feature tests include strong subdivisions, swing, gradual drift,
+  a 96→144 BPM change, missing attacks, a silent break, noise/silence abstention,
+  schema integrity and real subprocess CLI usage. Actual event F1 is at least
+  0.90 on the five positive timing cases, with median error below 20 ms. Missing
+  events remain explicitly interpolated; the silent query window abstains.
+- All 16 existing controlled benchmark cases pass the original five gates.
+- Six held-out RWC reference excerpts yield macro strict F1 0.551→0.674 at 70 ms.
+  P001 and J021 regress; all cases and failures are retained. Code/skill were frozen
+  before reference inspection and were not tuned on these outcomes.
+- Terra independently reproduced match counts/F1 using a different matching
+  implementation, checked all six annotation hashes, and confirmed exact agreement
+  between its MCP responses and the scored exports. Both models' interpretation
+  tests are separate from reference accuracy; neither constitutes listening.
+- `ruff check genome tests scripts`, lock validation, and skill validation passed.
+  No runtime dependency was added; package and pipeline are 0.6.0, schema 0.3.0.
+
+- Built the 0.6.0 wheel and source archive; installed the wheel with `uv tool install`.
+  Both standalone command names report 0.6.0. The core-only smoke test passed outside
+  the checkout, covering audio analysis, beat paging/evidence, crop/chart/export,
+  schema, MCP configuration and the expected missing-extra error.
+- All frozen runtime modules and the skill match their pre-evaluation hashes.
+  Wheel module bytes exactly match the checkout. No audio or static app is bundled.
+- Binary-only macOS 13 dependency resolution passed **8/8** combinations: Apple
+  Silicon/Intel × Python 3.12/3.13 × core/MCP. **No physical Mac execution was tested.**
+  [Release checks](verification/real-beats/release-checks.json) retain commands and outputs.
+- The [consumer trace audit](verification/real-beats/consumers.json) confirms both
+  Terra and Luna covered all 9 tracks / 33 windows, paged every beat, matched the
+  scored output exactly, retrieved cited evidence and preserved meter/source abstentions.
+
+These entries supersede the historical release results below where applicable.
+
 ## 0.5.2 installation documentation follow-up
 
 README installation, CLI/skill/MCP setup and troubleshooting were reorganized, with

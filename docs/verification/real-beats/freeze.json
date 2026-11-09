@@ -1,0 +1,33 @@
+{
+  "frozen_at": "2026-11-09T03:13:24.461366+00:00",
+  "baseline_commit": "b1d083e",
+  "purpose": "Held-out real-music evaluation; no numeric reference inspected before freeze",
+  "files": {
+    "genome/audio.py": "27d8b7f0b60efca30dbb09b136b31aa97a1de796aed1fe26b9cdc61f52820e9b",
+    "genome/beats.py": "46b87cff19cd67aa4d0aeddd2de2cfd0741b1932973ac7fbd590e05bdbf3069f",
+    "genome/charts.py": "b9e98deb18e73bbc0ff97628d0b757151a100dba7e8866bedc00fc357b7dc381",
+    "genome/cli.py": "90d7856e3a01ca5aff56f8e7d6f9131d5821ea30cb21b0d32a7366b2922fcf20",
+    "genome/config.py": "18f7fa59a59c36d444d4c105b1786d1d4e0ce4f6e170b411033a168c14466f73",
+    "genome/engine.py": "f8fe0ab742830dc419f43c1f0efd480f7acbfc28f08de9a4c4115d7fca81d49b",
+    "genome/evaluate.py": "9524d2ab15bb4df126975342a9c08be0c4dc9c67929e1b9ec7071df2854fbf62",
+    "genome/exports.py": "bd280bb705af3e5aaf3bdbbf774745f744411f8924325b413b4d0acf15dd8ec4",
+    "genome/features.py": "3642de2fe3e0a6b0e7695076561b62aae33f1a3bbdf2a4c83578e0f479ebc637",
+    "genome/fixtures.py": "74a5ab394ffaba19fd7fb27e7c99e83ae9c9feabd471c87e1dff64a9759ec765",
+    "genome/mcp_server.py": "3b79c26015841ecb24d3908be47201c20a223500f0d9ac3fed5f04837a86a488",
+    "genome/objects.py": "59db73f437b7b0d3a34e978c57c4949f601189e95c8891393f95afb72b7c5bea",
+    "genome/rhythm.py": "95ab60156402dfc78dea118bd6f14bd7cd58ba69a39f7020b46763fe4fd27157",
+    "genome/schema.py": "a70eb255484495dabaaa6891a8b9273e61776012cf00d4bb8f9c23b546378d2f",
+    "genome/serializer.py": "41849a151027fc75e3d87a784addbbf17f2096d5cfd0e30245ab80200a236861",
+    "genome/storage.py": "7e13803ee4c14cfe8ef0413ab0acfde7c0d443fac89bd0c1e24ba8e8cc733c61",
+    "genome/structure.py": "10c62ce4a4766a53af4c66a5c3039df295443ab8702218ccb41916b264b78137",
+    "genome/tempo.py": "44ba0b5bcaf1c51949a3cbd97fccdd3595fb4b4b0e81ebf0176ce8017bfef8c5",
+    "genome/terminal.py": "593ebe9b27295bc3f7a56e1e8642c89232ad19459fc674b4762d2704b44fa485",
+    "genome/tools.py": "0af307d498f3b23cb64f796cf0ec8d5233486e9052af4e62454ae1d22a36bc90",
+    "genome/__init__.py": "0454725209f33df209d7d81381025d6fa258a21c28339fa4898b9379500a6ac2",
+    "skills/muvi/SKILL.md": "b04efd3a83126f6282c5cea2101937819197d24ddbd2c688aefffd3dbbfab6dd",
+    "README.md": "f3d75fbdab53a251e301664015a6814646599ddf7d3c52ce125463ff656c16ef",
+    "docs/CLI_REFERENCE.md": "9a78d382a0d05acccc28f400eb9278b1ae45b4089365a9bd3da7a443f3ab1a10",
+    "pyproject.toml": "cb8042da5366fb0ab839cf4b42e5519776abc2406dc3562a9e592700eafa4a16",
+    "uv.lock": "18eebaacf4b4ab9c3eca5546aa7f091768ea6045e2cbf475ffe105ca46679320"
+  }
+}

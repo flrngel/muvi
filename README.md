@@ -4,7 +4,7 @@ Turn local audio into timestamped evidence that people and language models can i
 Find acoustic attacks, compare sections, examine low-end activity, and check the
 measurements behind an answer. Runs on CPU with no account, API key or model download.
 
-**CLI only · Python 3.12–3.13 · Optional MCP · Version 0.5.2**
+**CLI only · Python 3.12–3.13 · Optional MCP · Version 0.6.0**
 
 [Install](#install) · [First analysis](#first-analysis) · [Use-with-an-LLM](#use-with-an-llm) ·
 [Command reference](docs/CLI_REFERENCE.md) · [Verification](#verification)
@@ -53,11 +53,11 @@ and an independently installed wheel have been tested. See the
    muvi rhythm latest --band low --start 0 --end 8
    ```
 
-**Already have the wheel?** Copy `dist/muvi_genome-0.5.2-py3-none-any.whl` to your
+**Already have the wheel?** Copy `dist/muvi_genome-0.6.0-py3-none-any.whl` to your
 Mac's Downloads folder and replace step 2 with:
 
 ```sh
-uv tool install --python 3.12 ~/Downloads/muvi_genome-0.5.2-py3-none-any.whl
+uv tool install --python 3.12 ~/Downloads/muvi_genome-0.6.0-py3-none-any.whl
 uv tool update-shell
 ```
 
@@ -95,6 +95,7 @@ agents, keep the full `track_id` returned by `analyze --json`.
 
 | I want to… | Command |
 | --- | --- |
+| Track musical beat hypotheses | `muvi beats latest --start 8 --end 16 --json` |
 | Inspect local pulse timing | `muvi rhythm latest --band low --start 8 --end 16 --json` |
 | Retrieve supporting measurements | `muvi evidence latest E0001 E0002` |
 | Check whether bass is identifiable | `muvi verify latest independent-bass` |
@@ -118,7 +119,7 @@ Muvi does not modify agent settings automatically.
 ```sh
 muvi analyze track.wav --json
 muvi tools --json
-muvi tools get_rhythm --json
+muvi tools get_beats --json
 muvi prompt
 ```
 
@@ -136,7 +137,7 @@ muvi mcp-config
 ```
 
 For a downloaded wheel, replace `".[mcp]"` with
-`"/path/to/muvi_genome-0.5.2-py3-none-any.whl[mcp]"`.
+`"/path/to/muvi_genome-0.6.0-py3-none-any.whl[mcp]"`.
 The build restriction lets Intel Macs select an available `cryptography` wheel;
 see [the platform check record](docs/verification/macos-install.json).
 
@@ -144,21 +145,25 @@ Paste the emitted `mcpServers` object into your MCP client's configuration. It c
 this machine's Python executable and library path: **generate it again on the Mac**,
 rather than copying Windows paths. Restart/reconnect your client after configuration.
 
-The server exposes 14 tools, including `list_tracks`, plus WAV/PNG resources. It uses
+The server exposes 15 tools, including `list_tracks`, plus WAV/PNG resources. It uses
 stdio and exits when the client disconnects. MCP retrieval takes the **full track ID**
 from `analyze_track` or `list_tracks`; CLI aliases such as `latest` are not MCP IDs.
 [Tool and scripting details →](docs/CLI_REFERENCE.md)
 
 ## What the evidence means
 
+- `beats` follows mixture novelty with local tempo and timing constraints. It returns
+  paged beat hypotheses, local tempo, alternatives and unsupported spans. A point
+  marked `onset_supported` is near an attack, not a verified correct beat;
+  `interpolated` lacks that support. Unsupported windows return unresolved tempo.
 - `rhythm` reports band attacks, local acoustic repetition, timing changes and long
   gaps. Bands are low (20–250 Hz), mid (250–2,000 Hz), high (2,000–11,025 Hz), or all.
 - An attack is not automatically a musical beat. A pulse rate can differ from the
   tempo a listener counts; grid points marked `extrapolated` are inferred positions.
 - A low-frequency object does not prove an independent bass instrument. Meter,
   downbeats, instrument identity and separated stems are not established.
-- Results have original-recording timestamps and retrievable evidence. Older analyses
-  without rhythm fields return `available: false`; reanalyze the original audio.
+- Results have original-recording timestamps and retrievable evidence. Analyses before
+  0.6.0 return `available: false` for `beats`; reanalyze the original audio to upgrade.
 
 WAV, FLAC, OGG and MP3 are supported when decodable by libsndfile; M4A/AAC is not a
 promised input format. Limits are 200 MiB, 0.1 seconds–10 minutes, mono/stereo,
@@ -182,14 +187,16 @@ upload audio; a connected assistant may send retrieved evidence to its model pro
 
 ## Verification
 
-The engine release passed **73 tests**, **16 controlled benchmark cases**, real MCP
-client calls and an isolated core-wheel smoke test on Windows. See
-[verification results](docs/VERIFICATION.md). Version 0.5.2 updates packaging metadata
-and these installation docs; the analysis pipeline remains 0.5.1.
+Version 0.6.0 passed **84 tests** (83 regression/feature tests plus the strict reference
+scorer test), **16 controlled benchmark cases**, and actual MCP calls on Windows.
+See [verification results](docs/VERIFICATION.md) for packaging and platform checks.
 
-The [independent Terra/Luna evaluation](docs/BEAT_EVALUATION.md) records actual MCP
-and CLI/skill use, held-out synthetic results, abstentions, raw traces and increased
-call counts. Real-music listener validation, calibrated confidence and comparisons
+The [real-music evaluation](docs/REAL_BEAT_EVALUATION.md) includes independent
+Terra/Luna consumers and six preselected pop/jazz excerpts with reference beats.
+Mean strict beat F1 improved **55.1% → 67.4%**, but two excerpts regressed; half-tempo
+and beat-phase errors remain. High onset support is not an accuracy estimate.
+The earlier [synthetic evaluation](docs/BEAT_EVALUATION.md) covers acoustic pulse
+questions. Broad music accuracy, calibrated confidence, meter/downbeat and comparisons
 with raw-audio models remain unvalidated.
 
 For development from a checkout:
