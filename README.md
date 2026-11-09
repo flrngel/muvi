@@ -197,7 +197,7 @@ From a checkout:
 ```sh
 uv venv --python 3.12
 uv pip install --python .venv --only-binary cryptography --group dev ".[mcp]"
-uv run --no-sync pytest -q
+uv run --no-sync python -m pytest -q
 uv run --no-sync ruff check genome tests scripts
 uv build
 ```

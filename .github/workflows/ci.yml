@@ -38,7 +38,7 @@ jobs:
       - name: Lint and test including MCP
         run: |
           uv run --no-sync ruff check genome tests scripts
-          uv run --no-sync pytest -q
+          uv run --no-sync python -m pytest -q
       - name: Build and smoke-test the core wheel in isolation
         run: |
           uv build --wheel
