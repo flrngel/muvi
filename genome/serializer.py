@@ -1,6 +1,9 @@
 """Deterministic, bounded initial context. JSON remains canonical."""
 
-def track_digest(g, section_offset=0):
+def track_digest(g, section_offset=0, flow_offset=0):
+    from genome.flow import summarize_flow
+    flow = summarize_flow(g.sections, g.duration_s, flow_offset)
+    flow['parameters_ref'] = g.parameters_sha256
     page = g.sections[section_offset:section_offset+24]
     sections = [s.model_dump() for s in page]
     objects = [{"id": s.id, "name": s.name, "form": s.form,
@@ -16,6 +19,12 @@ def track_digest(g, section_offset=0):
             "uncalibrated ranking; meter/downbeat unknown"]
     text += [f"SECTION {s.id} group={s.structure_group} [{s.start_s:.3f},{s.end_s:.3f})s "
              f"objects={','.join(s.sound_object_ids)} evidence={','.join(s.evidence_ids)}" for s in page]
+    for row in flow['items']:
+        returning = f"; resembles {row['similar_to']['flow_id']} (descriptor hypothesis)" if row['similar_to'] else ''
+        text.append(f"FLOW {row['id']} [{row['start_s']:.3f},{row['end_s']:.3f})s {row['description']}{returning}")
+    if flow['next_offset'] is not None:
+        ending = flow['ending']
+        text.append(f"FLOW CONTINUES flow_offset={flow['next_offset']}; ending [{ending['start_s']:.3f},{ending['end_s']:.3f})s {ending['description']}")
     text += [f"SOUND {s.id} {s.name}; roles={','.join(s.function_candidates)}; source=UNRESOLVED; "
              f"events={s.occurrence_count}; evidence={','.join(s.evidence_ids)}" for s in g.sound_objects]
     text += [f"PATTERN {p.id} {p.sound_object_id} every ~{p.interval_s:.3f}s x{p.repeat_count}; "
@@ -42,7 +51,7 @@ def track_digest(g, section_offset=0):
                         beat_count=len(bt.beats), onset_supported_count=sum(b.support == 'onset_supported' for b in bt.beats),
                         evidence_ids=bt.evidence_ids, limitation=bt.limitation)
         text.append(f"BEAT TRACKING {bt.status}; {len(bt.beats)} hypotheses; evidence={','.join(bt.evidence_ids)}; query get_beats")
-    return {"title": g.title, "duration_s": g.duration_s,
+    return {"title": g.title, "duration_s": g.duration_s, 'flow': flow,
             "texture": next((e.model_dump() for e in g.evidence if e.kind == "spectral_texture"), None),
             "tempo": g.tempo.model_dump(exclude={"beat_times_s"}), "rhythm": rhythm, "beat_tracking": tracking, "sections": sections,
             "section_count": len(g.sections), "sections_truncated": len(g.sections) > 24,

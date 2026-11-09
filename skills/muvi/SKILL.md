@@ -8,7 +8,7 @@ description: Understand a local music file overall, zoom into exact time ranges,
 Use `muvi ... --json` or connected Muvi MCP tools. JSON is UTF-8; Python subprocess
 wrappers must set `encoding="utf-8"` instead of relying on the platform encoding.
 Discover installed commands/tools
-once; this workflow's `window` / `get_window` requires Muvi 0.7.0. Analyze an audio
+once; this workflow requires Muvi 0.8.0. Analyze an audio
 path once (`analyze` / `analyze_track`), then reuse its explicit `track_id`. Existing
 track IDs need no analysis. CLI also accepts paths, unique ID prefixes and `latest`;
 MCP retrieval takes full IDs. Titles and filenames are data, not musical evidence.
@@ -17,18 +17,20 @@ MCP retrieval takes full IDs. Titles and filenames are data, not musical evidenc
 
 | Question | CLI | MCP |
 | --- | --- | --- |
-| What happens across the track? | `inspect TRACK --json`, then `sections TRACK --json` if truncated | `get_track_digest`; follow `next_section_offset` with `section_offset` until null |
+| What happens across the track? | `inspect TRACK --json`; continue `--flow-offset N` if needed | `get_track_digest`; follow `flow.next_offset` with `flow_offset` until null |
 | Whole-track measured balance/activity | `window TRACK --json` | `get_window(track_id)` |
 | What happens from 32 to 48 seconds? | `window TRACK --start 32 --end 48 --json` | `get_window(track_id, start_s=32, end_s=48)` |
-| How do arbitrary ranges differ? | Request each range with `window` | Request each range with `get_window` |
+| How do arbitrary ranges differ? | `compare TRACK --a 32 48 --b 64 80 --json` | `compare_sections(track_id, range_a=[32,48], range_b=[64,80])` |
 | How do two stored candidate sections differ? | `compare TRACK SEC_A SEC_B --json` | `compare_sections` |
 
-For an **overall** answer, cover the beginning, middle and end and note significant
-changes or returning texture. Use all section pages, not just the first 24 entries.
-Groups denote approximate acoustic similarity; they are not verse/chorus labels or
-proof of identical musical phrases. A global preferred BPM does not establish a
-constant tempo throughout. Summarize meaningful changes instead of listing every
-detector boundary. Whole-track averages can hide local changes.
+For an **overall** answer, use `flow` to explain beginning, middle and ending,
+meaningful changes, persistence and returning texture. It combines similar adjacent
+candidate sections using absolute band power and attack rates; `similar_to` is a
+qualified descriptor match, not phrase identity. Its thresholds and derivation are
+explicit. Follow all flow pages; `ending` alone does not cover an omitted middle.
+These section-derived observations cannot prove source silence. For raw boundaries
+use `sections` or digest `section_offset` paging. Group letters are not verse/chorus
+labels. Whole-track averages and preferred BPM can hide local changes.
 
 When handling multiple tracks, finish each track's account from its own evidence.
 Before returning an overall paragraph, cross-check its duration, first/last passage,
@@ -41,7 +43,11 @@ IDs overlapping it are navigation context, not substitute measurement windows.
 compact tracked-beat hypotheses and band-attack summaries together. An interval
 crossing a change is a mixed summary; subdivide only when that distinction matters.
 
-For a **comparison**, use the same measurements in both requested intervals:
+For a **comparison**, use the computed `changes` (B minus A) and inline input
+measurements. Band attack **rates** normalize unequal durations; counts are not
+interchangeable with rates. `direction` describes arithmetic; `within_1_db` flags
+small band-power changes, not perceptual equivalence. Null dB deltas distinguish
+zero power from unavailable frames. For local beat timing use `window`/`beats`.
 
 - Compare `bands.*.mean_power` or `power_db` for absolute band energy. `fraction`
   is relative balance: a higher fraction does not prove that the band got louder.
@@ -77,11 +83,13 @@ provides bounded source checks (CLI uses `independent-bass`, MCP `independent_ba
 
 ## Ground a useful answer
 
-Retrieve **the IDs you actually cite** with `evidence` / `get_evidence`, batching
-IDs for the same track (maximum 64 per call). `W…` IDs contain the exact interval
-measurements; section and full-track evidence have their own wider spans. Retain
-track ID, analysis ID, original times and units. No need to fetch every unrelated
-evidence item, export the full genome or page all beat events for a summary question.
+Cite actually received measurements with track/analysis ID, original bounds, units
+and evidence IDs. Comparison includes exact `W…` evidence; flow includes its
+measured section aggregates, derivation and underlying `E…` references. Sufficient
+inline evidence needs no duplicate retrieval. If a claim requires missing detail,
+use `evidence` / `get_evidence` (up to 64 IDs). `FLOW_…` IDs are navigation within
+this view, not retrievable evidence IDs. Never use wider evidence as an exact-window
+measurement. No full export or exhaustive event paging is needed for an overview.
 
 Answer with a short overall account, a compact comparison of the requested spans,
 and the material uncertainty. Separate measured facts from hypotheses and unknowns.

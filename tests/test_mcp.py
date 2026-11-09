@@ -31,6 +31,15 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
                 payload = payload.get("result", payload)
                 digest = await session.call_tool("get_track_digest", {"track_id": payload["track_id"]})
                 assert not digest.isError
+                summary = digest.structuredContent.get('result', digest.structuredContent)
+                assert summary['flow']['ending']['end_s'] == summary['duration_s']
+                comparison = await session.call_tool('compare_sections', {'track_id':payload['track_id'],
+                                                                          'range_a':[.25,1.25], 'range_b':[1.5,3.5]})
+                assert not comparison.isError
+                compared = comparison.structuredContent.get('result', comparison.structuredContent)
+                assert compared['window_a']['time_span'] == {'start_s':.25,'end_s':1.25}
+                assert compared['window_b']['time_span'] == {'start_s':1.5,'end_s':3.5}
+                assert len(compared['evidence']) == 2
                 window = await session.call_tool('get_window', {'track_id': payload['track_id'], 'start_s': .3, 'end_s': 2.1})
                 assert not window.isError
                 scoped = window.structuredContent.get('result', window.structuredContent)

@@ -75,7 +75,8 @@ def build_parser():
     p = command("analyze", "Analyze local audio and print its musical evidence")
     p.add_argument("path", type=Path, metavar="AUDIO")
     p.add_argument("--profile", choices=["fast"], default="fast")
-    command("inspect", "Read a compact track digest", track=True, aliases=["overview"])
+    p = command("inspect", "Read a compact track digest and acoustic progression", track=True, aliases=["overview"])
+    p.add_argument('--flow-offset', type=int, default=0, help='Continue a paged acoustic progression')
     p = command("window", "Summarize exact-span energy, texture, activity and rhythm", track=True)
     interval(p)
     command("list", "List analyzed tracks, newest first")
@@ -101,9 +102,11 @@ def build_parser():
     p.add_argument("--limit", type=int, default=100)
     p = command("evidence", "Retrieve measurements, units and provenance", track=True)
     p.add_argument("ids", nargs="+", metavar="EVIDENCE")
-    p = command("compare", "Compare two candidate sections", track=True)
-    p.add_argument("section_a", metavar="SECTION_A")
-    p.add_argument("section_b", metavar="SECTION_B")
+    p = command("compare", "Compare two sections or exact time ranges; changes are B minus A", track=True)
+    p.add_argument("section_a", nargs='?', metavar="SECTION_A")
+    p.add_argument("section_b", nargs='?', metavar="SECTION_B")
+    p.add_argument('--a', nargs=2, type=timestamp, metavar=('START','END'), help='Exact first range')
+    p.add_argument('--b', nargs=2, type=timestamp, metavar=('START','END'), help='Exact second range')
     p = command("verify", "Check a bounded musical hypothesis", track=True)
     p.add_argument("hypothesis", choices=["independent-bass", "instrument-identity", "recurring-pattern", "section-change"])
     p.add_argument("--sound", help="Limit the check to an acoustic object")
@@ -200,7 +203,7 @@ def run(args):
             g = engine.analyze(args.path.expanduser(), progress=progress(args))
         return tools.get_track_digest(g.track_id)
     if args.command in ("inspect", "overview"):
-        return tools.get_track_digest(track)
+        return tools.get_track_digest(track, flow_offset=args.flow_offset)
     if args.command == "window":
         return tools.get_window(track, args.start, args.end)
     if args.command == "list":
@@ -224,7 +227,7 @@ def run(args):
     if args.command == "evidence":
         return tools.get_evidence(track, args.ids)
     if args.command == "compare":
-        return tools.compare_sections(track, args.section_a, args.section_b)
+        return tools.compare_sections(track, args.section_a, args.section_b, args.a, args.b)
     if args.command == "verify":
         return tools.verify_hypothesis(track, args.hypothesis.replace("-", "_"), args.sound)
     if args.command == "metrics":

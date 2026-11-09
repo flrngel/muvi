@@ -81,6 +81,15 @@ def format_result(command, result):
                         for s in result['prominent_objects']])]
         if result['sections_truncated']:
             lines.append(f"  Showing 24 of {result['section_count']}; use muvi sections for all sections.")
+        flow = result['flow']
+        progression = ['', 'Acoustic progression', table(['TIME','OBSERVATIONS','RESEMBLES'],
+                       [[span(row),row['description'],row['similar_to']['flow_id'] if row['similar_to'] else '']
+                        for row in flow['items']])]
+        if flow['next_offset'] is not None:
+            progression.extend([f"Continue: muvi inspect {short(result['track_id'])} --flow-offset {flow['next_offset']}",
+                                f"Ending {span(flow['ending'])}: {flow['ending']['description']}"])
+        progression.append('Candidate boundaries and descriptor similarity; use exact windows for source silence.')
+        lines[6:6] = progression
         if result['patterns']:
             lines.extend(["", "Repetition", table(["ID", "SOUND", "INTERVAL", "REPEATS", "EXCEPTIONS"],
                          [[p['id'], p['sound_object_id'], f"{p['interval_s']:.3f}s", p['repeat_count'],
@@ -97,6 +106,17 @@ def format_result(command, result):
                      [[short(t['track_id']), t['title'], clock(t['duration_s']),
                        f"{t['tempo_bpm']:g}" if t['tempo_bpm'] else "?", t['analysis_id']]
                       for t in result['tracks']])
+    if command == 'compare' and result.get('comparison_basis') == 'exact_requested_windows':
+        changes = result['changes']
+        rows = [[band,scalar(c['delta_db']),c['direction'],c['status'],
+                 scalar(changes['band_attack_density_per_s'][band]['delta'])]
+                for band,c in changes['band_power'].items()]
+        return '\n'.join([f"COMPARE A {span(result['window_a']['time_span'])} -> B {span(result['window_b']['time_span'])}",
+                          'Changes are B minus A; attack rates normalize unequal durations.',
+                          table(['BAND','POWER dB','DIRECTION','BASIS','ATTACKS/s CHANGE'],rows),
+                          f"Source RMS change: {scalar(changes['source_rms_dbfs']['delta'])} dB",
+                          f"Activity: {result['window_a']['source_activity']} -> {result['window_b']['source_activity']}",
+                          'Evidence: '+', '.join(result['evidence_ids']),result['limitation']])
     if command == "window":
         bands = result['bands']
         return '\n'.join([f"WINDOW  |  {span(result['time_span'])}",
