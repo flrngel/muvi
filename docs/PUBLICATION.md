@@ -56,7 +56,13 @@ passed. Installing the optional MCP extra from the same URL then passed a real
 stdio handshake, discovery of 16 tools, and `list_tracks`. The temporary library,
 tool environment and MCP process were closed and removed after verification.
 
+After publishing [v0.8.3](https://github.com/flrngel/muvi/releases/tag/v0.8.3), the
+exact README tag URL passed the same fresh-environment CLI and MCP sequence again.
+All four release assets were downloaded without authentication; the wheel, source
+distribution and skill ZIP matched the published SHA-256 checksums. The skill ZIP
+contains the same `muvi/SKILL.md` as the repository. No temporary server or tool
+environment was retained.
+
 The built wheel also passed the isolated core smoke locally. These checks cover
 installation and the documented workflow; earlier music evaluations describe the
-limits of beat and structural interpretation. Release-tag installation and asset
-checksums are checked again after publishing the tag.
+limits of beat and structural interpretation.
