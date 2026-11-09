@@ -1,5 +1,9 @@
 # Public release 0.8.3
 
+Historical verification record. Starting with 0.8.4, GitHub Actions is disabled
+and the workflow is removed. The README installs directly from Git `main`;
+verification is performed locally when making changes.
+
 ## Acceptance checks
 
 Before publishing: audit tracked files and nested trace archives, preserve numeric

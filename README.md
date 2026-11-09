@@ -19,13 +19,13 @@ can install Python for you and keeps Muvi in its own environment.
 On a Mac with Homebrew:
 
 ```sh
-brew install uv
+brew install uv git
 ```
 
-Then install the release directly from GitHub — no clone or Git installation needed:
+Install directly from the Git repository's `main` branch:
 
 ```sh
-uv tool install --python 3.12 "https://github.com/flrngel/muvi/archive/refs/tags/v0.8.3.zip"
+uv tool install --python 3.12 "git+https://github.com/flrngel/muvi.git@main"
 uv tool update-shell
 ```
 
@@ -36,10 +36,10 @@ muvi --version
 muvi demo
 ```
 
-Expect `muvi 0.8.3`, followed by an overview of a generated 25.6-second audio example.
+Expect `muvi 0.8.4`, followed by an overview of a generated 25.6-second audio example.
 The demo needs no music download. The same install command works in PowerShell or
-Linux with uv installed. [Wheel and source downloads](https://github.com/flrngel/muvi/releases/tag/v0.8.3)
-are also available; this package is **not on PyPI**.
+Linux with uv and Git installed. uv fetches the source and installs Muvi and its
+dependencies on your computer. This package is **not on PyPI**.
 
 macOS 13+ on Apple Silicon/Intel is the installation target. Runtime tests passed
 on macOS 15 for both architectures, plus Windows and Linux. See
@@ -124,7 +124,7 @@ Install the optional adapter and generate configuration on the computer that wil
 run the server:
 
 ```sh
-uv tool install --python 3.12 --force --no-build-package cryptography "muvi-genome[mcp] @ https://github.com/flrngel/muvi/archive/refs/tags/v0.8.3.zip"
+uv tool install --python 3.12 --force --no-build-package cryptography "muvi-genome[mcp] @ git+https://github.com/flrngel/muvi.git@main"
 muvi mcp-config
 ```
 
@@ -166,8 +166,15 @@ a connected agent may send retrieved evidence to its model provider.
 
 ## Update or troubleshoot
 
-- **Update:** install a newer release URL with `--force`. Keep `[mcp]` and
-  `--no-build-package cryptography` if using MCP; regenerate `muvi mcp-config`.
+To update to the latest `main`:
+
+```sh
+uv tool install --python 3.12 --force --refresh "git+https://github.com/flrngel/muvi.git@main"
+```
+
+For MCP, rerun its installation command above with `--refresh`, then regenerate
+`muvi mcp-config`.
+
 - **Command not found:** run `uv tool update-shell`, then open a new terminal.
 - **Python error:** keep `--python 3.12`; you do not need to replace system Python.
 - **Range error:** use bounds within the duration shown by `muvi inspect`.
@@ -180,9 +187,10 @@ error text. Share a small reproducible example when possible; do not post privat
 
 ## Verification and development
 
-[CI](https://github.com/flrngel/muvi/actions/workflows/ci.yml) checks the suite,
-actual MCP calls and an isolated core-wheel install across Windows, Linux and both
-Mac architectures. [Publication results](docs/PUBLICATION.md) record completed runs.
+Verification runs locally when making changes. GitHub Actions is disabled.
+[Publication results](docs/PUBLICATION.md) preserve the completed 0.8.3 platform
+checks, including actual MCP calls and isolated installs on Windows, Linux and
+both Mac architectures.
 
 The 0.8.2 baseline passed **103 tests**, plus final chart checks, 16 real/control
 charts and 20 terminal-width checks. Earlier independent Terra/Luna evaluations
@@ -200,7 +208,6 @@ uv venv --python 3.12
 uv pip install --python .venv --only-binary cryptography --group dev ".[mcp]"
 uv run --no-sync python -m pytest -q
 uv run --no-sync ruff check genome tests scripts
-uv build
 ```
 
 This installation resolves platform-compatible wheels. `uv sync --locked` is also
