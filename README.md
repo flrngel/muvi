@@ -13,23 +13,13 @@ Local CPU analysis. No account, API key or model download. CLI first, optional M
 
 ## Install
 
-Requires **Python 3.12 or 3.13**. [uv](https://docs.astral.sh/uv/getting-started/installation/)
-can install Python for you and keeps Muvi in its own environment.
-
-On a Mac with Homebrew:
-
-```sh
-brew install uv git
-```
-
-Install directly from the Git repository's `main` branch:
+Requires **Python 3.12 or 3.13**. Install Muvi from `main`:
 
 ```sh
 uv tool install --python 3.12 "git+https://github.com/flrngel/muvi.git@main"
-uv tool update-shell
 ```
 
-Open a new terminal if the shell path changed, then run:
+Then run:
 
 ```sh
 muvi --version
@@ -37,9 +27,7 @@ muvi demo
 ```
 
 Expect `muvi 0.8.4`, followed by an overview of a generated 25.6-second audio example.
-The demo needs no music download. The same install command works in PowerShell or
-Linux with uv and Git installed. uv fetches the source and installs Muvi and its
-dependencies on your computer. This package is **not on PyPI**.
+The demo needs no music download. This package is **not on PyPI**.
 
 macOS 13+ on Apple Silicon/Intel is the installation target. Runtime tests passed
 on macOS 15 for both architectures, plus Windows and Linux. See
@@ -62,13 +50,6 @@ muvi render latest --start 8 --end 16 -o evidence.png
 detected-onset support; amber marks are interpolated hypotheses. Neither guarantees
 a correct musical beat. Overview charts disclose omitted markers and retain their
 coordinates in the legend.
-
-<details>
-<summary>See the generated demo chart</summary>
-
-![Muvi demo: spectrum, band power, tracked timing and acoustic occurrences](docs/assets/demo.png)
-
-</details>
 
 For your own audio:
 
@@ -175,7 +156,6 @@ uv tool install --python 3.12 --force --refresh "git+https://github.com/flrngel/
 For MCP, rerun its installation command above with `--refresh`, then regenerate
 `muvi mcp-config`.
 
-- **Command not found:** run `uv tool update-shell`, then open a new terminal.
 - **Python error:** keep `--python 3.12`; you do not need to replace system Python.
 - **Range error:** use bounds within the duration shown by `muvi inspect`.
 - **Output already exists:** choose another filename or use `--force` intentionally.

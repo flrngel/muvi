@@ -13,17 +13,24 @@ After publishing: verify anonymous access, install from the exact README release
 URL in a fresh tool environment, run the demo/window/comparison/chart workflow,
 check the actual GitHub CI results, and verify release assets and their hashes.
 
-## Public snapshot
+## Repository history
 
-The first public commit is a cleaned snapshot. Earlier evaluation documents retain
-their local development commit IDs; those IDs are not ancestors of public `main`.
-The local development history and original records remain available to the owner.
+The initial public snapshot accidentally disconnected the earlier development
+history. All 16 original development commits and the five subsequent public
+commits are now connected in order. Messages, authors and dates are retained.
 
-Machine-local usernames and path roots in exported evaluation records, including
-the archived tool traces, are replaced with generic locations. Musical claims,
-numbers, timestamps and input hashes are retained. Historical file hashes describe
-the original pre-publication records, not the redacted copies. No evaluation audio,
-local libraries, environments, credentials or private task records are published.
+At the owner's request, binary and archive blobs were removed from every public
+branch and tag's history: the generated demo PNG and two versions of the trace
+ZIP. This changes affected commit IDs, including the `v0.8.3` tag target. Old IDs
+in evaluation reports identify the original records. The owner retains a local
+Git bundle with the complete original history. The [commit map](verification/history-map.tsv)
+maps original IDs to the restored history.
+
+Runtime source and dependency files are unchanged by this repair. Historical
+records retain their original machine-local paths; current exported records use
+generic locations. Numeric results and input hashes are preserved. The existing
+0.8.3 release downloads retain the originally published files and checksums;
+those downloadable assets are separate from Git history.
 
 ## Platform status
 

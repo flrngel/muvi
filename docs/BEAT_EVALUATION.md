@@ -104,8 +104,10 @@ match the evaluated snapshot exactly. See [equivalence results](verification/bea
 Machine-readable [summary](verification/beat-eval/summary.json), individual answers and
 scores, generated truth, frozen source hashes, retrieval audits and pipeline metrics
 are retained in [the evidence directory](verification/beat-eval).
-[Raw request/response traces](verification/beat-eval/tool-traces.zip) preserve the tool
-interactions, including errors. `scripts/beat_cases.py` regenerates audio and truth;
+Raw request/response traces, including errors, are preserved in the
+[0.8.3 source download](https://github.com/flrngel/muvi/releases/download/v0.8.3/muvi_genome-0.8.3.tar.gz)
+at `docs/verification/beat-eval/tool-traces.zip`. Binary archives are excluded from
+Git history. `scripts/beat_cases.py` regenerates audio and truth;
 `scripts/score_beat_answers.py` and `scripts/audit_beat_evidence.py` score and audit
 answers. The original baseline is commit `301d476`; the evaluated tuned snapshot is
 identified by [file hashes](verification/beat-eval/tuned-freeze.json).

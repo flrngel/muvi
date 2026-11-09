@@ -13,3 +13,20 @@ build/
 .env
 test-results/
 
+# Generated media and packaged artifacts stay outside Git history.
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.pdf
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.mp4
+*.zip
+*.whl
+*.tar.gz
+
