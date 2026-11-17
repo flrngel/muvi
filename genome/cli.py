@@ -129,6 +129,11 @@ def build_parser():
     group.add_argument("--arguments-file", type=Path, metavar="FILE", help="UTF-8 JSON file, or - for stdin")
     command("schema", "Print the canonical genome JSON Schema")
     command("prompt", "Print grounding instructions for an LLM")
+    p = command("skill", "Install the Muvi skill for Codex and Claude Code")
+    p.add_argument("action", choices=["install"])
+    p.add_argument("--agent", choices=["all", "codex", "claude"], default="all",
+                   help="Agent to install for (default: both)")
+    p.add_argument("--force", action="store_true", help="Replace an existing different skill")
     command("mcp-config", "Print a stdio MCP client configuration for this installation")
     command("mcp", "Run the optional MCP stdio server")
     p = command("benchmark", "Evaluate deterministic controlled fixtures")
@@ -169,6 +174,9 @@ def encode(value):
 
 def run(args):
     # Protocol/configuration commands have no incidental stdout or heavy imports.
+    if args.command == "skill":
+        from genome.skills import install_skill
+        return install_skill(args.agent, args.force)
     if args.command == "mcp-config":
         root = Path(args.data_dir or os.environ.get("MUVI_DATA_DIR", Path.home()/".muvi")).expanduser().resolve()
         return {"mcpServers": {"muvi": {"command": sys.executable,

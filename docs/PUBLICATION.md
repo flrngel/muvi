@@ -1,4 +1,17 @@
-# Public release 0.8.3
+# Public distribution
+
+## Release 0.8.5: bundled skill installation
+
+`muvi skill install` installs the packaged skill for Codex and Claude Code, with
+`--agent codex` or `--agent claude` for a single destination. An identical copy is
+left unchanged; replacing a different copy requires `--force`.
+
+Distribution remains Git `main` and GitHub release assets, rather than PyPI.
+GitHub Actions remains disabled. Focused setup tests and lint run locally; the
+built package's installation command is checked on the existing macOS setup.
+This release does not add new platform or audio-analysis verification claims.
+
+## Public release 0.8.3
 
 Historical verification record. Starting with 0.8.4, GitHub Actions is disabled
 and the workflow is removed. The README installs directly from Git `main`;
