@@ -118,6 +118,11 @@ def format_result(command, result):
 
 
 def _format_result(command, result):
+    if command == "skill":
+        lines = ["Muvi skill ready"]
+        lines.extend(f"  {item['agent']}: {item['path']} ({item['status']})"
+                     for item in result['installations'])
+        return "\n".join([*lines, "", result['next_step']])
     if command in ("analyze", "inspect", "overview", "demo"):
         tempo = result['tempo']
         bpm = tempo['preferred_bpm']

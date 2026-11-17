@@ -104,7 +104,17 @@ and 200 MiB. [Tested platforms](docs/PUBLICATION.md) · [Options and limits](doc
 
 ## Use with your AI
 
-Give your agent access to `muvi` and the [Muvi skill](skills/muvi/SKILL.md), then ask:
+After installing Muvi, install its agent skill with one command:
+
+```sh
+muvi skill install
+```
+
+This installs the bundled [Muvi skill](skills/muvi/SKILL.md) for **Codex and Claude Code**.
+No repository clone or manual file copying is needed. To install for just one,
+use `muvi skill install --agent codex` or `muvi skill install --agent claude`.
+
+Start a new agent chat, give it access to `muvi`, and ask:
 
 > Walk me through this song. Where does the low end become stronger?
 > Compare 0:32–0:48 with 1:04–1:20 and show me the moments you're talking about.
@@ -144,10 +154,15 @@ an AI client may send retrieved results to its model provider.
 
 ```sh
 uv tool install --python 3.12 --force --refresh "git+https://github.com/flrngel/muvi.git@main"
+muvi skill install --force
 ```
+
+The second command updates the installed skills, replacing any local edits.
+Without `--force`, an existing different skill is preserved.
 
 For MCP, rerun its installation command with `--refresh`, then regenerate the configuration.
 To remove Muvi, run `uv tool uninstall muvi-genome`. Your audio library remains.
+Remove `~/.agents/skills/muvi` and `~/.claude/skills/muvi` to remove the agent skills.
 
 </details>
 

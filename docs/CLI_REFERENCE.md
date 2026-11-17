@@ -74,6 +74,21 @@ corrected view from existing analyses; audio reanalysis is unnecessary.
 
 ## Typed tools and MCP
 
+Install the bundled skill without cloning the repository or configuring MCP:
+
+```sh
+muvi skill install
+muvi skill install --agent codex
+muvi skill install --agent claude
+```
+
+The default installs for both agents: Codex uses `~/.agents/skills/muvi/SKILL.md`;
+Claude Code uses `~/.claude/skills/muvi/SKILL.md`. Start a new agent chat afterward.
+Rerunning is harmless when the file is identical. Use `--force` to replace an older
+or edited copy after updating Muvi. Symlinked skill paths are left untouched.
+`--json` returns the package version, destination paths and installation statuses.
+Installation runs locally and needs no MCP or audio imports.
+
 ```sh
 muvi tools --json
 muvi tools get_audio_crop --json
