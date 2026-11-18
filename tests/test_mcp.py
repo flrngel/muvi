@@ -23,7 +23,7 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
                 await session.initialize()
                 listed = await session.list_tools()
                 assert {"analyze_track", "get_track_digest", "get_beats", "render_tile", "list_tracks"} <= {t.name for t in listed.tools}
-                assert len(listed.tools) == 16
+                assert len(listed.tools) == 17
                 result = await session.call_tool("analyze_track", {"path": str(path)})
                 assert not result.isError
                 payload = result.structuredContent
@@ -73,5 +73,14 @@ def test_real_mcp_initialize_list_analyze_and_evidence(tmp_path):
                 visual = await session.read_resource(tile_data["image"]["resource_uri"])
                 assert visual.contents[0].mimeType == "image/png"
                 assert base64.b64decode(visual.contents[0].blob)[:8] == b"\x89PNG\r\n\x1a\n"
+                pair = await session.call_tool("render_pair", {"track_a":payload["track_id"],
+                    "track_b":payload["track_id"], "range_a":[0, 3], "range_b":[1, 4]})
+                assert not pair.isError
+                paired = pair.structuredContent.get("result", pair.structuredContent)
+                legend = await session.read_resource(paired["legend"]["resource_uri"])
+                assert '"tracks"' in legend.contents[0].text
+                for panel in ("passage", "phrase", "hits"):
+                    resource = await session.read_resource(paired[panel]["resource_uri"])
+                    assert base64.b64decode(resource.contents[0].blob).startswith(b"\x89PNG")
     asyncio.run(run())
 

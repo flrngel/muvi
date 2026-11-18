@@ -218,6 +218,9 @@ def _format_result(command, result):
                       [[span(g), f"{g['duration_s']:.3f}s"] for g in result['long_gaps']]),
                       "", result['limitation'], result['grid_warning']])
         return "\n".join(lines)
+    if command == "render-pair":
+        return "\n".join(f"{key.capitalize():9} {clean(result[key]['path'])}"
+                         for key in ("passage", "phrase", "hits", "legend"))
     if command in ("crop", "render"):
         lines = [f"Original time  {span(result['time_span'])}", f"Analysis       {result['analysis_id']}"]
         lines.extend(f"{key.capitalize():14} {clean(result[key]['path'])}"

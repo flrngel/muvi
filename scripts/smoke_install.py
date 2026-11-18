@@ -56,6 +56,8 @@ with tempfile.TemporaryDirectory(prefix='muvi-wheel-smoke-') as temp:
     assert legend['render_version'] == 'tile-v2'
     assert legend['beat_overlay']['beats'] == [{k:b[k] for k in ('time_s','support')} for b in actual]
     assert legend['object_labels']
+    pair = cli('render-pair', 'latest', source, '--a', '0', '3', '--b', '1', '4', '-o', root/'pair.png')
+    assert all(Path(pair[key]['path']).is_file() for key in ('passage', 'phrase', 'hits', 'legend'))
     assert cli('export', 'latest')['track_id'] == digest['track_id']
     assert cli('mcp-config')['mcpServers']['muvi']['command'] == sys.executable
     assert 'optional' in cli('mcp', code=2)['error']['message']

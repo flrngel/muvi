@@ -336,6 +336,14 @@ class MusicTools:
         return self._packet(g, {"image": self._artifact(g, png), "legend": self._artifact(g, legend)},
                             [e.id for e in g.evidence if e.start_s < end and e.end_s > start], start, end)
 
+    def render_pair(self, track_a: str, track_b: str, range_a: tuple[float, float],
+                    range_b: tuple[float, float], gain_db: tuple[float, float] | None = None,
+                    bpm_a: float | None = None, bpm_b: float | None = None) -> dict[str, Any]:
+        """Compare two excerpts on shared scales. Retrieve passage, phrase and hits PNGs via resource_uri."""
+        from genome.pair import render_pair
+        genomes = [self.engine.load(track) for track in (track_a, track_b)]
+        return render_pair(self.engine, genomes, (range_a, range_b), gain_db, (bpm_a, bpm_b))
+
     def verify_hypothesis(self, track_id: str,
                           hypothesis: Literal["independent_bass", "instrument_identity", "recurring_pattern", "section_change"],
                           sound_object_id: str | None = None) -> dict[str, Any]:
@@ -398,7 +406,7 @@ class MusicTools:
     def registry(self):
         return {name: getattr(self, name) for name in (
             "analyze_track", "get_track_digest", "get_window", "get_section", "get_rhythm", "get_beats", "find_sound", "get_sound", "compare_sections",
-            "get_evidence", "get_audio_crop", "render_tile", "verify_hypothesis", "get_master_metrics", "run_targeted_separation")}
+            "get_evidence", "get_audio_crop", "render_tile", "render_pair", "verify_hypothesis", "get_master_metrics", "run_targeted_separation")}
 
     def schemas(self):
         schemas = {}

@@ -36,6 +36,7 @@ protocol messages. `inspect` has an `overview` alias; a bare `muvi` prints help.
 | `metrics TRACK --start 8 --end 16` | Source-rate sample peak, RMS and stereo metrics |
 | `crop TRACK --start 8 --end 16 -o clip.wav` | Original-mixture audio crop |
 | `render TRACK --start 8 --end 16 -o evidence.png` | Aligned chart plus JSON legend |
+| `render-pair A B --a 182 206 --b 168 192 -o pair.png` | Two recordings with independent bounds, phrase and low-attack detail PNGs, and a JSON legend |
 | `export TRACK -o genome.json` | Full canonical analysis |
 
 Use IDs returned by your analysis. Follow `next_offset` until null when you need all
@@ -72,6 +73,24 @@ boundary, display counts/limits, object names and provenance, even when marks ar
 omitted. The `tile-v2` cache identity preserves older images while generating the
 corrected view from existing analyses; audio reanalysis is unnecessary.
 
+### Paired charts
+
+Each excerpt needs at least 0.1 seconds. Choose corresponding starts manually.
+Panel P boxes the phrase from F. The numbered ticks in F mark local pulse hypotheses.
+The triangles select the first three detected low attacks with a complete 450 ms
+window. H overlays their 20–250 Hz RMS envelopes and shows the spectrum for the
+first attack. Ridges, tails and gaps describe the mixture and can include overlap.
+
+The default matches whole-track RMS by attenuating the louder input. Both gains
+stay at zero if either RMS is unavailable. Use `--gain-db -5.6 0` for prescribed
+display gains or `--gain-db 0 0` to retain original levels. Set `--bpm-a` or
+`--bpm-b` for user-tempo ticks anchored at that excerpt's start. Source timing is
+preserved. The JSON legend records timing assumptions, original RMS, gain,
+frequency and time resolution, attack coordinates, and track-scoped evidence IDs.
+
+With MCP, call `render_pair(track_a, track_b, range_a, range_b)` and read each
+returned `resource_uri` for the three PNGs and legend.
+
 ## Typed tools and MCP
 
 Install the bundled skill without cloning the repository or configuring MCP:
@@ -103,10 +122,10 @@ extra fields are rejected. CLI tool calls resolve the same track references as
 direct commands. MCP retrieval requires full IDs returned by `analyze_track` or
 `list_tracks`; `latest`, file paths and prefixes are CLI conveniences.
 
-Fifteen typed tools cover analysis, digests, exact windows, beats, rhythm, sections, sound search/detail,
+Sixteen typed tools cover analysis, digests, exact windows, beats, rhythm, sections, sound search/detail,
 comparison, evidence, crops, charts, hypothesis checks, source metrics and separator
 availability. MCP additionally exposes `list_tracks` and version-pinned WAV/PNG
-resources, for 16 tools total. Core installation needs none of the MCP SDK,
+resources, for 17 tools total. Core installation needs none of the MCP SDK,
 FastAPI, Uvicorn or Starlette; the optional SDK has its own dependencies.
 
 Evidence carries `track_id`, `analysis_id`, original-coordinate `time_span`,

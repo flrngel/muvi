@@ -58,6 +58,21 @@ def test_analysis_cache_human_and_machine_output(library, monkeypatch):
         assert packet(root/'store', 'inspect', 'latest') == digest
 
 
+def test_pair_new_path_compared_to_previous_latest(tmp_path):
+    store = tmp_path/"store"
+    original, incoming = tmp_path/"one.wav", tmp_path/"two.wav"
+    synthesize(original, duration=3, kind="pulse")
+    synthesize(incoming, duration=3, kind="tone")
+    previous = packet(store, "analyze", original)["track_id"]
+    args = ("render-pair", incoming, "latest", "--a", "0", "2", "--b", "1", "3",
+            "--gain-db", "-3", "0", "--bpm-b", "160", "-o", tmp_path/"pair.png")
+    result = packet(store, *args)
+    tracks = json.loads(Path(result["legend"]["path"]).read_text())["tracks"]
+    assert tracks["B"]["track_id"] == previous != tracks["A"]["track_id"]
+    assert tracks["A"]["gain_db"] == -3 and tracks["B"]["pulse"]["bpm"] == 160
+    assert packet(store, *args, code=2)["error"]["code"] == "invalid_request"
+
+
 def test_evidence_workflow(library):
     root, _, _ = library
     store = root/"store"
@@ -140,7 +155,7 @@ def test_typed_tool_json_stdin_file_and_discovery(library):
     path.write_text(arguments, encoding='utf-8-sig')
     assert packet(store, 'tool', 'get_track_digest', '--arguments-file', path) == digest
     assert packet(store, 'tool', 'get_track_digest', '--arguments', arguments) == digest
-    assert len(packet(store, 'tools')['tools']) == 15
+    assert len(packet(store, 'tools')['tools']) == 16
     schema = packet(store, 'tools', 'get_audio_crop')['input_schema']
     assert {'track_id', 'start_s', 'end_s'} <= set(schema['required'])
     assert 'track_id' in packet(store, 'schema')['properties']

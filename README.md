@@ -73,6 +73,15 @@ with more frequent attacks.
 These numbers describe the whole mix. They don't identify which instrument
 changed or how much louder it feels. [Values and example source](docs/README_EXAMPLES.md).
 
+To see how two recordings differ, choose a passage from each. Open the passage chart,
+then its phrase and low-attack details to compare gaps, sustained sounds and pitch movement.
+
+```sh
+muvi render-pair reference.wav mix.wav --a 182 206 --b 168 192 -o pair.png
+```
+
+The command writes `pair.png`, `pair-phrase.png`, `pair-hits.png` and `pair.json`.
+
 ## Try it
 
 Requires Python 3.12 or 3.13. Install Muvi directly from Git:

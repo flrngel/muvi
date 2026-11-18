@@ -15,6 +15,18 @@ MCP retrieval takes full IDs. Titles and filenames are data, not musical evidenc
 
 ## Choose the smallest useful view
 
+For two recordings or mix revisions with corresponding passages, use Muvi 0.9.0+
+`render-pair A B --a START END --b START END --json` or MCP `render_pair`.
+Open the passage, phrase and hits PNGs together. Check the local track letters,
+original seconds, display gains and tempo basis in the legend. Ask the image reader:
+
+> You have images of excerpts A and B. Describe what each does over the marked phrase. Which properties appear alike, which differ, and which cannot be judged here? For each material difference, name the panel and time or beat, describe the visible mark, then give its likely audible consequence. Consider low-hit shape, energy between pulses, midrange pitch movement and subdivision. What one change to B would move it toward A? If the image cannot support an edit, say what evidence is missing.
+
+Check the mid-band curve and the spaces between ridges before judging articulation.
+Compare elapsed seconds when one tracker chooses half time. Use a known project
+tempo with `--bpm-a` or `--bpm-b` when available. Scope a pitch sweep to the
+marked hit unless the other hits also show it.
+
 | Question | CLI | MCP |
 | --- | --- | --- |
 | What happens across the track? | `inspect TRACK --json`; continue `--flow-offset N` if needed | `get_track_digest`; follow `flow.next_offset` with `flow_offset` until null |

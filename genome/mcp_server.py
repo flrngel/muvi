@@ -43,5 +43,19 @@ def create_mcp(root=None):
         tools.engine.load(track_hash, analysis_id)
         return (tools.engine.directory(track_hash, analysis_id)/f"clips/{crop_key}.wav").read_bytes()
 
+    @server.resource("muvi://pairs/{pair_key}/{panel}", mime_type="image/png")
+    def pair_image(pair_key: str, panel: str) -> bytes:
+        """A passage, phrase, or low-attack PNG created by render_pair."""
+        if not re.fullmatch(r"[a-f0-9]{24}", pair_key) or panel not in ("passage", "phrase", "hits"):
+            raise ValueError("Invalid pair image")
+        return (tools.engine.root/"pairs"/pair_key/f"{panel}.png").read_bytes()
+
+    @server.resource("muvi://pairs/{pair_key}/metadata/legend", mime_type="application/json")
+    def pair_legend(pair_key: str) -> str:
+        """Original coordinates, gain and evidence for all three paired views."""
+        if not re.fullmatch(r"[a-f0-9]{24}", pair_key):
+            raise ValueError("Invalid pair key")
+        return (tools.engine.root/"pairs"/pair_key/"legend.json").read_text(encoding="utf-8")
+
     return server
 

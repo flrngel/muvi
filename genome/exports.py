@@ -2,7 +2,10 @@
 
 import os
 import tempfile
+import hashlib
 from pathlib import Path
+
+from filelock import FileLock
 
 
 def destination(path, engine, force=False, sources=()):
@@ -41,3 +44,32 @@ def write(path, data, force=False):
     finally:
         Path(temporary).unlink(missing_ok=True)
     return {"path": str(path), "uri": path.as_uri()}
+
+
+def export_pair(output, result, engine, force, sources):
+    if output.suffix.lower() != ".png":
+        raise ValueError("Use a .png output file for render-pair")
+    paths = {"passage":output, "phrase":output.with_name(output.stem+"-phrase.png"),
+             "hits":output.with_name(output.stem+"-hits.png"), "legend":output.with_suffix(".json")}
+    # Exports with intersecting names serialize, including from different libraries.
+    key = hashlib.sha256(os.path.normcase(str(output.parent.resolve())).encode()).hexdigest()
+    lock = Path(tempfile.gettempdir())/f"muvi-pair-export-{key}.lock"
+    with FileLock(str(lock), timeout=120):
+        paths = {k:destination(v, engine, force, sources) for k,v in paths.items()}
+        paths["passage"].parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=paths["passage"].parent) as temp:
+            written = {}
+            try:
+                for name, path in paths.items():
+                    if path.exists():
+                        os.link(path, Path(temp)/name)
+                    written[name] = write(path, Path(result[name]["path"]).read_bytes(), force)
+            except OSError:
+                for name in reversed(written):
+                    backup = Path(temp)/name
+                    if backup.exists():
+                        os.replace(backup, paths[name])
+                    else:
+                        paths[name].unlink()
+                raise
+        return written

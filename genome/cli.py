@@ -118,6 +118,15 @@ def build_parser():
     p = command("render", "Write an aligned PNG and companion JSON legend", track=True)
     interval(p)
     output(p)
+    p = command("render-pair", "Compare two passages, phrases and low attacks on shared scales")
+    p.add_argument("track_a", metavar="A")
+    p.add_argument("track_b", metavar="B")
+    for side in ("a", "b"):
+        p.add_argument(f"--{side}", nargs=2, type=timestamp, required=True, metavar=("START", "END"))
+        p.add_argument(f"--bpm-{side}", type=float, help="User tempo, with ticks anchored at excerpt start")
+    p.add_argument("--gain-db", nargs=2, type=float, metavar=("A", "B"),
+                   help="Display gains in dB (default: match whole-track RMS levels)")
+    output(p)
     p = command("export", "Export the complete canonical genome (stdout if no --output)", track=True)
     output(p)
     p = command("tools", "Discover the typed tool contract")
@@ -240,6 +249,18 @@ def run(args):
         return tools.verify_hypothesis(track, args.hypothesis.replace("-", "_"), args.sound)
     if args.command == "metrics":
         return tools.get_master_metrics(track, args.start, args.end)
+    if args.command == "render-pair":
+        from genome.exports import export_pair
+        refs = (args.track_a, args.track_b)
+        # Importing a new path can change "latest". Resolve library references first.
+        ids = {ref:resolve_track(ref, engine, args) for ref in refs if not Path(ref).expanduser().is_file()}
+        for ref in refs:
+            if ref not in ids:
+                ids[ref] = resolve_track(ref, engine, args)
+        result = tools.render_pair(ids[refs[0]], ids[refs[1]], args.a, args.b, args.gain_db, args.bpm_a, args.bpm_b)
+        if args.output:
+            return export_pair(args.output, result, engine, args.force, [args.track_a, args.track_b])
+        return result
     if args.command in ("crop", "render", "export"):
         from genome.exports import destination, write
         output = None
