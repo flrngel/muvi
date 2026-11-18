@@ -1,0 +1,206 @@
+{
+  "reader_model": "gpt-6.1-terra",
+  "page_pixels": [
+    1000,
+    1440
+  ],
+  "mapping": {
+    "real": [
+      "sad",
+      "Glassline"
+    ],
+    "controlled": [
+      "short",
+      "long"
+    ],
+    "gain": [
+      "attenuated",
+      "short"
+    ]
+  },
+  "fixture_parameters": {
+    "pulse_period_s": 0.5,
+    "first_low_s": 0.12,
+    "mid_offset_s": 0.125,
+    "frequencies_hz": [
+      330,
+      440,
+      392,
+      330
+    ],
+    "low_tau_s": [
+      0.034,
+      0.14
+    ],
+    "mid_gate_s": [
+      0.085,
+      0.34
+    ],
+    "gain_copy_db": -9,
+    "component_rms_targets": [
+      0.1,
+      0.07
+    ]
+  },
+  "real_source_measurements": {
+    "sad": {
+      "drop": {
+        "mean_band_db": [
+          -14.208244323730469,
+          -24.35190773010254,
+          -27.230653762817383
+        ],
+        "attack_hz": {
+          "low": 7.5,
+          "mid": 6.291666666666667,
+          "high": 5.375,
+          "all": 5.041666666666667
+        },
+        "mid_quantiles_db": [
+          -31.914067729069934,
+          -25.57836326069652,
+          -20.63698030881715
+        ]
+      },
+      "breakdown": {
+        "mean_band_db": [
+          -31.44658851623535,
+          -24.877182006835938,
+          -27.36798095703125
+        ],
+        "attack_hz": {
+          "low": 1.3076923076923077,
+          "mid": 7.653846153846154,
+          "high": 6.961538461538462,
+          "all": 5.730769230769231
+        },
+        "mid_quantiles_db": [
+          -27.90100530859521,
+          -25.208875627560637,
+          -22.935725039917962
+        ]
+      },
+      "first_hit": {
+        "time_s": 182.044449,
+        "low_peak_hz_at_ms": {
+          "0": 53.8330078125,
+          "30": 193.798828125,
+          "60": 129.19921875,
+          "100": 86.1328125,
+          "150": 64.599609375,
+          "200": 53.8330078125,
+          "250": 43.06640625
+        }
+      }
+    },
+    "glass": {
+      "drop": {
+        "mean_band_db": [
+          -16.640350341796875,
+          -21.05327606201172,
+          -26.97805404663086
+        ],
+        "attack_hz": {
+          "low": 9.541666666666666,
+          "mid": 8.416666666666666,
+          "high": 8.833333333333334,
+          "all": 9.375
+        },
+        "mid_quantiles_db": [
+          -23.775921788746377,
+          -21.657635465803494,
+          -18.9085551871053
+        ]
+      },
+      "breakdown": {
+        "mean_band_db": [
+          -31.354290008544922,
+          -25.717039108276367,
+          -27.969369888305664
+        ],
+        "attack_hz": {
+          "low": 1.7916666666666667,
+          "mid": 4.083333333333333,
+          "high": 5.25,
+          "all": 4.625
+        },
+        "mid_quantiles_db": [
+          -30.58859876197634,
+          -26.615443276374222,
+          -23.28329942146988
+        ]
+      },
+      "first_hit": {
+        "time_s": 168.00798,
+        "low_peak_hz_at_ms": {
+          "0": 96.8994140625,
+          "30": 64.599609375,
+          "60": 53.8330078125,
+          "100": 53.8330078125,
+          "150": 172.265625,
+          "200": 172.265625,
+          "250": 32.2998046875
+        }
+      }
+    }
+  },
+  "controlled_mean_band_db_1_to_9_s": {
+    "A": [
+      -19.837,
+      -22.862,
+      -75.019
+    ],
+    "B": [
+      -19.792,
+      -22.872,
+      -78.091
+    ]
+  },
+  "runs": {
+    "controlled/first-revision": {
+      "reader_input_sha256": "68adc0136302a4e391562546710cedcb27357bbe9b40b14fa078ed3a9c04bd7f",
+      "answer": "A and B share a regular pulse and a similar broad midrange pitch contour over the marked phrase. Their clearest difference is what happens **after each low hit**: A’s low energy fades quickly, while B’s remains present between pulses.\n\n- **Low-hit shape — panel H, first marked attack at 1.126 s:** A’s low-frequency spectrum narrows and fades substantially within roughly 200–250 ms. B retains a strong low band through the 450 ms shown. A would likely sound shorter and more percussive; B would likely sound sustained or bass-heavy.\n- **Energy between pulses — panels P and H, throughout the phrase:** B shows continuous horizontal low-frequency lines, whereas A’s low energy is concentrated around the attacks. B would likely have more continuous bass between hits; A would leave more space.\n- **Midrange movement — panel F, beats 1–6:** Both show a similar sequence of higher and lower midrange regions. A’s regions are short, separated bursts; B’s extend across much of the space between attacks. A would likely sound more clipped, and B more held or connected.\n- **Subdivision — panel F, especially around beats 1–3:** A shows paired or segmented midrange marks within several bursts. B shows longer, smoother bands, though some starts remain visible. A may have a more articulated subdivision, but the image alone does not establish whether every segment is a distinct audible note.\n\nOne change that would move **B toward A** is to shorten the decay or gate the low-frequency sound after each hit, reducing its sustain between pulses. The display supports that direction, but it does not identify the source, processing chain, or exact envelope setting needed. Listening or access to the audio and its editable sources would be needed to choose the edit and judge its result.\n\nThe image also cannot establish timbre in full, loudness balance by ear, stereo placement, or whether the visible differences come from instrumentation, performance, or processing.",
+      "tool_calls": 0
+    },
+    "controlled/baseline": {
+      "reader_input_sha256": "c2fee283069075225634eb732ec26046eb48e5b793a5529c36a2cc9dbb1f0ef2",
+      "answer": "Both excerpts show a steady pulse across 1–9 s, with roughly two low hits per second and a midrange attack shortly after each hit. Their onset peaks and beat markers are closely aligned. The lower “acoustic objects” lanes show the same broad pattern, but those labels do not establish instrument identity.\n\n- **Low-hit shape — spectrogram, throughout:** In A, each low hit has a bright, compact attack followed by a visible decay. In B, the attacks also decay, but several narrow low-frequency bands remain bright across the gaps, especially below about 100 Hz. B would likely sound more sustained or resonant in the bass; A would likely sound more separated and punchy.\n\n- **Energy between pulses — band-power panel, throughout:** A’s low- and mid-band curves fall substantially between attacks. In B, the low band stays higher and the mid band often remains elevated between hits. B would likely sound fuller and more continuous, while A would leave more space between events.\n\n- **Midrange pitch and duration — spectrogram, for example around 2.7–3.3 s and 4.7–5.3 s:** A shows short midrange patches that end before the next pulse. B shows bright horizontal notes that persist between attacks and step to different heights from one pulse to another. B would likely have a more continuous, clearly pitched line; A’s midrange would likely register as shorter, more detached notes. Both show changes in pitch height, but the image is too coarse to name exact notes or intervals confidently.\n\n- **Subdivision — onset-strength panel, throughout:** Both have a strong recurring peak and a smaller peak shortly afterward. In A, the smaller peaks are comparatively distinct against a quiet baseline; in B, there is additional low-level activity between the major peaks. A’s short offbeat attacks may sound more clearly separated, while B may sound busier or more connected. The plot supports a recurring secondary event, but it does not establish a precise rhythmic subdivision or meter by itself.\n\n**One change to move B toward A:** shorten B’s sustained midrange notes so they decay after each attack, leaving a gap before the next pulse. The spectrogram supports that as a likely perceptual change, though choosing an exact envelope or edit point would require the audio or the underlying track data.\n\nThe image alone cannot establish instrument or source identity, exact pitch, harmony, timbre, loudness balance as heard, or whether the displayed beat hypotheses are musically correct. Listening or access to the audio would be needed to judge those reliably.",
+      "tool_calls": 0
+    },
+    "controlled/released": {
+      "reader_input_sha256": "f9ed2bb0fd2bee1a98104087f103eb6ab9549de7ec44e20c34c27774bf4ab626",
+      "answer": "Both excerpts show a regular pulse across the marked phrase, with low attacks about half a second apart and similar midrange pitch changes. Their main visible difference is what happens **between** those attacks: A largely decays away, while B sustains low and midrange energy.\n\n- **Low-hit shape — panel H, first marked attack at 1.126 s:** A’s low-frequency energy falls sharply and is near the plot’s floor after roughly 200–250 ms. B’s falls gradually and remains visible through 450 ms. A would likely sound short and punchy; B would sound longer and more resonant.\n- **Energy between pulses — panels P and F, throughout 1–4 s:** A leaves dark gaps after the low attacks. B shows persistent horizontal low-frequency bands between them. B would likely sound fuller or more continuous in the bass, with less separation between hits.\n- **Midrange duration — panel F, for example beats 2–3, about 1.6–2.2 s:** A’s bright midrange marks are short, separated bursts. B’s corresponding marks extend almost to the next pulse. B would likely sound more sustained; A would sound more clipped.\n- **Subdivision — panel F, for example just after beat 1, about 1.2–1.35 s:** A shows two closely spaced midrange blobs; B shows a more continuous horizontal mark there. A may have a more articulated subdivision, though the image alone does not establish whether B contains a quieter reattack within that sustained energy.\n\nThe midrange contours appear broadly alike: both move among similar frequency regions over the phrase. The plots do not establish exact notes, instrument identity, timbre, loudness balance as heard, or whether every visible blob is a separate played note. The tempo label also explicitly allows a half- or double-time interpretation.\n\n**One change to move B toward A:** shorten B’s low-hit decay so its energy falls substantially before the next pulse. Panel H directly supports that edit; the exact envelope and amount would need listening or the underlying audio to determine.",
+      "tool_calls": 0
+    },
+    "gain/first-revision": {
+      "reader_input_sha256": "cb8eda996c72679a8c429bcfbdcee5749a80d508d382de89d95fb9184718241d",
+      "answer": "A and B show the same broad pattern across the marked **1–4 s phrase**: six regularly spaced low attacks, roughly half a second apart, followed by short midrange tones. The midrange steps down over the first three pulses, rises at pulse 4, then steps down again. Its short horizontal patches also suggest finer articulation within the pulses.\n\n- **Low-hit shape — panel H, attacks at 1.126, 1.625 and 2.125 s:** The traces in A and B both fall rapidly, show a small shoulder around 120–190 ms on some hits, and drop steeply around 200–250 ms. Their first-hit spectra also look very similar. Both would likely sound like short, low thumps with comparable decays; the image does not establish a reliable difference in punch or tail length.\n- **Energy between pulses — panels F and H:** Both show dark gaps after the low-hit tails and between the short midrange marks. Both would likely leave similar space between pulses. The plots do not rule out quieter material below the displayed range or other sounds outside the shown bands.\n- **Midrange pitch and subdivision — panel F, beats 1–6:** The bright midrange bands occupy very similar heights in A and B, including the rise at beat 4. The pairs or clusters of short marks following each low attack also look much alike. They would likely have similar pitch movement and rhythmic articulation; I cannot confidently identify a material difference from this image.\n\n**I would not prescribe a specific change to B from this evidence.** To identify an edit that moves it toward A, I would need the audio or higher-resolution, directly comparable measurements—especially isolated low-hit envelopes, the level between hits, and midrange pitch and onset times. The image also cannot establish timbre, phase, stereo placement, or the full mix balance.",
+      "tool_calls": 0
+    },
+    "gain/baseline": {
+      "reader_input_sha256": "05b60c7db03410a547703d7577b14e5f2acd0faf5f1f26d8136a6d5214149adb",
+      "answer": "**A and B appear alike across the marked 1–9 s phrase.** Neither panel shows a material difference that I can reliably connect to a different audible result.\n\n- **Low hits:** Both show regularly spaced attacks about half a second apart, with similar bright low-frequency tails. They suggest the same repeating low pulse and decay shape.\n- **Between pulses:** Both show a continuous low sustained texture and similar falls and recoveries in the low-band power trace. The image does not reveal a clear difference in how much energy remains between hits.\n- **Midrange:** In both, short midrange marks follow the low hits at roughly the same offset. Their bright spectral bands rise and fall in a similar repeating pattern, suggesting the same apparent pitch movement.\n- **Subdivision:** Both show the same alternating low-hit and midrange-attack pattern. The onset peaks and beat markers also appear aligned, though the chart itself cautions that onset support does not establish beat correctness.\n\nThe plots cannot establish whether the excerpts sound identical: fine differences in timbre, dynamics, pitch, transient shape, or timing may be hidden by the display’s resolution and analysis. Source identities are also unresolved.\n\n**No specific edit to B is supported by this image.** To propose one, I’d need the audio excerpts or a more detailed comparison—such as aligned waveforms and higher-resolution spectrograms—that reveals an actual difference.",
+      "tool_calls": 0
+    },
+    "gain/released": {
+      "reader_input_sha256": "685e04e024c96ee0e144c1103f2808cca13fdffedf2479eb34e10c5657a707ef",
+      "answer": "A and B show **the same six-pulse pattern over the marked phrase**, with no material difference I can identify confidently from this image.\n\n- **Low hits — panels F and H:** Both show attacks at roughly half-second intervals. In H, the first three marked hits have closely matching low-frequency decay shapes: energy falls quickly, reaches a low level around 200–250 ms, and remains low until the next pulse. They would likely have a similar initial weight and decay.\n- **Energy between pulses — panels P and H:** Both show low energy between the main low hits, with no clear sustained low-frequency layer separating A from B. Any audible difference in residual energy would need a closer comparison.\n- **Midrange pitch movement — panel F, beats 1–6:** Both show a short midrange event after each low hit. Its visible frequency moves down after beat 1, stays lower around beat 3, rises around beat 4, then falls again by beat 6. That suggests a similar up-and-down pitched pattern in both excerpts, though exact notes and melodic intervals cannot be established from the image.\n- **Subdivision — panel F, beats 1–6:** The midrange events appear consistently offset after the low attacks in both. Some show multiple bright lobes, but the image does not establish whether those are separate articulated notes or spectral structure within one sound. A difference in subdivision therefore cannot be judged reliably.\n\nI cannot recommend a specific change to B: the displayed marks do not establish an audible difference to correct. **Audio of both excerpts**, or a higher-resolution, time-aligned comparison with pitch and onset measurements, would be needed to decide whether B needs a change in hit envelope, inter-pulse energy, pitch, or subdivision. Stereo placement, timbre beyond these frequency views, and perceived loudness also cannot be reliably judged here.",
+      "tool_calls": 0
+    },
+    "real/first-revision": {
+      "reader_input_sha256": "9e1ceb74445107bee7ac6132682f9057f4c0382979471f19e8210e2bd0c3c335",
+      "answer": "**A appears to have a faster, more regularly repeated midrange pattern; B has slower, more widely spaced main pulses with more activity between them.** Both passages contain recurring low and midrange energy, but the image does not isolate individual instruments, so the marks cannot establish a particular drum sound, bass line, or production treatment.\n\n- **Low-hit shape — panel H, first marked attacks at A 182.044 s and B 168.008 s:** A’s low-frequency spectrum shows a bright band descending from roughly 150 Hz toward 50 Hz during the first 200 ms. B shows a bright low band that settles near 50 Hz much earlier, alongside energy that continues above it. A may therefore sound like a more pronounced downward sweep; B may sound more immediately low and sustained. These are **mixture** spectra, so the sweep cannot be assigned confidently to a kick alone.\n\n- **Energy between pulses — panel H, 0–450 ms after those attacks:** Both RMS traces stay substantial between attacks rather than dropping to silence. B’s first trace is comparatively elevated at the start and rises again around 370 ms; A’s fluctuates through the window. This suggests continuous low-end support in both, with B’s next rise potentially making its low end feel more filled in. Overlapping sounds and further attacks could contribute to either trace.\n\n- **Midrange movement — panel F, A beats 1–6 versus B beats 1–6:** A has a prominent band near 1 kHz that changes height in short steps across the phrase. B has recurring bright patches around roughly 1 kHz, with longer spans between the numbered beats. A may sound more continuously articulated and pitch-active; B may sound like more separated repeated notes. The spectrogram alone does not reliably identify exact notes, melody, or instrument.\n\n- **Subdivision — panel F:** A’s tracker reads **147.7 BPM**, while B’s reads **79.5 BPM**, with half/double-time ambiguity explicitly noted. A’s numbered beats are closer together, and its mid-attack dots recur densely. B has more mid-attack dots between its wider-spaced numbered beats, especially around beats 5–6. A may feel faster and more even; B may feel slower at the main pulse but busier within some beats. The tracker labels do not by themselves prove the intended meter.\n\nA plausible way to move **B toward A** would be to make its recurring midrange figure more evenly articulated at approximately A’s pulse rate. The image does not support a precise edit—such as moving specific notes or changing a particular instrument—without the audio or separated stems and a reliable beat grid. The displayed phrases also cover different durations, and A’s panel F ends at 184.44 s, so their full developments and overall sound cannot be compared here.",
+      "tool_calls": 0
+    },
+    "real/baseline": {
+      "reader_input_sha256": "4947635f022d87f7d45ecdac648c223c9d73ad9dd8404d5c6cf6454620ce8346",
+      "answer": "Both excerpts show repeated pulses over a sustained low-frequency component. **A looks more regularly articulated; B looks denser and more continuously active between pulses.** The plots support comparisons of timing and spectral energy, but they do not establish instrument identity or let us hear the excerpts.\n\n- **Low-hit shape:** In **A, roughly 182–195 s**, the low-band trace has smooth, regularly spaced peaks and falls between them. This suggests a repeating low hit with a fairly consistent decay. In **B, throughout 168–192 s**, the low-band trace also pulses regularly, but its peaks and intervening level fluctuate more. The likely result is a less uniform low pulse. The display does not resolve the attack and decay of an individual hit well enough to specify an envelope edit confidently.\n\n- **Energy between pulses:** In **A, especially 182–195 s**, the spectrogram shows clearer vertical pulse stripes and darker gaps between them. In **B, especially around 174–180 s**, the field between stripes stays brighter and more filled in. B may therefore sound more continuous or busy between hits, while A may sound more separated.\n\n- **Midrange pitch movement:** In **B, around 174–180 s**, the midrange contains several visible horizontal bands and changes in their brightness. In **A, around 185–191 s**, the midrange looks more consistently striped in time, with less clearly distinguishable movement of individual bands. B may have a more active or layered midrange, but the image does **not** reliably show a particular rising or falling melody: overlapping partials and the image scale make pitch trajectories ambiguous.\n\n- **Subdivision:** In **A, roughly 182–195 s**, the onset panel shows strong, regularly recurring peaks with smaller events between them. In **B, throughout 168–192 s**, smaller onset peaks are more numerous and unevenly distributed. B may sound more subdivided or rhythmically busy. The beat markers are hypotheses, so the image alone cannot establish the meter or exact note values.\n\nOne plausible way to move **B toward A** is to **reduce some of B’s intervening midrange activity between the main pulses**, particularly around **174–180 s**, while preserving the main pulse. The image supports that as a broad direction, but not a precise edit: the audio or isolated stems would be needed to identify which sounds create that energy and whether they are notes, reverberation, or overlapping hits.",
+      "tool_calls": 0
+    },
+    "real/released": {
+      "reader_input_sha256": "cc1b767fe1eb2a00046fabfdc4c6ef8049531557d779b58dabf7b222cc2b145a",
+      "answer": "**A appears more continuously pulsed, while B has more sustained low-frequency energy and more conspicuous midrange events between beats.** Both contain recurring attacks, but the image alone cannot identify the instruments or establish what an isolated drum or bass part is doing.\n\n- **Low-hit shape — panel H, first marked attacks at A 182.044 s and B 168.008 s:** A’s spectrum shows a bright low-frequency band falling from roughly 150 Hz toward 50 Hz over the first 150–200 ms. B’s strongest low band stays nearer the bottom of the plot, with less obvious downward movement. A could sound more like a falling-pitch thump; B could sound steadier in pitch. These spectra show the **20–250 Hz mixture**, so the falling shape cannot confidently be assigned to a kick alone.\n\n- **Energy between pulses — panels P and H:** A’s passage has repeated vertical stripes and a visibly fluctuating mid-level trace; B’s passage looks more filled in and its mid-level trace is comparatively even. In H, B’s low-energy traces also remain substantial between the marked starts. B may sound more continuous or sustained, while A may feel more distinctly articulated. Overlap among sounds limits what the traces can tell us about any single source’s decay.\n\n- **Midrange pitch movement — panel F, around A beats 1–6 and B 168.6–170.2 s:** A has repeated vertical attacks over a dense field of horizontal bands. B has more conspicuous bright, rounded patches at several midrange frequencies, including around 168.65 s and 169.4 s. Those may make B’s midrange sound more punctuated or pitched. The image does not trace a sufficiently clear fundamental to establish a melody, pitch direction, or exact intervals.\n\n- **Subdivision and timing — panel F:** Both show events between numbered beats. A’s low-hit markers include three early hits at approximately 182.044, 182.114 and 182.323 s; B’s are approximately 168.008, 168.182 and 168.252 s. Their spacing differs, so the opening low-hit pattern could feel different. The beat guides are also uncertain: A is labeled **147.7 BPM** with half/double-time ambiguity; B uses **160 BPM**, while its tracker reports **79.5 BPM**. The figure therefore does not establish a definitive subdivision or phase comparison.\n\nA plausible change to move B toward A would be to **add a short downward pitch sweep to B’s low attack**, aiming for the falling band visible in A’s first marked hit. That is a listening hypothesis, not a justified precise edit: to know which sound to change and by how much, we would need the audio—and ideally isolated kick and bass stems or the source patch—because panel H combines their low-frequency energy.",
+      "tool_calls": 0
+    }
+  }
+}

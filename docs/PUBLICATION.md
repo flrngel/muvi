@@ -1,5 +1,14 @@
 # Public distribution
 
+## Release 0.9.0
+
+`muvi render-pair` and the MCP `render_pair` tool compare two excerpts at passage,
+phrase and low-attack scales. The distribution includes a wheel, source distribution,
+standalone skill and SHA-256 checksums. The Windows suite passed 109 tests,
+including MCP retrieval of all three PNGs and their legend. Nine fresh image-only
+reads cover the original chart, the first revision and the released view.
+The [evaluation report](PAIR_EVALUATION.md) records results and remaining uncertainty.
+
 ## Release 0.8.5: bundled skill installation
 
 `muvi skill install` installs the packaged skill for Codex and Claude Code, with
